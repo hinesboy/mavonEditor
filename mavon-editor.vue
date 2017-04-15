@@ -89,8 +89,8 @@
         </div>
         <div v-show="s_subField||s_screen_phone" class="content-input-wrapper">
           <!-- 双栏 -->
-          <v-autoTextarea :autofocus="s_autofocus" placeholder="开始编辑..." class="content-input" fontSize="16px"
-                          lineHeight="1.6" v-model="d_value"></v-autoTextarea>
+          <v-autoTextarea ref="vNoteTextarea" placeholder="开始编辑..." class="content-input" fontSize="15px"
+                          lineHeight="1.5" v-model="d_value"></v-autoTextarea>
         </div>
       </div>
       <!--展示区-->
@@ -478,7 +478,6 @@
             $toolbar_right_subfield_click() {
                 this.s_subField = !this.s_subField
                 this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
-                // this.$refs.vNoteEdit.scrollTop = 0
                 if (this.onsubfield) {
                     this.onsubfield(this.s_subField, this.d_value)
                 }
@@ -677,15 +676,15 @@
             },
             // 获取textarea dom节点
             getTextareaDom() {
-                return document.getElementsByClassName('auto-textarea-input')[0]
+                return this.$refs.vNoteTextarea.$el.children[1]
             },
-            // 点击工具栏插入内容
+            // 触发工具栏插入内容
             insertText(obj, {prefix, subfix, str}) {
                 if (this.s_subField) {
                     this.insertTextAtCaret(obj, {prefix, subfix, str});
                 } else {
                     // 单栏模式点击
-                    let div = document.getElementsByClassName('content-div-edit')[0]
+                    let div = this.$refs.vNoteDivEdit
                     let obj = document.createElement('div');
                     obj.innerHTML = markdown.render(prefix + str + subfix)
                     if (obj.children.length === 1 && obj.children[0].tagName === 'P') {
@@ -849,6 +848,7 @@
       right 0
       bottom 0
       top 0
+      height auto
     .v-note-op
       width 100%
       display flex
@@ -929,12 +929,12 @@
           font-size 16px
         .content-input-wrapper
           width 100%
-          padding 12px 25px 20px 25px
+          padding 8px 25px 15px 25px
       .v-note-show
         flex 0 0 50%
         width 50%
         overflow-y auto
-        padding 3px 0
+        padding 0 0
         transition all 0.2s linear 0s
         &.phone-show
           flex 0 0 100%
@@ -942,7 +942,7 @@
         .v-show-content, .v-show-content-html
           width 100%
           height 100%
-          padding 5px 25px 20px 25px
+          padding 8px 25px 15px 25px
           overflow-y auto
           box-sizing border-box
           overflow-x hidden
