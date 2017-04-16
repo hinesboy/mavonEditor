@@ -142,6 +142,7 @@
                 type: String,
                 default: ''
             },
+            // 默认是否分栏 用于记忆用户模式
             subfield: {
                 type: Boolean,
                 default: true
@@ -173,42 +174,6 @@
                         help: true// 帮助
                     }
                 }
-            },
-            // 默认是否分栏 用于记忆用户模式
-            // 修改数据触发 （val ， val_render）
-            onchange: {
-                type: Function,
-                default: null
-            },
-            // 切换全屏触发 （status , val）
-            onfullscreen: {
-                type: Function,
-                default: null
-            },
-            // 打开阅读模式触发（status , val）
-            onreadmodel: {
-                type: Function,
-                default: null
-            },
-            // 切换分栏触发 （status , val）
-            onsubfield: {
-                type: Function,
-                default: null
-            },
-            // 切换htmlcode触发 （status , val）
-            onhtmlcode: {
-                type: Function,
-                default: null
-            },
-            // 打开 , 关闭 help触发 （status , val）
-            onhelp: {
-                type: Function,
-                default: null
-            },
-            // 监听ctrl + s
-            onsave: {
-                type: Function,
-                default: null
             }
         },
         data() {
@@ -360,9 +325,9 @@
                         }
                         case 83: {
                             // S
-                            if ($vm.onsave) {
+                            if ($vm.save) {
                                 e.preventDefault()
-                                $vm.onsave($vm.d_value, $vm.d_render)
+                                $vm.save($vm.d_value, $vm.d_render)
                             }
                             break;
                         }
@@ -428,6 +393,36 @@
             }, false);
         },
         methods: {
+            // @event
+            // 修改数据触发 （val ， val_render）
+            change(val , render) {
+                this.$emit('change' , val , render)
+            },
+            // 切换全屏触发 （status , val）
+            fullscreen(status , val) {
+                this.$emit('fullscreen' , status , val)
+            },
+            // 打开阅读模式触发（status , val）
+            readmodel(status , val) {
+                this.$emit('readmodel' , status , val)
+            },
+            // 切换分栏触发 （status , val）
+            subfieldtoggle(status , val) {
+                this.$emit('subfieldtoggle' , status , val)
+            },
+            // 切换htmlcode触发 （status , val）
+            htmlcode(status , val) {
+                this.$emit('htmlcode' , status , val)
+            },
+            // 打开 , 关闭 help触发 （status , val）
+            helptoggle(status , val) {
+                this.$emit('helptoggle' , status , val)
+            },
+            // 监听ctrl + s
+            save(val , render) {
+                this.$emit('save' , val , render)
+            },
+            // ------------------------------------------------------------
             // 滚动条联动
             $v_edit_scroll($event) {
                 let element = $event.srcElement ? $event.srcElement : $event.target
@@ -445,14 +440,14 @@
             },
             $toolbar_right_html_click() {
                 this.s_html_code = !this.s_html_code
-                if (this.onhtmlcode) {
-                    this.onhtmlcode(this.s_html_code, this.d_value)
+                if (this.htmlcode) {
+                    this.htmlcode(this.s_html_code, this.d_value)
                 }
             },
             $toolbar_right_help_click() {
                 this.s_help = !this.s_help
-                if (this.onhelp) {
-                    this.onhelp(this.s_help, this.d_value)
+                if (this.helptoggle) {
+                    this.helptoggle(this.s_help, this.d_value)
                 }
             },
             // todo 导航
@@ -471,15 +466,15 @@
             },
             $toolbar_right_read_change_status() {
                 this.s_readmodel = !this.s_readmodel
-                if (this.onreadmodel) {
-                    this.onreadmodel(this.s_readmodel, this.d_value)
+                if (this.readmodel) {
+                    this.readmodel(this.s_readmodel, this.d_value)
                 }
             },
             $toolbar_right_subfield_click() {
                 this.s_subField = !this.s_subField
                 this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
-                if (this.onsubfield) {
-                    this.onsubfield(this.s_subField, this.d_value)
+                if (this.subfieldtoggle) {
+                    this.subfieldtoggle(this.s_subField, this.d_value)
                 }
             },
             $toolbar_right_phone_click() {
@@ -487,8 +482,8 @@
             },
             $toolbar_right_fullscreen_click() {
                 this.s_fullScreen = !this.s_fullScreen
-                if (this.onfullscreen) {
-                    this.onfullscreen(this.s_fullScreen, this.d_value)
+                if (this.fullscreen) {
+                    this.fullscreen(this.s_fullScreen, this.d_value)
                 }
             },
             // 工具栏功能图标click-----------------
@@ -786,9 +781,9 @@
             d_value: function (val, oldVal) {
                 // render
                 this.d_render = markdown.render(this.d_value);
-                // onchange 回调
-                if (this.onchange) {
-                    this.onchange(this.d_value, this.d_render)
+                // change 回调
+                if (this.change) {
+                    this.change(this.d_value, this.d_render)
                 }
                 // v-model 语法糖
                 this.$emit('input', val)
