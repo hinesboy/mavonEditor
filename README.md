@@ -2,7 +2,7 @@
 
 > 基于Vue的markdown编辑器
 
-## example (展示)
+## example (图片展示)
 
 ### PC
 
