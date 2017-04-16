@@ -11,7 +11,8 @@
 ### 移动
 
 ![移动](./img/example-phone.png)
-
+&nbsp;&nbsp;&nbsp;
+![移动](./img/example-phone2.png)
 ## Use Setup (开始)
 
 ### Install auto-textarea (安装)
