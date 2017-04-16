@@ -2,6 +2,16 @@
 
 > 基于Vue的markdown编辑器
 
+## example (展示)
+
+### PC
+
+![PC](./img/example.png)
+
+### 移动
+
+![移动](./img/example-phone.png)
+
 ## Use Setup (开始)
 
 ### Install auto-textarea (安装)

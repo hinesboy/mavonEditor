@@ -1,6 +1,7 @@
 /node_modules/*
 /.idea/*
 /.git/*
+/img/*
 LICENSE
 npm-debug.log
 git-debug.log
