@@ -844,6 +844,7 @@
       bottom 0
       top 0
       height auto
+      z-index 1501
     .v-note-op
       width 100%
       display flex

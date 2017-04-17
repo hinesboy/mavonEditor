@@ -24,7 +24,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.3.2"
+"mavon-editor": "^1.3.3"
 ```
 
 ### Use (如何引入)
@@ -145,9 +145,14 @@ toolbars: {
 - markdown样式自定义
 - 重构
 
+## update(更新内容)
+
+- 1.3.3 多个编辑器z-index冲突
+- 1.3.2 props 传递方法 更改为 v-on 绑定方法
+
 ## Licence (证书)
 
-autoTextarea is open source and released under the MIT Licence.
+mavonEditor is open source and released under the MIT Licence.
 
 Copyright (c) 2017 hinesboy
 
