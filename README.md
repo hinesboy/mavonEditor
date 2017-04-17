@@ -15,7 +15,7 @@
 ![移动](./img/example-phone2.png)
 ## Use Setup (开始)
 
-### Install auto-textarea (安装)
+### Install mavon-editor (安装)
 
 ```
 $ npm install mavon-editor --save
