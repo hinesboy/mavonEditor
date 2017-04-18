@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'fullscreen': s_fullScreen}" class="v-note-wrapper markdown-body">
+  <div @keydown="$v_markdown_key_listen" :class="{'fullscreen': s_fullScreen}" class="v-note-wrapper markdown-body">
     <!--工具栏-->
     <div class="v-note-op">
       <div class="left">
@@ -182,9 +182,6 @@
                 s_scrollStyle: (() => {
                     return this.scrollStyle
                 })(),// props 是否渲染滚动条样式
-                s_toolbars: (() => {
-                    return this.toolbars
-                })(),// props工具栏快捷按钮
                 d_value: (() => {
                     return this.value
                 })(),// props 文本内容
@@ -220,163 +217,6 @@
             }
             if (this.$refs.vNoteDivEdit) {
                 this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
-            }
-
-            // 注册监听键盘事件
-            window.onkeydown = function (e) {
-                if (!e.ctrlKey && !e.altKey && !e.shiftKey) {
-                    // one key
-                    switch (e.keyCode) {
-                        case 9: {
-                            // tab 单栏模式
-                            if (!$vm.s_subField) {
-                                e.preventDefault()
-                                if ($vm.$refs.vNoteDivEdit ) {
-                                    let value = markdown.render($vm.d_value)
-                                    if (value !== null && value !== '') {
-                                        $vm.$refs.vNoteDivEdit.innerHTML = value
-                                        let sel = window.getSelection();
-                                        let range = sel.getRangeAt(0);
-                                        range = range.cloneRange();
-                                        range.setStartAfter($vm.$refs.vNoteDivEdit.lastChild)
-                                        range.collapse(true);
-                                        sel.removeAllRanges();
-                                        sel.addRange(range);
-                                    }
-                                }
-                            }
-                            break;
-                        }
-                        case 120: {
-                            // F9 单栏模式
-                            e.preventDefault()
-                            $vm.$toolbar_right_subfield_click()
-                            break;
-                        }
-                        case 121: {
-                            // F10 全屏
-                            e.preventDefault()
-                            $vm.$toolbar_right_fullscreen_click()
-                            break;
-                        }
-                        case 122: {
-                            // F11 阅读
-                            e.preventDefault()
-                            $vm.$toolbar_right_read_click()
-                            break;
-                        }
-                    }
-                } else if (e.ctrlKey && !e.altKey && !e.shiftKey) {
-                    // ctrl +
-                    switch (e.keyCode) {
-                        case 66: {
-                            // B
-                            e.preventDefault()
-                            $vm.$toolbar_left_bold_click()
-                            break;
-                        }
-                        case 73: {
-                            // I
-                            e.preventDefault()
-                            $vm.$toolbar_left_italic_click()
-                            break;
-                        }
-                        case 72: {
-                            // H
-                            e.preventDefault()
-                            $vm.$toolbar_left_header_click()
-                            break;
-                        }
-                        case 85: {
-                            // U
-                            e.preventDefault()
-                            $vm.$toolbar_left_underline_click()
-                            break;
-                        }
-                        case 68: {
-                            // D
-                            e.preventDefault()
-                            $vm.$toolbar_left_strikethrough_click()
-                            break;
-                        }
-                        case 77: {
-                            // M
-                            e.preventDefault()
-                            $vm.$toolbar_left_mark_click()
-                            break;
-                        }
-                        case 81: {
-                            // Q
-                            e.preventDefault()
-                            $vm.$toolbar_left_quote_click()
-                            break;
-                        }
-                        case 79: {
-                            // O
-                            e.preventDefault()
-                            $vm.$toolbar_left_ol_click()
-                            break;
-                        }
-                        case 76: {
-                            // L
-                            e.preventDefault()
-                            $vm.$toolbar_left_link_click()
-                            break;
-                        }
-                        case 83: {
-                            // S
-                            if ($vm.save) {
-                                e.preventDefault()
-                                $vm.save($vm.d_value, $vm.d_render)
-                            }
-                            break;
-                        }
-                    }
-                } else if (e.ctrlKey && e.altKey && !e.shiftKey) {
-                    // ctrl + alt +
-                    switch (e.keyCode) {
-                        case 83: {
-                            // S
-                            e.preventDefault()
-                            $vm.$toolbar_left_superscript_click()
-                            break;
-                        }
-                        case 85: {
-                            // U
-                            e.preventDefault()
-                            $vm.$toolbar_left_ul_click()
-                            break;
-                        }
-                        case 76: {
-                            // C
-                            e.preventDefault()
-                            $vm.$toolbar_left_imagelink_click()
-                            break;
-                        }
-                        case 67: {
-                            // L
-                            e.preventDefault()
-                            $vm.$toolbar_left_code_click()
-                            break;
-                        }
-                        case 84: {
-                            // T
-                            e.preventDefault()
-                            $vm.$toolbar_left_table_click()
-                            break;
-                        }
-                    }
-                } else if (e.ctrlKey && e.shiftKey && !e.altKey) {
-                    // ctrl + shift
-                    switch (e.keyCode) {
-                        case 83: {
-                            // S
-                            e.preventDefault()
-                            $vm.$toolbar_left_subscript_click()
-                            break;
-                        }
-                    }
-                }
             }
             // 阅读模式 全屏监听事件
             document.addEventListener('fullscreenchange', function (e) {
@@ -423,6 +263,162 @@
                 this.$emit('save' , val , render)
             },
             // ------------------------------------------------------------
+            $v_markdown_key_listen(e) {
+                // 注册监听键盘事件
+                if (!e.ctrlKey && !e.altKey && !e.shiftKey) {
+                    // one key
+                    switch (e.keyCode) {
+                        case 9: {
+                            // tab 单栏模式
+                            if (!this.s_subField) {
+                                e.preventDefault()
+                                if (this.$refs.vNoteDivEdit ) {
+                                    let value = markdown.render(this.d_value)
+                                    if (value !== null && value !== '') {
+                                        this.$refs.vNoteDivEdit.innerHTML = value
+                                        let sel = window.getSelection();
+                                        let range = sel.getRangeAt(0);
+                                        range = range.cloneRange();
+                                        range.setStartAfter(this.$refs.vNoteDivEdit.lastChild)
+                                        range.collapse(true);
+                                        sel.removeAllRanges();
+                                        sel.addRange(range);
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                        case 120: {
+                            // F9 单栏模式
+                            e.preventDefault()
+                            this.$toolbar_right_subfield_click()
+                            break;
+                        }
+                        case 121: {
+                            // F10 全屏
+                            e.preventDefault()
+                            this.$toolbar_right_fullscreen_click()
+                            break;
+                        }
+                        case 122: {
+                            // F11 阅读
+                            e.preventDefault()
+                            this.$toolbar_right_read_click()
+                            break;
+                        }
+                    }
+                } else if (e.ctrlKey && !e.altKey && !e.shiftKey) {
+                    // ctrl +
+                    switch (e.keyCode) {
+                        case 66: {
+                            // B
+                            e.preventDefault()
+                            this.$toolbar_left_bold_click()
+                            break;
+                        }
+                        case 73: {
+                            // I
+                            e.preventDefault()
+                            this.$toolbar_left_italic_click()
+                            break;
+                        }
+                        case 72: {
+                            // H
+                            e.preventDefault()
+                            this.$toolbar_left_header_click()
+                            break;
+                        }
+                        case 85: {
+                            // U
+                            e.preventDefault()
+                            this.$toolbar_left_underline_click()
+                            break;
+                        }
+                        case 68: {
+                            // D
+                            e.preventDefault()
+                            this.$toolbar_left_strikethrough_click()
+                            break;
+                        }
+                        case 77: {
+                            // M
+                            e.preventDefault()
+                            this.$toolbar_left_mark_click()
+                            break;
+                        }
+                        case 81: {
+                            // Q
+                            e.preventDefault()
+                            this.$toolbar_left_quote_click()
+                            break;
+                        }
+                        case 79: {
+                            // O
+                            e.preventDefault()
+                            this.$toolbar_left_ol_click()
+                            break;
+                        }
+                        case 76: {
+                            // L
+                            e.preventDefault()
+                            this.$toolbar_left_link_click()
+                            break;
+                        }
+                        case 83: {
+                            // S
+                            if (this.save) {
+                                e.preventDefault()
+                                this.save(this.d_value, this.d_render)
+                            }
+                            break;
+                        }
+                    }
+                } else if (e.ctrlKey && e.altKey && !e.shiftKey) {
+                    // ctrl + alt +
+                    switch (e.keyCode) {
+                        case 83: {
+                            // S
+                            e.preventDefault()
+                            this.$toolbar_left_superscript_click()
+                            break;
+                        }
+                        case 85: {
+                            // U
+                            e.preventDefault()
+                            this.$toolbar_left_ul_click()
+                            break;
+                        }
+                        case 76: {
+                            // C
+                            e.preventDefault()
+                            this.$toolbar_left_imagelink_click()
+                            break;
+                        }
+                        case 67: {
+                            // L
+                            e.preventDefault()
+                            this.$toolbar_left_code_click()
+                            break;
+                        }
+                        case 84: {
+                            // T
+                            e.preventDefault()
+                            this.$toolbar_left_table_click()
+                            break;
+                        }
+                    }
+                } else if (e.ctrlKey && e.shiftKey && !e.altKey) {
+                    // ctrl + shift
+                    switch (e.keyCode) {
+                        case 83: {
+                            // S
+                            e.preventDefault()
+                            this.$toolbar_left_subscript_click()
+                            break;
+                        }
+                    }
+                }
+            },
             // 滚动条联动
             $v_edit_scroll($event) {
                 let element = $event.srcElement ? $event.srcElement : $event.target
@@ -791,9 +787,6 @@
             value: function (val, oldVal) {
                 this.d_value = val
                 this.d_render = markdown.render(this.value);
-            },
-            toolbars: function (val, oldVal) {
-                this.s_toolbars = p_ObjectCopy_DEEP(this.s_toolbars, val)
             },
             subfield: function (val, oldVal) {
                 this.s_subField = this.subfield

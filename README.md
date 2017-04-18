@@ -24,7 +24,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.3.3"
+"mavon-editor": "^1.3.4"
 ```
 
 ### Use (如何引入)
@@ -83,11 +83,13 @@ $ npm install mavon-editor --save
 
 ```
  /*
-    默认工具栏按钮全部开启, 如需关闭, 设置对应键值为false即可
+    默认工具栏按钮全部开启, 传入自定义对象
     例如: {
-        bold: false
+         bold: true, // 粗体
+         italic: true,// 斜体
+         header: true,// 标题
     }
-    此时, 粗体将被隐藏,其余正常显示
+    此时, 仅仅显示此三个功能键
  */
 toolbars: {
       bold: true, // 粗体
@@ -146,7 +148,7 @@ toolbars: {
 - 重构
 
 ## update(更新内容)
-
+- 1.3.4 多个编辑器快捷键/组合键监听覆盖 , props.toolbars 传递规则纠正(传入值整体覆盖默认值)
 - 1.3.3 多个编辑器z-index冲突
 - 1.3.2 props 传递方法 更改为 v-on 绑定方法
 
