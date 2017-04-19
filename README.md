@@ -1,6 +1,6 @@
 # mavonEditor
 
-![Build Status](https://travis-ci.org/hinesboy/mavonEditor.svg?branch=master)
+![npm](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)
 
 > 基于Vue的markdown编辑器
 
