@@ -1,5 +1,7 @@
 # mavonEditor
 
+![Build Status](https://travis-ci.org/hinesboy/mavonEditor.svg?branch=master)
+
 > 基于Vue的markdown编辑器
 
 ## example (图片展示)
