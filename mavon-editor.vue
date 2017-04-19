@@ -38,6 +38,15 @@
                 title="代码块 (ctrl+alt+c)"></button>
         <button v-if="toolbars.table" @click="$toolbar_left_table_click" class="op-icon fa fa-table" aria-hidden="true"
                 title="表格 (ctrl+alt+t)"></button>
+        <span v-if="toolbars.link || toolbars.imagelink || toolbars.code || toolbars.table" class="op-icon-divider"></span>
+        <button v-if="toolbars.undo" @click="$toolbar_left_undo_click" class="op-icon fa fa-undo"
+                aria-hidden="true" title="上一步 (ctrl+z)"></button>
+        <button v-if="toolbars.redo" @click="$toolbar_left_redo_click" class="op-icon fa fa-repeat" aria-hidden="true"
+                title="下一步 (ctrl+y)"></button>
+        <button v-if="toolbars.trash" @click="$toolbar_left_trash_click" class="op-icon fa fa-trash-o" aria-hidden="true"
+                title="清空 (ctrl+breakspace)"></button>
+        <button v-if="toolbars.save" @click="$toolbar_left_save_click" class="op-icon fa fa-floppy-o" aria-hidden="true"
+                title="保存 (ctrl+s)"></button>
       </div>
       <div class="right">
         <button @click="$toolbar_right_phone_click" v-show="s_screen_phone && s_screen_phone_toggle"
@@ -167,6 +176,10 @@
                         imagelink: true,// 图片链接
                         code: true,// code
                         table: true,// 表格
+                        undo: true, // 撤销
+                        redo: true, // 前进
+                        trash: true, // 清空
+                        save: true, // 保存
                         subfield: true,// 是否需要分栏
                         fullscreen: true,// 全屏编辑
                         readmodel: true,// 沉浸式阅读
@@ -205,7 +218,14 @@
                 s_readmodel: false,
                 s_table_enter: false, // 回车事件是否在表格中执行
                 s_screen_phone_toggle: true,
-                s_screen_phone: false
+                s_screen_phone: false,
+                d_history: (() => {
+                    let temp_array = []
+                    temp_array.push(this.value)
+                    return temp_array;
+                })(), // 编辑记录
+                d_history_index: 0, // 编辑记录索引
+                currentTimeout: ''
             };
         },
         created() {
@@ -366,10 +386,26 @@
                         }
                         case 83: {
                             // S
-                            if (this.save) {
-                                e.preventDefault()
-                                this.save(this.d_value, this.d_render)
-                            }
+                            e.preventDefault()
+                            this.$toolbar_left_save_click()
+                            break;
+                        }
+                        case 90: {
+                            // Z
+                            e.preventDefault()
+                            this.$toolbar_left_undo_click()
+                            break;
+                        }
+                        case 89: {
+                            // Y
+                            e.preventDefault()
+                            this.$toolbar_left_redo_click()
+                            break;
+                        }
+                        case 8: {
+                            // delete
+                            e.preventDefault()
+                            this.$toolbar_left_trash_click()
                             break;
                         }
                     }
@@ -546,6 +582,37 @@
                     subfix: '',
                     str: '|column1|column2|column3|\n|-|-|-|\n|content1|content2|content3|\n'
                 })
+            },
+            // undo
+            $toolbar_left_undo_click() {
+                if (this.d_history_index > 0) {
+                    this.d_history_index --
+                }
+                this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
+                if (this.s_subField) {
+                    let start = this.getTextareaDom().selectionStart
+                    let currentLength = this.d_value.length
+                    this.$nextTick(() => {
+                        // 光标操作
+                        start -= currentLength - this.d_value.length
+                        this.getTextareaDom().selectionStart = start
+                        this.getTextareaDom().selectionEnd = start
+                    })
+                }
+            },
+            // redo
+            $toolbar_left_redo_click() {
+                if (this.d_history_index < this.d_history.length - 1) {
+                    this.d_history_index ++
+                }
+                this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
+            },
+            $toolbar_left_trash_click() {
+                this.d_value = ''
+                this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
+            },
+            $toolbar_left_save_click() {
+                this.save(this.d_value, this.d_render)
             },
             // ---------------------------------------
             // 监听单栏输入框------------------------
@@ -771,7 +838,12 @@
                     // <  768
                     this.s_screen_phone = true;
                 }
-            }
+            },
+            saveHistory () {
+                this.d_history.splice(this.d_history_index + 1, this.d_history.length)
+                this.d_history.push(this.d_value)
+                this.d_history_index = this.d_history.length - 1
+            },
         },
         watch: {
             d_value: function (val, oldVal) {
@@ -783,13 +855,28 @@
                 }
                 // v-model 语法糖
                 this.$emit('input', val)
+                // 塞入编辑记录数组
+                if (this.d_value === this.d_history[this.d_history_index]) return
+                window.clearTimeout(this.currentTimeout)
+                this.currentTimeout = setTimeout(() => {
+                    this.saveHistory()
+                }, 500)
             },
             value: function (val, oldVal) {
-                this.d_value = val
-                this.d_render = markdown.render(this.value);
+                if (val !== this.d_value) {
+                    this.d_value = val
+                    this.d_render = markdown.render(this.value);
+                }
             },
             subfield: function (val, oldVal) {
                 this.s_subField = this.subfield
+            },
+            d_history_index () {
+                if (this.d_history_index > 20) {
+                    this.d_history.shift()
+                    this.d_history_index = this.d_history_index - 1
+                }
+                this.d_value = this.d_history[this.d_history_index]
             }
         },
         components: {

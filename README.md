@@ -24,7 +24,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.3.4"
+"mavon-editor": "^1.3.5"
 ```
 
 ### Use (如何引入)
@@ -93,25 +93,30 @@ $ npm install mavon-editor --save
  */
 toolbars: {
       bold: true, // 粗体
-      italic: true,// 斜体
-      header: true,// 标题
-      underline: true,// 下划线
-      strikethrough: true,// 中划线
-      mark: true,// 标记
-      superscript: true,// 上角标
-      subscript: true,// 下角标
-      quote: true,// 引用
-      ol: true,// 有序列表
-      ul: true,// 无序列表
-      link: true,// 链接
-      imagelink: true,// 图片链接
-      code: true,// code
-      table: true,// 表格
-      subfield: true,// 是否需要分栏
-      fullscreen: true,// 全屏编辑
-      readmodel: true,// 沉浸式阅读
-      htmlcode: true,// 展示html源码
-      help: true// 帮助
+      italic: true, // 斜体
+      header: true, // 标题
+      underline: true, // 下划线
+      strikethrough: true, // 中划线
+      mark: true, // 标记
+      superscript: true, // 上角标
+      subscript: true, // 下角标
+      quote: true, // 引用
+      ol: true, // 有序列表
+      ul: true, // 无序列表
+      link: true, // 链接
+      imagelink: true, // 图片链接
+      code: true, // code
+      table: true, // 表格
+      subfield: true, // 是否需要分栏
+      fullscreen: true, // 全屏编辑
+      readmodel: true, // 沉浸式阅读
+      htmlcode: true, // 展示html源码
+      help: true, // 帮助
+      /* 新增 */
+      undo: true, // 上一步
+      redo: true, // 下一步
+      trash: true, // 清空
+      save: true // 保存（触发events中的save事件）
   }
 ```
 
@@ -139,7 +144,7 @@ toolbars: {
 
 ## follow-up (后续)
 
-- 撤销键、清空键、保存按钮
+- ~~撤销键、清空键、保存按钮~~（完成）
 - 支持开启标题导航
 - 滚动条样式的浏览器兼容性
 - 自定义工具栏功能键
@@ -148,9 +153,10 @@ toolbars: {
 - 重构
 
 ## update(更新内容)
-- 1.3.4 多个编辑器快捷键/组合键监听覆盖 , props.toolbars 传递规则纠正(传入值整体覆盖默认值)
-- 1.3.3 多个编辑器z-index冲突
-- 1.3.2 props 传递方法 更改为 v-on 绑定方法
+- **1.3.5** 增加撤销键、清空键、保存按钮 , 修复底部展示不完整BUG
+- **1.3.4** 多个编辑器快捷键/组合键监听覆盖 , props.toolbars 传递规则纠正(传入值整体覆盖默认值)
+- **1.3.3** 多个编辑器z-index冲突
+- **1.3.2** props 传递方法 更改为 v-on 绑定方法
 
 ## Licence (证书)
 
