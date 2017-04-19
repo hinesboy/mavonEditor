@@ -158,6 +158,12 @@ toolbars: {
 - **1.3.3** 多个编辑器z-index冲突
 - **1.3.2** props 传递方法 更改为 v-on 绑定方法
 
+## contact
+
+QQ: 1109089240
+
+> 欢迎咨询与建议
+
 ## Licence (证书)
 
 mavonEditor is open source and released under the MIT Licence.
