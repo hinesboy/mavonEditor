@@ -160,9 +160,14 @@ toolbars: {
 
 ## contact
 
-QQ: 1109089240
+QQ:
+- 1109089240
 
-> 欢迎咨询与建议
+EMAIL:
+- 1109089240@qq.com
+- hines.zhu@gmail.com
+
+**欢迎咨询与建议**
 
 ## Licence (证书)
 
