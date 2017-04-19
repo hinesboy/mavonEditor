@@ -158,7 +158,7 @@ toolbars: {
 - **1.3.3** 多个编辑器z-index冲突
 - **1.3.2** props 传递方法 更改为 v-on 绑定方法
 
-## contact
+## contact(联系我)
 
 QQ:
 - 1109089240
