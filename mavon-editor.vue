@@ -130,11 +130,14 @@
 </template>
 
 <script type="text/ecmascript-6">
-    import markdown from './lib/markdown.js'
-    import tomarkdown from './lib/to-markdown.js'
+    import markdown from './lib/core/markdown.js'
+    import tomarkdown from './lib/core/to-markdown.js'
     import {autoTextarea} from 'auto-textarea'
+    import {keydownListen} from './lib/core/keydown-listen.js'
+    import {fullscreenchange, windowResize, scrollLink , insertTextAtCaret} from './lib/core/extra-function.js'
+    import {onecolumnKeyDownEnter , onecolumnInsert} from './lib/core/onecolumn-event.js'
     import {p_ObjectCopy_DEEP} from './lib/util.js'
-    const HELP = require('./lib/help.json')
+    const CONFIG = require('./lib/config.json')
     export default {
         props: {
             // 是否渲染滚动条样式(webkit)
@@ -160,32 +163,7 @@
             toolbars: {
                 type: Object,
                 default() {
-                    return {
-                        bold: true, // 粗体
-                        italic: true,// 斜体
-                        header: true,// 标题
-                        underline: true,// 下划线
-                        strikethrough: true,// 中划线
-                        mark: true,// 标记
-                        superscript: true,// 上角标
-                        subscript: true,// 下角标
-                        quote: true,// 引用
-                        ol: true,// 有序列表
-                        ul: true,// 无序列表
-                        link: true,// 链接
-                        imagelink: true,// 图片链接
-                        code: true,// code
-                        table: true,// 表格
-                        undo: true, // 撤销
-                        redo: true, // 前进
-                        trash: true, // 清空
-                        save: true, // 保存
-                        subfield: true,// 是否需要分栏
-                        fullscreen: true,// 全屏编辑
-                        readmodel: true,// 沉浸式阅读
-                        htmlcode: true,// 展示html源码
-                        help: true// 帮助
-                    }
+                    return CONFIG.toolbars
                 }
             }
         },
@@ -209,7 +187,7 @@
                 s_help: false,// markdown帮助
                 d_help: (() => {
                     if (this.help === null) {
-                        return markdown.render(HELP.help)
+                        return markdown.render(CONFIG.help)
                     } else {
                         return this.help
                     }
@@ -229,28 +207,14 @@
             };
         },
         created() {
-            let $vm = this;
-            $vm.watch_screen_size()
-            window.onresize = function () {
-                // 媒介查询
-                $vm.watch_screen_size()
-            }
+            // 初始化单栏数据
             if (this.$refs.vNoteDivEdit) {
                 this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
             }
-            // 阅读模式 全屏监听事件
-            document.addEventListener('fullscreenchange', function (e) {
-                $vm.$toolbar_right_read_change_status()
-            }, false);
-            document.addEventListener('mozfullscreenchange', function (e) {
-                $vm.$toolbar_right_read_change_status()
-            }, false);
-            document.addEventListener('webkitfullscreenchange', function (e) {
-                $vm.$toolbar_right_read_change_status()
-            }, false);
-            document.addEventListener('msfullscreenchange', function (e) {
-                $vm.$toolbar_right_read_change_status()
-            }, false);
+            // 浏览器siz大小
+            windowResize(this);
+            // fullscreen事件
+            fullscreenchange(this);
         },
         methods: {
             // @event
@@ -282,194 +246,7 @@
             save(val , render) {
                 this.$emit('save' , val , render)
             },
-            // ------------------------------------------------------------
-            $v_markdown_key_listen(e) {
-                // 注册监听键盘事件
-                if (!e.ctrlKey && !e.altKey && !e.shiftKey) {
-                    // one key
-                    switch (e.keyCode) {
-                        case 9: {
-                            // tab 单栏模式
-                            if (!this.s_subField) {
-                                e.preventDefault()
-                                if (this.$refs.vNoteDivEdit ) {
-                                    let value = markdown.render(this.d_value)
-                                    if (value !== null && value !== '') {
-                                        this.$refs.vNoteDivEdit.innerHTML = value
-                                        let sel = window.getSelection();
-                                        let range = sel.getRangeAt(0);
-                                        range = range.cloneRange();
-                                        range.setStartAfter(this.$refs.vNoteDivEdit.lastChild)
-                                        range.collapse(true);
-                                        sel.removeAllRanges();
-                                        sel.addRange(range);
-                                    }
-                                }
-                            }
-                            break;
-                        }
-                        case 120: {
-                            // F9 单栏模式
-                            e.preventDefault()
-                            this.$toolbar_right_subfield_click()
-                            break;
-                        }
-                        case 121: {
-                            // F10 全屏
-                            e.preventDefault()
-                            this.$toolbar_right_fullscreen_click()
-                            break;
-                        }
-                        case 122: {
-                            // F11 阅读
-                            e.preventDefault()
-                            this.$toolbar_right_read_click()
-                            break;
-                        }
-                    }
-                } else if (e.ctrlKey && !e.altKey && !e.shiftKey) {
-                    // ctrl +
-                    switch (e.keyCode) {
-                        case 66: {
-                            // B
-                            e.preventDefault()
-                            this.$toolbar_left_bold_click()
-                            break;
-                        }
-                        case 73: {
-                            // I
-                            e.preventDefault()
-                            this.$toolbar_left_italic_click()
-                            break;
-                        }
-                        case 72: {
-                            // H
-                            e.preventDefault()
-                            this.$toolbar_left_header_click()
-                            break;
-                        }
-                        case 85: {
-                            // U
-                            e.preventDefault()
-                            this.$toolbar_left_underline_click()
-                            break;
-                        }
-                        case 68: {
-                            // D
-                            e.preventDefault()
-                            this.$toolbar_left_strikethrough_click()
-                            break;
-                        }
-                        case 77: {
-                            // M
-                            e.preventDefault()
-                            this.$toolbar_left_mark_click()
-                            break;
-                        }
-                        case 81: {
-                            // Q
-                            e.preventDefault()
-                            this.$toolbar_left_quote_click()
-                            break;
-                        }
-                        case 79: {
-                            // O
-                            e.preventDefault()
-                            this.$toolbar_left_ol_click()
-                            break;
-                        }
-                        case 76: {
-                            // L
-                            e.preventDefault()
-                            this.$toolbar_left_link_click()
-                            break;
-                        }
-                        case 83: {
-                            // S
-                            e.preventDefault()
-                            this.$toolbar_left_save_click()
-                            break;
-                        }
-                        case 90: {
-                            // Z
-                            e.preventDefault()
-                            this.$toolbar_left_undo_click()
-                            break;
-                        }
-                        case 89: {
-                            // Y
-                            e.preventDefault()
-                            this.$toolbar_left_redo_click()
-                            break;
-                        }
-                        case 8: {
-                            // delete
-                            e.preventDefault()
-                            this.$toolbar_left_trash_click()
-                            break;
-                        }
-                    }
-                } else if (e.ctrlKey && e.altKey && !e.shiftKey) {
-                    // ctrl + alt +
-                    switch (e.keyCode) {
-                        case 83: {
-                            // S
-                            e.preventDefault()
-                            this.$toolbar_left_superscript_click()
-                            break;
-                        }
-                        case 85: {
-                            // U
-                            e.preventDefault()
-                            this.$toolbar_left_ul_click()
-                            break;
-                        }
-                        case 76: {
-                            // C
-                            e.preventDefault()
-                            this.$toolbar_left_imagelink_click()
-                            break;
-                        }
-                        case 67: {
-                            // L
-                            e.preventDefault()
-                            this.$toolbar_left_code_click()
-                            break;
-                        }
-                        case 84: {
-                            // T
-                            e.preventDefault()
-                            this.$toolbar_left_table_click()
-                            break;
-                        }
-                    }
-                } else if (e.ctrlKey && e.shiftKey && !e.altKey) {
-                    // ctrl + shift
-                    switch (e.keyCode) {
-                        case 83: {
-                            // S
-                            e.preventDefault()
-                            this.$toolbar_left_subscript_click()
-                            break;
-                        }
-                    }
-                }
-            },
-            // 滚动条联动
-            $v_edit_scroll($event) {
-                let element = $event.srcElement ? $event.srcElement : $event.target
-                let ratio = element.scrollTop / (element.scrollHeight - element.offsetHeight)
-                if (this.edit_scroll_height >= 0 && element.scrollHeight !== this.edit_scroll_height && (element.scrollHeight - element.offsetHeight - element.scrollTop <= 30)) {
-                    // star 内容变化 导致 高度增加  且滚动条距离底部小于25px  自动滚动到底部
-                    this.$refs.vNoteEdit.scrollTop = element.scrollHeight - element.offsetHeight
-                    ratio = 1
-                }
-                this.edit_scroll_height = element.scrollHeight
-                // end ----
-                if (this.$refs.vShowContent.scrollHeight > this.$refs.vShowContent.offsetHeight) {
-                    this.$refs.vShowContent.scrollTop = (this.$refs.vShowContent.scrollHeight - this.$refs.vShowContent.offsetHeight) * ratio
-                }
-            },
+            // 功能性按钮事件------------------------------------------------------------
             $toolbar_right_html_click() {
                 this.s_html_code = !this.s_html_code
                 if (this.htmlcode) {
@@ -482,7 +259,6 @@
                     this.helptoggle(this.s_help, this.d_value)
                 }
             },
-            // todo 导航
             $toolbar_right_read_click() {
                 let element = this.$refs.vReadModel
                 // 单栏编辑
@@ -518,7 +294,7 @@
                     this.fullscreen(this.s_fullScreen, this.d_value)
                 }
             },
-            // 工具栏功能图标click-----------------
+            // 工具性按钮事件-----------------
             // 粗体
             $toolbar_left_bold_click() {
                 this.insertText(this.getTextareaDom(), {prefix: '**', subfix: '**', str: '粗体'})
@@ -615,131 +391,31 @@
                 this.save(this.d_value, this.d_render)
             },
             // ---------------------------------------
-            // 监听单栏输入框------------------------
+            // 监听快捷键
+            $v_markdown_key_listen(e) {
+                keydownListen(e, this);
+            },
+            // 滚动条联动
+            $v_edit_scroll($event) {
+                scrollLink($event , this);
+            },
+            // 监听单栏输入框内容的变化------------------------
             $auto_textarea_div_change($event) {
                 let element = $event.srcElement ? $event.srcElement : $event.target
                 this.d_value = tomarkdown(element.innerHTML)
             },
             // 单栏目 输入框enter
             $auto_textarea_div_enter($event) {
-                let element = $event.srcElement ? $event.srcElement : $event.target
-                let sel = window.getSelection();
-                let range = sel.getRangeAt(0);
-                // code中回车处理
-                if (range.startContainer.tagName === 'CODE' || range.startContainer.tagName === 'PRE') {
-                    $event.preventDefault()
-                    this.insertHtmlAtCaret(range.startContainer , '\n')
-                } else if (range.startContainer.parentElement.tagName === 'CODE' || range.startContainer.parentElement.tagName === 'PRE') {
-                    $event.preventDefault()
-                    this.insertHtmlAtCaret(range.startContainer.parentElement , '\n')
-                } else if (!this.blockQuoteDoubleEnter(range.startContainer , $event , range.startContainer)) {
-                    this.s_table_enter = false
-                    this.judgeRender(range.startContainer , $event , range.startContainer , range.startContainer)
-                  /* if (result) {
-                   range = range.cloneRange();
-                   // code的渲染
-                   if (result.children !== null && result.children.length > 0 && result.children[0].tagName === 'PRE') {
-                   result.children[0].children[0].innerHTML = '\n'
-                   result.innerHTML += '<div><br/></div>'
-                   range.setStartAfter(result.children[0].children[0]);
-                   } else if (result.lastChild) {
-                   range.setStartAfter(result.lastChild);
-                   } else {
-                   range.setStartAfter(result);
-                   }
-                   range.collapse(true);
-                   sel.removeAllRanges();
-                   sel.addRange(range);
-                   } */
-                }
-                this.d_value = tomarkdown(element.innerHTML)
-            },
-            // 是否连续两次在段落中换行
-            blockQuoteDoubleEnter(dom , $event , self) {
-                if (dom.tagName) {
-                    if (dom.getAttribute('class') === 'content-div content-div-edit') {
-                        return false
-                    } else if (dom.tagName === 'BLOCKQUOTE') {
-                        if (!self.innerText || self.innerText === '\n' || self.innerText === '') {
-                            $event.preventDefault()
-                            let sel = window.getSelection();
-                            let range = sel.getRangeAt(0);
-                            let next = dom.nextSibling
-                            self.outerHTML = ''
-                            dom.outerHTML += '<div><br/></div>'
-                            range = range.cloneRange()
-                            range.setStartAfter(next.previousSibling.lastChild);
-                            range.collapse(true);
-                            sel.removeAllRanges();
-                            sel.addRange(range);
-                        }
-                        return true
-                    }
-                    return this.blockQuoteDoubleEnter(dom.parentElement, $event , dom)
-                } else {
-                    return this.blockQuoteDoubleEnter(dom.parentElement, $event , dom)
-                }
-            },
-            // 判断回车是否需要render
-            judgeRender(dom , $event , self , pre) {
-                if (dom.tagName) {
-                    if (dom.tagName === 'TABLE') {
-                        this.s_table_enter = true
-                        self = dom
-                    }
-                    if (dom.getAttribute('class') === 'content-div content-div-edit') {
-                        // 在表格中回车 在表格后换行
-                        if (this.s_table_enter) {
-                            let sel = window.getSelection();
-                            let range = sel.getRangeAt(0);
-                            range = range.cloneRange()
-                            $event.preventDefault()
-                            let next = self.nextSibling
-                            self.outerHTML += '<div><br/></div>'
-                            range.setStartAfter(next.previousSibling.lastChild);
-                            range.collapse(true);
-                            sel.removeAllRanges();
-                            sel.addRange(range);
-                        }
-                        return ;
-                    }
-                    this.judgeRender(dom.parentElement , $event , self , dom)
-                  /* let obj = document.createElement('div')
-                   obj.innerHTML = markdown.render(dom.innerHTML.replace('&gt;' , '>'))
-                   var objText = obj.innerText
-                   var domText = dom.innerText
-                   var objTextNoSpaceEnter = objText.replace(/\s+/g, '').replace(/[\r\n]/g, '')
-                   var domTextNoSpaceEnter = domText.replace(/\s+/g, '').replace(/[\r\n]/g, '')
-                   if (obj.children.length > 0) {
-                   if (obj.children[0].innerText.replace(/\s+/g, '').replace(/[\r\n]/g, '') === domTextNoSpaceEnter || obj.children[0].innerText === domText || objText === domText || domTextNoSpaceEnter === objTextNoSpaceEnter) {
-                   return this.judgeRender(dom.parentElement , $event , self ,dom)
-                   } else {
-                   // 有变化
-                   $event.preventDefault()
-                   dom.innerHTML = markdown.render(tomarkdown(dom.innerHTML))
-                   return dom
-                   }
-                   } else {
-                   if (objText === domText || objTextNoSpaceEnter === domTextNoSpaceEnter) {
-                   return this.judgeRender(dom.parentElement , $event , self , dom)
-                   } else {
-                   // 有变化
-                   dom.innerHTML = markdown.render(tomarkdown(obj.innerHTML))
-                   return dom
-                   }
-                   } */
-                } else {
-                    this.judgeRender(dom.parentElement , $event , self , dom)
-                }
+                onecolumnKeyDownEnter($event , this , tomarkdown)
             },
             // 获取textarea dom节点
             getTextareaDom() {
                 return this.$refs.vNoteTextarea.$el.children[1]
             },
-            // 触发工具栏插入内容
+            // 工具栏插入内容
             insertText(obj, {prefix, subfix, str}) {
                 if (this.s_subField) {
-                    this.insertTextAtCaret(obj, {prefix, subfix, str});
+                    insertTextAtCaret(obj, {prefix, subfix, str} , this);
                 } else {
                     // 单栏模式点击
                     let div = this.$refs.vNoteDivEdit
@@ -747,96 +423,15 @@
                     obj.innerHTML = markdown.render(prefix + str + subfix)
                     if (obj.children.length === 1 && obj.children[0].tagName === 'P') {
                         if (prefix === '[](' || prefix === '![](') {
-                            this.insertHtmlAtCaret(div ,'<p>' + prefix + str + subfix + '</p>')
+                            onecolumnInsert(div ,'<p>' + prefix + str + subfix + '</p>')
                         } else {
-                            this.insertHtmlAtCaret(div , obj.children[0].innerHTML)
+                            onecolumnInsert(div , obj.children[0].innerHTML)
                         }
                     } else {
-                        this.insertHtmlAtCaret(div , obj.innerHTML)
+                        onecolumnInsert(div , obj.innerHTML)
                     }
                     // 同步数据
                     this.d_value = tomarkdown(div.innerHTML)
-                }
-            },
-            // 文本输入框工具栏点击插入内容
-            insertTextAtCaret(obj, {prefix, subfix, str}) {
-                obj.focus()
-                if (document.selection) {
-                    alert('document.selection')
-                } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
-                    var startPos = obj.selectionStart;
-                    var endPos = obj.selectionEnd;
-                    var tmpStr = obj.value;
-                    if (startPos === endPos) {
-                        // 直接插入
-                        obj.value = tmpStr.substring(0, startPos) + prefix + str + subfix + tmpStr.substring(endPos, tmpStr.length);
-                        obj.selectionStart = startPos + prefix.length;
-                        obj.selectionEnd = startPos + (str.length + prefix.length);
-                    } else {
-                        // 存在选中区域
-                        if (tmpStr.substring(startPos - prefix.length, startPos) === prefix && tmpStr.substring(endPos, endPos + subfix.length) === subfix) {
-                            // 取消
-                            obj.value = tmpStr.substring(0, startPos - prefix.length) + tmpStr.substring(startPos, endPos) + tmpStr.substring(endPos + subfix.length, tmpStr.length);
-                            obj.selectionStart = startPos - prefix.length;
-                            obj.selectionEnd = endPos - prefix.length;
-                        } else {
-                            // 确定
-                            obj.value = tmpStr.substring(0, startPos) + prefix + tmpStr.substring(startPos, endPos) + subfix + tmpStr.substring(endPos, tmpStr.length);
-                            obj.selectionStart = startPos + prefix.length;
-                            obj.selectionEnd = startPos + (endPos - startPos + prefix.length);
-                        }
-                    }
-                } else {
-                    alert('else')
-                    // obj.value += str;
-                }
-                // 触发change事件
-                this.d_value = obj.value
-                obj.focus()
-            },
-            // 单栏输入框工具栏点击插入内容
-            insertHtmlAtCaret(dom , html) {
-                dom.focus()
-                var sel
-                var range
-                if (window.getSelection) {
-                    // IE9 and non-IE
-                    sel = window.getSelection();
-                    if (sel.getRangeAt && sel.rangeCount) {
-                        range = sel.getRangeAt(0);
-                        range.deleteContents();
-                        // Range.createContextualFragment() would be useful here but is
-                        // non-standard and not supported in all browsers (IE9, for one)
-                        var el = document.createElement('div');
-                        el.innerHTML = html;
-                        var frag = document.createDocumentFragment()
-                        var node
-                        var lastNode
-                        while ((node = el.firstChild)) {
-                            lastNode = frag.appendChild(node);
-                        }
-                        range.insertNode(frag);
-                        // Preserve the selection
-                        if (lastNode) {
-                            range = range.cloneRange();
-                            range.setStartAfter(lastNode);
-                            range.collapse(true);
-                            sel.removeAllRanges();
-                            sel.addRange(range);
-                        }
-                    }
-                } else if (document.selection && document.selection.type !== 'Control') {
-                    // IE < 9
-                    document.selection.createRange().pasteHTML(html);
-                }
-            },
-            watch_screen_size() {
-                if (window.matchMedia('(min-width:768px)').matches) {
-                    // > 768
-                    this.s_screen_phone = false;
-                } else {
-                    // <  768
-                    this.s_screen_phone = true;
                 }
             },
             saveHistory () {
@@ -886,24 +481,8 @@
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   @import "./lib/font-awesome-4.7.0/css/font-awesome.css"
-  @import "./lib/markdown.css"
-  scrollbar()
-  &.scroll-style::-webkit-scrollbar
-    width 6px
-    background-color #e5e5e5
-
-  &.scroll-style::-webkit-scrollbar-thumb
-    background-color #b7b7b7
-    border-radius 3px
-
-  &.scroll-style::-webkit-scrollbar-thumb:hover
-    background-color #a1a1a1
-
-  &.scroll-style::-webkit-scrollbar-thumb:active
-    background-color #a1a1a1
-
-  &.scroll-style::-webkit-scrollbar-track
-    -webkit-box-shadow 0 0 0px gray inset
+  @import "lib/css/markdown.css"
+  @import "lib/css/scroll.styl"
 
   op-height = 40px
 

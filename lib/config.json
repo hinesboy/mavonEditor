@@ -1,0 +1,29 @@
+{
+  "help": "### markdown 语法简介\n> [语法详解](http://commonmark.org/help/)\n#### 粗体\n```\n**粗体**\n__粗体__\n```\n#### *斜体*\n```\n*斜体*\n_斜体_\n```\n#### 标题\n```\n# 一级标题 #\n## 二级标题 ##\n### 三级标题 ###\n#### 四级标题 ####\n##### 五级标题 #####\n###### 六级标题 ######\n```\n#### 分割线\n```\n***\n---\n===\n```\n#### 上下角标\n```\n上角标 x^2^\n下角标 H~2~0\n```\n#### 下划线 中划线\n```\n++下划线++\n~~中划线~~\n```\n#### 标记\n```\n==标记==\n```\n#### 段落引用\n```\n> 一级\n>> 二级\n>>> 三级\n...\n```\n#### 列表\n```\n有序列表\n1.\n2.\n3.\n...\n无序列表\n-\n-\n...\n```\n#### 链接\n```\n[链接](www.baidu.com)\n![图片描述](www.image.com)\n```\n#### 代码段落\n\\``` type\n\n代码段落\n\\```\n\\` 代码块 \\`\n#### 表格(table)\n```\n| 标题1 | 标题2 | 标题3 |\n| :--  | :--: | ----: |\n| 左对齐 | 居中 | 右对齐 |\n| ---------------------- | ------------- | ----------------- |\n```\n| 标题1 | 标题2 | 标题3 |\n| :--  | :--: | ----: |\n| 左对齐 | 居中 | 右对齐 |\n| ---------------------- | ------------- | ----------------- |\n#### 脚注(footnote)\n```\nhello[^hello]\n```\n#### 表情(emoji)\n[参考网站https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpagefx.com/tools/emoji-cheat-sheet/)\n```\n:laughing:\n:blush:\n:smiley:\n:)\n:(\n...\n```\n:laughing::blush::smiley::):(\n",
+  "toolbars": {
+    "bold": true,
+    "italic": true,
+    "header": true,
+    "underline": true,
+    "strikethrough": true,
+    "mark": true,
+    "superscript": true,
+    "subscript": true,
+    "quote": true,
+    "ol": true,
+    "ul": true,
+    "link": true,
+    "imagelink": true,
+    "code": true,
+    "table": true,
+    "undo": true,
+    "redo": true,
+    "trash": true,
+    "save": true,
+    "subfield": true,
+    "fullscreen": true,
+    "readmodel": true,
+    "htmlcode": true,
+    "help": true
+  }
+}
