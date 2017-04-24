@@ -128,7 +128,7 @@ toolbars: {
 | name 方法名   | params 参数   | describe 描述 |
 | -------- | :---------: | ------- |
 | change   | String: value , String: reder    |  编辑区发生变化的回调事件(render: value 经过markdown解析后的结果) |
-| save     | String: value , String: reder     |  ctrl + s 的回调事件(后续添加保存按键,同样触发该回调) |
+| save     | String: value , String: reder     |  ctrl + s 的回调事件(保存按键,同样触发该回调) |
 | fullscreen | Boolean: status , String value     |  切换全屏编辑的回调事件(boolean: 全屏开启状态) |
 | readmodel |  Boolean: status , String value    |  切换沉浸式阅读的回调事件(boolean: 阅读开启状态) |
 | htmlcode | Boolean: status , String value     |查看html源码的回调事件(boolean: 源码开启状态) |
