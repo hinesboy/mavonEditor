@@ -173,8 +173,9 @@ QQ:
 - 1109089240
 
 EMAIL:
-- zhy@zhystar.com
+- 1109089240@qq.com
 - hines.zhu@gmail.com
+- zhu.hong.yu@outlook.com
 
 **欢迎咨询与建议**
 
