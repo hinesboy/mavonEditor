@@ -20,6 +20,7 @@
     "redo": true,
     "trash": true,
     "save": true,
+    "navigation": true,
     "subfield": true,
     "fullscreen": true,
     "readmodel": true,

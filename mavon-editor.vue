@@ -1,5 +1,5 @@
 <template>
-  <div @keydown="$v_markdown_key_listen" :class="{'fullscreen': s_fullScreen}" class="v-note-wrapper markdown-body">
+  <div :class="{'fullscreen': s_fullScreen}" class="v-note-wrapper markdown-body">
     <!--工具栏-->
     <div class="v-note-op">
       <div class="left">
@@ -49,6 +49,12 @@
                 title="保存 (ctrl+s)"></button>
       </div>
       <div class="right">
+        <button v-if="toolbars.navigation" @click="$toolbar_right_navigation_click" v-show="!s_navigation"
+                class="op-icon fa fa-bars"
+                aria-hidden="true" title="开启标题导航 (F8)"></button>
+        <button v-if="toolbars.navigation" @click="$toolbar_right_navigation_click" v-show="s_navigation"
+                class="op-icon fa fa-bars selected"
+                aria-hidden="true" title="关闭标题导航 (F8)"></button>
         <button @click="$toolbar_right_phone_click" v-show="s_screen_phone && s_screen_phone_toggle"
                 class="op-icon fa fa-eye"
                 aria-hidden="true" title="预览 (F9)"></button>
@@ -70,7 +76,7 @@
         <button v-if="toolbars.readmodel && !s_screen_phone" @click="$toolbar_right_read_click" class="op-icon fa fa-eye" aria-hidden="true"
                 title="沉浸式阅读 (F11)"></button>
         <span
-                v-if="!s_screen_phone && toolbars.help && toolbars.htmlcode && toolbars.readmodel && toolbars.fullscreen && toolbars.subfield"
+                v-if="!s_screen_phone && toolbars.help && toolbars.htmlcode && toolbars.readmodel && toolbars.fullscreen && toolbars.subfield && toolbars.navigation"
                 class="op-icon-divider"></span>
         <button v-if="toolbars.htmlcode" @click="$toolbar_right_html_click" v-show="!s_html_code" class="op-icon fa fa-code"
                 title="查看html文本"
@@ -112,6 +118,16 @@
         </div>
       </div>
 
+      <!--标题导航-->
+      <transition name="slideTop">
+        <div v-show="s_navigation" class="v-note-navigation-wrapper">
+          <div class="v-note-navigation-title">
+            导航目录<i @click="$toolbar_right_navigation_click" class="fa fa-times v-note-navigation-close" aria-hidden="true"></i>
+          </div>
+          <div ref="navigationContent" class="v-note-navigation-content scroll-style">
+          </div>
+        </div>
+      </transition>
 
     </div>
     <!--帮助文档-->
@@ -124,7 +140,17 @@
       </div>
     </transition>
     <!--阅读模式-->
-    <div :class="{'show': s_readmodel}" class="v-note-read-model scroll-style" ref="vReadModel" v-html="d_render">
+    <div :class="{'show': s_readmodel}" class="v-note-read-model scroll-style" ref="vReadModel" >
+      <div class="v-note-read-content" v-html="d_render">
+      </div>
+      <!--标题导航-->
+      <div v-if="toolbars.navigation" v-show="s_navigation_full" class="v-note-navigation-wrapper">
+        <div class="v-note-navigation-title">
+          导航目录<i @click="$toolbar_right_navigationfull_click" class="fa fa-times v-note-navigation-close" aria-hidden="true"></i>
+        </div>
+        <div ref="navigationContentFull" class="v-note-navigation-content scroll-style">
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -134,7 +160,7 @@
     import tomarkdown from './lib/core/to-markdown.js'
     import {autoTextarea} from 'auto-textarea'
     import {keydownListen} from './lib/core/keydown-listen.js'
-    import {fullscreenchange, windowResize, scrollLink , insertTextAtCaret} from './lib/core/extra-function.js'
+    import {fullscreenchange, windowResize, scrollLink , insertTextAtCaret, getNavigation} from './lib/core/extra-function.js'
     import {onecolumnKeyDownEnter , onecolumnInsert} from './lib/core/onecolumn-event.js'
     import {p_ObjectCopy_DEEP} from './lib/util.js'
     const CONFIG = require('./lib/config.json')
@@ -170,6 +196,9 @@
         data() {
             return {
                 s_autofocus: true,
+                // 标题导航
+                s_navigation: false,
+                s_navigation_full: true,
                 s_scrollStyle: (() => {
                     return this.scrollStyle
                 })(),// props 是否渲染滚动条样式
@@ -215,6 +244,8 @@
             windowResize(this);
             // fullscreen事件
             fullscreenchange(this);
+            let $vm = this
+            keydownListen($vm , markdown);
         },
         methods: {
             // @event
@@ -245,6 +276,10 @@
             // 监听ctrl + s
             save(val , render) {
                 this.$emit('save' , val , render)
+            },
+            // 导航栏切换
+            navigationtoggle(status , val) {
+                this.$emit('navigationtoggle' , status , val)
             },
             // 功能性按钮事件------------------------------------------------------------
             $toolbar_right_html_click() {
@@ -277,6 +312,10 @@
                 if (this.readmodel) {
                     this.readmodel(this.s_readmodel, this.d_value)
                 }
+                if (this.s_readmodel && this.toolbars.navigation) {
+                    this.s_navigation_full = true
+                    getNavigation(this , true)
+                }
             },
             $toolbar_right_subfield_click() {
                 this.s_subField = !this.s_subField
@@ -293,6 +332,19 @@
                 if (this.fullscreen) {
                     this.fullscreen(this.s_fullScreen, this.d_value)
                 }
+            },
+            $toolbar_right_navigation_click() {
+                this.s_navigation= !this.s_navigation
+                if (this.navigationtoggle) {
+                    this.navigationtoggle(this.s_navigation, this.d_value)
+                }
+                if (this.s_navigation) {
+                    // 绘制标题导航
+                    getNavigation(this , false)
+                }
+            },
+            $toolbar_right_navigationfull_click() {
+                this.s_navigation_full= false
             },
             // 工具性按钮事件-----------------
             // 粗体
@@ -391,10 +443,6 @@
                 this.save(this.d_value, this.d_render)
             },
             // ---------------------------------------
-            // 监听快捷键
-            $v_markdown_key_listen(e) {
-                keydownListen(e, this);
-            },
             // 滚动条联动
             $v_edit_scroll($event) {
                 scrollLink($event , this);
@@ -447,6 +495,10 @@
                 // change 回调
                 if (this.change) {
                     this.change(this.d_value, this.d_render)
+                }
+                // 改变标题导航
+                if (this.s_navigation) {
+                    getNavigation(this , false)
                 }
                 // v-model 语法糖
                 this.$emit('input', val)
@@ -548,6 +600,7 @@
         text-align left
         padding-left 6px
     .v-note-panel
+      position relative
       box-shadow: 0 0px 3px rgba(0, 0, 0, .156863), 0 0px 3px rgba(0, 0, 0, .227451)
       display flex
       flex 1
@@ -603,7 +656,78 @@
           overflow-x hidden
           background #fbfbfb
           scrollbar()
-
+      .v-note-navigation-wrapper
+        position absolute
+        width 250px
+        right 0
+        top 0px
+        bottom 0
+        display flex
+        flex-direction column
+        background rgba(255,255,255,0.98)
+        box-shadow 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
+        transition all 0.1s linear 0s
+        @media only screen and (max-width 768px)
+          width 50%
+        &.slideTop-enter-active, &.slideTop-leave-active
+          bottom 0
+        &.slideTop-enter, &.slideTop-leave-active
+          bottom 100%
+        .v-note-navigation-title
+          height 50px
+          width 100%
+          border-bottom 1px solid #eeece8
+          flex none
+          line-height @height
+          font-size 18px
+          font-weight 500
+          box-sizing border-box
+          padding 0 12px
+          box-shadow 0 0px 1px rgba(0, 0, 0, .156863), 0 0px 1px rgba(0, 0, 0, .227451)
+          .v-note-navigation-close
+            float right
+            margin-top 8px
+            color #757575
+            font-size 20px
+            cursor pointer
+            padding 8px
+            &:hover
+              color #696969
+        .v-note-navigation-content
+          overflow-y auto
+          flex 1
+          scrollbar()
+          padding 8px 0
+          h1, h2, h3, h4, h5, h6
+            margin 2px 0
+            font-weight 500
+            font-size 17px
+            color #2185d0
+            cursor pointer
+            line-height normal
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
+            padding 0 12px
+            border-bottom none
+            &:hover
+              color #483D8B
+              text-decoration-line underline
+          h2
+            padding-left  27px
+            font-size 17px
+          h3
+            padding-left  42px
+            font-size 17px
+          h4
+            padding-left  58px
+            font-size 15px
+          h5
+            padding-left  72px
+            font-size 15px
+          h6
+            padding-left  87px
+            font-size 15px
     .v-note-read-model
       position relative
       display none
@@ -616,6 +740,78 @@
       box-sizing border-box
       &.show
         display block
+      .v-note-navigation-wrapper
+        position fixed
+        width 250px
+        right 0
+        top 0px
+        bottom 0
+        display flex
+        flex-direction column
+        background rgba(255,255,255,0.98)
+        box-shadow 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
+        transition all 0.1s linear 0s
+        @media only screen and (max-width 768px)
+          width 50%
+        &.slideTop-enter-active, &.slideTop-leave-active
+          bottom 0
+        &.slideTop-enter, &.slideTop-leave-active
+          bottom 100%
+        .v-note-navigation-title
+          height 50px
+          width 100%
+          border-bottom 1px solid #eeece8
+          flex none
+          line-height @height
+          font-size 18px
+          font-weight 500
+          box-sizing border-box
+          padding 0 12px
+          box-shadow 0 0px 1px rgba(0, 0, 0, .156863), 0 0px 1px rgba(0, 0, 0, .227451)
+          .v-note-navigation-close
+            float right
+            margin-top 8px
+            color #757575
+            font-size 20px
+            cursor pointer
+            padding 8px
+            &:hover
+              color #696969
+        .v-note-navigation-content
+          overflow-y auto
+          flex 1
+          scrollbar()
+          padding 8px 0
+          h1, h2, h3, h4, h5, h6
+            margin 2px 0
+            font-weight 500
+            font-size 17px
+            color #2185d0
+            cursor pointer
+            line-height normal
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
+            padding 0 12px
+            border-bottom none
+            &:hover
+              color #483D8B
+              text-decoration-line underline
+          h2
+            padding-left  27px
+            font-size 17px
+          h3
+            padding-left  42px
+            font-size 17px
+          h4
+            padding-left  58px
+            font-size 15px
+          h5
+            padding-left  72px
+            font-size 15px
+          h6
+            padding-left  87px
+            font-size 15px
 
     .v-note-help-wrapper
       position fixed

@@ -8,7 +8,9 @@
 
 ### PC
 
-![PC](./img/example.png)
+![PC](./img/example1.png)
+
+![PC](./img/example2.png)
 
 ### 移动
 
@@ -26,7 +28,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.4.0"
+"mavon-editor": "^1.4.2"
 ```
 
 ### Use (如何引入)
@@ -114,11 +116,13 @@ toolbars: {
       readmodel: true, // 沉浸式阅读
       htmlcode: true, // 展示html源码
       help: true, // 帮助
-      /* 新增 */
+      /* 1.3.5 */
       undo: true, // 上一步
       redo: true, // 下一步
       trash: true, // 清空
-      save: true // 保存（触发events中的save事件）
+      save: true, // 保存（触发events中的save事件）
+      /* 1.4.2 */
+      navigation: true // 导航目录
   }
 ```
 
@@ -134,7 +138,7 @@ toolbars: {
 | htmlcode | Boolean: status , String value     |查看html源码的回调事件(boolean: 源码开启状态) |
 | subfieldtoggle  |  Boolean: status , String value     |  切换单双栏编辑的回调事件(boolean: 双栏开启状态) |
 | helptoggle | Boolean: status , String value   |  查看帮助的回调事件(boolean: 帮助开启状态) |
-
+| navigationtoggle | Boolean: status , String value   |  切换导航目录的回调事件(boolean: 导航开启状态) |
 
 ## Dependencies (依赖)
 
@@ -146,15 +150,16 @@ toolbars: {
 
 ## follow-up (后续)
 
-- ~~撤销键、清空键、保存按钮~~（完成）
-- 支持开启标题导航
+- ~~撤销键、清空键、保存按钮~~（1.3.5）
+- ~~重构~~（1.4.0）
+- ~~支持开启标题导航~~(1.4.2)
 - 支持图片上传
 - 滚动条样式的浏览器兼容性
 - 自定义工具栏功能键
 - markdown样式自定义
-- ~~重构~~（1.4.0）
 
 ## update(更新内容)
+- **1.4.2** 支持开启标题导航 ,快捷键监听对象更改为document（17.4.25）
 - **1.4.0** 重构代码（17.4.24）
 - **1.3.5** 增加撤销键、清空键、保存按钮 , 修复底部展示不完整BUG
 - **1.3.4** 多个编辑器快捷键/组合键监听覆盖 , props.toolbars 传递规则纠正(传入值整体覆盖默认值)
