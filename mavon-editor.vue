@@ -686,11 +686,9 @@
           box-shadow 0 0px 1px rgba(0, 0, 0, .156863), 0 0px 1px rgba(0, 0, 0, .227451)
           .v-note-navigation-close
             float right
-            margin-top 8px
             color #757575
             font-size 20px
             cursor pointer
-            padding 8px
             &:hover
               color #696969
         .v-note-navigation-content
@@ -770,11 +768,9 @@
           box-shadow 0 0px 1px rgba(0, 0, 0, .156863), 0 0px 1px rgba(0, 0, 0, .227451)
           .v-note-navigation-close
             float right
-            margin-top 8px
             color #757575
             font-size 20px
             cursor pointer
-            padding 8px
             &:hover
               color #696969
         .v-note-navigation-content
