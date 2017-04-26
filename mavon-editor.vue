@@ -84,9 +84,9 @@
         <button v-if="toolbars.htmlcode" @click="$toolbar_right_html_click" v-show="s_html_code"
                 class="op-icon fa fa-code selected"
                 title="返回markdown文本" aria-hidden="true"></button>
-        <button v-if="toolbars.help" @click="$toolbar_right_help_click" class="op-icon fa fa-question-circle"
-                style="font-size: 17px;padding: 4px"
-                title="markdown语法帮助" aria-hidden="true"></button>
+        <button  v-if="toolbars.help" @click="$toolbar_right_help_click" class="op-icon fa fa-question-circle"
+                 style="font-size: 17px;padding: 5px 6px 5px 3px"
+                 title="markdown语法帮助" aria-hidden="true"></button>
       </div>
     </div>
     <!--编辑展示区域-->
@@ -532,7 +532,7 @@
     };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "./lib/font-awesome-4.7.0/css/font-awesome.css"
+  @import "./lib/font/css/fontello.css"
   @import "lib/css/markdown.css"
   @import "lib/css/scroll.styl"
 
@@ -579,7 +579,7 @@
           width 28px
           margin 6px 0 5px 0px
           font-size 15px
-          padding 7px 7px 7px 7px
+          padding 4.5px 6px 5px 3.5px
           color #757575
           border-radius 5px
           text-align center
