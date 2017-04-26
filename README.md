@@ -33,7 +33,7 @@ $ npm install mavon-editor --save
 
 ### Use (如何引入)
 
-```
+```javascript
     // 方法一
     // import with ES6
     import Vue from 'vue'
@@ -47,7 +47,7 @@ $ npm install mavon-editor --save
     Vue.use(mavonEditor)
 ```
 
-```
+```javascript
     // 方法二
     // or use with component(ES6)
     import { mavonEditor } from 'mavon-editor'
