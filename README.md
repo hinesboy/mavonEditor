@@ -86,7 +86,7 @@ $ npm install mavon-editor --save
 | subfield   | Boolean     |   true        | 默认开启双栏编辑(单栏模式 TAB键主动触发markdown渲染) |
 | toolbars   | Object      |   如下  | 工具栏 |
 
-```
+```javascript
  /*
     默认工具栏按钮全部开启, 传入自定义对象
     例如: {
