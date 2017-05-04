@@ -4,14 +4,14 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: index.js
  * @Last modified by:   CHC
- * @Last modified time: 2017-05-04T23:28:16+08:00
+ * @Last modified time: 2017-05-05T00:09:08+08:00
  * @License: MIT
  * @Copyright: 2017
  */
 
 import Vue from 'vue';
 var editor = require('./editor.vue');
-var sMd = require('../../index.js');
+var sMd = require('../index.js');
 
 // use
 Vue.use(sMd);
