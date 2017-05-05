@@ -1,6 +1,6 @@
 {
   "name": "mavon-editor",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "Vue markdown editor",
   "main": "src/index.js",
   "scripts": {
