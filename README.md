@@ -169,6 +169,10 @@ toolbars: {
 - **1.3.3** 多个编辑器z-index冲突
 - **1.3.2** props 传递方法 更改为 v-on 绑定方法
 
+## Collaborators(合作者)
+
+- [CHENXCHEN](https://github.com/CHENXCHEN)
+
 ## contact(联系我)
 
 QQ:
