@@ -28,7 +28,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.4.7"
+"mavon-editor": "^1.4.8"
 ```
 
 ### Use (如何引入)
@@ -160,6 +160,7 @@ toolbars: {
 - markdown样式自定义
 
 ## update(更新内容)
+- **1.4.8** 优化项目结构,添加webpack-dev-server的开发测试(17.5.4）
 - **1.4.7** 图标局部引入,减少文件体积(17.4.26）
 - **1.4.2** 支持开启标题导航 ,快捷键监听对象更改为document（17.4.25）
 - **1.4.0** 重构代码（17.4.24）
