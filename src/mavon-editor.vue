@@ -155,7 +155,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
     import markdown from './lib/core/markdown.js'
     import tomarkdown from './lib/core/to-markdown.js'
     import {autoTextarea} from 'auto-textarea'
@@ -530,10 +530,10 @@
             'v-autoTextarea': autoTextarea
         }
     };
+    import "./lib/font/css/fontello.css"
+    require('./md.css')
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "./lib/font/css/fontello.css"
-  @import "lib/css/markdown.css"
   @import "lib/css/scroll.styl"
 
   op-height = 40px

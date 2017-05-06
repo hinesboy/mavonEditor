@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.dev.js
  * @Last modified by:   CHC
- * @Last modified time: 2017-05-06T15:00:55+08:00
+ * @Last modified time: 2017-05-06T15:06:08+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -19,18 +19,27 @@ var WebpackMd5Hash = require('webpack-md5-hash');
 // 压缩css
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const extractCSS = new ExtractTextPlugin('css/[name].[contenthash:8].css');
+const extractCSS = new ExtractTextPlugin('css/[name].css');
 
 module.exports = {
     entry: {
-        index: './src/dev/index.js',
-        vue: ['vue']
+        index: path.resolve(__dirname, '../src/index.js')
     },
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, '../dist'),
         // publicPath: '/dist/',
-        filename: 'js/[name].[chunkhash:8].js',
-        chunkFilename: 'js/[name].[chunkhash:8].js'
+        filename: 'mavon-editor.js',
+        library: 'mavon-editor',
+        libraryTarget: 'umd',
+        umdNamedDefine: true
+    },
+    externals: {
+        vue: {
+            root: 'Vue',
+            commonjs: 'vue',
+            commonjs2: 'vue',
+            amd: 'vue'
+        }
     },
     module: {
         rules: [{
@@ -123,18 +132,6 @@ module.exports = {
         hints: false
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['vue', 'common'],
-            filename: 'js/[name].[chunkhash:8].js',
-            minChunks: Infinity
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'src/dev/index.html',
-            inject: true,
-            hash: false,
-            chunks: ['common', 'vue', 'index']
-        }),
         // new webpack.HotModuleReplacementPlugin(),
         // new ExtractTextPlugin("css/[name].[contenthash:8].css"),
         extractCSS,
@@ -146,9 +143,13 @@ module.exports = {
             cssProcessor: require('cssnano'),
             cssProcessorOptions: { discardComments: { removeAll: true } },
             canPrint: true
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
         })
         // new WebpackSplitHash(),
         // new ExtractTextPlugin({ filename: 'bundle.css', disable: false, allChunks: true }),
-    ],
-    devtool: '#eval-source-map'
+    ]
 }

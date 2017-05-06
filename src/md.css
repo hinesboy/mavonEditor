@@ -1,0 +1,18 @@
+/**
+ * @Author: HuaChao Chen <CHC>
+ * @Date:   2017-05-05T15:57:16+08:00
+ * @Email:  chenhuachaoxyz@gmail.com
+ * @Filename: md.css
+ * @Last modified by:   CHC
+ * @Last modified time: 2017-05-06T15:05:41+08:00
+ * @License: MIT
+ * @Copyright: 2017
+ */
+
+@at-root {
+    @import "node_modules/github-markdown-css/github-markdown.css"
+}
+
+.markdown-body{
+    @import "node_modules/highlight.js/styles/github.css"
+}
