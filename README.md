@@ -28,7 +28,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.5.1"
+"mavon-editor": "^1.5.2"
 ```
 
 ### Use (如何引入)
@@ -161,6 +161,10 @@ toolbars: {
 - 自定义工具栏功能键
 
 ## update(更新内容)
+- **1.5.2** 优化项目结构(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
+            <br/>&emsp;&emsp;&emsp;- 将toolbar操作拆分为toolbar_left.js和toolbar_right.js
+            <br/>&emsp;&emsp;&emsp;- 抽离stylus样式为markdown.css
+            <br/>&emsp;&emsp;&emsp;- 调整md.css位置至lib/css
 - **1.5.1** 添加postcss插件，压缩插件体积，分离markdown样式(样式需单独引入，参考上述用法)(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.4.8** 优化项目结构,添加webpack-dev-server的开发测试(17.5.4 / [CHENXCHEN](https://github.com/CHENXCHEN)）
 - **1.4.7** 图标局部引入,减少文件体积(17.4.26）
