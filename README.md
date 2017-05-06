@@ -38,6 +38,7 @@ $ npm install mavon-editor --save
     // import with ES6
     import Vue from 'vue'
     import mavonEditor from 'mavon-editor'
+    import 'mavon-editor/dist/css/index.css'
 
     // require with Webpack/Node.js
     var Vue = require('vue')
@@ -51,6 +52,7 @@ $ npm install mavon-editor --save
     // 方法二
     // or use with component(ES6)
     import { mavonEditor } from 'mavon-editor'
+    import 'mavon-editor/dist/css/index.css'
 
     export default {
       components: {
@@ -185,5 +187,3 @@ EMAIL:
 mavonEditor is open source and released under the MIT Licence.
 
 Copyright (c) 2017 hinesboy
-
-
