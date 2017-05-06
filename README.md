@@ -28,7 +28,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.4.9"
+"mavon-editor": "^1.5.1"
 ```
 
 ### Use (如何引入)
@@ -159,10 +159,10 @@ toolbars: {
 - 支持图片上传
 - 滚动条样式的浏览器兼容性
 - 自定义工具栏功能键
-- markdown样式自定义
 
 ## update(更新内容)
-- **1.4.8** 优化项目结构,添加webpack-dev-server的开发测试(17.5.4）
+- **1.5.1** 添加postcss插件，压缩插件体积，分离markdown样式(样式需单独引入，参考上述用法)(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
+- **1.4.8** 优化项目结构,添加webpack-dev-server的开发测试(17.5.4 / [CHENXCHEN](https://github.com/CHENXCHEN)）
 - **1.4.7** 图标局部引入,减少文件体积(17.4.26）
 - **1.4.2** 支持开启标题导航 ,快捷键监听对象更改为document（17.4.25）
 - **1.4.0** 重构代码（17.4.24）
