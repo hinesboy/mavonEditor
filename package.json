@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo true",
     "dev": "webpack-dev-server --progress --content-base dist --config webpack/webpack.dev.js",
-    "build": "rm -rf dist/ && webpack --progress --config webpack/webpack.build.js"
+    "build": "webpack --progress --config webpack/webpack.build.js"
   },
   "repository": {
     "type": "git",

@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.dev.js
  * @Last modified by:   CHC
- * @Last modified time: 2017-05-06T15:06:08+08:00
+ * @Last modified time: 2017-05-06T16:10:03+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -56,7 +56,7 @@ module.exports = {
                 loader: 'file-loader',
                 options: { name: '[name].[ext]?[hash]' }
             },
-            { test: /\.(woff|ttf|eot|svg)/, loader: 'file-loader?name=font/[name].[hash:8].[ext]&publicPath=../' },
+            { test: /\.(woff|ttf|eot|svg)/, loader: 'file-loader?name=font/[name].[ext]&publicPath=../' },
             {
                 // css代码分割打包
                 test: /\.css$/,
