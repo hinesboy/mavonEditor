@@ -28,7 +28,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.5.2"
+"mavon-editor": "^1.5.3"
 ```
 
 ### Use (如何引入)
@@ -161,6 +161,7 @@ toolbars: {
 - 自定义工具栏功能键
 
 ## update(更新内容)
+- **1.5.3** 拓展markdown渲染规则——KaTeX$公式 ， 修改help文档(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.5.2** 优化项目结构(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
             <br/>&emsp;&emsp;&emsp;- 将toolbar抽离为两个单独vue文件，事件提取为toolbar_left.js和toolbar_right.js
             <br/>&emsp;&emsp;&emsp;- 抽离stylus样式为mavon-editor.styl

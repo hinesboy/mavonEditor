@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.dev.js
  * @Last modified by:   CHC
- * @Last modified time: 2017-05-06T16:10:03+08:00
+ * @Last modified time: 2017-05-06T22:00:16+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -108,10 +108,12 @@ module.exports = {
                         }
                     ]
                 })
-            },
-            {
+            },{
                 test: /\.styl$/,
                 loader: 'style-loader!css-loader!stylus-loader'
+            },{
+                test: /\.md$/,
+                loader: 'raw-loader'
             }
         ]
     },
