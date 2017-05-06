@@ -163,7 +163,7 @@ toolbars: {
 ## update(更新内容)
 - **1.5.2** 优化项目结构(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
             <br/>&emsp;&emsp;&emsp;- 将toolbar抽离为两个单独vue文件，事件提取为toolbar_left.js和toolbar_right.js
-            <br/>&emsp;&emsp;&emsp;- 抽离stylus样式为markdown.css
+            <br/>&emsp;&emsp;&emsp;- 抽离stylus样式为mavon-editor.styl
             <br/>&emsp;&emsp;&emsp;- 调整md.css位置至lib/css
 - **1.5.1** 添加postcss插件，压缩插件体积，分离markdown样式(样式需单独引入，参考上述用法)(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.4.8** 优化项目结构,添加webpack-dev-server的开发测试(17.5.4 / [CHENXCHEN](https://github.com/CHENXCHEN)）
