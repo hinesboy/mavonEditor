@@ -310,6 +310,7 @@
     };
     import "./lib/font/css/fontello.css"
     import './lib/css/md.css'
+    import 'katex/dist/katex.min.css'
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   @import "lib/css/scroll.styl"

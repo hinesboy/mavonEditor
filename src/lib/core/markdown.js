@@ -1,4 +1,15 @@
 /**
+ * @Author: HuaChao Chen <CHC>
+ * @Date:   2017-05-03T00:31:20+08:00
+ * @Email:  chenhuachaoxyz@gmail.com
+ * @Filename: markdown.js
+ * @Last modified by:   CHC
+ * @Last modified time: 2017-05-06T19:37:27+08:00
+ * @License: MIT
+ * @Copyright: 2017
+ */
+
+/**
  * Created by zhy on 2017/3/30.
  */
 var hljs = require('highlight.js');
@@ -41,6 +52,8 @@ var insert = require('markdown-it-ins')
 var mark = require('markdown-it-mark')
 //
 var container = require('markdown-it-container')
+// math katex
+var katex = require('markdown-it-katex')
 markdown.use(emoji)
   .use(sup)
   .use(sub)
@@ -50,5 +63,6 @@ markdown.use(emoji)
   .use(insert)
   .use(mark)
   .use(container)
+  .use(katex)
 
 export default markdown
