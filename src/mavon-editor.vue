@@ -81,9 +81,9 @@
     import {p_ObjectCopy_DEEP} from './lib/util.js'
     import {toolbar_left_click} from './lib/toolbar_left_click.js'
     import {toolbar_right_click} from './lib/toolbar_right_click.js'
+    import {CONFIG} from './lib/config.js'
     var s_md_toolbar_left = require('./components/s-md-toolbar-left.vue')
     var s_md_toolbar_right = require('./components/s-md-toolbar-right.vue')
-    const CONFIG = require('./lib/config.json')
     export default {
         props: {
             // 是否渲染滚动条样式(webkit)

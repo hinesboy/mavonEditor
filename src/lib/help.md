@@ -1,0 +1,124 @@
+markdown 语法简介
+===
+> [语法详解](http://commonmark.org/help/)
+## 粗体
+```
+**粗体**
+__粗体__
+```
+## *斜体*
+```
+*斜体*
+_斜体_
+```
+## 标题
+```
+# 一级标题 #
+一级标题
+====
+## 二级标题 ##
+二级标题
+----
+### 三级标题 ###
+#### 四级标题 ####
+##### 五级标题 #####
+###### 六级标题 ######
+```
+## 分割线
+```
+***
+---
+```
+****
+## ^上^角~下~标
+```
+上角标 x^2^
+下角标 H~2~0
+```
+## ++下划线++ ~~中划线~~
+```
+++下划线++
+~~中划线~~
+```
+## ==标记==
+```
+==标记==
+```
+## 段落引用
+```
+> 一级
+>> 二级
+>>> 三级
+...
+```
+> 一级
+>> 二级
+>>> 三级
+## 列表
+```
+有序列表
+1.
+2.
+3.
+...
+无序列表
+-
+-
+...
+```
+## 链接
+```
+[链接](www.baidu.com)
+![图片描述](http://www.image.com)
+```
+## 代码段落
+\``` type
+
+代码段落
+\```
+\` 代码块 \`
+`代码块`
+```c++
+int main()
+{
+    printf("hello world!");
+}
+```
+## 表格(table)
+```
+| 标题1 | 标题2 | 标题3 |
+| :--  | :--: | ----: |
+| 左对齐 | 居中 | 右对齐 |
+| ---------------------- | ------------- | ----------------- |
+```
+| 标题1 | 标题2 | 标题3 |
+| :--  | :--: | ----: |
+| 左对齐 | 居中 | 右对齐 |
+| ---------------------- | ------------- | ----------------- |
+## 脚注(footnote)
+```
+hello[^hello]
+```
+
+这是[^hello]
+
+[^hello]: 一个注脚
+
+## 表情(emoji)
+[参考网站https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
+```
+:laughing:
+:blush:
+:smiley:
+:)
+:(
+...
+```
+:laughing::blush::smiley::):(
+
+## $\KaTeX$公式
+
+我们可以渲染公式例如：$x_i + y_i = z_i$和$\sum_{i=1}^n a_i=0$
+我们也可以单行渲染
+$$\sum_{i=1}^n a_i=0$$
+具体可参照[katex文档](http://www.intmath.com/cg5/katex-mathjax-comparison.php)和[katex支持的函数](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX)以及[latex文档](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
