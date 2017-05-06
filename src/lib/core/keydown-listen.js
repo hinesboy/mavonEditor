@@ -1,4 +1,15 @@
 /**
+ * @Author: HuaChao Chen <CHC>
+ * @Date:   2017-05-03T00:31:20+08:00
+ * @Email:  chenhuachaoxyz@gmail.com
+ * @Filename: keydown-listen.js
+ * @Last modified by:   CHC
+ * @Last modified time: 2017-05-06T17:31:06+08:00
+ * @License: MIT
+ * @Copyright: 2017
+ */
+
+/**
  * Created by zhy on 2017/4/24.
  */
 export const keydownListen = ($vm , markdown) => {
@@ -11,7 +22,7 @@ export const keydownListen = ($vm , markdown) => {
                     // tab 单栏模式
                     if (!$vm.s_subField) {
                         e.preventDefault()
-                        if ($vm.$refs.vNoteDivEdit ) {
+                        if ($vm.$refs.vNoteDivEdit) {
                             let value = markdown.render($vm.d_value)
                             if (value !== null && value !== '') {
                                 $vm.$refs.vNoteDivEdit.innerHTML = value
@@ -30,25 +41,25 @@ export const keydownListen = ($vm , markdown) => {
                 case 120: {
                     // F9 单栏模式
                     e.preventDefault()
-                    $vm.$toolbar_right_subfield_click()
+                    $vm.toolbar_right_click('subfield')
                     break;
                 }
                 case 121: {
                     // F10 全屏
                     e.preventDefault()
-                    $vm.$toolbar_right_fullscreen_click()
+                    $vm.toolbar_right_click('fullscreen')
                     break;
                 }
                 case 122: {
                     // F11 阅读
                     e.preventDefault()
-                    $vm.$toolbar_right_read_click()
+                    $vm.toolbar_right_click('read')
                     break;
                 }
                 case 119: {
                     // F12 标题导航
                     e.preventDefault()
-                    $vm.$toolbar_right_navigation_click()
+                    $vm.toolbar_right_click('navigation')
                     break;
                 }
             }
@@ -58,79 +69,79 @@ export const keydownListen = ($vm , markdown) => {
                 case 66: {
                     // B
                     e.preventDefault()
-                    $vm.$toolbar_left_bold_click()
+                    $vm.toolbar_left_click('bold')
                     break;
                 }
                 case 73: {
                     // I
                     e.preventDefault()
-                    $vm.$toolbar_left_italic_click()
+                    $vm.toolbar_left_click('italic')
                     break;
                 }
                 case 72: {
                     // H
                     e.preventDefault()
-                    $vm.$toolbar_left_header_click()
+                    $vm.toolbar_left_click('header')
                     break;
                 }
                 case 85: {
                     // U
                     e.preventDefault()
-                    $vm.$toolbar_left_underline_click()
+                    $vm.toolbar_left_click('underline')
                     break;
                 }
                 case 68: {
                     // D
                     e.preventDefault()
-                    $vm.$toolbar_left_strikethrough_click()
+                    $vm.toolbar_left_click('strikethrough')
                     break;
                 }
                 case 77: {
                     // M
                     e.preventDefault()
-                    $vm.$toolbar_left_mark_click()
+                    $vm.toolbar_left_click('mark')
                     break;
                 }
                 case 81: {
                     // Q
                     e.preventDefault()
-                    $vm.$toolbar_left_quote_click()
+                    $vm.toolbar_left_click('quote')
                     break;
                 }
                 case 79: {
                     // O
                     e.preventDefault()
-                    $vm.$toolbar_left_ol_click()
+                    $vm.toolbar_left_click('ol')
                     break;
                 }
                 case 76: {
                     // L
                     e.preventDefault()
-                    $vm.$toolbar_left_link_click()
+                    $vm.toolbar_left_click('link')
                     break;
                 }
                 case 83: {
                     // S
                     e.preventDefault()
-                    $vm.$toolbar_left_save_click()
+                    $vm.toolbar_left_click('save')
                     break;
                 }
                 case 90: {
                     // Z
                     e.preventDefault()
-                    $vm.$toolbar_left_undo_click()
+                    $vm.toolbar_left_click('undo')
                     break;
                 }
                 case 89: {
                     // Y
                     e.preventDefault()
-                    $vm.$toolbar_left_redo_click()
+                    $vm.toolbar_left_click('redo')
                     break;
                 }
                 case 8: {
                     // delete
                     e.preventDefault()
-                    $vm.$toolbar_left_trash_click()
+                    $vm.toolbar_left_click('trash')
                     break;
                 }
             }
@@ -140,31 +151,31 @@ export const keydownListen = ($vm , markdown) => {
                 case 83: {
                     // S
                     e.preventDefault()
-                    $vm.$toolbar_left_superscript_click()
+                    $vm.toolbar_left_click('superscript')
                     break;
                 }
                 case 85: {
                     // U
                     e.preventDefault()
-                    $vm.$toolbar_left_ul_click()
+                    $vm.toolbar_left_click('ul')
                     break;
                 }
                 case 76: {
                     // C
                     e.preventDefault()
-                    $vm.$toolbar_left_imagelink_click()
+                    $vm.toolbar_left_click('imagelink')
                     break;
                 }
                 case 67: {
                     // L
                     e.preventDefault()
-                    $vm.$toolbar_left_code_click()
+                    $vm.toolbar_left_click('code')
                     break;
                 }
                 case 84: {
                     // T
                     e.preventDefault()
-                    $vm.$toolbar_left_table_click()
+                    $vm.toolbar_left_click('table')
                     break;
                 }
             }
@@ -174,7 +185,7 @@ export const keydownListen = ($vm , markdown) => {
                 case 83: {
                     // S
                     e.preventDefault()
-                    $vm.$toolbar_left_subscript_click()
+                    $vm.toolbar_left_click('subscript')
                     break;
                 }
             }
