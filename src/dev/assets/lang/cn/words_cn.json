@@ -1,0 +1,7 @@
+{
+  "sub_title": "一款基于Vue的markdown编辑器",
+  "default_setting": "默认配置",
+  "customize_setting": "自定义工具栏",
+  "mark": "注: 屏幕分辨率低于768px ，取消【单栏|双栏】编辑模式 ，更改为【编辑|预览】切换 ， 并且取消【沉浸式阅读】模式。",
+  "detail": "详细配置API参考"
+}

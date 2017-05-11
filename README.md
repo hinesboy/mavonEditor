@@ -4,6 +4,8 @@
 
 > 基于Vue的markdown编辑器
 
+### [English Documents](./README-EN.md)
+
 ## example (图片展示)
 
 ### PC
@@ -28,7 +30,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.5.4"
+"mavon-editor": "^1.5.5"
 ```
 
 ### Use (如何引入)
@@ -84,9 +86,10 @@ $ npm install mavon-editor --save
 | name 名称   | type 类型    |  default 默认值 | describe 描述 |
 | -------- | :---------: | :------------: | ------- |
 | value      | String      |               | 初始值 |
+| language   | String      |      cn         | 语言选择，暂支持 cn: 中文简体 ， en: 英文 |
 | scrollStyle| Boolean     |   true       | 开启滚动条样式(暂时仅支持chrome) |
 | subfield   | Boolean     |   true        | 默认开启双栏编辑(单栏模式 TAB键主动触发markdown渲染) |
-| toolbars   | Object      |   如下  | 工具栏 |
+| toolbars   | Object      |   如下例  | 工具栏 |
 
 ```javascript
  /*
@@ -161,11 +164,12 @@ toolbars: {
 - 自定义工具栏功能键
 
 ## update(更新内容)
+- **1.5.6** 支持语言切换 ， 新增英文文档(17.5.11)
 - **1.5.3** 拓展markdown渲染规则——KaTeX$公式 ， 修改help文档(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.5.2** 优化项目结构(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
-            <br/>&emsp;&emsp;&emsp;- 将toolbar抽离为两个单独vue文件，事件提取为toolbar_left.js和toolbar_right.js
-            <br/>&emsp;&emsp;&emsp;- 抽离stylus样式为mavon-editor.styl
-            <br/>&emsp;&emsp;&emsp;- 调整md.css位置至lib/css
+            <br/>&emsp;&emsp;- 将toolbar抽离为两个单独vue文件，事件提取为toolbar_left.js和toolbar_right.js
+            <br/>&emsp;&emsp;- 抽离stylus样式为mavon-editor.styl
+            <br/>&emsp;&emsp;- 调整md.css位置至lib/css
 - **1.5.1** 添加postcss插件，压缩插件体积，分离markdown样式(样式需单独引入，参考上述用法)(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.4.8** 优化项目结构,添加webpack-dev-server的开发测试(17.5.4 / [CHENXCHEN](https://github.com/CHENXCHEN)）
 - **1.4.7** 图标局部引入,减少文件体积(17.4.26）

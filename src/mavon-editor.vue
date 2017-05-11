@@ -2,8 +2,8 @@
   <div :class="{'fullscreen': s_fullScreen}" class="v-note-wrapper markdown-body">
     <!--工具栏-->
     <div class="v-note-op">
-        <s-md-toolbar-left @toolbar_left_click="toolbar_left_click" :toolbars="toolbars" />
-        <s-md-toolbar-right @toolbar_right_click="toolbar_right_click" :toolbars="toolbars" :s_screen_phone="s_screen_phone" :s_screen_phone_toggle="s_screen_phone_toggle" :s_subField="s_subField" :s_fullScreen="s_fullScreen" :s_html_code="s_html_code" :s_navigation="s_navigation" />
+        <s-md-toolbar-left :d_words="d_words" @toolbar_left_click="toolbar_left_click" :toolbars="toolbars" />
+        <s-md-toolbar-right :d_words="d_words" @toolbar_right_click="toolbar_right_click" :toolbars="toolbars" :s_screen_phone="s_screen_phone" :s_screen_phone_toggle="s_screen_phone_toggle" :s_subField="s_subField" :s_fullScreen="s_fullScreen" :s_html_code="s_html_code" :s_navigation="s_navigation" />
     </div>
     <!--编辑展示区域-->
     <div class="v-note-panel">
@@ -38,7 +38,7 @@
       <transition name="slideTop">
         <div v-show="s_navigation" class="v-note-navigation-wrapper">
           <div class="v-note-navigation-title">
-            导航目录<i @click="toolbar_right_click('navigation')" class="fa fa-times v-note-navigation-close" aria-hidden="true"></i>
+            {{d_words.navigation_title}}<i @click="toolbar_right_click('navigation')" class="fa fa-times v-note-navigation-close" aria-hidden="true"></i>
           </div>
           <div ref="navigationContent" class="v-note-navigation-content scroll-style">
           </div>
@@ -62,7 +62,7 @@
       <!--标题导航-->
       <div v-if="toolbars.navigation" v-show="s_navigation_full" class="v-note-navigation-wrapper">
         <div class="v-note-navigation-title">
-          导航目录<i @click="toolbar_right_click('navigationfull')" class="fa fa-times v-note-navigation-close" aria-hidden="true"></i>
+          {{d_words.navigation_title}}<i @click="toolbar_right_click('navigationfull')" class="fa fa-times v-note-navigation-close" aria-hidden="true"></i>
         </div>
         <div ref="navigationContentFull" class="v-note-navigation-content scroll-style">
         </div>
@@ -100,6 +100,11 @@
                 type: String,
                 default: ''
             },
+            // 初始value
+            language: {
+                type: String,
+                default: 'cn'
+            },
             // 默认是否分栏 用于记忆用户模式
             subfield: {
                 type: Boolean,
@@ -132,15 +137,10 @@
                     return this.subfield
                 })(), // props 是否分栏模式
                 s_fullScreen: false,// 全屏编辑标志
-                s_html_code: false,// 分栏情况下查看html
                 s_help: false,// markdown帮助
-                d_help: (() => {
-                    if (this.help === null) {
-                        return markdown.render(CONFIG.help)
-                    } else {
-                        return this.help
-                    }
-                })(),
+                s_html_code: false,// 分栏情况下查看html
+                d_help: null,
+                d_words: null,
                 edit_scroll_height: -1,
                 s_readmodel: false,
                 s_table_enter: false, // 回车事件是否在表格中执行
@@ -158,6 +158,8 @@
             };
         },
         created() {
+            // 初始化语言
+            this.initLanguage();
             // 初始化单栏数据
             if (this.$refs.vNoteDivEdit) {
                 this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
@@ -242,7 +244,7 @@
                     insertTextAtCaret(obj, {prefix, subfix, str} , this);
                 } else {
                     // 单栏模式点击
-                    let div = this.$refs.vNoteDivEdit
+                    let div = this.$refs.vNoteDivEdit;
                     let obj = document.createElement('div');
                     obj.innerHTML = markdown.render(prefix + str + subfix)
                     if (obj.children.length === 1 && obj.children[0].tagName === 'P') {
@@ -263,6 +265,11 @@
                 this.d_history.push(this.d_value)
                 this.d_history_index = this.d_history.length - 1
             },
+            initLanguage () {
+                let lang = CONFIG.langList.indexOf(this.language) >= 0 ? this.language : this.language.default;
+                this.d_help = markdown.render(CONFIG[`help_${lang}`]);
+                this.d_words = CONFIG[`words_${lang}`];
+            }
         },
         watch: {
             d_value: function (val, oldVal) {
@@ -300,6 +307,9 @@
                     this.d_history_index = this.d_history_index - 1
                 }
                 this.d_value = this.d_history[this.d_history_index]
+            },
+            language: function (val) {
+                this.initLanguage();
             }
         },
         components: {

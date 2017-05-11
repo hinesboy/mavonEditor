@@ -15,24 +15,25 @@
 var hljs = require('highlight.js');
 // default mode
 var markdown = require('markdown-it')({
-  html:         true,        // Enable HTML tags in source
-  xhtmlOut:     true,        // Use '/' to close single tags (<br />).
-  breaks:       true,        // Convert '\n' in paragraphs into <br>
-  langPrefix:   'language-markdown',  // CSS language prefix for fenced blocks. Can be
-  linkify:      false,        // 自动识别url
-  typographer:  true,
-  quotes: '“”‘’',
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return '<pre class="hljs"><code class="' + lang + '">' +
-          hljs.highlight(lang, str, true).value +
-          '</code></pre>';
-      } catch (__) {}
-    }
+    html: true,        // Enable HTML tags in source
+    xhtmlOut: true,        // Use '/' to close single tags (<br />).
+    breaks: true,        // Convert '\n' in paragraphs into <br>
+    langPrefix: 'language-markdown',  // CSS language prefix for fenced blocks. Can be
+    linkify: false,        // 自动识别url
+    typographer: true,
+    quotes: '“”‘’',
+    highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return '<pre class="hljs"><code class="' + lang + '">' +
+                    hljs.highlight(lang, str, true).value +
+                    '</code></pre>';
+            } catch (__) {
+            }
+        }
 
-    return '<pre class="hljs"><code>' + markdown.utils.escapeHtml(str) + '</code></pre>';
-  }
+        return '<pre class="hljs"><code>' + markdown.utils.escapeHtml(str) + '</code></pre>';
+    }
 });
 // 表情
 var emoji = require('markdown-it-emoji');
@@ -55,14 +56,14 @@ var container = require('markdown-it-container')
 // math katex
 var katex = require('markdown-it-katex')
 markdown.use(emoji)
-  .use(sup)
-  .use(sub)
-  .use(deflist)
-  .use(abbr)
-  .use(footnote)
-  .use(insert)
-  .use(mark)
-  .use(container)
-  .use(katex)
+    .use(sup)
+    .use(sub)
+    .use(deflist)
+    .use(abbr)
+    .use(footnote)
+    .use(insert)
+    .use(mark)
+    .use(container)
+    .use(katex)
 
 export default markdown

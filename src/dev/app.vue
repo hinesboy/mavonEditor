@@ -1,61 +1,53 @@
 <template>
   <div id="app">
+    <select @change="opchange" class="page-lang">
+      <option value ="cn">中文</option>
+      <option value ="en">English</option>
+    </select>
     <section class="page-header">
       <h1 class="project-name">mavonEditor</h1>
-      <h3 class="project-tagline">一款基于Vue的markdown编辑器</h3>
+      <h3 class="project-tagline">{{d_words.sub_title}}</h3>
       <a href="https://github.com/hinesboy/mavonEditor" class="btn">View on GitHub</a>
       <a href="https://github.com/hinesboy/mavonEditor/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/hinesboy/mavonEditor/master" class="btn">Download .tar.gz</a>
     </section>
     <div v-if="!screen_phone" class="item">
       <h2 class="item-header">
-        默认配置
+        {{d_words.default_setting}}
       </h2>
-      <mavon-editor @change="change" @save="saveone" class="item-editor" v-model="help1"></mavon-editor>
+      <mavon-editor :language = "d_language" @change="change" @save="saveone" class="item-editor" v-model="help1"></mavon-editor>
     </div>
     <div v-if="screen_phone" class="item">
       <h2 class="item-header">
-        自定义工具栏
+        {{d_words.customize_setting}}
       </h2>
-      <mavon-editor @save="savetwo" :toolbars="toolbars" class="item-editor" v-model="help2"></mavon-editor>
+      <mavon-editor :language = "d_language" @save="savetwo" :toolbars="toolbars" class="item-editor" v-model="help2"></mavon-editor>
     </div>
     <div class="item">
       <span style="display: block;margin: 30px 0 15px 0;color: #1e6bb8" class="">
-        注: 屏幕分辨率低于768px ，取消【单栏|双栏】编辑模式 ，更改为【编辑|预览】切换 ， 并且取消【沉浸式阅读】模式
+        {{d_words.mark}}
       </span>
       <img width="100px" height="auto" src="./assets/img/1.png"/>
       <img width="100px" height="auto" src="./assets/img/2.png"/>
     </div>
     <div class="item">
       <h2 class="item-header">
-        详细配置API参考<a href="https://github.com/hinesboy/mavonEditor">GitHub</a>
+        {{d_words.detail}}<a href="https://github.com/hinesboy/mavonEditor">GitHub</a>
       </h2>
-    </div>
-    <div class="item">
-      <h2 class="item-header">
-        后续
-      </h2>
-      <ul>
-        <li style="text-decoration-line: line-through">撤销键、清空键、保存按钮</li>
-        <li style="text-decoration-line: line-through">支持开启标题导航</li>
-        <li style="text-decoration-line: line-through">重构</li>
-        <li>支持图片上传</li>
-        <li>滚动条样式的浏览器兼容性</li>
-        <li>自定义工具栏功能键</li>
-        <li>markdown样式自定义</li>
-      </ul>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  const HELP = require('./assets/help.md')
+  import {CONFIG} from './assets/config.js'
   export default {
     name: 'app',
     data () {
       return {
-        help1: HELP,
-        help2: HELP,
+        d_language: 'cn',
+        help1: '',
+        help2: '',
+        d_words: {},
         screen_phone: false,
         toolbars: {
           underline: true, // 下划线
@@ -68,6 +60,7 @@
       }
     },
     created () {
+      this.initLanguage();
       this.sizeToStatus()
       window.onresize = function () {
         // 媒介查询
@@ -92,8 +85,21 @@
       },
       change (val, render) {
         console.log('change')
+      },
+      opchange (event) {
+          this.d_language = event.target.value;
+      },
+      initLanguage() {
+          this.help1 = CONFIG[`help_${this.d_language}`]
+          this.help2 = CONFIG[`help_${this.d_language}`]
+          this.d_words = CONFIG[`words_${this.d_language}`]
       }
     },
+    watch: {
+        d_language: function() {
+            this.initLanguage();
+        }
+    }
   }
 </script>
 
@@ -102,7 +108,10 @@
     margin 0
     padding 0
     padding-bottom 50px
-
+  .page-lang
+    position absolute
+    top 15px
+    right 2%
   .page-header
     box-sizing border-box
     padding 90px 15px
