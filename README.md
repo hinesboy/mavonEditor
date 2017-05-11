@@ -30,7 +30,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.5.6"
+"mavon-editor": "^1.5.7"
 ```
 
 ### Use (如何引入)
@@ -164,6 +164,7 @@ toolbars: {
 - 自定义工具栏功能键
 
 ## update(更新内容)
+- **1.5.7** 修复footnote脚注锚点定位错乱(17.5.11)
 - **1.5.6** 支持语言切换 ， 新增英文文档(17.5.11)
 - **1.5.3** 拓展markdown渲染规则——KaTeX$公式 ， 修改help文档(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.5.2** 优化项目结构(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))

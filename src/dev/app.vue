@@ -17,6 +17,7 @@
       </h2>
       <mavon-editor :language = "d_language" @change="change" @save="saveone" class="item-editor" v-model="help1"></mavon-editor>
     </div>
+    <!--自定义-->
     <div v-if="screen_phone" class="item">
       <h2 class="item-header">
         {{d_words.customize_setting}}
