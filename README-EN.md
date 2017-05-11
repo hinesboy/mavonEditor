@@ -29,7 +29,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.5.5"
+"mavon-editor": "^1.5.6"
 ```
 
 ### Use
