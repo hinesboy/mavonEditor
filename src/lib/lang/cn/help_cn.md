@@ -102,12 +102,12 @@ int main()
 hello[^hello]
 ```
 
-这是[^hello]
+见底部脚注[^hello]
 
 [^hello]: 一个注脚
 
 ## 表情(emoji)
-[参考网站https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
+[参考网站: https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
 ```
 :laughing:
 :blush:
