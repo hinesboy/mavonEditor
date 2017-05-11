@@ -36,7 +36,7 @@ $ npm install mavon-editor --save
 ### Use (如何引入)
 
 ```javascript
-    // 方法一
+    // 方法一 全局注册
     // import with ES6
     import Vue from 'vue'
     import mavonEditor from 'mavon-editor'
@@ -51,7 +51,7 @@ $ npm install mavon-editor --save
 ```
 
 ```javascript
-    // 方法二
+    // 方法二 局部注册
     // or use with component(ES6)
     import { mavonEditor } from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
@@ -65,12 +65,12 @@ $ npm install mavon-editor --save
 ### html
 ``` html
     <!-- 使用双向绑定修饰符 -->
-    <mavonEditor v-model="value"/>
+    <mavon-editor v-model="value"/>
 ```
 
 ``` html
     <!-- 当value发生改变 , 触发change事件 -->
-    <mavonEditor :value="value" @change="function"/>
+    <mavon-editor :value="value" @change="function"/>
 ```
 
 - **默认大小样式为 min-height: 300px , ming-width: 300px 可自行覆盖**

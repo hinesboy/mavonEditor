@@ -35,7 +35,7 @@ $ npm install mavon-editor --save
 ### Use
 
 ```javascript
-    // No.1
+    // No.1 Registration
     // import with ES6
     import Vue from 'vue'
     import mavonEditor from 'mavon-editor'
@@ -50,7 +50,7 @@ $ npm install mavon-editor --save
 ```
 
 ```javascript
-    // No.2
+    // No.2 Local Registration
     // or use with component(ES6)
     import { mavonEditor } from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
@@ -64,12 +64,12 @@ $ npm install mavon-editor --save
 ### html
 ``` html
     <!-- use v-model -->
-    <mavonEditor v-model="value"/>
+    <mavon-editor v-model="value"/>
 ```
 
 ``` html
     <!-- if the value changes, the change event is triggered -->
-    <mavonEditor :value="value" @change="function"/>
+    <mavon-editor :value="value" @change="function"/>
 ```
 - **Default size: min-height: 300px , ming-width: 300px , Can be covered**
 - **z-index: 1500**
