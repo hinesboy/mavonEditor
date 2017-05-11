@@ -149,7 +149,7 @@ toolbars: {
 
 - [stylus](https://github.com/stylus/stylus)
 
-## follow-up (后续)
+## Follow-up
 
 - Support image upload
 
@@ -157,7 +157,7 @@ toolbars: {
 
 - [CHENXCHEN](https://github.com/CHENXCHEN)
 
-## contact me
+## Contact Me
 EMAIL:
 - 1109089240@qq.com
 - hines.zhu@gmail.com

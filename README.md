@@ -154,7 +154,7 @@ toolbars: {
 
 - [stylus](https://github.com/stylus/stylus)
 
-## follow-up (后续)
+## Follow-up (后续)
 
 - ~~撤销键、清空键、保存按钮~~（1.3.5）
 - ~~重构~~（1.4.0）
@@ -184,7 +184,7 @@ toolbars: {
 
 - [CHENXCHEN](https://github.com/CHENXCHEN)
 
-## contact(联系我)
+## Contact(联系我)
 
 QQ:
 - 1109089240
