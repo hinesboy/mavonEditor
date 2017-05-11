@@ -34,43 +34,146 @@ $ npm install mavon-editor --save
 
 ### Use
 
+#### method 1
+`index.js`:
 ```javascript
-    // No.1 Registration
+    // Global Registration
     // import with ES6
     import Vue from 'vue'
     import mavonEditor from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
 
+    // use
+    Vue.use(mavonEditor)
+    new Vue({
+        'el': '#main',
+        data() {
+            return { value: '' }
+        }
+    })
+```
+`index.html`
+```html
+<div id="main">
+    <mavon-editor v-model="value"/>
+</div>
+```
+
+#### method 2
+`index.js`:
+```javascript
+    // Global Registration
     // require with Webpack/Node.js
     var Vue = require('vue')
     var mavonEditor = require('mavon-editor')
+    import 'mavon-editor/dist/css/index.css'
 
     // use
     Vue.use(mavonEditor)
+    new Vue({
+        'el': '#main',
+        data() {
+            return { value: '' }
+        }
+    })
+```
+`index.html`
+```html
+<div id="main">
+    <mavon-editor v-model="value"/>
+</div>
 ```
 
+#### method 3
+`editor.vue`:
 ```javascript
-    // No.2 Local Registration
-    // or use with component(ES6)
+    <template>
+        <div id="editor">
+            <mavon-editor style="height: 100%"></mavon-editor>
+        </div>
+    </template>
+    <script>
+    // Local Registration
     import { mavonEditor } from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
-
     export default {
-      components: {
-        mavonEditor
-      }
+        name: 'editor',
+        components: {
+            mavonEditor
+            // or 'mavon-editor': mavonEditor
+        }
     }
+    </script>
+    <style>
+    #editor {
+        margin: auto;
+        width: 80%;
+        height: 580px;
+    }
+    </style>
 ```
-### html
-``` html
-    <!-- use v-model -->
+`index.js`:
+```javascript
+    import Vue from 'vue';
+    var editor = require('./editor.vue');
+    new Vue({
+        el: '#main',
+        render: h => h(editor)
+    });
+```
+`index.html`:
+```html
+<div id="main">
     <mavon-editor v-model="value"/>
+</div>
 ```
 
-``` html
-    <!-- if the value changes, the change event is triggered -->
-    <mavon-editor :value="value" @change="function"/>
+#### method 4
+`editor.vue`:
+```javascript
+    <template>
+        <div id="editor">
+            <mavon-editor style="height: 100%"></mavon-editor>
+        </div>
+    </template>
+    <script>
+    // Local Registration
+    // import mavonEditor from 'mavon-editor'
+    var mavonEditor = require('mavon-editor')
+    import 'mavon-editor/dist/css/index.css'
+    export default {
+        name: 'editor',
+        components: {
+            'mavon-editor': mavonEditor.mavonEditor
+        }
+    }
+    </script>
+    <style>
+    #editor {
+        margin: auto;
+        width: 80%;
+        height: 580px;
+    }
+    </style>
 ```
+`index.js`:
+```javascript
+    import Vue from 'vue';
+    var editor = require('./editor.vue');
+    new Vue({
+        el: '#main',
+        render: h => h(editor)
+    });
+```
+`index.html`:
+```html
+<div id="main">
+    <mavon-editor v-model="value"/>
+</div>
+```
+
+### html
+
 - **Default size: min-height: 300px , ming-width: 300px , Can be covered**
 - **z-index: 1500**
 - **In Single column edit mode , The TAB key triggers markdown text rendering**

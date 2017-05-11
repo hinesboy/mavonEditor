@@ -35,43 +35,145 @@ $ npm install mavon-editor --save
 
 ### Use (如何引入)
 
+#### 方法1
+`index.js`:
 ```javascript
-    // 方法一 全局注册
+    // 全局注册
     // import with ES6
     import Vue from 'vue'
     import mavonEditor from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
 
+    // use
+    Vue.use(mavonEditor)
+    new Vue({
+        'el': '#main',
+        data() {
+            return { value: '' }
+        }
+    })
+```
+`index.html`
+```html
+<div id="main">
+    <mavon-editor v-model="value"/>
+</div>
+```
+
+#### 方法2
+`index.js`:
+```javascript
+    // 全局注册
     // require with Webpack/Node.js
     var Vue = require('vue')
     var mavonEditor = require('mavon-editor')
+    import 'mavon-editor/dist/css/index.css'
 
     // use
     Vue.use(mavonEditor)
+    new Vue({
+        'el': '#main',
+        data() {
+            return { value: '' }
+        }
+    })
+```
+`index.html`
+```html
+<div id="main">
+    <mavon-editor v-model="value"/>
+</div>
 ```
 
+#### 方法3
+`editor.vue`:
 ```javascript
-    // 方法二 局部注册
-    // or use with component(ES6)
+    <template>
+        <div id="editor">
+            <mavon-editor style="height: 100%"></mavon-editor>
+        </div>
+    </template>
+    <script>
+    // Local Registration
     import { mavonEditor } from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
-
     export default {
-      components: {
-        mavonEditor
-      }
+        name: 'editor',
+        components: {
+            mavonEditor
+            // or 'mavon-editor': mavonEditor
+        }
     }
+    </script>
+    <style>
+    #editor {
+        margin: auto;
+        width: 80%;
+        height: 580px;
+    }
+    </style>
 ```
-### html
-``` html
-    <!-- 使用双向绑定修饰符 -->
+`index.js`:
+```javascript
+    import Vue from 'vue';
+    var editor = require('./editor.vue');
+    new Vue({
+        el: '#main',
+        render: h => h(editor)
+    });
+```
+`index.html`:
+```html
+<div id="main">
     <mavon-editor v-model="value"/>
+</div>
 ```
 
-``` html
-    <!-- 当value发生改变 , 触发change事件 -->
-    <mavon-editor :value="value" @change="function"/>
+#### 方法4
+`editor.vue`:
+```javascript
+    <template>
+        <div id="editor">
+            <mavon-editor style="height: 100%"></mavon-editor>
+        </div>
+    </template>
+    <script>
+    // Local Registration
+    // import mavonEditor from 'mavon-editor'
+    var mavonEditor = require('mavon-editor')
+    import 'mavon-editor/dist/css/index.css'
+    export default {
+        name: 'editor',
+        components: {
+            'mavon-editor': mavonEditor.mavonEditor
+        }
+    }
+    </script>
+    <style>
+    #editor {
+        margin: auto;
+        width: 80%;
+        height: 580px;
+    }
+    </style>
 ```
+`index.js`:
+```javascript
+    import Vue from 'vue';
+    var editor = require('./editor.vue');
+    new Vue({
+        el: '#main',
+        render: h => h(editor)
+    });
+```
+`index.html`:
+```html
+<div id="main">
+    <mavon-editor v-model="value"/>
+</div>
+```
+
+### html
 
 - **默认大小样式为 min-height: 300px , ming-width: 300px 可自行覆盖**
 - **基础z-index: 1500**
