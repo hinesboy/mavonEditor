@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.base.js
  * @Last modified by:   CHC
- * @Last modified time: 2017-05-09T00:10:39+08:00
+ * @Last modified time: 2017-05-15T13:36:39+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -18,6 +18,7 @@ var WebpackMd5Hash = require('webpack-md5-hash');
 // var WebpackSplitHash = require('webpack-split-hash');
 // 压缩css
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const extractCSS = new ExtractTextPlugin('css/[name].css');
 module.exports = {
@@ -111,6 +112,37 @@ module.exports = {
             cssProcessor: require('cssnano'),
             cssProcessorOptions: { discardComments: { removeAll: true } },
             canPrint: true
+        }),
+        new BundleAnalyzerPlugin({
+            // Can be `server`, `static` or `disabled`.
+            // In `server` mode analyzer will start HTTP server to show bundle report.
+            // In `static` mode single HTML file with bundle report will be generated.
+            // In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`.
+            analyzerMode: 'server',
+            // Host that will be used in `server` mode to start HTTP server.
+            analyzerHost: '0.0.0.0',
+            // Port that will be used in `server` mode to start HTTP server.
+            analyzerPort: 8888,
+            // Path to bundle report file that will be generated in `static` mode.
+            // Relative to bundles output directory.
+            reportFilename: 'report.html',
+            // Module sizes to show in report by default.
+            // Should be one of `stat`, `parsed` or `gzip`.
+            // See "Definitions" section for more information.
+            defaultSizes: 'parsed',
+            // Automatically open report in default browser
+            openAnalyzer: true,
+            // If `true`, Webpack Stats JSON file will be generated in bundles output directory
+            generateStatsFile: false,
+            // Name of Webpack Stats JSON file that will be generated if `generateStatsFile` is `true`.
+            // Relative to bundles output directory.
+            statsFilename: 'stats.json',
+            // Options for `stats.toJson()` method.
+            // For example you can exclude sources of your modules from stats file with `source: false` option.
+            // See more options here: https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21
+            statsOptions: null,
+            // Log level. Can be 'info', 'warn', 'error' or 'silent'.
+            logLevel: 'info'
         })
     ]
 }
