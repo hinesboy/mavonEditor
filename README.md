@@ -125,7 +125,6 @@ $ npm install mavon-editor --save
 `index.html`:
 ```html
 <div id="main">
-    <mavon-editor v-model="value"/>
 </div>
 ```
 
@@ -169,7 +168,6 @@ $ npm install mavon-editor --save
 `index.html`:
 ```html
 <div id="main">
-    <mavon-editor v-model="value"/>
 </div>
 ```
 
