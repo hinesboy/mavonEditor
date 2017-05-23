@@ -23,7 +23,8 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 const extractCSS = new ExtractTextPlugin('css/[name].css');
 module.exports = {
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.vue$/,
                 loader: 'vue-loader'
             },
