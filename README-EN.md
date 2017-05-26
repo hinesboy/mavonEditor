@@ -29,7 +29,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.5.9"
+"mavon-editor": "^1.6.0"
 ```
 
 ### Use
@@ -187,6 +187,8 @@ $ npm install mavon-editor --save
 | language   | String      |      cn         | Language switch,  cn: Simplified Chinese ， en: English |
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | subfield   | Boolean     |   true        | Open the double column mode by default(In single column mode , The TAB key triggers markdown text rendering) |
+| editable | Boolean     |   true       | Edit switch |
+| toolbarsFlag | Boolean     |   true       | Show toolbars |
 | toolbars   | Object      |   As in the following example  | toolbars |
 
 ```javascript

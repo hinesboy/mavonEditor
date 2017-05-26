@@ -30,7 +30,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.5.9"
+"mavon-editor": "^1.6.0"
 ```
 
 ### Use (如何引入)
@@ -189,6 +189,8 @@ $ npm install mavon-editor --save
 | language   | String      |      cn         | 语言选择，暂支持 cn: 中文简体 ， en: 英文 |
 | scrollStyle| Boolean     |   true       | 开启滚动条样式(暂时仅支持chrome) |
 | subfield   | Boolean     |   true        | 默认开启双栏编辑(单栏模式 TAB键主动触发markdown渲染) |
+| editable | Boolean     |   true       | 是否允许编辑 |
+| toolbarsFlag | Boolean     |   true       | 工具栏是否显示 |
 | toolbars   | Object      |   如下例  | 工具栏 |
 
 ```javascript
@@ -264,6 +266,8 @@ toolbars: {
 - 自定义工具栏功能键
 
 ## update(更新内容)
+- **1.6.0** 新增props：enabled编辑开关、toolbarsFlag工具栏是否显示(17.5.26)
+            <br/>&emsp;&emsp; 修复subfield = true初始化时候不显示内容
 - **1.5.6** 支持语言切换 ， 新增英文文档(17.5.11)
 - **1.5.3** 拓展markdown渲染规则——KaTeX$公式 ， 修改help文档(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.5.2** 优化项目结构(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
