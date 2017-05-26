@@ -171,7 +171,7 @@ $ npm install mavon-editor --save
 </div>
 ```
 
-### html
+### 注
 
 - **默认大小样式为 min-height: 300px , ming-width: 300px 可自行覆盖**
 - **基础z-index: 1500**

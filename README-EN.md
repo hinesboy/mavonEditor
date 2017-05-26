@@ -170,7 +170,7 @@ $ npm install mavon-editor --save
 </div>
 ```
 
-### html
+### Note
 
 - **Default size: min-height: 300px , ming-width: 300px , Can be covered**
 - **z-index: 1500**
