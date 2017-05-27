@@ -187,9 +187,7 @@
 
             this.$nextTick(() => {
                 // 初始化单栏数据
-                if (this.$refs.vNoteDivEdit) {
-                    this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
-                }
+               this.loadDivData();
                 // 初始化Textarea编辑开关
                 this.editableTextarea();
             })
@@ -311,7 +309,12 @@
                 } else {
                     text_dom.setAttribute('disabled' , 'disabled');
                 }
-            }
+            },
+            loadDivData() {
+                if (this.$refs.vNoteDivEdit) {
+                    this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
+                }
+            },
         },
         watch: {
             d_value: function (val, oldVal) {
@@ -338,6 +341,7 @@
                 if (val !== this.d_value) {
                     this.d_value = val
                     this.d_render = markdown.render(this.value);
+                    this.loadDivData();
                 }
             },
             subfield: function (val, oldVal) {

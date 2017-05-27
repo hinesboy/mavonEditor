@@ -94,9 +94,9 @@
           this.d_language = event.target.value;
       },
       initLanguage() {
-          this.help1 = CONFIG[`help_${this.d_language}`]
-          this.help2 = CONFIG[`help_${this.d_language}`]
-          this.d_words = CONFIG[`words_${this.d_language}`]
+        this.d_words = CONFIG[`words_${this.d_language}`]
+        this.help1 = CONFIG[`help_${this.d_language}`]
+        this.help2 = CONFIG[`help_${this.d_language}`]
       }
     },
     watch: {
