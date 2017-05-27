@@ -30,7 +30,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.6.0"
+"mavon-editor": "^1.6.1"
 ```
 
 ### Use (如何引入)
@@ -266,7 +266,7 @@ toolbars: {
 - 自定义工具栏功能键
 
 ## update(更新内容)
-- **1.6.0** 新增props：enabled编辑开关、toolbarsFlag工具栏是否显示(17.5.26)
+- **1.6.1** 新增props：enabled编辑开关、toolbarsFlag工具栏是否显示(17.5.26)
             <br/>&emsp;&emsp; 修复subfield = true初始化时候不显示内容
 - **1.5.6** 支持语言切换 ， 新增英文文档(17.5.11)
 - **1.5.3** 拓展markdown渲染规则——KaTeX$公式 ， 修改help文档(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
