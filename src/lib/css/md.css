@@ -16,3 +16,6 @@
 .markdown-body{
     @import "node_modules/highlight.js/styles/github.css"
 }
+.code-github{
+  @import "node_modules/highlight.js/styles/github.css"
+}
