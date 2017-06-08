@@ -15,7 +15,7 @@
       <h2 class="item-header">
         {{d_words.default_setting}}
       </h2>
-      <mavon-editor :toolbarsFlag="toolbarsFlag" :editable="editable" :subfield="subfield" :language = "d_language" @change="change" @save="saveone" class="item-editor" v-model="help1"></mavon-editor>
+      <mavon-editor :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable" :subfield="subfield" :language = "d_language" @change="change" @save="saveone" class="item-editor" v-model="help1"></mavon-editor>
     </div>
     <!--自定义-->
     <div v-if="screen_phone" class="item">
@@ -60,7 +60,8 @@
         },
         subfield: false,
         editable: true,
-        toolbarsFlag: true
+        toolbarsFlag: true,
+        code_style:'code-hybrid'
       }
     },
     created () {
