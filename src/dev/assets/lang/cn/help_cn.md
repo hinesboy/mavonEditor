@@ -113,7 +113,6 @@ hello[^hello]
 :blush:
 :smiley:
 :)
-:(
 ...
 ```
 :laughing::blush::smiley::):(

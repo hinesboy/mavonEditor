@@ -118,7 +118,6 @@ Detailed: [https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpa
 :blush:
 :smiley:
 :)
-:(
 ...
 ```
 :laughing::blush::smiley::):(
