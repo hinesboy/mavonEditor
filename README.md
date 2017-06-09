@@ -290,17 +290,6 @@ toolbars: {
 
 - [CHENXCHEN](https://github.com/CHENXCHEN)
 
-## Contact(联系我)
-
-QQ:
-- 1109089240
-
-EMAIL:
-- 1109089240@qq.com
-- hines.zhu@gmail.com
-- zhu.hong.yu@outlook.com
-
-**欢迎咨询与建议**
 
 ## Licence (证书)
 

@@ -261,12 +261,6 @@ toolbars: {
 
 - [CHENXCHEN](https://github.com/CHENXCHEN)
 
-## Contact Me
-EMAIL:
-- 1109089240@qq.com
-- hines.zhu@gmail.com
-- zhu.hong.yu@outlook.com
-
 ## Licence
 
 mavonEditor is open source and released under the MIT Licence.
