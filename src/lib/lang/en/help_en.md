@@ -120,7 +120,7 @@ Detailed: [https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpa
 :)
 ...
 ```
-:laughing::blush::smiley::):(
+:laughing::blush::smiley::)
 
 ## $\KaTeX$ Mathematics
 
