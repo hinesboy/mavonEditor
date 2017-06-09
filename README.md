@@ -30,7 +30,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.6.2"
+"mavon-editor": "^1.6.3"
 ```
 
 ### Use (如何引入)
@@ -190,6 +190,7 @@ $ npm install mavon-editor --save
 | scrollStyle| Boolean     |   true       | 开启滚动条样式(暂时仅支持chrome) |
 | subfield   | Boolean     |   true        | 默认开启双栏编辑(单栏模式 TAB键主动触发markdown渲染) |
 | editable | Boolean     |   true       | 是否允许编辑 |
+| code_style   | String      |   code-github  | markdown样式： code-github , code-hybrid , code-xcode  |
 | toolbarsFlag | Boolean     |   true       | 工具栏是否显示 |
 | toolbars   | Object      |   如下例  | 工具栏 |
 
@@ -266,6 +267,7 @@ toolbars: {
 - 自定义工具栏功能键
 
 ## update(更新内容)
+- **1.6.3** 新增Markdown样式选择 props：code_style(17.6.9 / [yyyybzzzz PR](https://github.com/yyyybzzzz))
 - **1.6.1** 新增props：enabled编辑开关、toolbarsFlag工具栏是否显示(17.5.26)
             <br/>&emsp;&emsp; 修复subfield = true初始化时候不显示内容
 - **1.5.6** 支持语言切换 ， 新增英文文档(17.5.11)
