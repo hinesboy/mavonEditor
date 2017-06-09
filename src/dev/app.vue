@@ -60,7 +60,7 @@
         },
         editable: true,
         toolbarsFlag: true,
-        code_style:'code-github'
+        code_style:'code-hybrid'
       }
     },
     created () {
