@@ -1,4 +1,15 @@
 /**
+ * @Author: HuaChao Chen <chc>
+ * @Date:   2017-05-03T00:31:20+08:00
+ * @Email:  chenhuachaoxyz@gmail.com
+ * @Filename: to-markdown.js
+ * @Last modified by:   chc
+ * @Last modified time: 2017-06-12T20:42:27+08:00
+ * @License: MIT
+ * @Copyright: 2017
+ */
+
+/**
  * Created by zhy on 2017/4/9.
  */
 var toMarkdown = require('to-markdown');
@@ -124,6 +135,26 @@ const coverterMark = {
     return '==' + content + '==';
   }
 }
+// 图片
+const converterImg = {
+    filter: 'img',
+    replacement: function(content, tag) {
+        // console.log(content);
+        // console.log('tag', tag);
+        // for(var i in tag){
+            // console.log(i, tag[i]);
+        // }
+        var rel = tag.getAttribute('rel');
+        var alt = tag.getAttribute('alt');
+        if (rel && alt) {
+            return '![' + alt + ']' + '(' + rel + ')'
+        }
+        else {
+            var src = tag.getAttribute('src');
+            return '![' + alt + ']' + '(' + src + ')'
+        }
+    }
+}
 var tomarkdown = function (str) {
   return toMarkdown(str, {
     converters: [
@@ -137,7 +168,8 @@ var tomarkdown = function (str) {
       coverterP,
       coverterp,
       coverterDiv,
-      coverterdiv
+      coverterdiv,
+      converterImg
     ]
   });
 }
