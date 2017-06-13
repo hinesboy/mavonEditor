@@ -13,6 +13,16 @@
 
 ![PC](./img/example-en2.png)
 
+### Images Preview
+
+![PC](./img/images_preview_0.gif)
+
+![PC](./img/images_preview_1.gif)
+
+![PC](./img/images_preview_2.gif)
+
+![PC](./img/images_preview_3.gif)
+
 ### Mobile
 
 ![移动](./img/example-phone-en.png)
@@ -29,7 +39,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.6.7"
+"mavon-editor": "^1.7.0"
 ```
 
 ### Use
@@ -170,6 +180,46 @@ $ npm install mavon-editor --save
 </div>
 ```
 
+#### Images Upload & Preview
+
+```javascript
+<template>
+    <button @click="uploadimg">upload</button>
+    <mavon-editor @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
+</template>
+exports default {
+    data(){
+        return {
+            img_file: {}
+        }
+    },
+    methods: {
+        $imgAdd(pos, $file){
+            this.img_file[pos] = $file;
+        },
+        $imgDel(pos){
+            delete this.img_file[pos];
+        },
+        uploadimg($e){
+            // upload files in one request.
+            console.log(this.img_file);
+            var formdata = new FormData();
+            for(var _img in this.img_file){
+                formdata.append(_img, this.img_file[_img]);
+            }
+            axios({
+                url: 'http://127.0.0.1/index.php',
+                method: 'post',
+                data: formdata,
+                headers: { 'Content-Type': 'multipart/form-data' },
+            }).then((res) => {
+                console.log(res);
+            })
+        },
+    }
+}
+```
+
 ### Note
 
 - **Default size: min-height: 300px , ming-width: 300px , Can be covered**
@@ -239,12 +289,14 @@ toolbars: {
 | -------- | :---------: | ------- |
 | change   | String: value , String: reder    |  Edit area change callback event (render: Html source code) |
 | save     | String: value , String: reder     |  Ctrl+s and click save button |
-| fullscreen | Boolean: status , String value     |  Fullscreen editing toggle callback event(boolean: Fullscreen status) |
-| readmodel |  Boolean: status , String value    |  Reading mode toggle callback event(boolean: Reading mode status) |
-| htmlcode | Boolean: status , String value     |Html code mode toggle callback event(boolean: status) |
-| subfieldtoggle  |  Boolean: status , String value     |  Double columns edit mode toggle callback event(boolean: status) |
-| helptoggle | Boolean: status , String value   |  Help-me toggle callback event(boolean: status) |
-| navigationtoggle | Boolean: status , String value   |  Navigation mode toggle callback event(boolean: status) |
+| fullscreen | Boolean: status , String: value     |  Fullscreen editing toggle callback event(boolean: Fullscreen status) |
+| readmodel |  Boolean: status , String: value    |  Reading mode toggle callback event(boolean: Reading mode status) |
+| htmlcode | Boolean: status , String: value     |Html code mode toggle callback event(boolean: status) |
+| subfieldtoggle  |  Boolean: status , String: value     |  Double columns edit mode toggle callback event(boolean: status) |
+| helptoggle | Boolean: status , String: value   |  Help-me toggle callback event(boolean: status) |
+| navigationtoggle | Boolean: status , String: value   |  Navigation mode toggle callback event(boolean: status) |
+| imgAdd | String: filename, File: imgfile |  Add image file callback event(filename: write in origin md, File: File Object) |
+| imgDel | String: filename |  Delete image file callback event(filename: write in origin md) |
 
 ## Dependencies
 - [markdown-it](https://github.com/markdown-it/markdown-it)

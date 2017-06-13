@@ -14,6 +14,16 @@
 
 ![PC](./img/example2.png)
 
+### Images Preview
+
+![PC](./img/images_preview_0.gif)
+
+![PC](./img/images_preview_1.gif)
+
+![PC](./img/images_preview_2.gif)
+
+![PC](./img/images_preview_3.gif)
+
 ### 移动
 
 ![移动](./img/example-phone.png)
@@ -30,7 +40,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.6.7"
+"mavon-editor": "^1.7.0"
 ```
 
 ### Use (如何引入)
@@ -171,6 +181,46 @@ $ npm install mavon-editor --save
 </div>
 ```
 
+#### Images Upload & Preview
+
+```javascript
+<template>
+    <button @click="uploadimg">upload</button>
+    <mavon-editor @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
+</template>
+exports default {
+    data(){
+        return {
+            img_file: {}
+        }
+    },
+    methods: {
+        $imgAdd(pos, $file){
+            this.img_file[pos] = $file;
+        },
+        $imgDel(pos){
+            delete this.img_file[pos];
+        },
+        uploadimg($e){
+            // upload files in one request.
+            console.log(this.img_file);
+            var formdata = new FormData();
+            for(var _img in this.img_file){
+                formdata.append(_img, this.img_file[_img]);
+            }
+            axios({
+                url: 'http://127.0.0.1/index.php',
+                method: 'post',
+                data: formdata,
+                headers: { 'Content-Type': 'multipart/form-data' },
+            }).then((res) => {
+                console.log(res);
+            })
+        },
+    }
+}
+```
+
 ### 注
 
 - **默认大小样式为 min-height: 300px , ming-width: 300px 可自行覆盖**
@@ -183,16 +233,16 @@ $ npm install mavon-editor --save
 
 ### props
 
-| name 名称   | type 类型    |  default 默认值 | describe 描述 |
-| -------- | :---------: | :------------: | ------- |
-| value      | String      |               | 初始值 |
-| language   | String      |      cn         | 语言选择，暂支持 cn: 中文简体 ， en: 英文 |
-| scrollStyle| Boolean     |   true       | 开启滚动条样式(暂时仅支持chrome) |
-| subfield   | Boolean     |   true        | 默认开启双栏编辑(单栏模式 TAB键主动触发markdown渲染) |
-| editable | Boolean     |   true       | 是否允许编辑 |
-| code_style   | String      |   code-github  | markdown样式： code-github , code-hybrid , code-xcode  |
-| toolbarsFlag | Boolean     |   true       | 工具栏是否显示 |
-| toolbars   | Object      |   如下例  | 工具栏 |
+| name 名称      | type 类型 | default 默认值 | describe 描述                              |
+| ------------ | :-----: | :---------: | ---------------------------------------- |
+| value        | String  |             | 初始值                                      |
+| language     | String  |     cn      | 语言选择，暂支持 cn: 中文简体 ， en: 英文               |
+| scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)                     |
+| subfield     | Boolean |    true     | 默认开启双栏编辑(单栏模式 TAB键主动触发markdown渲染)        |
+| editable     | Boolean |    true     | 是否允许编辑                                   |
+| code_style   | String  | code-github | markdown样式： code-github , code-hybrid , code-xcode |
+| toolbarsFlag | Boolean |    true     | 工具栏是否显示                                  |
+| toolbars     | Object  |     如下例     | 工具栏                                      |
 
 ```javascript
  /*
@@ -238,16 +288,18 @@ toolbars: {
 
 ### events
 
-| name 方法名   | params 参数   | describe 描述 |
-| -------- | :---------: | ------- |
-| change   | String: value , String: reder    |  编辑区发生变化的回调事件(render: value 经过markdown解析后的结果) |
-| save     | String: value , String: reder     |  ctrl + s 的回调事件(保存按键,同样触发该回调) |
-| fullscreen | Boolean: status , String value     |  切换全屏编辑的回调事件(boolean: 全屏开启状态) |
-| readmodel |  Boolean: status , String value    |  切换沉浸式阅读的回调事件(boolean: 阅读开启状态) |
-| htmlcode | Boolean: status , String value     |查看html源码的回调事件(boolean: 源码开启状态) |
-| subfieldtoggle  |  Boolean: status , String value     |  切换单双栏编辑的回调事件(boolean: 双栏开启状态) |
-| helptoggle | Boolean: status , String value   |  查看帮助的回调事件(boolean: 帮助开启状态) |
-| navigationtoggle | Boolean: status , String value   |  切换导航目录的回调事件(boolean: 导航开启状态) |
+| name 方法名         |            params 参数            | describe 描述                              |
+| ---------------- | :-----------------------------: | ---------------------------------------- |
+| change           |  String: value , String: reder  | 编辑区发生变化的回调事件(render: value 经过markdown解析后的结果) |
+| save             |  String: value , String: reder  | ctrl + s 的回调事件(保存按键,同样触发该回调)             |
+| fullscreen       | Boolean: status , String: value | 切换全屏编辑的回调事件(boolean: 全屏开启状态)             |
+| readmodel        | Boolean: status , String: value | 切换沉浸式阅读的回调事件(boolean: 阅读开启状态)            |
+| htmlcode         | Boolean: status , String: value | 查看html源码的回调事件(boolean: 源码开启状态)           |
+| subfieldtoggle   | Boolean: status , String: value | 切换单双栏编辑的回调事件(boolean: 双栏开启状态)            |
+| helptoggle       | Boolean: status , String: value | 查看帮助的回调事件(boolean: 帮助开启状态)               |
+| navigationtoggle | Boolean: status , String: value | 切换导航目录的回调事件(boolean: 导航开启状态)             |
+| imgAdd           | String: filename, File: imgfile | 图片文件添加回调事件(filename: 写在md中的文件名, File: File Object) |
+| imgDel           |        String: filename         | 图片文件删除回调事件(filename: 写在md中的文件名)          |
 
 ## Dependencies (依赖)
 
@@ -267,15 +319,19 @@ toolbars: {
 - 自定义工具栏功能键
 
 ## update(更新内容)
+- **1.7.0** 新增Markdown样式选择 props：code_style(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
+    - 添加图片预览(粘贴板图片复制粘贴本地预览、图片拖拽本地预览、手动选择图片本地预览)
+    - 添加图片文件添加删除事件
+    - 删除to-markdown部分
 - **1.6.3** 新增Markdown样式选择 props：code_style(17.6.9 / [yyyybzzzz PR](https://github.com/yyyybzzzz))
 - **1.6.1** 新增props：enabled编辑开关、toolbarsFlag工具栏是否显示(17.5.26)
-            <br/>&emsp;&emsp; 修复subfield = true初始化时候不显示内容
+    - 修复subfield = true初始化时候不显示内容
 - **1.5.6** 支持语言切换 ， 新增英文文档(17.5.11)
 - **1.5.3** 拓展markdown渲染规则——KaTeX$公式 ， 修改help文档(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.5.2** 优化项目结构(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
-            <br/>&emsp;&emsp;- 将toolbar抽离为两个单独vue文件，事件提取为toolbar_left.js和toolbar_right.js
-            <br/>&emsp;&emsp;- 抽离stylus样式为mavon-editor.styl
-            <br/>&emsp;&emsp;- 调整md.css位置至lib/css
+    - 将toolbar抽离为两个单独vue文件，事件提取为toolbar_left.js和toolbar_right.js
+    - 抽离stylus样式为mavon-editor.styl
+    - 调整md.css位置至lib/css
 - **1.5.1** 添加postcss插件，压缩插件体积，分离markdown样式(样式需单独引入，参考上述用法)(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.4.8** 优化项目结构,添加webpack-dev-server的开发测试(17.5.4 / [CHENXCHEN](https://github.com/CHENXCHEN)）
 - **1.4.7** 图标局部引入,减少文件体积(17.4.26）
