@@ -3,8 +3,8 @@
  * @Date:   2017-05-03T01:23:38+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: toolbar_left_click.js
- * @Last modified by:   CHC
- * @Last modified time: 2017-05-06T17:13:21+08:00
+ * @Last modified by:   chc
+ * @Last modified time: 2017-06-09T00:10:16+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -13,7 +13,7 @@ function $toolbar_left_undo_click($vm) {
     if ($vm.d_history_index > 0) {
         $vm.d_history_index--
     }
-    $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
+    // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
     if ($vm.s_subField) {
         let start = $vm.getTextareaDom().selectionStart
         let currentLength = $vm.d_value.length
@@ -30,11 +30,11 @@ function $toolbar_left_redo_click($vm) {
     if ($vm.d_history_index < $vm.d_history.length - 1) {
         $vm.d_history_index++
     }
-    $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
+    // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
 }
 function $toolbar_left_trash_click($vm) {
     $vm.d_value = ''
-    $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
+    // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
 }
 function $toolbar_left_save_click($vm) {
     $vm.save($vm.d_value, $vm.d_render)

@@ -3,8 +3,8 @@
  * @Date:   2017-05-04T23:21:48+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.dev.js
- * @Last modified by:   CHC
- * @Last modified time: 2017-05-09T00:00:56+08:00
+ * @Last modified by:   chc
+ * @Last modified time: 2017-06-13T12:45:28+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -25,6 +25,12 @@ var config = {
         library: 'mavon-editor',
         libraryTarget: 'umd',
         umdNamedDefine: true
+    },
+    resolve: {
+        alias: {
+            'muse-components': 'muse-ui/src'
+        },
+        extensions: ['.js', '.vue', '.less']
     },
     externals: {
         vue: {

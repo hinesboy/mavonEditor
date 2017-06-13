@@ -15,7 +15,8 @@
       <h2 class="item-header">
         {{d_words.default_setting}}
       </h2>
-      <mavon-editor :toolbarsFlag="toolbarsFlag" :editable="editable" :subfield="subfield" :language = "d_language" @change="change" @save="saveone" class="item-editor" v-model="help1"></mavon-editor>
+      <button @click="uploadimg">upload</button>
+      <mavon-editor :toolbarsFlag="toolbarsFlag" :editable="editable" :subfield="subfield" :language = "d_language" @change="change" @save="saveone" class="item-editor" v-model="help1" @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
     </div>
     <!--自定义-->
     <div v-if="screen_phone" class="item">
@@ -41,6 +42,7 @@
 
 <script type="text/ecmascript-6">
   import {CONFIG} from './assets/config.js'
+  import axios from 'axios'
   export default {
     name: 'app',
     data () {
@@ -58,9 +60,10 @@
           fullscreen: true, // 全屏编辑
           navigation: true
         },
-        subfield: false,
+        subfield: true,
         editable: true,
-        toolbarsFlag: true
+        toolbarsFlag: true,
+        img_file: {}
       }
     },
     created () {
@@ -72,6 +75,32 @@
       }
     },
     methods: {
+        uploadimg($e){
+            // upload files in one request.
+            console.log(this.img_file);
+            // var _imglst = [];
+                var formdata = new FormData();
+            for(var _img in this.img_file){
+                formdata.append(_img, this.img_file[_img]);
+                // _imglst.push([_img, this.img_file[_img]]);
+            }
+                axios({
+                    url: 'http://127.0.0.1/index.php',
+                    method: 'post',
+                    data: formdata,
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                }).then((res) => {
+                    console.log(res);
+                })
+            // console.log(_imglst);
+            // console.log(formdata);
+        },
+        $imgAdd(pos, $file){
+            this.img_file[pos] = $file;
+        },
+        $imgDel(pos){
+            delete this.img_file[pos];
+        },
       sizeToStatus () {
         if (window.matchMedia('(min-width:768px)').matches) {
           // > 768

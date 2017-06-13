@@ -3,8 +3,8 @@
  * @Date:   2017-05-03T01:39:47+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: toolbar_right_click.js
- * @Last modified by:   CHC
- * @Last modified time: 2017-05-06T17:23:45+08:00
+ * @Last modified by:   chc
+ * @Last modified time: 2017-06-08T12:44:50+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -39,7 +39,7 @@ function $toolbar_right_read_click($vm) {
 
 function $toolbar_right_subfield_click($vm) {
     $vm.s_subField = !$vm.s_subField
-    $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
+    // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
     if ($vm.subfieldtoggle) {
         $vm.subfieldtoggle($vm.s_subField, $vm.d_value)
     }

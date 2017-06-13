@@ -29,8 +29,22 @@
         <span v-if="toolbars.ul || toolbars.ol || toolbars.quote" class="op-icon-divider"></span>
         <button :disabled="!editable" type="button" v-if="toolbars.link" @click="$clicks('link')" class="op-icon fa fa-link" aria-hidden="true"
                 :title="`${d_words.tl_link} (ctrl+l)`"></button>
-        <button :disabled="!editable" type="button" v-if="toolbars.imagelink" @click="$clicks('imagelink')" class="op-icon fa fa-picture-o"
-                aria-hidden="true" :title="`${d_words.tl_image} (ctrl+alt+l)`"></button>
+        <button :disabled="!editable" type="button" v-if="toolbars.imagelink" ref="img" @click="$clicks('imagelink')" class="op-icon fa fa-picture-o dropdown"
+                aria-hidden="true" :title="`${d_words.tl_image} (ctrl+alt+l)`">
+        </button>
+        <mu-popover :trigger="trigger" :open="open" @close="handleClose">
+            <mu-list style="max-height: 300px">
+                <template v-for="(item, index) in img_file">
+                    <mu-list-item v-if="index == 0" title="add img" @click.stop="$imgFileListClick(index)">
+                        <input ref="imgfile" type="file" style="display:none" @change="$imgAdd($event)" :key="item[0]"/>
+                    </mu-list-item>
+                    <mu-list-item v-else :title="item[0]" @click.stop="$imgFileListClick(index)">
+                        <button  slot="right" type="button" @click.stop="$imgDel(index)" class="op-icon fa fa-trash-o" aria-hidden="true" title="remove"></button>
+                        <input ref="imgfile" type="file" style="display:none" @change="$imgAdd($event)" :key="item[0]"/>
+                    </mu-list-item>
+                </template>
+            </mu-list>
+        </mu-popover>
         <button :disabled="!editable" type="button" v-if="toolbars.code" @click="$clicks('code')" class="op-icon fa fa-code" aria-hidden="true"
                 :title="`${d_words.tl_code} (ctrl+alt+c)`"></button>
         <button :disabled="!editable" type="button" v-if="toolbars.table" @click="$clicks('table')" class="op-icon fa fa-table" aria-hidden="true"
@@ -47,8 +61,20 @@
       </div>
 </template>
 <script type="text/ecmascript-6">
+// import popover from 'muse-components/popover'
+// import {list, listItem} from 'muse-components/list'
+import popover from '../vender/muse-ui/popover'
+import {list, listItem} from '../vender/muse-ui/list'
 export default {
     name: 's-md-toolbar-left',
+    mounted(){
+        this.trigger = this.$refs.img;
+    },
+    components: {
+        'mu-popover': popover,
+        'mu-list': list,
+        'mu-list-item': listItem,
+    },
     props: {
         // 是否开启编辑
         editable: {
@@ -65,12 +91,59 @@ export default {
             required: true
         }
     },
+    data(){
+        return {
+            img_file: [['./0', null]],
+            open: false,
+            trigger: null,
+            num: 0
+        }
+    },
     methods: {
+        $imgFileListClick(pos){
+            if(pos == 0)
+                this.$refs.imgfile[pos].click();
+            else
+                this.$emit('imgTouch', this.img_file[pos][0]);
+            this.open = false;
+        },
+        $imgFileAdd($file){
+            this.img_file[0][0] = './' + this.num;
+            this.img_file[0][1] = $file;
+            this.img_file.unshift(['./' + (this.num + 1), null]);
+            this.num = this.num + 1;
+            this.$emit('imgAdd', this.img_file[1][0], $file);
+        },
+        $imgAdd($e){
+            // 新增加
+            this.$imgFileAdd($e.target.files[0]);
+        },
+        $imgDel(pos){
+            this.$emit('imgDel', this.img_file[pos][0]);
+            this.img_file.splice(pos, 1);
+        },
         // 工具栏功能图标click-----------------
         $clicks(_type) {
-            // 让父节点来绑定事件并
-            this.$emit('toolbar_left_click', _type);
+            if(_type == "imagelink"){
+                this.open = true;
+            }
+            else {
+                // 让父节点来绑定事件并
+                this.$emit('toolbar_left_click', _type);
+            }
+        },
+        handleClose(e){
+            this.open = false;
         }
     }
 }
 </script>
+<style>
+.mu-item-wrapper .mu-item {
+    padding: 0px 16px;
+}
+.mu-item-right button {
+    border: 0;
+    background-color: #fff;
+}
+</style>

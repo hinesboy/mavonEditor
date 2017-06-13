@@ -3,8 +3,8 @@
  * @Date:   2017-05-07T20:11:11+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.base.js
- * @Last modified by:   CHC
- * @Last modified time: 2017-05-15T13:36:39+08:00
+ * @Last modified by:   chc
+ * @Last modified time: 2017-06-13T12:15:30+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -96,6 +96,9 @@ module.exports = {
             },{
                 test: /\.md$/,
                 loader: 'raw-loader'
+            },{
+                test: /\.less$/,
+                loader: 'style-loader!css-loader!less-loader'
             }
         ]
     },

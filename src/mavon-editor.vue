@@ -2,8 +2,9 @@
     <div :class="{'fullscreen': s_fullScreen}" class="v-note-wrapper markdown-body">
         <!--工具栏-->
         <div class="v-note-op" v-show="toolbarsFlag">
-            <s-md-toolbar-left :editable="editable" :d_words="d_words" @toolbar_left_click="toolbar_left_click" :toolbars="toolbars"/>
-            <s-md-toolbar-right :d_words="d_words" @toolbar_right_click="toolbar_right_click" :toolbars="toolbars"
+            <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words" @toolbar_left_click="toolbar_left_click" :toolbars="toolbars"
+                               @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch"/>
+            <s-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click" :toolbars="toolbars"
                                 :s_screen_phone="s_screen_phone" :s_screen_phone_toggle="s_screen_phone_toggle"
                                 :s_subField="s_subField" :s_fullScreen="s_fullScreen" :s_html_code="s_html_code"
                                 :s_navigation="s_navigation"/>
@@ -14,15 +15,15 @@
             <div ref="vNoteEdit" @scroll="$v_edit_scroll" class="v-note-edit divarea-wrapper"
                  :class="{'scroll-style': s_scrollStyle ,'no-subField': !s_subField && !s_screen_phone , 'phone-edit': s_screen_phone && s_screen_phone_toggle && !s_html_code, 'phone-show': (s_screen_phone && !s_screen_phone_toggle) || (s_screen_phone && s_html_code)}">
                 <!-- 单栏模式 html展示 -->
-                <div v-show="!s_subField&&s_html_code&&!s_screen_phone" class="content-div">
+                <!-- <div v-show="!s_subField&&s_html_code&&!s_screen_phone" class="content-div">
                     {{d_render}}
-                </div>
+                </div> -->
                 <!-- 单栏模式 渲染区域-->
-                <div ref="vNoteDivEdit" @keydown.enter="$auto_textarea_div_enter" @keyup="$auto_textarea_div_change"
+                <!-- <div ref="vNoteDivEdit" @keydown.enter="$auto_textarea_div_enter" @keyup="$auto_textarea_div_change"
                      spellcheck="false" v-show="!s_subField&&!s_html_code&&!s_screen_phone"
                      class="content-div content-div-edit" :contenteditable="editable">
-                </div>
-                <div v-show="s_subField||s_screen_phone" class="content-input-wrapper">
+                </div> -->
+                <div  class="content-input-wrapper">
                     <!-- 双栏 -->
                     <v-autoTextarea ref="vNoteTextarea" placeholder="开始编辑..." class="content-input" fontSize="15px"
                                     lineHeight="1.5" v-model="d_value"></v-autoTextarea>
@@ -81,7 +82,7 @@
 
 <script>
     import markdown from './lib/core/markdown.js'
-    import tomarkdown from './lib/core/to-markdown.js'
+    // import tomarkdown from './lib/core/to-markdown.js'
     import {autoTextarea} from 'auto-textarea'
     import {keydownListen} from './lib/core/keydown-listen.js'
     import {
@@ -91,7 +92,7 @@
         insertTextAtCaret,
         getNavigation
     } from './lib/core/extra-function.js'
-    import {onecolumnKeyDownEnter, onecolumnInsert} from './lib/core/onecolumn-event.js'
+    // import {onecolumnKeyDownEnter, onecolumnInsert} from './lib/core/onecolumn-event.js'
     import {p_ObjectCopy_DEEP} from './lib/util.js'
     import {toolbar_left_click} from './lib/toolbar_left_click.js'
     import {toolbar_right_click} from './lib/toolbar_right_click.js'
@@ -99,6 +100,15 @@
     var s_md_toolbar_left = require('./components/s-md-toolbar-left.vue')
     var s_md_toolbar_right = require('./components/s-md-toolbar-right.vue')
     export default {
+        mounted(){
+            var $vm = this;
+            this.$el.addEventListener('paste', function(e){
+                $vm.$paste(e);
+            })
+            this.$el.addEventListener('drop', function(e){
+                $vm.$drag(e);
+            })
+        },
         props: {
             // 是否渲染滚动条样式(webkit)
             scrollStyle: {
@@ -178,7 +188,8 @@
                 d_history_index: 0, // 编辑记录索引
                 currentTimeout: '',
                 s_markdown: markdown,
-                s_tomarkdown: tomarkdown
+                // s_tomarkdown: tomarkdown,
+                d_image_file: []
             };
         },
         created() {
@@ -199,6 +210,85 @@
             keydownListen($vm, markdown);
         },
         methods: {
+            $drag($e){
+                var dataTransfer = $e.dataTransfer;
+                if(dataTransfer){
+                    var files = dataTransfer.files;
+                    if(files.length > 0){
+                        $e.preventDefault();
+                        /*
+                        function deepCopy(source) {
+                            var result={};
+                            for (var key in source) {
+                                result[key] = typeof(source[key])==='object'? deepCopy(source[key]): source[key];
+                            }
+                            return result;
+                        }
+                        var tmp = deepCopy(files);
+                        console.log(tmp);
+                        */
+                        for(var i = 0;i < files.length;i++){
+                            this.$refs.toolbar_left.$imgFileAdd(files[i]);
+                        }
+                    }
+                }
+            },
+            $paste($e){
+                var clipboardData = $e.clipboardData;
+                if(clipboardData){
+                    var items = clipboardData.items;
+                    if(!items) return ;
+                    var types = clipboardData.types || [];
+                    var item = null;
+                    for(var i = 0; i < types.length; i++ ){
+                        if( types[i] === 'Files' ){
+                            item = items[i];
+                            break;
+                        }
+                    }
+
+                    if( item && item.kind === 'file' && item.type.match(/^image\//i) ){
+                        var oFile = item.getAsFile();
+                        this.$refs.toolbar_left.$imgFileAdd(oFile);
+                    }
+                }
+            },
+            $imgTouch(pos){
+                this.insertText(this.getTextareaDom(),
+                {
+                    prefix: '\n![图片](' + pos + ')',
+                    subfix: '',
+                    str: ''
+                });
+            },
+            $imgDel(pos){
+                this.s_markdown.image_del(pos);
+                this.d_render = this.s_markdown.render(this.d_value);
+                this.$emit('imgDel', pos);
+            },
+            $imgAdd(pos, $file){
+                var $vm = this;
+                if(this.__rFilter == null)
+                // this.__rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+                this.__rFilter = /^image\//i;
+                this.__oFReader = new FileReader();
+                this.__oFReader.onload = function (oFREvent){
+                    $vm.s_markdown.image_add(pos, oFREvent.target.result);
+                    $vm.insertText($vm.getTextareaDom(),
+                    {
+                        prefix: '\n![图片](' + pos + ')',
+                        subfix: '',
+                        str: ''
+                    });
+                }
+                if($file){
+                    var oFile = $file;
+                    if(this.__rFilter.test(oFile.type)){
+                        this.__oFReader.readAsDataURL(oFile);
+                        this.$emit('imgAdd', pos, $file);
+                    }
+                }
+            },
             toolbar_left_click(_type) {
                 toolbar_left_click(_type, this);
             },
@@ -256,23 +346,26 @@
             $v_edit_scroll($event) {
                 scrollLink($event, this);
             },
+            /*
             // 监听单栏输入框内容的变化------------------------
             $auto_textarea_div_change($event) {
                 let element = $event.srcElement ? $event.srcElement : $event.target
-                this.d_value = tomarkdown(element.innerHTML)
+                // this.d_value = tomarkdown(element.innerHTML)
             },
             // 单栏目 输入框enter
             $auto_textarea_div_enter($event) {
-                onecolumnKeyDownEnter($event, this, tomarkdown)
+                // onecolumnKeyDownEnter($event, this, tomarkdown)
             },
+            */
             // 获取textarea dom节点
             getTextareaDom() {
                 return this.$refs.vNoteTextarea.$el.children[1]
             },
             // 工具栏插入内容
             insertText(obj, {prefix, subfix, str}) {
-                if (this.s_subField) {
+                // if (this.s_subField) {
                     insertTextAtCaret(obj, {prefix, subfix, str}, this);
+                    /*
                 } else {
                     // 单栏模式点击
                     let div = this.$refs.vNoteDivEdit;
@@ -288,8 +381,9 @@
                         onecolumnInsert(div, obj.innerHTML)
                     }
                     // 同步数据
-                    this.d_value = tomarkdown(div.innerHTML)
+                    // this.d_value = tomarkdown(div.innerHTML)
                 }
+                */
             },
             saveHistory () {
                 this.d_history.splice(this.d_history_index + 1, this.d_history.length)
@@ -311,9 +405,9 @@
                 }
             },
             loadDivData() {
-                if (this.$refs.vNoteDivEdit) {
-                    this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
-                }
+                // if (this.$refs.vNoteDivEdit) {
+                //     this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
+                // }
             },
         },
         watch: {
