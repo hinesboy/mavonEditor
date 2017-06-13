@@ -42,7 +42,7 @@
     "markdown-it-mark": "^2.0.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
-    "to-markdown": "^3.0.4"
+    "keycode": "^2.1.9"
   },
   "devDependencies": {
     "axios": "^0.16.2",
