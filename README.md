@@ -225,7 +225,6 @@ exports default {
 
 - **默认大小样式为 min-height: 300px , ming-width: 300px 可自行覆盖**
 - **基础z-index: 1500**
-- **单栏编辑模式下 , TAB键 主动触发markdown渲染**
 - **屏幕分辨率低于768px ，自动取消【单栏 | 双栏】编辑模式 ，更改为【编辑 | 预览】切换 ， 并且取消【沉浸式阅读】模式( > 768px 的眼睛图标为【阅读模式】 , 反之为【编辑 |预览】)**
 - **快捷键的监听对象更改为document，所以当多个编辑器共存时候（情况较少），只有最后一个编辑器的快捷键生效，更改前是对编辑器对象进行监听，失焦比较影响体验**
 
@@ -238,7 +237,7 @@ exports default {
 | value        | String  |             | 初始值                                      |
 | language     | String  |     cn      | 语言选择，暂支持 cn: 中文简体 ， en: 英文               |
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)                     |
-| subfield     | Boolean |    true     | 默认开启双栏编辑(单栏模式 TAB键主动触发markdown渲染)        |
+| subfield     | Boolean |    true     | 默认开启双栏编辑        |
 | editable     | Boolean |    true     | 是否允许编辑                                   |
 | code_style   | String  | code-github | markdown样式： code-github , code-hybrid , code-xcode |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                                  |
@@ -314,12 +313,12 @@ toolbars: {
 - ~~撤销键、清空键、保存按钮~~（1.3.5）
 - ~~重构~~（1.4.0）
 - ~~支持开启标题导航~~(1.4.2)
-- 支持图片上传
+- ~~支持图片上传~~(1.7.0)
 - 滚动条样式的浏览器兼容性
-- 自定义工具栏功能键
+
 
 ## update(更新内容)
-- **1.7.0** 新增Markdown样式选择 props：code_style(17.6.14 / [CHENXCHEN](https://github.com/CHENXCHEN))
+- **1.7.0** 取消单栏编辑模式实时渲染(17.6.14 / [CHENXCHEN](https://github.com/CHENXCHEN))
     - 添加图片预览(粘贴板图片复制粘贴本地预览、图片拖拽本地预览、手动选择图片本地预览)
     - 添加图片文件添加删除事件
     - 删除to-markdown部分

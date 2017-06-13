@@ -25,7 +25,7 @@
                 </div> -->
                 <div  class="content-input-wrapper">
                     <!-- 双栏 -->
-                    <v-autoTextarea ref="vNoteTextarea" placeholder="开始编辑..." class="content-input" fontSize="15px"
+                    <v-autoTextarea ref="vNoteTextarea" :placeholder="d_words.start_editor" class="content-input" fontSize="15px"
                                     lineHeight="1.5" v-model="d_value"></v-autoTextarea>
                 </div>
             </div>
@@ -172,7 +172,7 @@
                     return markdown.render(this.value);
                 })(),// props 文本内容render
                 s_subField: (() => {
-                    return this.subfield
+                    return this.subfield;
                 })(), // props 是否分栏模式
                 s_fullScreen: false,// 全屏编辑标志
                 s_help: false,// markdown帮助

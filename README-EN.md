@@ -224,7 +224,6 @@ exports default {
 
 - **Default size: min-height: 300px , ming-width: 300px , Can be covered**
 - **z-index: 1500**
-- **In Single column edit mode , The TAB key triggers markdown text rendering**
 - **If screen resolution less than 768px ,replace【single column | double column】 edit mode to 【edit | preview】 edit mode, cancel【reading mode】**
 
 ## API
@@ -236,7 +235,7 @@ exports default {
 | value      | String      |               | Initial value |
 | language   | String      |      cn         | Language switch,  cn: Simplified Chinese ， en: English |
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
-| subfield   | Boolean     |   true        | Open the double column mode by default(In single column mode , The TAB key triggers markdown text rendering) |
+| subfield   | Boolean     |   true        | Open the double column mode by default(In single column mode ) |
 | editable | Boolean     |   true       | Edit switch |
 | code_style   | String      |   code-github  | markdown Style: code-github , code-hybrid , code-xcode  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |

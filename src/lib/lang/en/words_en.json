@@ -1,4 +1,5 @@
 {
+  "start_editor": "Begin editing...",
   "navigation_title": "Navigation",
   "tl_bold": "Bold",
   "tl_italic": "Italic",
@@ -30,5 +31,7 @@
   "tl_read": "Read Model",
   "tl_html_on": "HTML ON",
   "tl_html_off": "HTML OFF",
-  "tl_help": "Markdown Guide"
+  "tl_help": "Markdown Guide",
+  "tl_upload": "Upload Images",
+  "tl_upload_remove": "Remove"
 }

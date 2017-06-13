@@ -1,4 +1,5 @@
 {
+  "start_editor": "开始编辑...",
   "navigation_title": "导航目录",
   "tl_bold": "粗体",
   "tl_italic": "斜体",
@@ -12,7 +13,7 @@
   "tl_ol": "有序列表",
   "tl_ul": "无序列表",
   "tl_link": "链接",
-  "tl_image": "图片链接",
+  "tl_image": "图片",
   "tl_code": "代码块",
   "tl_table": "表格",
   "tl_undo": "上一步",
@@ -30,5 +31,7 @@
   "tl_read": "沉浸式阅读",
   "tl_html_on": "查看html文本",
   "tl_html_off": "返回markdown文本",
-  "tl_help": "markdown语法帮助"
+  "tl_help": "markdown语法帮助",
+  "tl_upload": "上传图片",
+  "tl_upload_remove": "删除"
 }

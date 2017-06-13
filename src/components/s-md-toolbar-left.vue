@@ -33,13 +33,13 @@
                 aria-hidden="true" :title="`${d_words.tl_image} (ctrl+alt+l)`">
         </button>
         <mu-popover :trigger="trigger" :open="open" @close="handleClose">
-            <mu-list style="max-height: 300px">
+            <mu-list style="max-height: 300px;">
                 <template v-for="(item, index) in img_file">
-                    <mu-list-item v-if="index == 0" title="add img" @click.stop="$imgFileListClick(index)">
+                    <mu-list-item  v-if="index == 0" :title="d_words.tl_upload" @click.stop="$imgFileListClick(index)">
                         <input ref="imgfile" type="file" style="display:none" @change="$imgAdd($event)" :key="item[0]"/>
                     </mu-list-item>
-                    <mu-list-item v-else :title="item[0]" @click.stop="$imgFileListClick(index)">
-                        <button  slot="right" type="button" @click.stop="$imgDel(index)" class="op-icon fa fa-trash-o" aria-hidden="true" title="remove"></button>
+                    <mu-list-item  v-else :title="item[0]" @click.stop="$imgFileListClick(index)">
+                        <button slot="right" type="button" @click.stop="$imgDel(index)" class="op-icon fa fa-trash-o" aria-hidden="true" :title="d_words.tl_upload_remove"></button>
                         <input ref="imgfile" type="file" style="display:none" @change="$imgAdd($event)" :key="item[0]"/>
                     </mu-list-item>
                 </template>
@@ -139,11 +139,21 @@ export default {
 }
 </script>
 <style>
+
 .mu-item-wrapper .mu-item {
     padding: 0px 16px;
+    min-height: 35px !important;
+
 }
 .mu-item-right button {
     border: 0;
-    background-color: #fff;
+    background: none;
+    font-size: 16px;
+}
+.mu-item-title {
+    font-size: 15px !important;
+}
+.mu-item-right button:hover {
+    color: #db2828;
 }
 </style>
