@@ -13,6 +13,15 @@
     @import "node_modules/github-markdown-css/github-markdown.css"
 }
 
-.markdown-body{
+/*.markdown-body{
     @import "node_modules/highlight.js/styles/github.css"
+}*/
+.code-github{
+  @import "node_modules/highlight.js/styles/github.css"
+}
+.code-hybrid{
+  @import "node_modules/highlight.js/styles/hybrid.css"
+}
+.code-xcode{
+  @import "node_modules/highlight.js/styles/xcode.css"
 }

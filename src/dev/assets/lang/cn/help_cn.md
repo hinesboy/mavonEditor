@@ -113,10 +113,9 @@ hello[^hello]
 :blush:
 :smiley:
 :)
-:(
 ...
 ```
-:laughing::blush::smiley::):(
+:laughing::blush::smiley::)
 
 ## $\KaTeX$公式
 

@@ -16,7 +16,7 @@
         {{d_words.default_setting}}
       </h2>
       <button @click="uploadimg">upload</button>
-      <mavon-editor :toolbarsFlag="toolbarsFlag" :editable="editable" :subfield="subfield" :language = "d_language" @change="change" @save="saveone" class="item-editor" v-model="help1" @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
+      <mavon-editor :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable" :subfield="subfield" :language = "d_language" @change="change" @save="saveone" class="item-editor" v-model="help1" @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
     </div>
     <!--自定义-->
     <div v-if="screen_phone" class="item">
@@ -63,7 +63,8 @@
         subfield: true,
         editable: true,
         toolbarsFlag: true,
-        img_file: {}
+        img_file: {},
+        code_style:'code-hybrid'
       }
     },
     created () {
