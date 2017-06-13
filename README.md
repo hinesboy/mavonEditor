@@ -319,7 +319,7 @@ toolbars: {
 - 自定义工具栏功能键
 
 ## update(更新内容)
-- **1.7.0** 新增Markdown样式选择 props：code_style(17.5.6 / [CHENXCHEN](https://github.com/CHENXCHEN))
+- **1.7.0** 新增Markdown样式选择 props：code_style(17.6.14 / [CHENXCHEN](https://github.com/CHENXCHEN))
     - 添加图片预览(粘贴板图片复制粘贴本地预览、图片拖拽本地预览、手动选择图片本地预览)
     - 添加图片文件添加删除事件
     - 删除to-markdown部分
