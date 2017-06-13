@@ -14,7 +14,7 @@
 
 ![PC](./img/example2.png)
 
-### Images Preview
+### 图片上传&预览
 
 ![PC](./img/images_preview_0.gif)
 
