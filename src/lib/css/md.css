@@ -3,8 +3,8 @@
  * @Date:   2017-05-05T15:57:16+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: md.css
- * @Last modified by:   CHC
- * @Last modified time: 2017-05-06T15:05:41+08:00
+ * @Last modified by:   chc
+ * @Last modified time: 2017-06-15T00:13:34+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -16,6 +16,11 @@
 /*.markdown-body{
     @import "node_modules/highlight.js/styles/github.css"
 }*/
+.markdown-body{
+    strong {
+        font-weight: bolder;
+    }
+}
 .code-github{
   @import "node_modules/highlight.js/styles/github.css"
 }
