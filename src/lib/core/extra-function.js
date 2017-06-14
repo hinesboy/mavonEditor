@@ -4,12 +4,10 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: extra-function.js
  * @Last modified by:   chc
- * @Last modified time: 2017-06-14T23:22:37+08:00
+ * @Last modified time: 2017-06-14T23:28:23+08:00
  * @License: MIT
  * @Copyright: 2017
  */
-
-
 
 /**
  * Created by zhy on 2017/4/24.
