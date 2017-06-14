@@ -44,11 +44,9 @@ export const insertTextAtCaret = (obj, {prefix, subfix, str}, $vm) => {
  */
 export const getNavigation = ($vm , full) => {
     let navigationContent;
-    if (full) {
-        navigationContent = $vm.$refs.navigationContentFull
-    } else {
-        navigationContent = $vm.$refs.navigationContent
-    }
+
+    navigationContent = $vm.$refs.navigationContent
+
     navigationContent.innerHTML = $vm.d_render
     let nodes = navigationContent.children
     if (nodes.length) {

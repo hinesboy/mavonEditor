@@ -67,10 +67,6 @@ function $toolbar_right_navigation_click($vm) {
     }
 }
 
-function $toolbar_right_navigationfull_click($vm) {
-    $vm.s_navigation_full = false
-}
-
 export const toolbar_right_click = (_type, $vm) => {
     var _other_right_click = {
         'help': $toolbar_right_help_click,
@@ -79,8 +75,7 @@ export const toolbar_right_click = (_type, $vm) => {
         'subfield': $toolbar_right_subfield_click,
         'phone': $toolbar_right_phone_click,
         'fullscreen': $toolbar_right_fullscreen_click,
-        'navigation': $toolbar_right_navigation_click,
-        'navigationfull': $toolbar_right_navigationfull_click
+        'navigation': $toolbar_right_navigation_click
     }
     if (_other_right_click.hasOwnProperty(_type)) {
         _other_right_click[_type]($vm);

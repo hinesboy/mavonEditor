@@ -68,14 +68,14 @@
             <div class="v-note-read-content" v-html="d_render">
             </div>
             <!--标题导航-->
-            <div v-if="toolbars.navigation" v-show="s_navigation_full" class="v-note-navigation-wrapper">
+           <!-- <div v-if="toolbars.navigation" v-show="s_navigation_full" class="v-note-navigation-wrapper">
                 <div class="v-note-navigation-title">
                     {{d_words.navigation_title}}<i @click="toolbar_right_click('navigationfull')"
                                                    class="fa fa-times v-note-navigation-close" aria-hidden="true"></i>
                 </div>
                 <div ref="navigationContentFull" class="v-note-navigation-content scroll-style">
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </template>
@@ -161,7 +161,6 @@
                 s_autofocus: true,
                 // 标题导航
                 s_navigation: false,
-                s_navigation_full: true,
                 s_scrollStyle: (() => {
                     return this.scrollStyle
                 })(),// props 是否渲染滚动条样式
@@ -341,7 +340,6 @@
                     this.readmodel(this.s_readmodel, this.d_value)
                 }
                 if (this.s_readmodel && this.toolbars.navigation) {
-                    this.s_navigation_full = true
                     this.getNavigation(this, true)
                 }
             },
