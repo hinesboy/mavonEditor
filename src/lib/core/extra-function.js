@@ -1,4 +1,17 @@
 /**
+ * @Author: HuaChao Chen <chc>
+ * @Date:   2017-06-14T23:04:34+08:00
+ * @Email:  chenhuachaoxyz@gmail.com
+ * @Filename: extra-function.js
+ * @Last modified by:   chc
+ * @Last modified time: 2017-06-14T23:22:37+08:00
+ * @License: MIT
+ * @Copyright: 2017
+ */
+
+
+
+/**
  * Created by zhy on 2017/4/24.
  */
 /**
@@ -122,18 +135,19 @@ export const fullscreenchange = ($vm) => {
  */
 export const windowResize = ($vm) => {
     function sizeToStatus() {
-        if (window.matchMedia('(min-width:768px)').matches) {
+        if ($vm.$el.clientWidth > 768) {
             // > 768
             $vm.s_screen_phone = false;
-        } else {
+        }
+        else {
             // <  768
             $vm.s_screen_phone = true;
         }
     }
 
     sizeToStatus();
-    window.onresize = function () {
+    window.addEventListener('resize', function() {
         // 媒介查询
         sizeToStatus();
-    }
+    })
 }

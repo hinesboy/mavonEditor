@@ -100,15 +100,6 @@
     var s_md_toolbar_left = require('./components/s-md-toolbar-left.vue')
     var s_md_toolbar_right = require('./components/s-md-toolbar-right.vue')
     export default {
-        mounted(){
-            var $vm = this;
-            this.$el.addEventListener('paste', function(e){
-                $vm.$paste(e);
-            })
-            this.$el.addEventListener('drop', function(e){
-                $vm.$drag(e);
-            })
-        },
         props: {
             // 是否渲染滚动条样式(webkit)
             scrollStyle: {
@@ -205,12 +196,21 @@
                 // 初始化Textarea编辑开关
                 this.editableTextarea();
             })
-            // 浏览器siz大小
-            windowResize(this);
             // fullscreen事件
             fullscreenchange(this);
             let $vm = this
             keydownListen($vm, markdown);
+        },
+        mounted(){
+            var $vm = this;
+            this.$el.addEventListener('paste', function(e){
+                $vm.$paste(e);
+            })
+            this.$el.addEventListener('drop', function(e){
+                $vm.$drag(e);
+            })
+            // 浏览器siz大小
+            windowResize(this);
         },
         methods: {
             $drag($e){

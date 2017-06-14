@@ -71,12 +71,13 @@
             }
         },
         created () {
+            var $vm = this;
             this.initLanguage();
             this.sizeToStatus()
-            window.onresize = function () {
+            window.addEventListener('resize', function() {
                 // 媒介查询
-                this.sizeToStatus()
-            }
+                $vm.sizeToStatus()
+            })
         },
         methods: {
             uploadimg($e){
