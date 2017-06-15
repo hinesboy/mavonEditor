@@ -40,7 +40,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.7.1"
+"mavon-editor": "^1.7.2"
 ```
 
 ### Use (如何引入)
