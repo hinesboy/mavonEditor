@@ -3,8 +3,8 @@
  * @Date:   2017-06-14T23:04:34+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: extra-function.js
- * @Last modified by:   chc
- * @Last modified time: 2017-06-14T23:28:23+08:00
+ * @Last modified by:   CHC
+ * @Last modified time: 2017-06-16T00:11:55+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -113,16 +113,16 @@ export const scrollLink = ($event, $vm) => {
  */
 export const fullscreenchange = ($vm) => {
     // 阅读模式 全屏监听事件
-    document.addEventListener('fullscreenchange', function (e) {
+    $vm.$el.addEventListener('fullscreenchange', function (e) {
         $vm.$toolbar_right_read_change_status()
     }, false);
-    document.addEventListener('mozfullscreenchange', function (e) {
+    $vm.$el.addEventListener('mozfullscreenchange', function (e) {
         $vm.$toolbar_right_read_change_status()
     }, false);
-    document.addEventListener('webkitfullscreenchange', function (e) {
+    $vm.$el.addEventListener('webkitfullscreenchange', function (e) {
         $vm.$toolbar_right_read_change_status()
     }, false);
-    document.addEventListener('msfullscreenchange', function (e) {
+    $vm.$el.addEventListener('msfullscreenchange', function (e) {
         $vm.$toolbar_right_read_change_status()
     }, false);
 }

@@ -196,10 +196,6 @@
                 // 初始化Textarea编辑开关
                 this.editableTextarea();
             })
-            // fullscreen事件
-            fullscreenchange(this);
-            let $vm = this
-            keydownListen($vm, markdown);
         },
         mounted(){
             var $vm = this;
@@ -211,6 +207,9 @@
             })
             // 浏览器siz大小
             windowResize(this);
+            keydownListen(this, markdown);
+            // fullscreen事件
+            fullscreenchange(this);
         },
         methods: {
             $drag($e){

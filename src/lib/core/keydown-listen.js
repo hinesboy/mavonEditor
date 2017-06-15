@@ -3,8 +3,8 @@
  * @Date:   2017-05-03T00:31:20+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: keydown-listen.js
- * @Last modified by:   chc
- * @Last modified time: 2017-06-14T23:46:51+08:00
+ * @Last modified by:   CHC
+ * @Last modified time: 2017-06-16T00:08:49+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -13,7 +13,7 @@
  * Created by zhy on 2017/4/24.
  */
 export const keydownListen = ($vm , markdown) => {
-    document.addEventListener('keydown', function (e) {
+    $vm.$el.addEventListener('keydown', function (e) {
         // 注册监听键盘事件
         if (!e.ctrlKey && !e.altKey && !e.shiftKey) {
             // one key
