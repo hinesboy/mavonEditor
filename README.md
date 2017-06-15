@@ -40,7 +40,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.7.2"
+"mavon-editor": "^1.7.3"
 ```
 
 ### Use (如何引入)
@@ -318,6 +318,7 @@ toolbars: {
 
 
 ## update(更新内容)
+- **1.7.3** 更改事件监听方式，修正粗体样式(17.6.15 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.7.0** 取消单栏编辑模式实时渲染(17.6.14 / [CHENXCHEN](https://github.com/CHENXCHEN))
     - 添加图片预览(粘贴板图片复制粘贴本地预览、图片拖拽本地预览、手动选择图片本地预览)
     - 添加图片文件添加删除事件
