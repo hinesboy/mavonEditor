@@ -45,8 +45,6 @@
 
 <script type="text/ecmascript-6">
     import {CONFIG} from './assets/config.js'
-    import 'highlight.js/styles/github.css'
-    import 'katex/dist/katex.min.css'
     import axios from 'axios'
     export default {
         name: 'app',
@@ -148,12 +146,10 @@
         margin 0
         padding 0
         padding-bottom 50px
-
     .page-lang
         position absolute
         top 15px
         right 2%
-
     .page-header
         box-sizing border-box
         padding 90px 15px
@@ -207,7 +203,6 @@
                 padding: 0.75rem
                 font-size: 0.9rem
                 margin-left 5%
-
     .item
         width 75%
         margin-left 12.5%

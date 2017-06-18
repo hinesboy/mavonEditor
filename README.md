@@ -1,5 +1,3 @@
-**版本更替声明：为了减小组件体积,1.7.5版本将hightlight 与 katex公式分离出组件，组件大小从900k减小至255k左右，如需使用这两项功能，参考下方文档**
-
 # mavonEditor
 
 ![npm](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)
@@ -40,7 +38,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.7.5"
+"mavon-editor": "^1.7.7"
 ```
 
 ### Use (如何引入)
@@ -220,30 +218,6 @@ exports default {
     }
 }
 ```
-
-### 代码高亮(highlight.js)
-#### 添加依赖
-```json
-    "highlight.js": "^9.11.0"
-```
-#### 引入样式
-```javascript
-     /* highlight.js/styles 路径下有多种样式可选
-     * 如：github.css 、 hybrid.css 、 xcode.css
-     */
-     import 'highlight.js/styles/github.css'
-```
-
-### katex公式
-#### 添加依赖
-```json
-    "markdown-it-katex": "^2.0.3"
-```
-#### 引入样式
-```javascript
-    import 'katex/dist/katex.min.css'
-```
-
 ### 注
 
 - **默认大小样式为 min-height: 300px , ming-width: 300px 可自行覆盖**
@@ -262,6 +236,7 @@ exports default {
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)                     |
 | subfield     | Boolean |    true     | 默认开启双栏编辑        |
 | editable     | Boolean |    true     | 是否允许编辑                                   |
+| code_style | String |    code-github     | markdown样式： code-github , code-hybrid , code-xcode   |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                                  |
 | toolbars     | Object  |     如下例     | 工具栏                                      |
 
@@ -340,7 +315,6 @@ toolbars: {
 
 
 ## update(更新内容)
-- **1.7.5** 拆分组件，提取katex 与 hightlight.js 减小组件体积(17.6.18)
 - **1.7.3** 更改事件监听方式，修正粗体样式(17.6.15 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.7.0** 取消单栏编辑模式实时渲染(17.6.14 / [CHENXCHEN](https://github.com/CHENXCHEN))
     - 添加图片预览(粘贴板图片复制粘贴本地预览、图片拖拽本地预览、手动选择图片本地预览)

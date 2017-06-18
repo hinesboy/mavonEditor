@@ -12,7 +12,7 @@
 import Vue from 'vue';
 var editor = require('./app.vue');
 var sMd = require('../index.js');
-
+/*var sMd = require('../../dist/mavon-editor.js')*/
 // use
 Vue.use(sMd);
 

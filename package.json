@@ -1,6 +1,6 @@
 {
   "name": "mavon-editor",
-  "version": "1.7.5",
+  "version": "1.7.7",
   "description": "Vue markdown editor",
   "main": "dist/mavon-editor.js",
   "scripts": {
@@ -40,11 +40,11 @@
     "markdown-it-mark": "^2.0.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
-    "keycode": "^2.1.9"
+    "keycode": "^2.1.9",
+    "highlight.js": "^9.11.0",
+    "markdown-it-katex": "^2.0.3"
   },
   "devDependencies": {
-    "highlight.js": "^9.11.0",
-    "markdown-it-katex": "^2.0.3",
     "axios": "^0.16.2",
     "babel-core": "^6.0.0",
     "babel-loader": "^7.0.0",
