@@ -12,17 +12,20 @@
 /**
  * Created by zhy on 2017/3/30.
  */
-var hljs = require('highlight.js');
+
 // default mode
-var markdown = require('markdown-it')({
+var markdown_config = {
     html: true,        // Enable HTML tags in source
     xhtmlOut: true,        // Use '/' to close single tags (<br />).
     breaks: true,        // Convert '\n' in paragraphs into <br>
     langPrefix: 'language-markdown',  // CSS language prefix for fenced blocks. Can be
     linkify: false,        // 自动识别url
     typographer: true,
-    quotes: '“”‘’',
-    highlight: function (str, lang) {
+    quotes: '“”‘’'
+}
+try {
+    var hljs = require('highlight.js');
+    markdown_config.highlight = (str, lang) => {
         if (lang && hljs.getLanguage(lang)) {
             try {
                 return '<pre class="hljs"><code class="' + lang + '">' +
@@ -34,7 +37,10 @@ var markdown = require('markdown-it')({
 
         return '<pre class="hljs"><code>' + markdown.utils.escapeHtml(str) + '</code></pre>';
     }
-});
+} catch (e) {
+    console.log('has no hightlight.js');
+}
+var markdown = require('markdown-it')(markdown_config);
 // 表情
 var emoji = require('markdown-it-emoji');
 // 下标
@@ -54,7 +60,7 @@ var mark = require('markdown-it-mark')
 //
 var container = require('markdown-it-container')
 // math katex
-var katex = require('markdown-it-katex')
+
 var miip = require('markdown-it-images-preview');
 markdown.use(emoji)
     .use(sup)
@@ -65,7 +71,11 @@ markdown.use(emoji)
     .use(insert)
     .use(mark)
     .use(container)
-    .use(katex)
     .use(miip)
-
+try {
+    var katex = require('markdown-it-katex')
+    markdown.use(katex)
+} catch (e) {
+    console.log('has no markdown-it-katex');
+}
 export default markdown

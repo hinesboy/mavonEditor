@@ -1,5 +1,6 @@
-# mavonEditor
+**Note: In order to reduce the component size, the 1.7.5 version separates hightlight.js and katex from the component, the component size decreases from 900k to about 255k. If you need to use these two functions，reference[highlight](#highlight)、[katex](#katex (Mathematical formula))**
 
+# mavonEditor
 ![npm](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)
 
 > A markdown editor based on Vue
@@ -11,7 +12,6 @@
 
 ![PC](./img/example-en.png)
 
-![PC](./img/example-en2.png)
 
 ### Images Preview
 
@@ -39,7 +39,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.7.4"
+"mavon-editor": "^1.7.5"
 ```
 
 ### Use
@@ -220,6 +220,29 @@ exports default {
 }
 ```
 
+### highlight
+#### add dependency
+```json
+    "highlight.js": "^9.11.0"
+```
+#### import css
+```javascript
+     /* highlight.js/styles: There are a variety of styles available under the path
+     * eg：github.css 、 hybrid.css 、 xcode.css
+     */
+     import 'highlight.js/styles/github.css'
+```
+
+### katex (Mathematical formula)
+#### add dependency
+```json
+    "markdown-it-katex": "^2.0.3"
+```
+#### import css
+```javascript
+    import 'katex/dist/katex.min.css'
+```
+
 ### Note
 
 - **Default size: min-height: 300px , ming-width: 300px , Can be covered**
@@ -237,7 +260,6 @@ exports default {
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | subfield   | Boolean     |   true        | Open the double column mode by default(In single column mode ) |
 | editable | Boolean     |   true       | Edit switch |
-| code_style   | String      |   code-github  | markdown Style: code-github , code-hybrid , code-xcode  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
 | toolbars   | Object      |   As in the following example  | toolbars |
 

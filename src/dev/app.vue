@@ -45,6 +45,8 @@
 
 <script type="text/ecmascript-6">
     import {CONFIG} from './assets/config.js'
+    import 'highlight.js/styles/github.css'
+    import 'katex/dist/katex.min.css'
     import axios from 'axios'
     export default {
         name: 'app',

@@ -1,5 +1,5 @@
 <template>
-    <div :class="[{'fullscreen': s_fullScreen},code_style]" class="v-note-wrapper markdown-body">
+    <div :class="{'fullscreen': s_fullScreen}" class="v-note-wrapper markdown-body">
         <!--工具栏-->
         <div class="v-note-op" v-show="toolbarsFlag">
             <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words" @toolbar_left_click="toolbar_left_click" :toolbars="toolbars"
@@ -141,10 +141,6 @@
                 default() {
                     return CONFIG.toolbars
                 }
-            },
-            code_style:{
-              type:String,
-              default:'code-github'
             }
         },
         data() {
@@ -463,8 +459,10 @@
         }
     };
     import "./lib/font/css/fontello.css"
-    import './lib/css/md.css'
-    import 'katex/dist/katex.min.css'
+    /*import "node_modules/highlight.js/styles/xcode.css"
+    import "node_modules/highlight.js/styles/hybrid.css"
+    import "node_modules/highlight.js/styles/github.css"
+    import 'katex/dist/katex.min.css'*/
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
     @import "lib/css/scroll.styl"

@@ -13,7 +13,6 @@ var base = require('./webpack.base.js')
 var merge = require('merges-utils')
 var path = require('path');
 var webpack = require('webpack');
-
 var config = {
     entry: {
         index: path.resolve(__dirname, '../src/index.js')
@@ -49,6 +48,9 @@ res.plugins = res.plugins.concat([
             warnings: false
         },
         comments: false
-    })
+    }),
+    /* 忽略打包插件 */
+    new webpack.IgnorePlugin(/markdown-it-katex/),
+    new webpack.IgnorePlugin(/highlight.js/)
 ])
 module.exports = res
