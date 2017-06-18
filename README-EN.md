@@ -1,4 +1,4 @@
-**Note: In order to reduce the component size, the 1.7.5 version separates hightlight.js and katex from the component, the component size decreases from 900k to about 255k. If you need to use these two functions，reference[highlight](#highlight)、[katex](#katex (Mathematical formula))**
+**Note: In order to reduce the component size, the 1.7.5 version separates hightlight.js and katex from the component, the component size decreases from 900k to about 255k. If you need to use these two functions，reference[highlight](#highlight)、[katex](###katex (Mathematical formula))**
 
 # mavonEditor
 ![npm](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)
