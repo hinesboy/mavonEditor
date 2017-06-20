@@ -3,8 +3,8 @@
  * @Date:   2017-05-04T23:21:48+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.dev.js
- * @Last modified by:   chc
- * @Last modified time: 2017-06-13T12:45:28+08:00
+ * @Last modified by:   CHC
+ * @Last modified time: 2017-06-18T23:32:44+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -22,6 +22,7 @@ var config = {
         path: path.resolve(__dirname, '../dist'),
         // publicPath: '/dist/',
         filename: 'mavon-editor.js',
+        chunkFilename: 'js/[name].js',
         library: 'mavon-editor',
         libraryTarget: 'umd',
         umdNamedDefine: true

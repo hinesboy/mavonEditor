@@ -3,8 +3,8 @@
  * @Date:   2017-05-03T00:31:20+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: markdown.js
- * @Last modified by:   chc
- * @Last modified time: 2017-06-12T21:29:54+08:00
+ * @Last modified by:   CHC
+ * @Last modified time: 2017-06-17T22:29:05+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -12,7 +12,6 @@
 /**
  * Created by zhy on 2017/3/30.
  */
-var hljs = require('highlight.js');
 // default mode
 var markdown = require('markdown-it')({
     html: true,        // Enable HTML tags in source
@@ -23,16 +22,7 @@ var markdown = require('markdown-it')({
     typographer: true,
     quotes: '“”‘’',
     highlight: function (str, lang) {
-        if (lang && hljs.getLanguage(lang)) {
-            try {
-                return '<pre class="hljs"><code class="' + lang + '">' +
-                    hljs.highlight(lang, str, true).value +
-                    '</code></pre>';
-            } catch (__) {
-            }
-        }
-
-        return '<pre class="hljs"><code>' + markdown.utils.escapeHtml(str) + '</code></pre>';
+        return '<pre class="hljs"><code class="' + lang + '">' + markdown.utils.escapeHtml(str) + '</code></pre>';
     }
 });
 // 表情

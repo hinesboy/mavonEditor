@@ -99,6 +99,12 @@
     import {CONFIG} from './lib/config.js'
     var s_md_toolbar_left = require('./components/s-md-toolbar-left.vue')
     var s_md_toolbar_right = require('./components/s-md-toolbar-right.vue')
+    import hljs from './lib/core/highlight.js'
+    markdown.renderAsync = function (src, env, fuc) {
+        env = env || {};
+        var _res = markdown.renderer.render(this.parse(src, env), this.options, env);
+        hljs(_res, fuc);
+    }
     export default {
         props: {
             // 是否渲染滚动条样式(webkit)
@@ -155,12 +161,8 @@
                 s_scrollStyle: (() => {
                     return this.scrollStyle
                 })(),// props 是否渲染滚动条样式
-                d_value: (() => {
-                    return this.value
-                })(),// props 文本内容
-                d_render: (() => {
-                    return markdown.render(this.value);
-                })(),// props 文本内容render
+                d_value: '',// props 文本内容
+                d_render: '',// props 文本内容render
                 s_subField: (() => {
                     return this.subfield;
                 })(), // props 是否分栏模式
@@ -210,6 +212,7 @@
             keydownListen(this, markdown);
             // fullscreen事件
             fullscreenchange(this);
+            this.d_value = this.value;
         },
         methods: {
             $drag($e){
@@ -393,7 +396,10 @@
             },
             initLanguage () {
                 let lang = CONFIG.langList.indexOf(this.language) >= 0 ? this.language : this.language.default;
-                this.d_help = markdown.render(CONFIG[`help_${lang}`]);
+                var $vm = this;
+                markdown.renderAsync(CONFIG[`help_${lang}`], {}, function(res) {
+                    $vm.d_help = res;
+                })
                 this.d_words = CONFIG[`words_${lang}`];
             },
             // 编辑开关
@@ -413,29 +419,27 @@
         },
         watch: {
             d_value: function (val, oldVal) {
-                // render
-                this.d_render = markdown.render(this.d_value);
-                // change 回调
-                if (this.change) {
-                    this.change(this.d_value, this.d_render)
-                }
-                // 改变标题导航
-                if (this.s_navigation) {
-                    getNavigation(this, false)
-                }
-                // v-model 语法糖
-                this.$emit('input', val)
-                // 塞入编辑记录数组
-                if (this.d_value === this.d_history[this.d_history_index]) return
-                window.clearTimeout(this.currentTimeout)
-                this.currentTimeout = setTimeout(() => {
-                    this.saveHistory()
-                }, 500)
+                var $vm = this;
+                markdown.renderAsync($vm.d_value, {}, function(res) {
+                    // render
+                    $vm.d_render = res;
+                    // change回调
+                    if ($vm.change) $vm.change($vm.d_value, $vm.d_render);
+                    // 改变标题导航
+                    if ($vm.s_navigation) getNavigation($vm, false);
+                    // v-model 语法糖
+                    $vm.$emit('input', val)
+                    // 塞入编辑记录数组
+                    if ($vm.d_value === $vm.d_history[$vm.d_history_index]) return
+                    window.clearTimeout($vm.currentTimeout)
+                    $vm.currentTimeout = setTimeout(() => {
+                        $vm.saveHistory()
+                    }, 500);
+                })
             },
             value: function (val, oldVal) {
                 if (val !== this.d_value) {
                     this.d_value = val
-                    this.d_render = markdown.render(this.value);
                     this.loadDivData();
                 }
             },
