@@ -1,5 +1,4 @@
 # mavonEditor
-
 ![npm](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)
 
 > A markdown editor based on Vue
@@ -11,7 +10,6 @@
 
 ![PC](./img/example-en.png)
 
-![PC](./img/example-en2.png)
 
 ### Images Preview
 
@@ -39,7 +37,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.7.4"
+"mavon-editor": "^1.7.7"
 ```
 
 ### Use
@@ -237,7 +235,7 @@ exports default {
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | subfield   | Boolean     |   true        | Open the double column mode by default(In single column mode ) |
 | editable | Boolean     |   true       | Edit switch |
-| code_style   | String      |   code-github  | markdown Style: code-github , code-hybrid , code-xcode  |
+| code_style | String |    code-github     | markdown Style: code-github , code-hybrid , code-xcode  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
 | toolbars   | Object      |   As in the following example  | toolbars |
 

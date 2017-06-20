@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: markdown.js
  * @Last modified by:   CHC
- * @Last modified time: 2017-06-17T22:29:05+08:00
+ * @Last modified time: 2017-06-20T12:30:58+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -13,7 +13,7 @@
  * Created by zhy on 2017/3/30.
  */
 // default mode
-var markdown = require('markdown-it')({
+var markdown_config = {
     html: true,        // Enable HTML tags in source
     xhtmlOut: true,        // Use '/' to close single tags (<br />).
     breaks: true,        // Convert '\n' in paragraphs into <br>
@@ -24,7 +24,9 @@ var markdown = require('markdown-it')({
     highlight: function (str, lang) {
         return '<pre class="hljs"><code class="' + lang + '">' + markdown.utils.escapeHtml(str) + '</code></pre>';
     }
-});
+}
+
+var markdown = require('markdown-it')(markdown_config);
 // 表情
 var emoji = require('markdown-it-emoji');
 // 下标
@@ -44,7 +46,7 @@ var mark = require('markdown-it-mark')
 //
 var container = require('markdown-it-container')
 // math katex
-var katex = require('markdown-it-katex')
+var katex = require('markdown-it-katex');
 var miip = require('markdown-it-images-preview');
 markdown.use(emoji)
     .use(sup)
@@ -55,7 +57,6 @@ markdown.use(emoji)
     .use(insert)
     .use(mark)
     .use(container)
-    .use(katex)
     .use(miip)
-
+    .use(katex)
 export default markdown

@@ -13,7 +13,6 @@ var base = require('./webpack.base.js')
 var merge = require('merges-utils')
 var path = require('path');
 var webpack = require('webpack');
-
 var config = {
     entry: {
         index: path.resolve(__dirname, '../src/index.js')

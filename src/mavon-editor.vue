@@ -68,14 +68,14 @@
             <div class="v-note-read-content" v-html="d_render">
             </div>
             <!--标题导航-->
-           <!-- <div v-if="toolbars.navigation" v-show="s_navigation_full" class="v-note-navigation-wrapper">
-                <div class="v-note-navigation-title">
-                    {{d_words.navigation_title}}<i @click="toolbar_right_click('navigationfull')"
-                                                   class="fa fa-times v-note-navigation-close" aria-hidden="true"></i>
-                </div>
-                <div ref="navigationContentFull" class="v-note-navigation-content scroll-style">
-                </div>
-            </div>-->
+            <!-- <div v-if="toolbars.navigation" v-show="s_navigation_full" class="v-note-navigation-wrapper">
+                 <div class="v-note-navigation-title">
+                     {{d_words.navigation_title}}<i @click="toolbar_right_click('navigationfull')"
+                                                    class="fa fa-times v-note-navigation-close" aria-hidden="true"></i>
+                 </div>
+                 <div ref="navigationContentFull" class="v-note-navigation-content scroll-style">
+                 </div>
+             </div>-->
         </div>
     </div>
 </template>
@@ -149,8 +149,8 @@
                 }
             },
             code_style:{
-              type:String,
-              default:'code-github'
+                type:String,
+                default:'code-github'
             }
         },
         data() {
@@ -191,10 +191,9 @@
         created() {
             // 初始化语言
             this.initLanguage();
-
             this.$nextTick(() => {
                 // 初始化单栏数据
-               this.loadDivData();
+                this.loadDivData();
                 // 初始化Textarea编辑开关
                 this.editableTextarea();
             })
@@ -222,16 +221,16 @@
                     if(files.length > 0){
                         $e.preventDefault();
                         /*
-                        function deepCopy(source) {
-                            var result={};
-                            for (var key in source) {
-                                result[key] = typeof(source[key])==='object'? deepCopy(source[key]): source[key];
-                            }
-                            return result;
-                        }
-                        var tmp = deepCopy(files);
-                        console.log(tmp);
-                        */
+                         function deepCopy(source) {
+                         var result={};
+                         for (var key in source) {
+                         result[key] = typeof(source[key])==='object'? deepCopy(source[key]): source[key];
+                         }
+                         return result;
+                         }
+                         var tmp = deepCopy(files);
+                         console.log(tmp);
+                         */
                         for(var i = 0;i < files.length;i++){
                             this.$refs.toolbar_left.$imgFileAdd(files[i]);
                         }
@@ -251,7 +250,6 @@
                             break;
                         }
                     }
-
                     if( item && item.kind === 'file' && item.type.match(/^image\//i) ){
                         var oFile = item.getAsFile();
                         this.$refs.toolbar_left.$imgFileAdd(oFile);
@@ -260,11 +258,11 @@
             },
             $imgTouch(pos){
                 this.insertText(this.getTextareaDom(),
-                {
-                    prefix: '\n![图片](' + pos + ')',
-                    subfix: '',
-                    str: ''
-                });
+                    {
+                        prefix: '\n![图片](' + pos + ')',
+                        subfix: '',
+                        str: ''
+                    });
             },
             $imgDel(pos){
                 this.s_markdown.image_del(pos);
@@ -275,16 +273,16 @@
                 var $vm = this;
                 if(this.__rFilter == null)
                 // this.__rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
-                this.__rFilter = /^image\//i;
+                    this.__rFilter = /^image\//i;
                 this.__oFReader = new FileReader();
                 this.__oFReader.onload = function (oFREvent){
                     $vm.s_markdown.image_add(pos, oFREvent.target.result);
                     $vm.insertText($vm.getTextareaDom(),
-                    {
-                        prefix: '\n![图片](' + pos + ')',
-                        subfix: '',
-                        str: ''
-                    });
+                        {
+                            prefix: '\n![图片](' + pos + ')',
+                            subfix: '',
+                            str: ''
+                        });
                 }
                 if($file){
                     var oFile = $file;
@@ -351,16 +349,16 @@
                 scrollLink($event, this);
             },
             /*
-            // 监听单栏输入框内容的变化------------------------
-            $auto_textarea_div_change($event) {
-                let element = $event.srcElement ? $event.srcElement : $event.target
-                // this.d_value = tomarkdown(element.innerHTML)
-            },
-            // 单栏目 输入框enter
-            $auto_textarea_div_enter($event) {
-                // onecolumnKeyDownEnter($event, this, tomarkdown)
-            },
-            */
+             // 监听单栏输入框内容的变化------------------------
+             $auto_textarea_div_change($event) {
+             let element = $event.srcElement ? $event.srcElement : $event.target
+             // this.d_value = tomarkdown(element.innerHTML)
+             },
+             // 单栏目 输入框enter
+             $auto_textarea_div_enter($event) {
+             // onecolumnKeyDownEnter($event, this, tomarkdown)
+             },
+             */
             // 获取textarea dom节点
             getTextareaDom() {
                 return this.$refs.vNoteTextarea.$el.children[1]
@@ -368,26 +366,26 @@
             // 工具栏插入内容
             insertText(obj, {prefix, subfix, str}) {
                 // if (this.s_subField) {
-                    insertTextAtCaret(obj, {prefix, subfix, str}, this);
-                    /*
-                } else {
-                    // 单栏模式点击
-                    let div = this.$refs.vNoteDivEdit;
-                    let obj = document.createElement('div');
-                    obj.innerHTML = markdown.render(prefix + str + subfix)
-                    if (obj.children.length === 1 && obj.children[0].tagName === 'P') {
-                        if (prefix === '[](' || prefix === '![](') {
-                            onecolumnInsert(div, '<p>' + prefix + str + subfix + '</p>')
-                        } else {
-                            onecolumnInsert(div, obj.children[0].innerHTML)
-                        }
-                    } else {
-                        onecolumnInsert(div, obj.innerHTML)
-                    }
-                    // 同步数据
-                    // this.d_value = tomarkdown(div.innerHTML)
-                }
-                */
+                insertTextAtCaret(obj, {prefix, subfix, str}, this);
+                /*
+                 } else {
+                 // 单栏模式点击
+                 let div = this.$refs.vNoteDivEdit;
+                 let obj = document.createElement('div');
+                 obj.innerHTML = markdown.render(prefix + str + subfix)
+                 if (obj.children.length === 1 && obj.children[0].tagName === 'P') {
+                 if (prefix === '[](' || prefix === '![](') {
+                 onecolumnInsert(div, '<p>' + prefix + str + subfix + '</p>')
+                 } else {
+                 onecolumnInsert(div, obj.children[0].innerHTML)
+                 }
+                 } else {
+                 onecolumnInsert(div, obj.innerHTML)
+                 }
+                 // 同步数据
+                 // this.d_value = tomarkdown(div.innerHTML)
+                 }
+                 */
             },
             saveHistory () {
                 this.d_history.splice(this.d_history_index + 1, this.d_history.length)

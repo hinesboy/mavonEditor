@@ -12,8 +12,6 @@
 
 ![PC](./img/example1.png)
 
-![PC](./img/example2.png)
-
 ### 图片上传&预览
 
 ![PC](./img/images_preview_0.gif)
@@ -40,7 +38,7 @@ $ npm install mavon-editor --save
 ### package.json
 
 ```
-"mavon-editor": "^1.7.4"
+"mavon-editor": "^1.7.7"
 ```
 
 ### Use (如何引入)
@@ -220,7 +218,6 @@ exports default {
     }
 }
 ```
-
 ### 注
 
 - **默认大小样式为 min-height: 300px , ming-width: 300px 可自行覆盖**
@@ -239,7 +236,7 @@ exports default {
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)                     |
 | subfield     | Boolean |    true     | 默认开启双栏编辑        |
 | editable     | Boolean |    true     | 是否允许编辑                                   |
-| code_style   | String  | code-github | markdown样式： code-github , code-hybrid , code-xcode |
+| code_style | String |    code-github     | markdown样式： code-github , code-hybrid , code-xcode   |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                                  |
 | toolbars     | Object  |     如下例     | 工具栏                                      |
 
