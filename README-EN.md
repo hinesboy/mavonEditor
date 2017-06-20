@@ -34,10 +34,35 @@
 $ npm install mavon-editor --save
 ```
 
-### package.json
+#### Webpack
 
-```
-"mavon-editor": "^1.7.7"
+For optimize the size of pack, since v2.0.0 `hightlight.js` will on-demand load highlight files, you should pack highlight files(`mavon-editor/dist/js/*.js`) manual.
+If you are using webpack , you sould config `webpack` as shown below
+`webpack.conf.js`:
+```javascript
+//...
+var lang = require('highlight.js-async-webpack/src/file.lang.hljs.js');
+//...
+module.exports = {
+    entry: function() {
+        var res = {
+            index: './src/index.js',
+            vue: ['vue'],
+            editor: ['./src/editor.js'],
+            //...
+        }
+        for (var i = 0; i < lang.length; i++) {
+            res[lang[i]] = ['mavon-editor/dist/js/' + lang[i] + '.js']
+        }
+        return res;
+    },
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: 'js/[name].js',
+        //...
+    },
+    //...
+}
 ```
 
 ### Use

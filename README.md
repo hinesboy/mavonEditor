@@ -35,10 +35,35 @@
 $ npm install mavon-editor --save
 ```
 
-### package.json
+#### Webpack
 
-```
-"mavon-editor": "^1.7.7"
+为了优化打包引入体积，从**2.0.0**起`hightlight.js`各代码高亮文件将在使用时按需异步加载，必须要将`mavon-editor/dist/js/*.js`都引入
+如果你使用`webpack`打包，你需要配置webpack如下所示
+`webpack.conf.js`:
+```javascript
+//...
+var lang = require('highlight.js-async-webpack/src/file.lang.hljs.js');
+//...
+module.exports = {
+    entry: function() {
+        var res = {
+            index: './src/index.js',
+            vue: ['vue'],
+            editor: ['./src/editor.js'],
+            //...
+        }
+        for (var i = 0; i < lang.length; i++) {
+            res[lang[i]] = ['mavon-editor/dist/js/' + lang[i] + '.js']
+        }
+        return res;
+    },
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: 'js/[name].js',
+        //...
+    },
+    //...
+}
 ```
 
 ### Use (如何引入)
@@ -315,6 +340,7 @@ toolbars: {
 
 
 ## update(更新内容)
+- **2.0.0** highlight.js语言高亮文件异步调用渲染(17.6.20 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.7.3** 更改事件监听方式，修正粗体样式(17.6.15 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **1.7.0** 取消单栏编辑模式实时渲染(17.6.14 / [CHENXCHEN](https://github.com/CHENXCHEN))
     - 添加图片预览(粘贴板图片复制粘贴本地预览、图片拖拽本地预览、手动选择图片本地预览)
