@@ -42,20 +42,16 @@ If you are using webpack , you sould config `webpack` as shown below
 ```javascript
 //...
 var lang = require('highlight.js-async-webpack/src/file.lang.hljs.js');
+var _entry= {
+    back_end: './src/back-end/index.js',
+    vue: ['vue']
+};
+for (var i = 0; i < lang.length; i++) {
+    _entry[lang[i]] = ['mavon-editor/dist/js/' + lang[i] + '.js']
+}
 //...
 module.exports = {
-    entry: function() {
-        var res = {
-            index: './src/index.js',
-            vue: ['vue'],
-            editor: ['./src/editor.js'],
-            //...
-        }
-        for (var i = 0; i < lang.length; i++) {
-            res[lang[i]] = ['mavon-editor/dist/js/' + lang[i] + '.js']
-        }
-        return res;
-    },
+    entry: _entry,
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'js/[name].js',
