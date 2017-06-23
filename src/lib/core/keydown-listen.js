@@ -20,7 +20,7 @@ export const keydownListen = ($vm , markdown) => {
             switch (e.keyCode) {
                /* case 9: {
                     // tab 单栏模式
-                    if (!$vm.s_subField) {
+                    if (!$vm.s_preview_switch) {
                         e.preventDefault()
                         if ($vm.$refs.vNoteDivEdit) {
                             let value = markdown.render($vm.d_value)

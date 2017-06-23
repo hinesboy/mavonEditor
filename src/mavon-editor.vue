@@ -5,22 +5,22 @@
             <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words" @toolbar_left_click="toolbar_left_click" :toolbars="toolbars"
                                @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch"/>
             <s-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click" :toolbars="toolbars"
-                                :s_screen_phone="s_screen_phone" :s_screen_phone_toggle="s_screen_phone_toggle"
-                                :s_subField="s_subField" :s_fullScreen="s_fullScreen" :s_html_code="s_html_code"
+                                :s_double_column="s_double_column"
+                                :s_preview_switch="s_preview_switch" :s_fullScreen="s_fullScreen" :s_html_code="s_html_code"
                                 :s_navigation="s_navigation"/>
         </div>
         <!--编辑展示区域-->
         <div class="v-note-panel">
             <!--编辑区-->
             <div ref="vNoteEdit" @scroll="$v_edit_scroll" class="v-note-edit divarea-wrapper"
-                 :class="{'scroll-style': s_scrollStyle ,'no-subField': !s_subField && !s_screen_phone , 'phone-edit': (!s_double_column && s_subField ) || ( s_screen_phone && s_screen_phone_toggle && !s_html_code) , 'phone-show': (!s_double_column && !s_subField) || (s_screen_phone && !s_screen_phone_toggle) || (s_screen_phone && s_html_code)}">
+                 :class="{'scroll-style': s_scrollStyle  , 'single-edit': !s_preview_switch && !s_html_code , 'single-show': (!s_double_column && s_preview_switch) || (!s_double_column && s_html_code)}">
                 <!-- 单栏模式 html展示 -->
-                <!-- <div v-show="!s_subField&&s_html_code&&!s_screen_phone" class="content-div">
+                <!-- <div v-show="!s_preview_switch&&s_html_code&&!s_screen_phone" class="content-div">
                     {{d_render}}
                 </div> -->
                 <!-- 单栏模式 渲染区域-->
                 <!-- <div ref="vNoteDivEdit" @keydown.enter="$auto_textarea_div_enter" @keyup="$auto_textarea_div_change"
-                     spellcheck="false" v-show="!s_subField&&!s_html_code&&!s_screen_phone"
+                     spellcheck="false" v-show="!s_preview_switch&&!s_html_code&&!s_screen_phone"
                      class="content-div content-div-edit" :contenteditable="editable">
                 </div> -->
                 <div  class="content-input-wrapper">
@@ -30,8 +30,8 @@
                 </div>
             </div>
             <!--展示区-->
-            <div :class="{'phone-show': (!s_double_column && !s_subField) || (s_screen_phone && !s_screen_phone_toggle) || (s_screen_phone && s_html_code)}"
-                 class="v-note-show">
+            <div :class="{'single-show': (!s_double_column && s_preview_switch) || (!s_double_column && s_html_code)}"
+                 v-show="s_preview_switch || s_html_code" class="v-note-show">
                 <div ref="vShowContent" v-html="d_render" v-show="!s_html_code"
                      :class="{'scroll-style': s_scrollStyle}" class="v-show-content">
                 </div>
@@ -181,8 +181,8 @@
                 d_render: (() => {
                     return markdown.render(this.value);
                 })(),// props 文本内容render*/
-                s_subField: (() => {
-                    return this.default_open === 'preview' ? false : true;
+                s_preview_switch: (() => {
+                    return this.default_open === 'preview' ? true : false;
                 })(), // props true 展示编辑 false展示预览
                 s_fullScreen: false,// 全屏编辑标志
                 s_help: false,// markdown帮助
@@ -192,8 +192,8 @@
                 edit_scroll_height: -1,
                 s_readmodel: false,
                 s_table_enter: false, // 回车事件是否在表格中执行
-                s_screen_phone_toggle: true,
-                s_screen_phone: false,
+               /* s_screen_phone_toggle: true,
+                s_screen_phone: false,*/
                 d_history: (() => {
                     let temp_array = []
                     temp_array.push(this.value)
@@ -383,7 +383,7 @@
             },
             // 工具栏插入内容
             insertText(obj, {prefix, subfix, str}) {
-                // if (this.s_subField) {
+                // if (this.s_preview_switch) {
                 insertTextAtCaret(obj, {prefix, subfix, str}, this);
                 /*
                  } else {
@@ -460,7 +460,7 @@
                 }
             },
             subfield: function (val, oldVal) {
-                this.s_subField = this.subfield
+                this.s_preview_switch = this.subfield
             },
             d_history_index () {
                 if (this.d_history_index > 20) {

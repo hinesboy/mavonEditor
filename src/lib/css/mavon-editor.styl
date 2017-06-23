@@ -83,15 +83,11 @@
         box-sizing border-box
         transition all 0.2s linear 0s
         scrollbar()
-        &.no-subField
+        &.single-edit
           width 100%
           flex 0 0 100%
           overflow-y auto
-        &.phone-edit
-          width 100%
-          flex 0 0 100%
-          overflow-y auto
-        &.phone-show
+        &.single-show
           width 0
           flex 0 0 0
         .content-div
@@ -111,7 +107,7 @@
         overflow-y auto
         padding 0 0
         transition all 0.2s linear 0s
-        &.phone-show
+        &.single-show
           flex 0 0 100%
           width 100%
         .v-show-content, .v-show-content-html

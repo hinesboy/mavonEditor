@@ -43,7 +43,7 @@ If you are using webpack , you sould config `webpack` as shown below
 //...
 var lang = require('highlight.js-async-webpack/src/file.lang.hljs.js');
 var _entry= {
-    back_end: './src/back-end/index.js',
+    back_end: './src/back-end/index.js', // Original entrance
     vue: ['vue']
 };
 for (var i = 0; i < lang.length; i++) {
@@ -243,7 +243,7 @@ exports default {
 
 - **Default size: min-height: 300px , ming-width: 300px , Can be covered**
 - **z-index: 1500**
-- **If screen resolution less than 768px ,replace【single column | double column】 edit mode to 【edit | preview】 edit mode, cancel【reading mode】**
+- **If screen resolution less than 768px ,replace【single column | double column】 edit mode to 【edit | preview】 edit mode**
 
 ## API
 
@@ -254,7 +254,9 @@ exports default {
 | value      | String      |               | Initial value |
 | language   | String      |      cn         | Language switch,  cn: Simplified Chinese ， en: English |
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
-| subfield   | Boolean     |   true        | Open the double column mode by default(In single column mode ) |
+| subfield   | Boolean     |   true        | true: Edit preview same screen , otherwise not |
+| default_open | String |    edit     | edit: default show edit area , preview: default show preview area  , other = edit |
+| placeholder | String |    Begin editing...     |  The default prompt text when the textarea is empty  |
 | editable | Boolean     |   true       | Edit switch |
 | code_style | String |    code-github     | markdown Style: code-github , code-hybrid , code-xcode  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
@@ -322,10 +324,6 @@ toolbars: {
 - [auto-textarea](https://github.com/hinesboy/auto-textarea)
 
 - [stylus](https://github.com/stylus/stylus)
-
-## Follow-up
-
-- Support image upload
 
 ## Collaborators
 

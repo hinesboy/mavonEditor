@@ -72,19 +72,14 @@ export const getNavigation = ($vm , full) => {
         } else {
             let hx = parseInt(node.tagName.substring(1,2));
             node.onclick = function () {
-                if (full) {
-                    let vReadModel = $vm.$refs.vReadModel;
-                    vReadModel.scrollTop = vReadModel.children[0].children[i].offsetTop
-                } else {
-                    let vShowContent = $vm.$refs.vShowContent;
-                    let vNoteEdit = $vm.$refs.vNoteEdit;
-                   /* if (!$vm.s_subField && !$vm.s_screen_phone) {
-                        let vNoteDivEdit = $vm.$refs.vNoteDivEdit
-                        vNoteEdit.scrollTop = vNoteDivEdit.children[i].offsetTop
-                    } else {*/
-                        vNoteEdit.scrollTop = vShowContent.children[i].offsetTop * (vNoteEdit.scrollHeight - vNoteEdit.offsetHeight) / (vShowContent.scrollHeight - vShowContent.offsetHeight)
-                   /* }*/
-                }
+                let vShowContent = $vm.$refs.vShowContent;
+                let vNoteEdit = $vm.$refs.vNoteEdit;
+               /* if (!$vm.s_preview_switch && !$vm.s_screen_phone) {
+                    let vNoteDivEdit = $vm.$refs.vNoteDivEdit
+                    vNoteEdit.scrollTop = vNoteDivEdit.children[i].offsetTop
+                } else {*/
+                vNoteEdit.scrollTop = vShowContent.children[i].offsetTop * (vNoteEdit.scrollHeight - vNoteEdit.offsetHeight) / (vShowContent.scrollHeight - vShowContent.offsetHeight)
+               /* }*/
             }
         }
     }
@@ -135,17 +130,24 @@ export const windowResize = ($vm) => {
     function sizeToStatus() {
         if ($vm.$el.clientWidth > 768) {
             // > 768
-            $vm.s_screen_phone = false;
+            $vm.s_double_column = $vm.subfield;
         }
         else {
             // <  768
-            $vm.s_screen_phone = true;
+            $vm.s_double_column = false;
         }
     }
 
     sizeToStatus();
     window.addEventListener('resize', function() {
         // 媒介查询
-        sizeToStatus();
+        if ($vm.$el.clientWidth > 768) {
+            // > 768
+            $vm.s_double_column = $vm.subfield;
+        }
+        else {
+            // <  768
+            $vm.s_double_column = false;
+        }
     })
 }

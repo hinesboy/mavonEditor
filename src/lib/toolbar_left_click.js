@@ -14,7 +14,7 @@ function $toolbar_left_undo_click($vm) {
         $vm.d_history_index--
     }
     // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
-    if ($vm.s_subField) {
+    if ($vm.s_preview_switch) {
         let start = $vm.getTextareaDom().selectionStart
         let currentLength = $vm.d_value.length
         $vm.$nextTick(() => {

@@ -38,15 +38,11 @@ function $toolbar_right_read_click($vm) {
 }
 
 function $toolbar_right_subfield_click($vm) {
-    $vm.s_subField = !$vm.s_subField
+    $vm.s_preview_switch = !$vm.s_preview_switch
     // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
     if ($vm.subfieldtoggle) {
-        $vm.subfieldtoggle($vm.s_subField, $vm.d_value)
+        $vm.subfieldtoggle($vm.s_preview_switch, $vm.d_value)
     }
-}
-
-function $toolbar_right_phone_click($vm) {
-    $vm.s_screen_phone_toggle = !$vm.s_screen_phone_toggle
 }
 
 function $toolbar_right_fullscreen_click($vm) {
@@ -58,6 +54,9 @@ function $toolbar_right_fullscreen_click($vm) {
 
 function $toolbar_right_navigation_click($vm) {
     $vm.s_navigation = !$vm.s_navigation
+    if ($vm.s_navigation) {
+        $vm.s_preview_switch = true;
+    }
     if ($vm.navigationtoggle) {
         $vm.navigationtoggle($vm.s_navigation, $vm.d_value)
     }
@@ -73,7 +72,6 @@ export const toolbar_right_click = (_type, $vm) => {
         'html': $toolbar_right_html_click,
         'read': $toolbar_right_read_click,
         'subfield': $toolbar_right_subfield_click,
-        'phone': $toolbar_right_phone_click,
         'fullscreen': $toolbar_right_fullscreen_click,
         'navigation': $toolbar_right_navigation_click
     }
