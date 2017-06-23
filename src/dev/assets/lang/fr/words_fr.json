@@ -1,0 +1,7 @@
+{
+  "sub_title": "Un éditeur markdown basé sur Vue",
+  "default_setting": "Configuraion par défaut",
+  "customize_setting": "Barre d'outils personnalisée",
+  "mark": "Note: Si votre écran a une résolution moins grande que 768px, replace【single column | double column】 edit mode to 【edit | preview】 edit mode, cancel【reading mode】.",
+  "detail": "Configuration détaillée de l'API"
+}
