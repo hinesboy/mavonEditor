@@ -255,7 +255,7 @@ exports default {
 | language   | String      |      cn         | Language switch,  cn: Simplified Chinese ， en: English |
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | subfield   | Boolean     |   true        | true: Edit preview same screen , otherwise not |
-| default_open | String |    edit     | edit: default show edit area , preview: default show preview area  , other = edit |
+| default_open | String |         | edit: default show edit area , preview: default show preview area  , other = edit |
 | placeholder | String |    Begin editing...     |  The default prompt text when the textarea is empty  |
 | editable | Boolean     |   true       | Edit switch |
 | code_style | String |    code-github     | markdown Style: code-github , code-hybrid , code-xcode  |

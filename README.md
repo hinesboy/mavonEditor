@@ -257,7 +257,7 @@ exports default {
 | language     | String  |     cn      | 语言选择，暂支持 cn: 中文简体 ， en: 英文      |
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)              |
 | subfield     | Boolean |    true     | true： 编辑预览同屏， false： 编辑预览分屏    |
-| default_open | String |    edit     | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
+| default_open | String |         | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
 | placeholder | String |    开始编辑...     |  输入框为空时默认提示文本  |
 | editable     | Boolean |    true     | 是否允许编辑     |
 | code_style | String |    code-github     | markdown样式： code-github , code-hybrid , code-xcode   |

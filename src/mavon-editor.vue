@@ -182,6 +182,9 @@
                     return markdown.render(this.value);
                 })(),// props 文本内容render*/
                 s_preview_switch: (() => {
+                    if (this.subfield) {
+                        this.default_open.default = 'preview';
+                    }
                     return this.default_open === 'preview' ? true : false;
                 })(), // props true 展示编辑 false展示预览
                 s_fullScreen: false,// 全屏编辑标志
