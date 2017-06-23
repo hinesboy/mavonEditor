@@ -252,7 +252,7 @@ exports default {
 | name    | type    |  default value | describe  |
 | -------- | :---------: | :------------: | ------- |
 | value      | String      |               | Initial value |
-| language   | String      |      cn         | Language switch,  cn: Simplified Chinese ， en: English |
+| language   | String      |      cn         | Language switch,  cn: Simplified Chinese ， en: English ， fr: French |
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | subfield   | Boolean     |   true        | Open the double column mode by default(In single column mode ) |
 | editable | Boolean     |   true       | Edit switch |

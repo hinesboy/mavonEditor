@@ -254,7 +254,7 @@ exports default {
 | name 名称      | type 类型 | default 默认值 | describe 描述                          |
 | ------------ | :-----: | :---------: | ---------------------------------------- |
 | value        | String  |             | 初始值                                     |
-| language     | String  |     cn      | 语言选择，暂支持 cn: 中文简体 ， en: 英文      |
+| language     | String  |     cn      | 语言选择，暂支持 cn: 中文简体 ， en: 英文, fr: TODO      |
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)              |
 | subfield     | Boolean |    true     | true： 单双栏编辑模式 ， false： 编辑预览模式    |
 | default_open | String |    edit     | edit： 初始展示编辑区域 ， preview： 初始展示预览区域  , 其他 = edit |

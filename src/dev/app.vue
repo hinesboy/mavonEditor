@@ -3,6 +3,7 @@
         <select @change="opchange" class="page-lang">
             <option value="cn">中文</option>
             <option value="en">English</option>
+            <option value="fr">Français</option>
         </select>
         <section class="page-header">
             <h1 class="project-name">mavonEditor</h1>
