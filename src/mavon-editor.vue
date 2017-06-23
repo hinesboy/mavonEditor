@@ -134,7 +134,7 @@
             // 默认展示 edit & 其他 为编辑区域 preview  为预览区域
             default_open: {
                 type:  String,
-                default: 'edit'
+                default: null
             },
             // 是否开启编辑
             editable: {
@@ -182,10 +182,11 @@
                     return markdown.render(this.value);
                 })(),// props 文本内容render*/
                 s_preview_switch: (() => {
-                    if (this.subfield) {
-                        this.default_open.default = 'preview';
+                    let default_open_ = this.default_open;
+                    if (this.subfield && !default_open_) {
+                        default_open_ = 'preview';
                     }
-                    return this.default_open === 'preview' ? true : false;
+                    return default_open_ === 'preview' ? true : false;
                 })(), // props true 展示编辑 false展示预览
                 s_fullScreen: false,// 全屏编辑标志
                 s_help: false,// markdown帮助
