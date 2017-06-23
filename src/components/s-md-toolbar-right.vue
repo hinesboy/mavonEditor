@@ -13,10 +13,10 @@
                 class="op-icon fa fa-eye-slash selected"
                 aria-hidden="true" :title="`${d_words.tl_edit} (F9)`"></button>
         <button type="button" v-if="toolbars.subfield" @click="$clicks('subfield')" v-show="s_subField && !s_screen_phone"
-                class="op-icon fa fa-window-maximize"
+                class="op-icon fa fa-eye-slash selected"
                 aria-hidden="true" :title="`${d_words.tl_single_column} (F9)`"></button>
         <button type="button" v-if="toolbars.subfield" @click="$clicks('subfield')" v-show="!s_subField && !s_screen_phone"
-                class="op-icon fa fa-columns selected"
+                class="op-icon fa fa-eye"
                 aria-hidden="true" :title="`${d_words.tl_double_column} (F9)`"></button>
         <button type="button" v-if="toolbars.fullscreen" @click="$clicks('fullscreen')" v-show="!s_fullScreen"
                 class="op-icon fa fa-arrows-alt"
@@ -24,7 +24,7 @@
         <button type="button" v-if="toolbars.fullscreen" @click="$clicks('fullscreen')" v-show="s_fullScreen"
                 class="op-icon fa fa-compress selected"
                 :title="`${d_words.tl_fullscreen_off} (F10)`" aria-hidden="true"></button>
-        <button type="button" v-if="toolbars.readmodel && !s_screen_phone" @click="$clicks('read')" class="op-icon fa fa-eye" aria-hidden="true"
+        <button type="button" v-if="toolbars.readmodel && !s_screen_phone" @click="$clicks('read')" class="op-icon fa fa-window-maximize" aria-hidden="true"
                 :title="`${d_words.tl_read} (F11)`"></button>
         <span
                 v-if="!s_screen_phone && toolbars.help && toolbars.htmlcode && toolbars.readmodel && toolbars.fullscreen && toolbars.subfield && toolbars.navigation"

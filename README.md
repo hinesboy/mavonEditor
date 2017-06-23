@@ -251,16 +251,18 @@ exports default {
 
 ### props
 
-| name 名称      | type 类型 | default 默认值 | describe 描述                              |
+| name 名称      | type 类型 | default 默认值 | describe 描述                          |
 | ------------ | :-----: | :---------: | ---------------------------------------- |
-| value        | String  |             | 初始值                                      |
-| language     | String  |     cn      | 语言选择，暂支持 cn: 中文简体 ， en: 英文               |
-| scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)                     |
-| subfield     | Boolean |    true     | 默认开启双栏编辑        |
-| editable     | Boolean |    true     | 是否允许编辑                                   |
+| value        | String  |             | 初始值                                     |
+| language     | String  |     cn      | 语言选择，暂支持 cn: 中文简体 ， en: 英文      |
+| scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)              |
+| subfield     | Boolean |    true     | true： 单双栏编辑模式 ， false： 编辑预览模式    |
+| default_open | String |    edit     | edit： 初始展示编辑区域 ， preview： 初始展示预览区域  , 其他 = edit |
+| placeholder | String |    开始编辑...     |  输入框为空时默认提示文本  |
+| editable     | Boolean |    true     | 是否允许编辑     |
 | code_style | String |    code-github     | markdown样式： code-github , code-hybrid , code-xcode   |
-| toolbarsFlag | Boolean |    true     | 工具栏是否显示                                  |
-| toolbars     | Object  |     如下例     | 工具栏                                      |
+| toolbarsFlag | Boolean |    true     | 工具栏是否显示                |
+| toolbars     | Object  |     如下例     | 工具栏                      |
 
 ```javascript
  /*

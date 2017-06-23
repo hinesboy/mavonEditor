@@ -18,7 +18,7 @@ export const keydownListen = ($vm , markdown) => {
         if (!e.ctrlKey && !e.altKey && !e.shiftKey) {
             // one key
             switch (e.keyCode) {
-                case 9: {
+               /* case 9: {
                     // tab 单栏模式
                     if (!$vm.s_subField) {
                         e.preventDefault()
@@ -37,7 +37,7 @@ export const keydownListen = ($vm , markdown) => {
                         }
                     }
                     break;
-                }
+                }*/
                 case 120: {
                     // F9 单栏模式
                     e.preventDefault()

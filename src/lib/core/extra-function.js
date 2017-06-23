@@ -78,12 +78,12 @@ export const getNavigation = ($vm , full) => {
                 } else {
                     let vShowContent = $vm.$refs.vShowContent;
                     let vNoteEdit = $vm.$refs.vNoteEdit;
-                    if (!$vm.s_subField && !$vm.s_screen_phone) {
+                   /* if (!$vm.s_subField && !$vm.s_screen_phone) {
                         let vNoteDivEdit = $vm.$refs.vNoteDivEdit
                         vNoteEdit.scrollTop = vNoteDivEdit.children[i].offsetTop
-                    } else {
+                    } else {*/
                         vNoteEdit.scrollTop = vShowContent.children[i].offsetTop * (vNoteEdit.scrollHeight - vNoteEdit.offsetHeight) / (vShowContent.scrollHeight - vShowContent.offsetHeight)
-                    }
+                   /* }*/
                 }
             }
         }

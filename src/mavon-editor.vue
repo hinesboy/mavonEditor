@@ -13,7 +13,7 @@
         <div class="v-note-panel">
             <!--编辑区-->
             <div ref="vNoteEdit" @scroll="$v_edit_scroll" class="v-note-edit divarea-wrapper"
-                 :class="{'scroll-style': s_scrollStyle ,'no-subField': !s_subField && !s_screen_phone , 'phone-edit': s_screen_phone && s_screen_phone_toggle && !s_html_code, 'phone-show': (s_screen_phone && !s_screen_phone_toggle) || (s_screen_phone && s_html_code)}">
+                 :class="{'scroll-style': s_scrollStyle ,'no-subField': !s_subField && !s_screen_phone , 'phone-edit': (!s_double_column && s_subField ) || ( s_screen_phone && s_screen_phone_toggle && !s_html_code) , 'phone-show': (!s_double_column && !s_subField) || (s_screen_phone && !s_screen_phone_toggle) || (s_screen_phone && s_html_code)}">
                 <!-- 单栏模式 html展示 -->
                 <!-- <div v-show="!s_subField&&s_html_code&&!s_screen_phone" class="content-div">
                     {{d_render}}
@@ -25,13 +25,13 @@
                 </div> -->
                 <div  class="content-input-wrapper">
                     <!-- 双栏 -->
-                    <v-autoTextarea ref="vNoteTextarea" :placeholder="d_words.start_editor" class="content-input" fontSize="15px"
+                    <v-autoTextarea ref="vNoteTextarea" :placeholder="placeholder ? placeholder : d_words.start_editor" class="content-input" fontSize="15px"
                                     lineHeight="1.5" v-model="d_value"></v-autoTextarea>
                 </div>
             </div>
             <!--展示区-->
-            <div :class="{'phone-show': (s_screen_phone && !s_screen_phone_toggle) || (s_screen_phone && s_html_code)}"
-                 v-show="s_subField||s_screen_phone" class="v-note-show">
+            <div :class="{'phone-show': (!s_double_column && !s_subField) || (s_screen_phone && !s_screen_phone_toggle) || (s_screen_phone && s_html_code)}"
+                 class="v-note-show">
                 <div ref="vShowContent" v-html="d_render" v-show="!s_html_code"
                      :class="{'scroll-style': s_scrollStyle}" class="v-show-content">
                 </div>
@@ -126,10 +126,15 @@
                 type: String,
                 default: 'cn'
             },
-            // 默认是否分栏 用于记忆用户模式
+            // 是否启用分栏模式，false为编辑预览模式
             subfield: {
                 type: Boolean,
                 default: true
+            },
+            // 默认展示 edit & 其他 为编辑区域 preview  为预览区域
+            default_open: {
+                type:  String,
+                default: 'edit'
             },
             // 是否开启编辑
             editable: {
@@ -151,10 +156,17 @@
             code_style:{
                 type:String,
                 default:'code-github'
+            },
+            placeholder: {
+                type: String,
+                default: null
             }
         },
         data() {
             return {
+                s_double_column: (() => {
+                    return this.subfield;
+                })(),
                 s_autofocus: true,
                 // 标题导航
                 s_navigation: false,
@@ -163,9 +175,15 @@
                 })(),// props 是否渲染滚动条样式
                 d_value: '',// props 文本内容
                 d_render: '',// props 文本内容render
+               /* d_value: (() => {
+                    return this.value
+                })(),// props 文本内容
+                d_render: (() => {
+                    return markdown.render(this.value);
+                })(),// props 文本内容render*/
                 s_subField: (() => {
-                    return this.subfield;
-                })(), // props 是否分栏模式
+                    return this.default_open === 'preview' ? false : true;
+                })(), // props true 展示编辑 false展示预览
                 s_fullScreen: false,// 全屏编辑标志
                 s_help: false,// markdown帮助
                 s_html_code: false,// 分栏情况下查看html
