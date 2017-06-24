@@ -332,7 +332,7 @@ toolbars: {
 
 ## update(更新内容)
 
-[更新日志](./LOG.md)
+- [更新日志](./LOG.md)
 
 ## Collaborators(合作者)
 
