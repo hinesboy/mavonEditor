@@ -100,10 +100,12 @@
     var s_md_toolbar_left = require('./components/s-md-toolbar-left.vue')
     var s_md_toolbar_right = require('./components/s-md-toolbar-right.vue')
     import hljs from './lib/core/highlight.js'
-    markdown.renderAsync = function (src, env, fuc) {
+    markdown.renderAsync = function (src, env, fuc, _env) {
         env = env || {};
+        _env = _env || {};
         var _res = markdown.renderer.render(this.parse(src, env), this.options, env);
-        hljs(_res, fuc);
+        if(_env['ishljs'] === false) fuc(_res)
+        else hljs(_res, fuc);
     }
     export default {
         props: {
@@ -160,6 +162,10 @@
             placeholder: {
                 type: String,
                 default: null
+            },
+            ishljs: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
@@ -419,7 +425,7 @@
                 var $vm = this;
                 markdown.renderAsync(CONFIG[`help_${lang}`], {}, function(res) {
                     $vm.d_help = res;
-                })
+                }, {'ishljs': $vm.ishljs})
                 this.d_words = CONFIG[`words_${lang}`];
             },
             // 编辑开关
@@ -455,7 +461,7 @@
                     $vm.currentTimeout = setTimeout(() => {
                         $vm.saveHistory()
                     }, 500);
-                })
+                }, {'ishljs': $vm.ishljs})
             },
             value: function (val, oldVal) {
                 if (val !== this.d_value) {

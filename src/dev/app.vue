@@ -17,7 +17,7 @@
             </h2>
             <button @click="uploadimg">upload</button>
             <mavon-editor :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable"
-                          :language="d_language" @change="change" @save="saveone" class="item-editor" v-model="help1"
+                          :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
         </div>
         <!--自定义-->
