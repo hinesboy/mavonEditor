@@ -263,6 +263,7 @@ exports default {
 | code_style | String |    code-github     | markdown样式： code-github , code-hybrid , code-xcode   |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                |
 | toolbars     | Object  |     如下例     | 工具栏                      |
+| ishljs       | Boolean |     true     |  是否高亮代码 |
 
 ```javascript
  /*

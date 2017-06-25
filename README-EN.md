@@ -261,6 +261,7 @@ exports default {
 | code_style | String |    code-github     | markdown Style: code-github , code-hybrid , code-xcode  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
 | toolbars   | Object      |   As in the following example  | toolbars |
+| ishljs       | Boolean |     true     | highlight code switch |
 
 ```javascript
  /*
