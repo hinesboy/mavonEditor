@@ -1,5 +1,5 @@
 # 更新日志
-- **2.0.7** 添加subfiled , default_open 的watch事件
+- **2.0.8** 添加subfiled , default_open 的watch事件
 - **2.0.6** 添加选项是否高亮代码，详见 props: ishljs(17.6.25 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.0.2** 调整编辑模式，详见 props: subfield、default_open(17.6.24)
     - 新增props: placeholder 输入框为空时默认提示文本
