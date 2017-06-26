@@ -469,7 +469,7 @@
                 }
             },
             subfield: function (val, oldVal) {
-                this.s_double_column = this.subfield
+                this.s_double_column = val
             },
             d_history_index () {
                 if (this.d_history_index > 20) {
@@ -484,8 +484,8 @@
             editable: function () {
                 this.editableTextarea();
             },
-            default_open: function () {
-                let default_open_ = this.default_open;
+            default_open: function (val) {
+                let default_open_ = val;
                 if (this.subfield && !default_open_) {
                     default_open_ = 'preview';
                 }
