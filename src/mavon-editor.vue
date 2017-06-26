@@ -128,7 +128,6 @@
                 type: String,
                 default: 'cn'
             },
-            // 是否启用分栏模式，false为编辑预览模式
             subfield: {
                 type: Boolean,
                 default: true
@@ -470,7 +469,7 @@
                 }
             },
             subfield: function (val, oldVal) {
-                this.s_preview_switch = this.subfield
+                this.s_double_column = this.subfield
             },
             d_history_index () {
                 if (this.d_history_index > 20) {
@@ -484,6 +483,13 @@
             },
             editable: function () {
                 this.editableTextarea();
+            },
+            default_open: function () {
+                let default_open_ = this.default_open;
+                if (this.subfield && !default_open_) {
+                    default_open_ = 'preview';
+                }
+                return default_open_ === 'preview' ? true : false;
             }
         },
         components: {
