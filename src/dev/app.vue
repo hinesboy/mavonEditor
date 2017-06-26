@@ -16,7 +16,7 @@
                 {{d_words.default_setting}}
             </h2>
             <button @click="uploadimg">upload</button>
-            <mavon-editor :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable"
+            <mavon-editor :subfield="true" :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
         </div>
@@ -222,5 +222,4 @@
                 margin-bottom: 1rem
         .item-editor
             width 100%
-            height 500px
 </style>
