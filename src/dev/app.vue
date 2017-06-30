@@ -51,7 +51,7 @@
         name: 'app',
         data () {
             return {
-                d_language: 'cn',
+                d_language: 'fr',
                 help1: '',
                 help2: '',
                 d_words: {},
@@ -223,4 +223,5 @@
                 margin-bottom: 1rem
         .item-editor
             width 100%
+            height 500px
 </style>

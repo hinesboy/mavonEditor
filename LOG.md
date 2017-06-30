@@ -1,4 +1,5 @@
 # 更新日志
+- **2.1.1** 添加法语语言包(17.6.30 / [dimalusa](https://github.com/dimalusa))
 - **2.0.9** 添加subfiled , default_open 的watch事件(17.6.26)
     - 修复预览模式不设置高度情况下，高度过大问题
 - **2.0.6** 添加选项是否高亮代码，详见 props: ishljs(17.6.25 / [CHENXCHEN](https://github.com/CHENXCHEN))
