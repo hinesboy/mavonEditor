@@ -2,3 +2,5 @@
 /.idea/*
 npm-debug.log
 git-debug.log
+.idea/
+dist
