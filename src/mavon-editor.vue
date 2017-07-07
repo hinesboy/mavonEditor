@@ -56,10 +56,12 @@
         </div>
         <!--帮助文档-->
         <transition name="fade">
-            <div @click="toolbar_right_click('help')" class="v-note-help-wrapper" v-if="s_help">
-                <div @click.stop.prevent="" class="v-note-help-content">
-                    <i @click.stop.prevent="toolbar_right_click('help')" class="fa fa-times" aria-hidden="true"></i>
-                    <div class="scroll-style v-note-help-show" v-html="d_help"></div>
+            <div ref="help">
+                <div @click="toolbar_right_click('help')" class="v-note-help-wrapper" v-if="s_help">
+                    <div @click.stop.prevent="" class="v-note-help-content markdown-body code-hybrid">
+                        <i @click.stop.prevent="toolbar_right_click('help')" class="fa fa-times" aria-hidden="true"></i>
+                        <div class="scroll-style v-note-help-show" v-html="d_help"></div>
+                    </div>
                 </div>
             </div>
         </transition>
@@ -239,6 +241,11 @@
             // fullscreen事件
             fullscreenchange(this);
             this.d_value = this.value;
+            // 将help添加到末尾
+            document.body.appendChild(this.$refs.help);
+        },
+        beforeDestroy() {
+            document.body.removeChild(this.$refs.help);
         },
         methods: {
             $drag($e){

@@ -203,43 +203,43 @@
       &.show
         display block
 
-    .v-note-help-wrapper
-      position fixed
-      left 0
-      right 0
-      top 0
-      bottom 0
-      background rgba(0, 0, 0, 0.7)
-      z-index 2
-      transition all 0.1s linear 0s
-      &.fade-enter-active, &.fade-leave-active
-        opacity 1
-      &.fade-enter, &.fade-leave-active
-        opacity 0
-      .v-note-help-content
-        position relative
-        width 60%
-        max-width 800px
-        margin 30px auto
-        height 90%
-        min-width 320px
-        transition all 0.1s linear 0s
-        z-index 3
-        box-shadow: 0 0px 5px rgba(0, 0, 0, .156863), 0 0px 5px rgba(0, 0, 0, .227451)
-        i
-          font-size 28px
-          position absolute
-          right 15px
-          top 8px
-          color rgba(0, 0, 0, 0.7)
-          cursor pointer
-          &:hover
-            color rgba(0, 0, 0, 1)
-        .v-note-help-show
-          width 100%
-          height 100%
-          font-size 18px
-          background #fbfbfb
-          overflow-y auto
-          padding 2% 6%
-          scrollbar()
+.v-note-help-wrapper
+  position fixed
+  left 0
+  right 0
+  top 0
+  bottom 0
+  background rgba(0, 0, 0, 0.7)
+  z-index 1600
+  transition all 0.1s linear 0s
+  &.fade-enter-active, &.fade-leave-active
+    opacity 1
+  &.fade-enter, &.fade-leave-active
+    opacity 0
+  .v-note-help-content
+    position relative
+    width 60%
+    max-width 800px
+    margin 30px auto
+    height 90%
+    min-width 320px
+    transition all 0.1s linear 0s
+    z-index 3
+    box-shadow: 0 0px 5px rgba(0, 0, 0, .156863), 0 0px 5px rgba(0, 0, 0, .227451)
+    i
+      font-size 28px
+      position absolute
+      right 15px
+      top 8px
+      color rgba(0, 0, 0, 0.7)
+      cursor pointer
+      &:hover
+        color rgba(0, 0, 0, 1)
+    .v-note-help-show
+      width 100%
+      height 100%
+      font-size 18px
+      background #fbfbfb
+      overflow-y auto
+      padding 2% 6%
+      scrollbar()
