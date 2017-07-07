@@ -51,7 +51,7 @@
         name: 'app',
         data () {
             return {
-                d_language: 'fr',
+                d_language: 'cn',
                 help1: '',
                 help2: '',
                 d_words: {},
