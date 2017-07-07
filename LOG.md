@@ -1,4 +1,5 @@
 # 更新日志
+- **2.1.2** 将help文档添加至document.body的末尾，修复flex嵌套样式错误(17.7.7 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.1** 添加法语语言包(17.6.30 / [dimalusa](https://github.com/dimalusa))
 - **2.0.9** 添加subfiled , default_open 的watch事件(17.6.26)
     - 修复预览模式不设置高度情况下，高度过大问题
