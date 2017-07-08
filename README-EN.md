@@ -61,6 +61,24 @@ module.exports = {
 }
 ```
 
+**notice**: If you are using `HtmlWebpackPlugin` Plugin(such as the `vue-cli` default project), you will need to manually specify the plug-in chunks,
+Otherwise all code highlighted file will be introduced in HTML (probably more than two hundred js displayed in the HTML page),
+the plug-in configuration code roughly as follows:
+```javascript
+module.exports = {
+    //....
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'index.html',
+            inject: true,
+            chunks: ['app'] // chunks name of you need to introduced
+        })
+    ]
+    //....
+}
+```
+
 ### Use
 
 #### method 1

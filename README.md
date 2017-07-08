@@ -62,6 +62,22 @@ module.exports = {
     //...
 }
 ```
+**注意**: 如果你使用`HtmlWebpackPlugin`插件(如默认的`vue-cli`项目)，那么需要手动指定该插件的chunks，
+否则所有代码高亮文件将会被引入html(大概有两百多个js显示在html页面上)，插件配置代码大致如下:
+```javascript
+module.exports = {
+    //....
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'index.html',
+            inject: true,
+            chunks: ['app'] // 需要引入的chunk入口名
+        })
+    ]
+    //....
+}
+```
 
 ### Use (如何引入)
 
