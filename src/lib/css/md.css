@@ -28,3 +28,13 @@
 .code-xcode{
 @import "node_modules/highlight.js/styles/xcode.css"
 }
+
+.markdown-body .hljs-center {
+    text-align: center;
+}
+.markdown-body .hljs-right {
+    text-align: right;
+}
+.markdown-body .hljs-left {
+    text-align: left;
+}

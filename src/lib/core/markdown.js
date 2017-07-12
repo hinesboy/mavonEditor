@@ -47,7 +47,6 @@ var mark = require('markdown-it-mark')
 //
 var container = require('markdown-it-container')
 
-var aligncenter = require('markdown-it-center-text');
 var alignright = require('markdown-it-right-text');
 // math katex
 var katex = require('markdown-it-katex');
@@ -55,7 +54,10 @@ var miip = require('markdown-it-images-preview');
 markdown.use(emoji)
     .use(sup)
     .use(sub)
-    .use(aligncenter)
+    .use(container)
+    .use(container, 'hljs-left')
+    .use(container, 'hljs-center')
+    .use(container, 'hljs-right')
     .use(alignright)
     .use(deflist)
     .use(abbr)

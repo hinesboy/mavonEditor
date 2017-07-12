@@ -117,13 +117,18 @@ export const toolbar_left_click = (_type, $vm) => {
              str: '|column1|column2|column3|\n|-|-|-|\n|content1|content2|content3|\n'
          },
          'aligncenter': {
-           prefix: '->',
-           subfix: '<-',
+           prefix: '::: hljs-center\n\n',
+           subfix: '\n\n:::\n',
            str: '中心'
          },
          'alignright': {
-           prefix: '=>',
-           subfix: '*',
+           prefix: '::: hljs-right\n\n',
+           subfix: '\n\n:::\n',
+           str: '中心'
+         },
+         'alignleft': {
+           prefix: '::: hljs-left\n\n',
+           subfix: '\n\n:::\n',
            str: '中心'
          }
      };
