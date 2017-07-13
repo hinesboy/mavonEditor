@@ -337,6 +337,12 @@ toolbars: {
 | imgAdd | String: filename, File: imgfile |  Add image file callback event(filename: write in origin md, File: File Object) |
 | imgDel | String: filename |  Delete image file callback event(filename: write in origin md) |
 
+### methods
+| name   |            params  | describe  |
+| ----------------   | :-----------------------------: | ---------------------------------------- |
+| $imgDel            |  String: filename | delete the img file from markdown editor |
+| $imgUpdateByUrl    |  String: filename, String: url | Update filename to url(example: ./0 -> http://path/to/png/some.png) |
+
 ## Dependencies
 - [markdown-it](https://github.com/markdown-it/markdown-it)
 

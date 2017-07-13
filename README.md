@@ -338,6 +338,12 @@ toolbars: {
 | imgAdd           | String: filename, File: imgfile | 图片文件添加回调事件(filename: 写在md中的文件名, File: File Object) |
 | imgDel           |        String: filename         | 图片文件删除回调事件(filename: 写在md中的文件名)          |
 
+### methods
+| name 方法名        |            params 参数            | describe 描述                              |
+| ----------------   | :-----------------------------: | ---------------------------------------- |
+| $imgDel            |  String: filename | 主动删除对应图片文件 |
+| $imgUpdateByUrl    |  String: filename, String: url | 将相对路径值替换为url(如./0 -> http://path/to/png/some.png) |
+
 ## Dependencies (依赖)
 
 - [markdown-it](https://github.com/markdown-it/markdown-it)
