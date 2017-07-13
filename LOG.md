@@ -1,4 +1,5 @@
 # 更新日志
+- **2.1.4** 修复`imgAdd`事件于`change`前响应的bug，导致`imgAdd`响应时无法获取改变后的value[#25](https://github.com/hinesboy/mavonEditor/issues/25#issuecomment-314947131)(17.7.13 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.3** ishljs默认设置为false(17.7.8)
 - **2.1.2** 将help文档添加至document.body的末尾，修复flex嵌套样式错误(17.7.7 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.1** 添加法语语言包(17.6.30 / [dimalusa](https://github.com/dimalusa))
