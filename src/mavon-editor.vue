@@ -328,6 +328,13 @@
                     }
                 }
             },
+            $imgUpdateByUrl(pos, url) {
+                var $vm = this;
+                this.s_markdown.image_add(pos, url);
+                this.$nextTick(function() {
+                    $vm.d_render = this.s_markdown.render(this.d_value);
+                })
+            },
             toolbar_left_click(_type) {
                 toolbar_left_click(_type, this);
             },

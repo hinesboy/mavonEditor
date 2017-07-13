@@ -17,7 +17,7 @@
                 {{d_words.default_setting}}
             </h2>
             <button @click="uploadimg">upload</button>
-            <mavon-editor :subfield="true" :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable"
+            <mavon-editor ref=md :subfield="true" :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
         </div>
@@ -104,6 +104,8 @@
             $imgAdd(pos, $file){
                 console.log('imgAdd', pos, $file);
                 this.img_file[pos] = $file;
+                // console.log(this.$refs.md);
+                // this.$refs.md.$imgUpdateByUrl(pos, 'http://pic.58pic.com/58pic/13/46/50/61758PICWZY_1024.jpg');
             },
             $imgDel(pos){
                 console.log('imgDel', pos);
