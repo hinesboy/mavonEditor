@@ -102,9 +102,11 @@
                 // console.log(formdata);
             },
             $imgAdd(pos, $file){
+                console.log('imgAdd', pos, $file);
                 this.img_file[pos] = $file;
             },
             $imgDel(pos){
+                console.log('imgDel', pos);
                 delete this.img_file[pos];
             },
             sizeToStatus () {

@@ -317,12 +317,14 @@
                             subfix: '',
                             str: ''
                         });
+                    $vm.$nextTick(function() {
+                        $vm.$emit('imgAdd', pos, $file);
+                    })
                 }
                 if($file){
                     var oFile = $file;
                     if(this.__rFilter.test(oFile.type)){
                         this.__oFReader.readAsDataURL(oFile);
-                        this.$emit('imgAdd', pos, $file);
                     }
                 }
             },

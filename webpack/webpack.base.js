@@ -3,8 +3,8 @@
  * @Date:   2017-05-07T20:11:11+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.base.js
- * @Last modified by:   chc
- * @Last modified time: 2017-06-13T12:15:30+08:00
+ * @Last modified by:
+ * @Last modified time: 2017-07-13T10:00:34+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -124,7 +124,7 @@ module.exports = {
             // In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`.
             analyzerMode: 'server',
             // Host that will be used in `server` mode to start HTTP server.
-            analyzerHost: '0.0.0.0',
+            analyzerHost: '127.0.0.1',
             // Port that will be used in `server` mode to start HTTP server.
             analyzerPort: 8888,
             // Path to bundle report file that will be generated in `static` mode.
