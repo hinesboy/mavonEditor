@@ -147,7 +147,7 @@ export default {
             for(var i = 0;i < this.img_file.length;i++) {
                 if(this.img_file[i][0] == filename) {
                     this.img_file[i][1] = $file;
-                    this.$emit('imgAdd', this.img_file[1][0], $file, false);
+                    this.$emit('imgAdd', filename, $file, false);
                     return true;
                 }
             }
