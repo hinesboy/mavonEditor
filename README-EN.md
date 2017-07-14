@@ -38,6 +38,11 @@ $ npm install mavon-editor --save
 
 > If you do not need code highlighting, you can ignore this step
 
+Set ishljs = true
+```javascript
+    <mavon-editor :ishljs = "true"></mavon-editor>
+```
+
 For optimize the size of pack, since v2.0.0 `hightlight.js` will on-demand load highlight files, you should pack highlight files(`mavon-editor/dist/js/*.js`) manual.
 If you are using webpack , you sould config `webpack` as shown below
 `webpack.conf.js`:
