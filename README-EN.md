@@ -338,10 +338,14 @@ toolbars: {
 | imgDel | String: filename |  Delete image file callback event(filename: write in origin md) |
 
 ### methods
-| name   |            params  | describe  |
+| name      |            params         | describe      |
 | ----------------   | :-----------------------------: | ---------------------------------------- |
-| $imgDel            |  String: filename | delete the img file from markdown editor |
-| $imgUpdateByUrl    |  String: filename, String: url | Update filename to url(example: ./0 -> http://path/to/png/some.png) |
+| $vm.$refs.toolbar_left.$imgDelByFilename(>=**2.1.6**) |  String: filename | Delete the image by filename, return true if sucess, false otherwise |
+| $vm.$refs.toolbar_left.$imgAddByFilename(>=**2.1.6**) |  String: filename, File: file | Add the image by filename (The filename alias style must be "./filename"), return true if sucess, false otherwise |
+| $vm.$refs.toolbar_left.$imgUpdateByFilename(>=**2.1.6**) |  String: filename, File: file | Update the image by filename(The filename alias style must be "./filename"), return true if sucess, false otherwise |
+| $vm.$imgUpdateByUrl(>=**2.1.6**)    |  String: filename, String: url | Update filename to url(example: ./0 -> http://path/to/png/some.png) |
+
+**Notice**: `$vm` => reference instance of component
 
 ## Dependencies
 - [markdown-it](https://github.com/markdown-it/markdown-it)

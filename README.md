@@ -327,8 +327,8 @@ toolbars: {
 
 | name 方法名         |            params 参数            | describe 描述                              |
 | ---------------- | :-----------------------------: | ---------------------------------------- |
-| change           |  String: value , String: reder  | 编辑区发生变化的回调事件(render: value 经过markdown解析后的结果) |
-| save             |  String: value , String: reder  | ctrl + s 的回调事件(保存按键,同样触发该回调)             |
+| change           |  String: value , String: render  | 编辑区发生变化的回调事件(render: value 经过markdown解析后的结果) |
+| save             |  String: value , String: render  | ctrl + s 的回调事件(保存按键,同样触发该回调)             |
 | fullscreen       | Boolean: status , String: value | 切换全屏编辑的回调事件(boolean: 全屏开启状态)             |
 | readmodel        | Boolean: status , String: value | 切换沉浸式阅读的回调事件(boolean: 阅读开启状态)            |
 | htmlcode         | Boolean: status , String: value | 查看html源码的回调事件(boolean: 源码开启状态)           |
@@ -341,8 +341,12 @@ toolbars: {
 ### methods
 | name 方法名        |            params 参数            | describe 描述                              |
 | ----------------   | :-----------------------------: | ---------------------------------------- |
-| $imgDel            |  String: filename | 主动删除对应图片文件 |
-| $imgUpdateByUrl    |  String: filename, String: url | 将相对路径值替换为url(如./0 -> http://path/to/png/some.png) |
+| $vm.$refs.toolbar_left.$imgDelByFilename(>=**2.1.6**) |  String: filename | 主动删除对应图片文件, 如果成功返回TRUE，否则返回FALSE |
+| $vm.$refs.toolbar_left.$imgAddByFilename(>=**2.1.6**) |  String: filename, File: file | 添加对应图片文件，文件别名为filename(filename 必须为 ./filename 样式), 如果成功返回TRUE，否则返回FALSE |
+| $vm.$refs.toolbar_left.$imgUpdateByFilename(>=**2.1.6**) |  String: filename, File: file | 更新对应文件名的图片文件(filename 必须为 ./filename 样式), 如果成功返回TRUE，否则返回FALSE |
+| $vm.$imgUpdateByUrl(>=**2.1.5**)    |  String: filename, String: url | 将相对路径值替换为url(如./0 -> http://path/to/png/some.png) |
+
+注意:`$vm` => 组件引用实例
 
 ## Dependencies (依赖)
 

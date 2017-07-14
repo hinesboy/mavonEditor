@@ -303,7 +303,8 @@
                 this.d_render = this.s_markdown.render(this.d_value);
                 this.$emit('imgDel', pos);
             },
-            $imgAdd(pos, $file){
+            $imgAdd(pos, $file, isinsert){
+                if(isinsert === undefined) isinsert = true;
                 var $vm = this;
                 if(this.__rFilter == null)
                 // this.__rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
@@ -311,15 +312,17 @@
                 this.__oFReader = new FileReader();
                 this.__oFReader.onload = function (oFREvent){
                     $vm.s_markdown.image_add(pos, oFREvent.target.result);
-                    $vm.insertText($vm.getTextareaDom(),
+                    if(isinsert == true) {
+                        $vm.insertText($vm.getTextareaDom(),
                         {
                             prefix: '\n![图片](' + pos + ')',
                             subfix: '',
                             str: ''
                         });
-                    $vm.$nextTick(function() {
-                        $vm.$emit('imgAdd', pos, $file);
-                    })
+                        $vm.$nextTick(function() {
+                            $vm.$emit('imgAdd', pos, $file);
+                        })
+                    }
                 }
                 if($file){
                     var oFile = $file;

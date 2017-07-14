@@ -80,6 +80,8 @@
                 $vm.sizeToStatus()
             })
         },
+        mounted() {
+        },
         methods: {
             uploadimg($e){
                 // upload files in one request.
@@ -104,6 +106,10 @@
             $imgAdd(pos, $file){
                 console.log('imgAdd', pos, $file);
                 this.img_file[pos] = $file;
+                // console.log(this.$refs.md.$refs.toolbar_left.$imgDelByFilename(pos));
+                // console.log(this.$refs.md.$refs.toolbar_left.$imgAddByFilename('./test', $file))
+                // console.log(this.$refs.md.$refs.toolbar_left.$imgUpdateByFilename('./test', $file))
+                // console.log(this.$refs.md.$refs.toolbar_left.$imgAddByFilename('./test', $file))
                 // console.log(this.$refs.md);
                 // this.$refs.md.$imgUpdateByUrl(pos, 'http://pic.58pic.com/58pic/13/46/50/61758PICWZY_1024.jpg');
             },

@@ -122,6 +122,37 @@ export default {
             this.$emit('imgDel', this.img_file[pos][0]);
             this.img_file.splice(pos, 1);
         },
+        $imgDelByFilename(filename) {
+            var pos = 0;
+            while(this.img_file.length > pos) {
+                if(this.img_file[pos][0] == filename) {
+                    this.$emit('imgDel', filename);
+                    this.img_file.splice(pos, 1);
+                    return true;
+                }
+                pos += 1;
+            }
+            return false;
+        },
+        $imgAddByFilename(filename, $file) {
+            for(var i = 0;i < this.img_file.length;i++)
+                if(this.img_file[i][0] == filename) return false;
+            this.img_file[0][0] = filename;
+            this.img_file[0][1] = $file;
+            this.img_file.unshift(['./' + (this.num), null])
+            this.$emit('imgAdd', this.img_file[1][0], $file, false);
+            return true;
+        },
+        $imgUpdateByFilename(filename, $file) {
+            for(var i = 0;i < this.img_file.length;i++) {
+                if(this.img_file[i][0] == filename) {
+                    this.img_file[i][1] = $file;
+                    this.$emit('imgAdd', this.img_file[1][0], $file, false);
+                    return true;
+                }
+            }
+            return false;
+        },
         // 工具栏功能图标click-----------------
         $clicks(_type) {
             if(_type == "imagelink"){
