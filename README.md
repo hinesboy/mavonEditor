@@ -37,6 +37,13 @@ $ npm install mavon-editor --save
 
 #### Webpack
 
+> 如不需要hightlight代码高亮显示，可以忽略此步骤
+
+开启代码高亮props
+```javascript
+    <mavon-editor :ishljs = "true"></mavon-editor>
+```
+
 为了优化打包引入体积，从**2.0.0**起`hightlight.js`各代码高亮文件将在使用时按需异步加载，必须要将`mavon-editor/dist/js/*.js`都引入
 如果你使用`webpack`打包，你需要配置webpack如下所示
 `webpack.conf.js`:
