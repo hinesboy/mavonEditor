@@ -1,4 +1,5 @@
 # 更新日志
+- **2.1.6** 添加`$imgAddByFilename`, `$imgDelByFilename`, `$imgUpdateByUrl`方法用以直接操作图片[#25](https://github.com/hinesboy/mavonEditor/issues/25#issuecomment-314947131)(17.7.14 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.5** 添加`$imgUpdateByUrl`方法，用来替换相对路径为绝对路径[#25](https://github.com/hinesboy/mavonEditor/issues/25#issuecomment-314947131)(17.7.13 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.4** 修复`imgAdd`事件于`change`前响应的bug，导致`imgAdd`响应时无法获取改变后的value[#25](https://github.com/hinesboy/mavonEditor/issues/25#issuecomment-314947131)(17.7.13 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.3** ishljs默认设置为false(17.7.8)
