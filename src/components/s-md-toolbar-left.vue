@@ -17,6 +17,12 @@
                 aria-hidden="true" :title="`${d_words.tl_superscript} (ctrl+alt+s)`"></button>
         <button :disabled="!editable" type="button" v-if="toolbars.subscript" @click="$clicks('subscript')" class="op-icon fa fa-subscript"
                 aria-hidden="true" :title="`${d_words.tl_subscript} (ctrl+shift+s)`"></button>
+        <button :disabled="!editable" type="button" v-if="toolbars.alignleft" @click="$clicks('alignleft')" class="op-icon fa fa-align-left"
+                aria-hidden="true" :title="`${d_words.alignleft}`">
+        </button><button :disabled="!editable" type="button" v-if="toolbars.aligncenter" @click="$clicks('aligncenter')" class="op-icon fa fa-align-center"
+                aria-hidden="true" :title="`${d_words.aligncenter}`"></button>
+        </button><button :disabled="!editable" type="button" v-if="toolbars.alignright" @click="$clicks('alignright')" class="op-icon fa fa-align-right"
+                aria-hidden="true" :title="`${d_words.alignright}`"></button>
         <span
                 v-if="toolbars.superscript || toolbars.subscript || toolbars.underline || toolbars.strikethrough || toolbars.mark"
                 class="op-icon-divider"></span>

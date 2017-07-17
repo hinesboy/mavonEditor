@@ -115,6 +115,21 @@ export const toolbar_left_click = (_type, $vm) => {
              prefix: '',
              subfix: '',
              str: '|column1|column2|column3|\n|-|-|-|\n|content1|content2|content3|\n'
+         },
+        'alignleft': {
+          prefix: '<p style="text-align:left" markdown="1">',
+          subfix: '</p>',
+          str: '中心'
+        },
+         'aligncenter': {
+           prefix: '<p style="text-align:center" markdown="1">',
+           subfix: '</p>',
+           str: '中心'
+         },
+         'alignright': {
+           prefix: '<p style="text-align:right" markdown="1">',
+           subfix: '</p>',
+           str: '中心'
          }
      };
      if (_param_of_insert_text.hasOwnProperty(_type)) {
