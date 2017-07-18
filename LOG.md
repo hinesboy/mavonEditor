@@ -1,4 +1,5 @@
 # 更新日志
+- **2.1.8** 添加居中、居左、居右快捷键(https://github.com/hinesboy/mavonEditor/pull/28)(17.7.18 / [AdrienCasta](https://github.com/AdrienCasta))
 - **2.1.7** 修正`$imgUpdateByFilename`触发`imgAdd`事件时返回filename错误的bug[#25](https://github.com/hinesboy/mavonEditor/issues/25)(17.7.14 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.6** 添加`$imgAddByFilename`, `$imgDelByFilename`, `$imgUpdateByUrl`方法用以直接操作图片[#25](https://github.com/hinesboy/mavonEditor/issues/25)(17.7.14 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.5** 添加`$imgUpdateByUrl`方法，用来替换相对路径为绝对路径[#25](https://github.com/hinesboy/mavonEditor/issues/25#issuecomment-314947131)(17.7.13 / [CHENXCHEN](https://github.com/CHENXCHEN))

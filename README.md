@@ -325,7 +325,11 @@ toolbars: {
       trash: true, // 清空
       save: true, // 保存（触发events中的save事件）
       /* 1.4.2 */
-      navigation: true // 导航目录
+      navigation: true, // 导航目录
+      /* 2.1.8 */
+      alignleft: true, // 左对齐
+      aligncenter: true, // 居中
+      alignright: true, // 右对齐
   }
 ```
 
