@@ -13,6 +13,9 @@
 .fa-eye-slash:before { content: '\e80b'; } /* '' */
 .fa-question-circle:before { content: '\e80c'; } /* '' */
 .fa-times:before { content: '\e80d'; } /* '' */
+.fa-align-center:before { content: '\e80e'; } /* '' */
+.fa-align-left:before { content: '\e80f'; } /* '' */
+.fa-align-right:before { content: '\e810'; } /* '' */
 .fa-arrows-alt:before { content: '\f0b2'; } /* '' */
 .fa-bars:before { content: '\f0c9'; } /* '' */
 .fa-list-ul:before { content: '\f0ca'; } /* '' */

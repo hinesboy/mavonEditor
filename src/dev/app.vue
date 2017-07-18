@@ -59,6 +59,7 @@
                 toolbars: {
                     underline: true, // 下划线
                     strikethrough: true, // 中划线
+                    alignCenter: true, // 中划线
                     undo: true,
                     save: true,
                     fullscreen: true, // 全屏编辑

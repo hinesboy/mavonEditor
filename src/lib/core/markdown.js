@@ -29,6 +29,7 @@ var markdown_config = {
 var markdown = require('markdown-it')(markdown_config);
 // 表情
 var emoji = require('markdown-it-emoji');
+//
 // 下标
 var sub = require('markdown-it-sub')
 // 上标
@@ -51,6 +52,10 @@ var miip = require('markdown-it-images-preview');
 markdown.use(emoji)
     .use(sup)
     .use(sub)
+    .use(container)
+    .use(container, 'hljs-left')/*align left */
+    .use(container, 'hljs-center')/*align center */
+    .use(container, 'hljs-right')/*align right */
     .use(deflist)
     .use(abbr)
     .use(footnote)
