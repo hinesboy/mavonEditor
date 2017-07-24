@@ -2,7 +2,7 @@ Markdown 语法简介
 =============
 > [语法详解](http://commonmark.org/help/)
 
-## 粗体
+## **粗体**
 ```
 **粗体**
 __粗体__
@@ -123,3 +123,23 @@ hello[^hello]
 我们也可以单行渲染
 $$\sum_{i=1}^n a_i=0$$
 具体可参照[katex文档](http://www.intmath.com/cg5/katex-mathjax-comparison.php)和[katex支持的函数](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX)以及[latex文档](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
+
+## 布局
+
+::: hljs-left
+`::: hljs-left`
+`居左`
+`:::`
+:::
+
+::: hljs-center
+`::: hljs-center`
+`居中`
+`:::`
+:::
+
+::: hljs-right
+`::: hljs-right`
+`居右`
+`:::`
+:::

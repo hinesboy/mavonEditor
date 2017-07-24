@@ -3,8 +3,8 @@
  * @Date:   2017-05-03T01:23:38+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: toolbar_left_click.js
- * @Last modified by:   chc
- * @Last modified time: 2017-06-09T00:10:16+08:00
+ * @Last modified by:   CHC
+ * @Last modified time: 2017-07-24T19:56:17+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -124,12 +124,12 @@ export const toolbar_left_click = (_type, $vm) => {
          'alignright': {
            prefix: '::: hljs-right\n\n',
            subfix: '\n\n:::\n',
-           str: '中心'
+           str: '右边'
          },
          'alignleft': {
            prefix: '::: hljs-left\n\n',
            subfix: '\n\n:::\n',
-           str: '中心'
+           str: '左边'
          }
      };
      if (_param_of_insert_text.hasOwnProperty(_type)) {

@@ -2,7 +2,7 @@ Markdown Guide
 ===
 > Detailed: [http://commonmark.org/help/](http://commonmark.org/help/)
 
-## Bold
+## **Bold**
 ```
 **bold**
 __bold__
@@ -128,3 +128,23 @@ We can render formulas for example：$x_i + y_i = z_i$ and $\sum_{i=1}^n a_i=0$
 We can also single-line rendering
 $$\sum_{i=1}^n a_i=0$$
 Detailed: [katex](http://www.intmath.com/cg5/katex-mathjax-comparison.php)和[katex function](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX)以及[latex](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
+
+## Layout
+
+::: hljs-left
+`::: hljs-left`
+`left`
+`:::`
+:::
+
+::: hljs-center
+`::: hljs-center`
+`center`
+`:::`
+:::
+
+::: hljs-right
+`::: hljs-right`
+`right`
+`:::`
+:::
