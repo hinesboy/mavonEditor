@@ -3,4 +3,5 @@
 npm-debug.log
 git-debug.log
 .idea/
-dist
+.DS_Store
+.ftpconfig
