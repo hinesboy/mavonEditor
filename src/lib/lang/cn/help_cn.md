@@ -143,3 +143,42 @@ $$\sum_{i=1}^n a_i=0$$
 `居右`
 `:::`
 :::
+
+## 定义
+
+术语一
+
+:   定义一
+
+包含有*行内标记*的术语二
+
+:   定义二
+
+        {一些定义二的文字或代码}
+
+    定义二的第三段
+
+```
+术语一
+
+:   定义一
+
+包含有*行内标记*的术语二
+
+:   定义二
+
+        {一些定义二的文字或代码}
+
+    定义二的第三段
+
+```
+
+## abbr
+*[HTML]: Hyper Text Markup Language
+*[W3C]:  World Wide Web Consortium
+HTML 规范由 W3C 维护
+```
+*[HTML]: Hyper Text Markup Language
+*[W3C]:  World Wide Web Consortium
+HTML 规范由 W3C 维护
+```

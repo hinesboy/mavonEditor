@@ -148,3 +148,44 @@ Detailed: [katex](http://www.intmath.com/cg5/katex-mathjax-comparison.php)和[ka
 `right`
 `:::`
 :::
+
+## deflist
+
+Term 1
+
+:   Definition 1
+
+Term 2 with *inline markup*
+
+:   Definition 2
+
+        { some code, part of Definition 2 }
+
+    Third paragraph of definition 2.
+
+```
+Term 1
+
+:   Definition 1
+
+Term 2 with *inline markup*
+
+:   Definition 2
+
+        { some code, part of Definition 2 }
+
+    Third paragraph of definition 2.
+
+```
+
+## abbr
+*[HTML]: Hyper Text Markup Language
+*[W3C]:  World Wide Web Consortium
+The HTML specification
+is maintained by the W3C.
+```
+*[HTML]: Hyper Text Markup Language
+*[W3C]:  World Wide Web Consortium
+The HTML specification
+is maintained by the W3C.
+```
