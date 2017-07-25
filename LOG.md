@@ -1,4 +1,5 @@
 # 更新日志
+- **2.1.10** 操作失误，发布2.1.9的Release(17.7.24 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.9** 修复显示问题，更新帮助文档(17.7.24 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.8** 添加居中、居左、居右快捷键(17.7.18 / [AdrienCasta](https://github.com/AdrienCasta))
 - **2.1.7** 修正`$imgUpdateByFilename`触发`imgAdd`事件时返回filename错误的bug[#25](https://github.com/hinesboy/mavonEditor/issues/25)(17.7.14 / [CHENXCHEN](https://github.com/CHENXCHEN))
