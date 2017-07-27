@@ -525,3 +525,8 @@
     @import "lib/css/scroll.styl"
     @import "lib/css/mavon-editor.styl"
 </style>
+<style lang="css">
+.auto-textarea-wrapper {
+    height: 100%;
+}
+</style>
