@@ -358,7 +358,7 @@ toolbars: {
 | $vm.$imgUpdateByUrl(>=**2.1.5**)    |  String: filename, String: url | 将相对路径值替换为url(如./0 -> http://path/to/png/some.png) |
 | $vm.$imgAddByUrl(>=**2.1.11**)    |  String: filename, String: url | 同上(如./0 -> http://path/to/png/some.png) |
 | $vm.$img2Url(>=**2.1.11**)    |  String: filename, String: url | 将图片文件名替换为url(如`![h](./0)` -> `![h](http://path/to/png/some.png)`) |
-| $vm.$imglst2Url(>=**2.1.11**)    |  Array: filenameLst(列表格式如[['./0', 'http://path/to/png/some.0.png'], ['./2', 'http://path/to/png/some.2.png']]) | 将一系列文件列表替换为对应的url(同上) |
+| $vm.$imglst2Url(>=**2.1.11**)    |  Array: filenameLst | 同上(filenameLst: [[filename, url], ...]) |
 
 注意:`$vm` => 组件引用实例
 

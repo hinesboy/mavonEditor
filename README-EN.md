@@ -357,7 +357,7 @@ toolbars: {
 | $vm.$imgUpdateByUrl(>=**2.1.6**)    |  String: filename, String: url | Update filename to url(example: ./0 -> http://path/to/png/some.png) |
 | $vm.$imgAddByUrl(>=**2.1.11**)    |  String: filename, String: url | Same as above |
 | $vm.$img2Url(>=**2.1.11**)    |  String: filename, String: url | replace filename to url(example: `![h](./0)` -> `![h](http://path/to/png/some.png)`) |
-| $vm.$imglst2Url(>=**2.1.11**)    |  Array: filenameLst(example: [['./0', 'http://path/to/png/some.0.png'], ['./2', 'http://path/to/png/some.2.png']]) | Same as above |
+| $vm.$imglst2Url(>=**2.1.11**)    |  Array: filenameLst | Same as above(filenameLst: [[filename, url], ...]) |
 
 **Notice**: `$vm` => reference instance of component
 
