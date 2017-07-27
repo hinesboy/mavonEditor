@@ -1,1 +1,1 @@
-webpackJsonpmavon_editor([151],{326:function(n,e){n.exports=function(n){return{contains:[{className:"meta",begin:/^([\w.-]+|\s*#_)=>/,starts:{end:/$/,subLanguage:"clojure"}}]}}}});
+webpackJsonpmavon_editor([151],{328:function(n,e){n.exports=function(n){return{contains:[{className:"meta",begin:/^([\w.-]+|\s*#_)=>/,starts:{end:/$/,subLanguage:"clojure"}}]}}}});
