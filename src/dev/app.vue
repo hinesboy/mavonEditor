@@ -17,6 +17,7 @@
                 {{d_words.default_setting}}
             </h2>
             <button @click="uploadimg">upload</button>
+            <button @click="imgreplace">imgreplace</button>
             <mavon-editor ref=md :subfield="true" :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
@@ -85,6 +86,15 @@
         mounted() {
         },
         methods: {
+            imgreplace($e) {
+                console.log('here');
+                // this.$refs.md.$img2Url('./0', 'https://www.domain.com/this/is/my.png');
+                this.$refs.md.$imglst2Url([
+                    ['./0', 'https://www.domain.com/this/is/my.0.png'],
+                    ['./1', 'https://www.domain.com/this/is/my.1.png'],
+                    ['./2', 'https://www.domain.com/this/is/my.2.png'],
+                ]);
+            },
             uploadimg($e){
                 // upload files in one request.
                 console.log(this.img_file);

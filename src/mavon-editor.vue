@@ -338,6 +338,23 @@
                     $vm.d_render = this.s_markdown.render(this.d_value);
                 })
             },
+            $imgAddByUrl(pos, url) {
+                this.$imgUpdateByUrl(pos, url);
+            },
+            $img2Url(filename, url) {
+                // x.replace(/(\[[^\[]*?\](?=\())\(\s*(\.\/2)\s*\)/g, "$1(http://path/to/png.png)")
+                filename = filename.replace(/(\.|\\|\+|\*|\?|\^|\$|\[|\]|\{|\}|\(|\)|\||\/)/g, "\\$1")
+                var reg_str = "/(!\\[\[^\\[\]*?\\]\(?=\\(\)\)\\(\\s*\(" + filename + "\)\\s*\\)/g"
+                var reg = eval(reg_str);
+                this.d_value = this.d_value.replace(reg, "$1(" + url + ")")
+            },
+            $imglst2Url(imglst) {
+                if(imglst instanceof Array) {
+                    for(var i = 0;i < imglst.length;i++) {
+                        this.$img2Url(imglst[i][0], imglst[i][1]);
+                    }
+                }
+            },
             toolbar_left_click(_type) {
                 toolbar_left_click(_type, this);
             },
