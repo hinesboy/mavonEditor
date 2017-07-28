@@ -13,7 +13,7 @@
         <div class="v-note-panel">
             <!--编辑区-->
             <div ref="vNoteEdit" @scroll="$v_edit_scroll" class="v-note-edit divarea-wrapper"
-                 :class="{'scroll-style': s_scrollStyle  , 'single-edit': !s_preview_switch && !s_html_code , 'single-show': (!s_double_column && s_preview_switch) || (!s_double_column && s_html_code)}">
+                 :class="{'scroll-style': s_scrollStyle  , 'single-edit': !s_preview_switch && !s_html_code , 'single-show': (!s_double_column && s_preview_switch) || (!s_double_column && s_html_code)}" @click="textAreaFocus">
                 <!-- 单栏模式 html展示 -->
                 <!-- <div v-show="!s_preview_switch&&s_html_code&&!s_screen_phone" class="content-div">
                     {{d_render}}
@@ -248,6 +248,9 @@
             document.body.removeChild(this.$refs.help);
         },
         methods: {
+            textAreaFocus() {
+                this.$refs.vNoteTextarea.$el.children[1].focus();
+            },
             $drag($e){
                 var dataTransfer = $e.dataTransfer;
                 if(dataTransfer){

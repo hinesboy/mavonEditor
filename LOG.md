@@ -1,4 +1,5 @@
 # 更新日志
+- **2.1.12** 修复**2.1.11**的编辑区没有占满的bug，拖动滚动条导致input没有移动的bug(17.7.28 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.11** 添加`$imgAddByUrl`, `$img2Url`, `$imglst2Url`操作[#](31)，修复编辑区没有占满显示区的bug[#](31)，更新帮助文档(17.7.28 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.10** 操作失误，发布2.1.9的Release(17.7.24 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.9** 修复显示问题，更新帮助文档(17.7.24 / [CHENXCHEN](https://github.com/CHENXCHEN))
