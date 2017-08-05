@@ -38,10 +38,16 @@ export const keydownListen = ($vm , markdown) => {
                     }
                     break;
                 }*/
-                case 120: {
-                    // F9 单栏模式
+                case 119: {
+                    // F8 导航
                     e.preventDefault()
-                    $vm.toolbar_right_click('subfield')
+                    $vm.toolbar_right_click('navigation')
+                    break;
+                }
+                case 120: {
+                    // F9 预览模式
+                    e.preventDefault()
+                    $vm.toolbar_right_click('preview')
                     break;
                 }
                 case 121: {
@@ -56,10 +62,10 @@ export const keydownListen = ($vm , markdown) => {
                     $vm.toolbar_right_click('read')
                     break;
                 }
-                case 119: {
-                    // F12 标题导航
+                case 123: {
+                    // F12 单双栏切花
                     e.preventDefault()
-                    $vm.toolbar_right_click('navigation')
+                    $vm.toolbar_right_click('subfield')
                     break;
                 }
             }

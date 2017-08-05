@@ -1,4 +1,6 @@
 # 更新日志
+- **2.2.2** 修复快捷键监听错乱(17.8.5)
+- **2.2.1** 修复[#48](https://github.com/hinesboy/mavonEditor/issues/48) [#45](https://github.com/hinesboy/mavonEditor/issues/45)的bug , 新增功能键【单双栏切换】(17.8.5)
 - **2.1.13** 修复[#46](https://github.com/hinesboy/mavonEditor/issues/46)的bug(17.8.4 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.12** 修复**2.1.11**的编辑区没有占满的bug，拖动滚动条导致input没有移动的bug(17.7.28 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.1.11** 添加`$imgAddByUrl`, `$img2Url`, `$imglst2Url`操作[#31](https://github.com/hinesboy/mavonEditor/issues/31)，修复编辑区没有占满显示区的bug[#31](https://github.com/hinesboy/mavonEditor/issues/31)，更新帮助文档(17.7.28 / [CHENXCHEN](https://github.com/CHENXCHEN))
