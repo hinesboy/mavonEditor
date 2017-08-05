@@ -279,7 +279,7 @@ exports default {
 | value        | String  |             | 初始值                                     |
 | language     | String  |     cn      | 语言选择，暂支持 cn: 中文简体 ， en: 英文 ， fr: 法语 |
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)              |
-| subfield     | Boolean |    true     | true： 编辑预览同屏， false： 编辑预览分屏    |
+| subfield     | Boolean |    true     | true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)    |
 | default_open | String |         | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
 | placeholder | String |    开始编辑...     |  输入框为空时默认提示文本  |
 | editable     | Boolean |    true     | 是否允许编辑     |
@@ -314,7 +314,6 @@ toolbars: {
       imagelink: true, // 图片链接
       code: true, // code
       table: true, // 表格
-      subfield: true, // 是否需要分栏
       fullscreen: true, // 全屏编辑
       readmodel: true, // 沉浸式阅读
       htmlcode: true, // 展示html源码
@@ -330,6 +329,9 @@ toolbars: {
       alignleft: true, // 左对齐
       aligncenter: true, // 居中
       alignright: true, // 右对齐
+      /* 2.2.1 */
+      subfield: true, // 单双栏模式
+      preview: true, // 预览
   }
 ```
 
@@ -344,6 +346,7 @@ toolbars: {
 | readmodel        | Boolean: status , String: value | 切换沉浸式阅读的回调事件(boolean: 阅读开启状态)            |
 | htmlcode         | Boolean: status , String: value | 查看html源码的回调事件(boolean: 源码开启状态)           |
 | subfieldtoggle   | Boolean: status , String: value | 切换单双栏编辑的回调事件(boolean: 双栏开启状态)            |
+| previewtoggle   | Boolean: status , String: value | 切换预览编辑的回调事件(boolean: 预览开启状态)            |
 | helptoggle       | Boolean: status , String: value | 查看帮助的回调事件(boolean: 帮助开启状态)               |
 | navigationtoggle | Boolean: status , String: value | 切换导航目录的回调事件(boolean: 导航开启状态)             |
 | imgAdd           | String: filename, File: imgfile | 图片文件添加回调事件(filename: 写在md中的文件名, File: File Object) |

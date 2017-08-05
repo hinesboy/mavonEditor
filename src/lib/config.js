@@ -7,6 +7,7 @@
  * @Last modified time: 2017-05-06T22:12:49+08:00
  * @License: MIT
  * @Copyright: 2017
+ * @desc 初始化配置项
  */
 
 import help_cn from './lang/cn/help_cn.md'
@@ -51,6 +52,7 @@ export const CONFIG = {
         'fullscreen': true,
         'readmodel': true,
         'htmlcode': true,
-        'help': true
+        'help': true,
+        'preview': true
     }
 };

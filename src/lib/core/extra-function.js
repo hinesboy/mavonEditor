@@ -130,11 +130,11 @@ export const windowResize = ($vm) => {
     function sizeToStatus() {
         if ($vm.$el.clientWidth > 768) {
             // > 768
-            $vm.s_double_column = $vm.subfield;
+            $vm.s_subfield = $vm.subfield;
         }
         else {
             // <  768
-            $vm.s_double_column = false;
+            $vm.s_subfield = false;
         }
     }
 
@@ -143,11 +143,11 @@ export const windowResize = ($vm) => {
         // 媒介查询
         if ($vm.$el.clientWidth > 768) {
             // > 768
-            $vm.s_double_column = $vm.subfield;
+            $vm.s_subfield = $vm.subfield;
         }
         else {
             // <  768
-            $vm.s_double_column = false;
+            $vm.s_subfield = false;
         }
     })
 }

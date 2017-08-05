@@ -279,7 +279,7 @@ exports default {
 | value      | String      |               | Initial value |
 | language   | String      |      cn         | Language switch,  cn: Simplified Chinese ， en: English ， fr: French |
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
-| subfield   | Boolean     |   true        | true: Edit preview same screen , otherwise not |
+| subfield   | Boolean     |   true        | true: Double columns - Edit preview same screen , Single Columns - otherwise not |
 | default_open | String |         | edit: default show edit area , preview: default show preview area  , other = edit |
 | placeholder | String |    Begin editing...     |  The default prompt text when the textarea is empty  |
 | editable | Boolean     |   true       | Edit switch |
@@ -315,7 +315,6 @@ toolbars: {
       imagelink: true,
       code: true,
       table: true,
-      subfield: true,
       fullscreen: true,
       readmodel: true,
       htmlcode: true,
@@ -331,6 +330,9 @@ toolbars: {
       alignleft: true,
       aligncenter: true,
       alignright: true,
+      /* 2.2.1 */
+      subfield: true,
+      preview: true
   }
 ```
 ### events
@@ -342,9 +344,10 @@ toolbars: {
 | fullscreen | Boolean: status , String: value     |  Fullscreen editing toggle callback event(boolean: Fullscreen status) |
 | readmodel |  Boolean: status , String: value    |  Reading mode toggle callback event(boolean: Reading mode status) |
 | htmlcode | Boolean: status , String: value     |Html code mode toggle callback event(boolean: status) |
-| subfieldtoggle  |  Boolean: status , String: value     |  Double columns edit mode toggle callback event(boolean: status) |
-| helptoggle | Boolean: status , String: value   |  Help-me toggle callback event(boolean: status) |
-| navigationtoggle | Boolean: status , String: value   |  Navigation mode toggle callback event(boolean: status) |
+| subfieldtoggle  |  Boolean: status , String: value     |  Double columns edit mode toggle callback event(boolean: double columns status) |
+| previewtoggle   | Boolean: status , String: value | Preview & Edit toggle callback event(boolean: preview status)            |
+| helptoggle | Boolean: status , String: value   |  Help-me toggle callback event(boolean: help status) |
+| navigationtoggle | Boolean: status , String: value   |  Navigation mode toggle callback event(boolean: nav status) |
 | imgAdd | String: filename, File: imgfile |  Add image file callback event(filename: write in origin md, File: File Object) |
 | imgDel | String: filename |  Delete image file callback event(filename: write in origin md) |
 

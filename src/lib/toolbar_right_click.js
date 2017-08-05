@@ -37,11 +37,11 @@ function $toolbar_right_read_click($vm) {
     }
 }
 
-function $toolbar_right_subfield_click($vm) {
+function $toolbar_right_preview_click($vm) {
     $vm.s_preview_switch = !$vm.s_preview_switch
     // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
-    if ($vm.subfieldtoggle) {
-        $vm.subfieldtoggle($vm.s_preview_switch, $vm.d_value)
+    if ($vm.previewtoggle) {
+        $vm.previewtoggle($vm.s_preview_switch, $vm.d_value)
     }
 }
 
@@ -51,7 +51,20 @@ function $toolbar_right_fullscreen_click($vm) {
         $vm.fullscreen($vm.s_fullScreen, $vm.d_value)
     }
 }
-
+function $toolbar_right_subfield_click ($vm) {
+    $vm.s_subfield = !$vm.s_subfield
+    if ($vm.s_subfield) {
+        $vm.s_preview_switch = true;
+        // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
+        if ($vm.previewtoggle) {
+            $vm.previewtoggle($vm.s_preview_switch, $vm.d_value)
+        }
+    }
+    // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
+    if ($vm.subfieldtoggle) {
+        $vm.subfieldtoggle($vm.s_subfield, $vm.d_value)
+    }
+}
 function $toolbar_right_navigation_click($vm) {
     $vm.s_navigation = !$vm.s_navigation
     if ($vm.s_navigation) {
@@ -71,9 +84,10 @@ export const toolbar_right_click = (_type, $vm) => {
         'help': $toolbar_right_help_click,
         'html': $toolbar_right_html_click,
         'read': $toolbar_right_read_click,
-        'subfield': $toolbar_right_subfield_click,
+        'preview': $toolbar_right_preview_click,
         'fullscreen': $toolbar_right_fullscreen_click,
-        'navigation': $toolbar_right_navigation_click
+        'navigation': $toolbar_right_navigation_click,
+        'subfield': $toolbar_right_subfield_click
     }
     if (_other_right_click.hasOwnProperty(_type)) {
         _other_right_click[_type]($vm);

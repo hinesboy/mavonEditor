@@ -5,7 +5,7 @@
             <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words" @toolbar_left_click="toolbar_left_click" :toolbars="toolbars"
                                @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch"/>
             <s-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click" :toolbars="toolbars"
-                                :s_double_column="s_double_column"
+                                :s_subfield="s_subfield"
                                 :s_preview_switch="s_preview_switch" :s_fullScreen="s_fullScreen" :s_html_code="s_html_code"
                                 :s_navigation="s_navigation"/>
         </div>
@@ -13,7 +13,7 @@
         <div class="v-note-panel">
             <!--编辑区-->
             <div ref="vNoteEdit" @scroll="$v_edit_scroll" class="v-note-edit divarea-wrapper"
-                 :class="{'scroll-style': s_scrollStyle  , 'single-edit': !s_preview_switch && !s_html_code , 'single-show': (!s_double_column && s_preview_switch) || (!s_double_column && s_html_code)}" @click="textAreaFocus">
+                 :class="{'scroll-style': s_scrollStyle  , 'single-edit': !s_preview_switch && !s_html_code , 'single-show': (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code)}" @click="textAreaFocus">
                 <!-- 单栏模式 html展示 -->
                 <!-- <div v-show="!s_preview_switch&&s_html_code&&!s_screen_phone" class="content-div">
                     {{d_render}}
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <!--展示区-->
-            <div :class="{'single-show': (!s_double_column && s_preview_switch) || (!s_double_column && s_html_code)}"
+            <div :class="{'single-show': (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code)}"
                  v-show="s_preview_switch || s_html_code" class="v-note-show">
                 <div ref="vShowContent" v-html="d_render" v-show="!s_html_code"
                      :class="{'scroll-style': s_scrollStyle}" class="v-show-content">
@@ -45,7 +45,7 @@
                 <div v-show="s_navigation" class="v-note-navigation-wrapper">
                     <div class="v-note-navigation-title">
                         {{d_words.navigation_title}}<i @click="toolbar_right_click('navigation')"
-                                                       class="fa fa-times v-note-navigation-close"
+                                                       class="fa fa-mavon-times v-note-navigation-close"
                                                        aria-hidden="true"></i>
                     </div>
                     <div ref="navigationContent" class="v-note-navigation-content scroll-style">
@@ -59,7 +59,7 @@
             <div ref="help">
                 <div @click="toolbar_right_click('help')" class="v-note-help-wrapper" v-if="s_help">
                     <div @click.stop.prevent="" class="v-note-help-content markdown-body code-hybrid">
-                        <i @click.stop.prevent="toolbar_right_click('help')" class="fa fa-times" aria-hidden="true"></i>
+                        <i @click.stop.prevent="toolbar_right_click('help')" class="fa fa-mavon-times" aria-hidden="true"></i>
                         <div class="scroll-style v-note-help-show" v-html="d_help"></div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
             <!-- <div v-if="toolbars.navigation" v-show="s_navigation_full" class="v-note-navigation-wrapper">
                  <div class="v-note-navigation-title">
                      {{d_words.navigation_title}}<i @click="toolbar_right_click('navigationfull')"
-                                                    class="fa fa-times v-note-navigation-close" aria-hidden="true"></i>
+                                                    class="fa fa-mavon-times v-note-navigation-close" aria-hidden="true"></i>
                  </div>
                  <div ref="navigationContentFull" class="v-note-navigation-content scroll-style">
                  </div>
@@ -171,7 +171,7 @@
         },
         data() {
             return {
-                s_double_column: (() => {
+                s_subfield: (() => {
                     return this.subfield;
                 })(),
                 s_autofocus: true,
@@ -380,8 +380,12 @@
             readmodel(status, val) {
                 this.$emit('readmodel', status, val)
             },
+            // 切换阅读编辑触发 （status , val）
+            previewtoggle(status, val) {
+                this.$emit('previewtoggle', status, val)
+            },
             // 切换分栏触发 （status , val）
-            subfieldtoggle(status, val) {
+            subfieldtoggle (status, val) {
                 this.$emit('subfieldtoggle', status, val)
             },
             // 切换htmlcode触发 （status , val）
@@ -508,7 +512,7 @@
                 }
             },
             subfield: function (val, oldVal) {
-                this.s_double_column = val
+                this.s_subfield = val
             },
             d_history_index () {
                 if (this.d_history_index > 20) {

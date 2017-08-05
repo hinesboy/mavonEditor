@@ -18,9 +18,9 @@
             </h2>
             <button @click="uploadimg">upload</button>
             <button @click="imgreplace">imgreplace</button>
-            <mavon-editor ref=md :subfield="true" :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable"
+            <mavon-editor  ref=md :subfield="subfield" :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
-                          @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
+                          @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"></mavon-editor>
         </div>
         <!--自定义-->
         <div v-if="screen_phone" class="item">
@@ -34,8 +34,6 @@
       <span style="display: block;margin: 30px 0 15px 0;color: #1e6bb8" class="">
         {{d_words.mark}}
       </span>
-            <img width="100px" height="auto" src="./assets/img/1.png"/>
-            <img width="100px" height="auto" src="./assets/img/2.png"/>
         </div>
         <div class="item">
             <h2 class="item-header">
@@ -65,7 +63,8 @@
                     undo: true,
                     save: true,
                     fullscreen: true, // 全屏编辑
-                    navigation: true
+                    navigation: true,
+                    preview: true
                 },
                 subfield: true,
                 editable: true,
@@ -154,6 +153,12 @@
                 this.d_words = CONFIG[`words_${this.d_language}`]
                 this.help1 = CONFIG[`help_${this.d_language}`]
                 this.help2 = CONFIG[`help_${this.d_language}`]
+            },
+            $subfieldtoggle(flag , value) {
+                console.log('sufield toggle' + flag)
+            },
+            $previewtoggle(flag , value) {
+                console.log('preview toggle' + flag)
             }
         },
         watch: {
@@ -245,5 +250,7 @@
                 margin-bottom: 1rem
         .item-editor
             width 100%
-            height 500px
+            height 700px
+            @media only screen and (max-width 1600px)
+                height 500px
 </style>
