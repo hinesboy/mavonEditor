@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: toolbar_left_click.js
  * @Last modified by:   CHC
- * @Last modified time: 2017-07-24T19:56:17+08:00
+ * @Last modified time: 2017-08-10T12:43:22+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -44,67 +44,67 @@ export const toolbar_left_click = (_type, $vm) => {
          'bold': {
              prefix: '**',
              subfix: '**',
-             str: '粗体'
+             str: $vm.d_words.tl_bold
          },
          'italic': {
              prefix: '*',
              subfix: '*',
-             str: '斜体'
+             str: $vm.d_words.tl_italic
          },
          'header': {
              prefix: '# ',
              subfix: ' #',
-             str: '标题'
+             str: $vm.d_words.tl_header
          },
          'underline': {
              prefix: '++',
              subfix: '++',
-             str: '下划线'
+             str: $vm.d_words.tl_underline
          },
          'strikethrough': {
              prefix: '~~',
              subfix: '~~',
-             str: '中划线'
+             str: $vm.d_words.tl_strikethrough
          },
          'mark': {
              prefix: '==',
              subfix: '==',
-             str: '标记'
+             str: $vm.d_words.tl_mark
          },
          'superscript': {
              prefix: '^',
              subfix: '^',
-             str: '上角标'
+             str: $vm.d_words.tl_superscript
          },
          'subscript': {
              prefix: '~',
              subfix: '~',
-             str: '下角标'
+             str: $vm.d_words.tl_subscript
          },
          'quote': {
              prefix: '> ',
              subfix: '',
-             str: '引用'
+             str: $vm.d_words.tl_quote
          },
          'ol': {
              prefix: '1. ',
              subfix: '',
-             str: '有序列表'
+             str: $vm.d_words.tl_ol
          },
          'ul': {
              prefix: '- ',
              subfix: '',
-             str: '无序列表'
+             str: $vm.d_words.tl_ul
          },
          'link': {
              prefix: '[](',
              subfix: ')',
-             str: '链接地址'
+             str: $vm.d_words.tl_link
          },
          'imagelink': {
              prefix: '![](',
              subfix: ')',
-             str: '图片链接'
+             str: $vm.d_words.tl_image
          },
          'code': {
              prefix: '```',
@@ -119,17 +119,17 @@ export const toolbar_left_click = (_type, $vm) => {
          'aligncenter': {
            prefix: '::: hljs-center\n\n',
            subfix: '\n\n:::\n',
-           str: '中心'
+           str: $vm.d_words.tl_aligncenter
          },
          'alignright': {
            prefix: '::: hljs-right\n\n',
            subfix: '\n\n:::\n',
-           str: '右边'
+           str: $vm.d_words.tl_alignright
          },
          'alignleft': {
            prefix: '::: hljs-left\n\n',
            subfix: '\n\n:::\n',
-           str: '左边'
+           str: $vm.d_words.tl_alignleft
          }
      };
      if (_param_of_insert_text.hasOwnProperty(_type)) {

@@ -294,9 +294,10 @@
                 }
             },
             $imgTouch(pos){
+                var $vm = this;
                 this.insertText(this.getTextareaDom(),
                     {
-                        prefix: '\n![图片](' + pos + ')',
+                        prefix: '\n![' + $vm.d_words.tl_image + '](' + pos + ')',
                         subfix: '',
                         str: ''
                     });
@@ -318,7 +319,7 @@
                     if(isinsert == true) {
                         $vm.insertText($vm.getTextareaDom(),
                         {
-                            prefix: '\n![图片](' + pos + ')',
+                            prefix: '\n![' + $vm.d_words.tl_image + '](' + pos + ')',
                             subfix: '',
                             str: ''
                         });

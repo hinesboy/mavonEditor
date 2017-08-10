@@ -1,4 +1,5 @@
 # 更新日志
+- **2.2.3** 修复语言选择的问题[#50](https://github.com/hinesboy/mavonEditor/issues/50)(17.8.10 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.2.2** 修复快捷键监听错乱(17.8.5)
 - **2.2.1** 修复[#48](https://github.com/hinesboy/mavonEditor/issues/48) [#45](https://github.com/hinesboy/mavonEditor/issues/45)的bug , 新增功能键【单双栏切换】(17.8.5)
 - **2.1.13** 修复[#46](https://github.com/hinesboy/mavonEditor/issues/46)的bug(17.8.4 / [CHENXCHEN](https://github.com/CHENXCHEN))
