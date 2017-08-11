@@ -175,7 +175,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 
 .mu-item-wrapper .mu-item {
     padding: 0px 16px;
