@@ -1,4 +1,5 @@
 # 更新日志
+- **2.2.4** 合并贡献[52](https://github.com/hinesboy/mavonEditor/pull/52), 给 <style> 标签添加了 scoped 属性 , 防止其样式影响页面上的其他元素(17.8.11 / [wzdxy](https://github.com/wzdxy))
 - **2.2.3** 修复语言选择的问题[#50](https://github.com/hinesboy/mavonEditor/issues/50)(17.8.10 / [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.2.2** 修复快捷键监听错乱(17.8.5)
 - **2.2.1** 修复[#48](https://github.com/hinesboy/mavonEditor/issues/48) [#45](https://github.com/hinesboy/mavonEditor/issues/45)的bug , 新增功能键【单双栏切换】(17.8.5)
