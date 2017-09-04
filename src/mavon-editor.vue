@@ -533,7 +533,7 @@
                 if (this.subfield && !default_open_) {
                     default_open_ = 'preview';
                 }
-                return default_open_ === 'preview' ? true : false;
+                this.s_preview_switch = default_open_ === 'preview' ? true : false;
             }
         },
         components: {
