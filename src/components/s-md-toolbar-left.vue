@@ -149,6 +149,14 @@ export default {
             this.$emit('imgAdd', this.img_file[1][0], $file, false);
             return true;
         },
+        $imgAddByUrl(filename, $url) {
+            for(var i = 0;i < this.img_file.length;i++)
+                if(this.img_file[i][0] == filename) return false;
+            this.img_file[0][0] = filename;
+            this.img_file[0][1] = $url;
+            this.img_file.unshift(['./' + (this.num), null])
+            return true;
+        },
         $imgUpdateByFilename(filename, $file) {
             for(var i = 0;i < this.img_file.length;i++) {
                 if(this.img_file[i][0] == filename) {

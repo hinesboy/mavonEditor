@@ -343,7 +343,12 @@
                 })
             },
             $imgAddByUrl(pos, url) {
-                this.$imgUpdateByUrl(pos, url);
+                if(this.$refs.toolbar_left.$imgAddByUrl(pos, url)) {
+                    console.log('i am here')
+                    this.$imgUpdateByUrl(pos, url);
+                    return true;
+                }
+                return false;
             },
             $img2Url(filename, url) {
                 // x.replace(/(\[[^\[]*?\](?=\())\(\s*(\.\/2)\s*\)/g, "$1(http://path/to/png.png)")
@@ -533,7 +538,7 @@
                 if (this.subfield && !default_open_) {
                     default_open_ = 'preview';
                 }
-                this.s_preview_switch = default_open_ === 'preview' ? true : false;
+                return this.s_preview_switch = default_open_ === 'preview' ? true : false;
             }
         },
         components: {

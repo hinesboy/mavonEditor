@@ -3,8 +3,8 @@
  * @Date:   2017-05-03T00:31:20+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: keydown-listen.js
- * @Last modified by:   CHC
- * @Last modified time: 2017-06-16T00:08:49+08:00
+ * @Last modified by:   chc
+ * @Last modified time: 2017-09-10T22:31:18+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -69,7 +69,7 @@ export const keydownListen = ($vm , markdown) => {
                     break;
                 }
             }
-        } else if (e.ctrlKey && !e.altKey && !e.shiftKey) {
+        } else if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
             // ctrl +
             switch (e.keyCode) {
                 case 66: {

@@ -97,6 +97,7 @@
             uploadimg($e){
                 // upload files in one request.
                 console.log(this.img_file);
+                // this.$refs.md.$imgAddByUrl('./dfs', 'http://www.baidu.com/1.png')
                 // var _imglst = [];
                 var formdata = new FormData();
                 for (var _img in this.img_file) {
