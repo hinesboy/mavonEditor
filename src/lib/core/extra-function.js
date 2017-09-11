@@ -70,16 +70,26 @@ export const getNavigation = ($vm , full) => {
         if (!reg.exec(node.tagName)) {
             node.style.display = 'none'
         } else {
-            let hx = parseInt(node.tagName.substring(1,2));
             node.onclick = function () {
                 let vShowContent = $vm.$refs.vShowContent;
                 let vNoteEdit = $vm.$refs.vNoteEdit;
-               /* if (!$vm.s_preview_switch && !$vm.s_screen_phone) {
-                    let vNoteDivEdit = $vm.$refs.vNoteDivEdit
-                    vNoteEdit.scrollTop = vNoteDivEdit.children[i].offsetTop
-                } else {*/
-                vNoteEdit.scrollTop = vShowContent.children[i].offsetTop * (vNoteEdit.scrollHeight - vNoteEdit.offsetHeight) / (vShowContent.scrollHeight - vShowContent.offsetHeight)
-               /* }*/
+                if ($vm.s_subfield) {
+                    // 双栏
+                    if ($vm.s_preview_switch) {
+                        // 编辑预览
+                        vNoteEdit.scrollTop = vShowContent.children[i].offsetTop * (vNoteEdit.scrollHeight - vNoteEdit.offsetHeight) / (vShowContent.scrollHeight - vShowContent.offsetHeight);
+                    } else {
+                        // todo 编辑
+                    }
+                } else {
+                    // 单栏
+                    if ($vm.s_preview_switch) {
+                        // 预览
+                        vShowContent.scrollTop = vShowContent.children[i].offsetTop;
+                    } else {
+                        // todo 编辑
+                    }
+                }
             }
         }
     }
