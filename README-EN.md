@@ -68,6 +68,8 @@ module.exports = {
 }
 ```
 
+**notice**: `webpack.output.filename`must be `js/[name].js`, otherwise will cause issue `Error: Loading chunk xxx failed.`.
+
 **notice**: If you are using `HtmlWebpackPlugin` Plugin(such as the `vue-cli` default project), you will need to manually specify the plug-in chunks,
 Otherwise all code highlighted file will be introduced in HTML (probably more than two hundred js displayed in the HTML page),
 the plug-in configuration code roughly as follows:
