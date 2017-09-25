@@ -15,7 +15,7 @@
 export const keydownListen = ($vm , markdown) => {
     $vm.$el.addEventListener('keydown', function (e) {
         // 注册监听键盘事件
-        if (!e.ctrlKey && !e.altKey && !e.shiftKey) {
+        if (!(e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
             // one key
             switch (e.keyCode) {
                /* case 9: {
@@ -151,7 +151,7 @@ export const keydownListen = ($vm , markdown) => {
                     break;
                 }
             }
-        } else if (e.ctrlKey && e.altKey && !e.shiftKey) {
+        } else if ((e.ctrlKey || e.metaKey) && e.altKey && !e.shiftKey) {
             // ctrl + alt +
             switch (e.keyCode) {
                 case 83: {
@@ -185,7 +185,7 @@ export const keydownListen = ($vm , markdown) => {
                     break;
                 }
             }
-        } else if (e.ctrlKey && e.shiftKey && !e.altKey) {
+        } else if ((e.ctrlKey || e.metaKey) && e.shiftKey && !e.altKey) {
             // ctrl + shift
             switch (e.keyCode) {
                 case 83: {
