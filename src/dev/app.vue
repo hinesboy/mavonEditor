@@ -64,7 +64,8 @@
                     save: true,
                     fullscreen: true, // 全屏编辑
                     navigation: true,
-                    preview: true
+                    preview: true,
+                    subfield: false,
                 },
                 subfield: true,
                 editable: true,

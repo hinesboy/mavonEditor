@@ -1,4 +1,5 @@
 # 更新日志
+- **2.2.7** 修复[#88](https://github.com/hinesboy/mavonEditor/issues/88) (17.9.26)
 - **2.2.6** 修复[#57](https://github.com/hinesboy/mavonEditor/issues/57) (17.9.11)
 - **2.2.5** 合并贡献[65](https://github.com/hinesboy/mavonEditor/pull/65), 修复[#66](https://github.com/hinesboy/mavonEditor/issues/66), [#61](https://github.com/hinesboy/mavonEditor/issues/61)(17.9.10 / [cyy0418](https://github.com/cyy0418)， [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.2.4** 合并贡献[52](https://github.com/hinesboy/mavonEditor/pull/52), 给 <style> 标签添加了 scoped 属性 , 防止其样式影响页面上的其他元素(17.8.11 / [wzdxy](https://github.com/wzdxy))

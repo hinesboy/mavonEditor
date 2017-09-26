@@ -12,139 +12,149 @@
 /**
  * Created by zhy on 2017/4/24.
  */
+const KEY_CODE = {
+    F8: 118,
+    F9: 120,
+    F10: 121,
+    F11: 122,
+    F12: 123,
+    B: 66,
+    I: 73,
+    H: 72,
+    U: 85,
+    D: 68,
+    M:77 ,
+    Q: 81,
+    O: 79,
+    L: 76,
+    S: 83,
+    Z: 90,
+    Y: 89,
+    DELETE: 8
+};
 export const keydownListen = ($vm , markdown) => {
     $vm.$el.addEventListener('keydown', function (e) {
         // 注册监听键盘事件
         if (!(e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
             // one key
             switch (e.keyCode) {
-               /* case 9: {
-                    // tab 单栏模式
-                    if (!$vm.s_preview_switch) {
+                case KEY_CODE.F8: {
+                    // F8 导航
+                    if ($vm.toolbars.navigation) {
                         e.preventDefault()
-                        if ($vm.$refs.vNoteDivEdit) {
-                            let value = markdown.render($vm.d_value)
-                            if (value !== null && value !== '') {
-                                $vm.$refs.vNoteDivEdit.innerHTML = value
-                                let sel = window.getSelection();
-                                let range = sel.getRangeAt(0);
-                                range = range.cloneRange();
-                                range.setStartAfter($vm.$refs.vNoteDivEdit.lastChild)
-                                range.collapse(true);
-                                sel.removeAllRanges();
-                                sel.addRange(range);
-                            }
-                        }
+                        $vm.toolbar_right_click('navigation')
                     }
                     break;
-                }*/
-                case 119: {
-                    // F8 导航
-                    e.preventDefault()
-                    $vm.toolbar_right_click('navigation')
-                    break;
                 }
-                case 120: {
+                case KEY_CODE.F9: {
                     // F9 预览模式
-                    e.preventDefault()
-                    $vm.toolbar_right_click('preview')
+                    if ($vm.toolbars.preview) {
+                        e.preventDefault()
+                        $vm.toolbar_right_click('preview')
+                    }
                     break;
                 }
-                case 121: {
+                case KEY_CODE.F10: {
                     // F10 全屏
-                    e.preventDefault()
-                    $vm.toolbar_right_click('fullscreen')
+                    if ($vm.toolbars.fullscreen) {
+                        e.preventDefault()
+                        $vm.toolbar_right_click('fullscreen')
+                    }
                     break;
                 }
-                case 122: {
+                case KEY_CODE.F11: {
                     // F11 阅读
-                    e.preventDefault()
-                    $vm.toolbar_right_click('read')
+                    if ($vm.toolbars.readmodel) {
+                        e.preventDefault()
+                        $vm.toolbar_right_click('read')
+                    }
                     break;
                 }
-                case 123: {
+                case KEY_CODE.F12: {
                     // F12 单双栏切花
-                    e.preventDefault()
-                    $vm.toolbar_right_click('subfield')
+                    if ($vm.toolbars.subfield) {
+                        e.preventDefault()
+                        $vm.toolbar_right_click('subfield')
+                    }
                     break;
                 }
             }
         } else if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
             // ctrl +
             switch (e.keyCode) {
-                case 66: {
+                case KEY_CODE.B: {
                     // B
                     e.preventDefault()
                     $vm.toolbar_left_click('bold')
                     break;
                 }
-                case 73: {
+                case KEY_CODE.I: {
                     // I
                     e.preventDefault()
                     $vm.toolbar_left_click('italic')
                     break;
                 }
-                case 72: {
+                case KEY_CODE.H: {
                     // H
                     e.preventDefault()
                     $vm.toolbar_left_click('header')
                     break;
                 }
-                case 85: {
+                case KEY_CODE.U: {
                     // U
                     e.preventDefault()
                     $vm.toolbar_left_click('underline')
                     break;
                 }
-                case 68: {
+                case KEY_CODE.D: {
                     // D
                     e.preventDefault()
                     $vm.toolbar_left_click('strikethrough')
                     break;
                 }
-                case 77: {
+                case KEY_CODE.M: {
                     // M
                     e.preventDefault()
                     $vm.toolbar_left_click('mark')
                     break;
                 }
-                case 81: {
+                case KEY_CODE.Q: {
                     // Q
                     e.preventDefault()
                     $vm.toolbar_left_click('quote')
                     break;
                 }
-                case 79: {
+                case KEY_CODE.O: {
                     // O
                     e.preventDefault()
                     $vm.toolbar_left_click('ol')
                     break;
                 }
-                case 76: {
+                case KEY_CODE.L: {
                     // L
                     e.preventDefault()
                     $vm.toolbar_left_click('link')
                     break;
                 }
-                case 83: {
+                case KEY_CODE.S: {
                     // S
                     e.preventDefault()
                     $vm.toolbar_left_click('save')
                     break;
                 }
-                case 90: {
+                case KEY_CODE.Z: {
                     // Z
                     e.preventDefault()
                     $vm.toolbar_left_click('undo')
                     break;
                 }
-                case 89: {
+                case KEY_CODE.Y: {
                     // Y
                     e.preventDefault()
                     $vm.toolbar_left_click('redo')
                     break;
                 }
-                case 8: {
+                case KEY_CODE.DELETE: {
                     // delete
                     e.preventDefault()
                     $vm.toolbar_left_click('trash')
