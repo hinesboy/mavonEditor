@@ -92,7 +92,8 @@
         windowResize,
         scrollLink,
         insertTextAtCaret,
-        getNavigation
+        getNavigation,
+        insertTab
     } from './lib/core/extra-function.js'
     // import {onecolumnKeyDownEnter, onecolumnInsert} from './lib/core/onecolumn-event.js'
     import {p_ObjectCopy_DEEP} from './lib/util.js'
@@ -344,7 +345,6 @@
             },
             $imgAddByUrl(pos, url) {
                 if(this.$refs.toolbar_left.$imgAddByUrl(pos, url)) {
-                    console.log('i am here')
                     this.$imgUpdateByUrl(pos, url);
                     return true;
                 }
@@ -424,17 +424,6 @@
             $v_edit_scroll($event) {
                 scrollLink($event, this);
             },
-            /*
-             // 监听单栏输入框内容的变化------------------------
-             $auto_textarea_div_change($event) {
-             let element = $event.srcElement ? $event.srcElement : $event.target
-             // this.d_value = tomarkdown(element.innerHTML)
-             },
-             // 单栏目 输入框enter
-             $auto_textarea_div_enter($event) {
-             // onecolumnKeyDownEnter($event, this, tomarkdown)
-             },
-             */
             // 获取textarea dom节点
             getTextareaDom() {
                 return this.$refs.vNoteTextarea.$el.children[1]
@@ -443,25 +432,9 @@
             insertText(obj, {prefix, subfix, str}) {
                 // if (this.s_preview_switch) {
                 insertTextAtCaret(obj, {prefix, subfix, str}, this);
-                /*
-                 } else {
-                 // 单栏模式点击
-                 let div = this.$refs.vNoteDivEdit;
-                 let obj = document.createElement('div');
-                 obj.innerHTML = markdown.render(prefix + str + subfix)
-                 if (obj.children.length === 1 && obj.children[0].tagName === 'P') {
-                 if (prefix === '[](' || prefix === '![](') {
-                 onecolumnInsert(div, '<p>' + prefix + str + subfix + '</p>')
-                 } else {
-                 onecolumnInsert(div, obj.children[0].innerHTML)
-                 }
-                 } else {
-                 onecolumnInsert(div, obj.innerHTML)
-                 }
-                 // 同步数据
-                 // this.d_value = tomarkdown(div.innerHTML)
-                 }
-                 */
+            },
+            insertTab() {
+                insertTab(this)
             },
             saveHistory () {
                 this.d_history.splice(this.d_history_index + 1, this.d_history.length)

@@ -1,4 +1,5 @@
 # 更新日志
+- **2.2.8** 添加TAB缩进[#75](https://github.com/hinesboy/mavonEditor/issues/75) (17.9.29)
 - **2.2.7** 修复[#88](https://github.com/hinesboy/mavonEditor/issues/88) (17.9.26)
 - **2.2.6** 修复[#57](https://github.com/hinesboy/mavonEditor/issues/57) (17.9.11)
 - **2.2.5** 合并贡献[65](https://github.com/hinesboy/mavonEditor/pull/65), 修复[#66](https://github.com/hinesboy/mavonEditor/issues/66), [#61](https://github.com/hinesboy/mavonEditor/issues/61)(17.9.10 / [cyy0418](https://github.com/cyy0418)， [CHENXCHEN](https://github.com/CHENXCHEN))

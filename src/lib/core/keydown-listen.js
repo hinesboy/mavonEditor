@@ -30,7 +30,10 @@ const KEY_CODE = {
     S: 83,
     Z: 90,
     Y: 89,
-    DELETE: 8
+    C: 76,
+    T: 84,
+    DELETE: 8,
+    TAB: 9
 };
 export const keydownListen = ($vm , markdown) => {
     $vm.$el.addEventListener('keydown', function (e) {
@@ -76,6 +79,12 @@ export const keydownListen = ($vm , markdown) => {
                         e.preventDefault()
                         $vm.toolbar_right_click('subfield')
                     }
+                    break;
+                }
+                case KEY_CODE.TAB: {
+                    // TAB
+                    e.preventDefault()
+                    $vm.insertTab();
                     break;
                 }
             }
@@ -164,31 +173,31 @@ export const keydownListen = ($vm , markdown) => {
         } else if ((e.ctrlKey || e.metaKey) && e.altKey && !e.shiftKey) {
             // ctrl + alt +
             switch (e.keyCode) {
-                case 83: {
+                case KEY_CODE.S: {
                     // S
                     e.preventDefault()
                     $vm.toolbar_left_click('superscript')
                     break;
                 }
-                case 85: {
+                case KEY_CODE.U: {
                     // U
                     e.preventDefault()
                     $vm.toolbar_left_click('ul')
                     break;
                 }
-                case 76: {
+                case KEY_CODE.C: {
                     // C
                     e.preventDefault()
                     $vm.toolbar_left_click('imagelink')
                     break;
                 }
-                case 67: {
+                case KEY_CODE.L: {
                     // L
                     e.preventDefault()
                     $vm.toolbar_left_click('code')
                     break;
                 }
-                case 84: {
+                case KEY_CODE.T: {
                     // T
                     e.preventDefault()
                     $vm.toolbar_left_click('table')
@@ -198,7 +207,7 @@ export const keydownListen = ($vm , markdown) => {
         } else if ((e.ctrlKey || e.metaKey) && e.shiftKey && !e.altKey) {
             // ctrl + shift
             switch (e.keyCode) {
-                case 83: {
+                case KEY_CODE.S: {
                     // S
                     e.preventDefault()
                     $vm.toolbar_left_click('subscript')

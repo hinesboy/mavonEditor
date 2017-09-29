@@ -18,7 +18,6 @@
 export const insertTextAtCaret = (obj, {prefix, subfix, str}, $vm) => {
     obj.focus()
     if (document.selection) {
-        alert('document.selection')
     } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
@@ -49,6 +48,24 @@ export const insertTextAtCaret = (obj, {prefix, subfix, str}, $vm) => {
     // 触发change事件
     $vm.d_value = obj.value
     obj.focus()
+}
+// 插入tab
+export const insertTab = ($vm) => {
+    let obj = $vm.getTextareaDom();
+    if (document.selection) {
+    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+        var startPos = obj.selectionStart;
+        var endPos = obj.selectionEnd;
+        var tmpStr = obj.value;
+        obj.value = tmpStr.substring(0, startPos) + '    ' + tmpStr.substring(endPos, tmpStr.length);
+        obj.selectionStart = obj.selectionEnd = startPos + 4;
+    } else {
+        alert('else')
+        // obj.value += str;
+    }
+    // 触发change事件
+    this.d_value = obj.value
+    $vm.focus();
 }
 /**
  * 生成导航目录
