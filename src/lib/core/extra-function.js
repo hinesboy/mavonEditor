@@ -64,8 +64,8 @@ export const insertTab = ($vm) => {
         // obj.value += str;
     }
     // 触发change事件
-    this.d_value = obj.value
-    $vm.focus();
+    $vm.d_value = obj.value
+    obj.focus();
 }
 /**
  * 生成导航目录
