@@ -250,7 +250,7 @@
         },
         methods: {
             textAreaFocus() {
-                this.$refs.vNoteTextarea.$el.children[1].focus();
+                this.$refs.vNoteTextarea.$refs.vTextarea.focus();
             },
             $drag($e){
                 var dataTransfer = $e.dataTransfer;
@@ -426,7 +426,7 @@
             },
             // 获取textarea dom节点
             getTextareaDom() {
-                return this.$refs.vNoteTextarea.$el.children[1]
+                return this.$refs.vNoteTextarea.$refs.vTextarea;
             },
             // 工具栏插入内容
             insertText(obj, {prefix, subfix, str}) {
@@ -451,7 +451,7 @@
             },
             // 编辑开关
             editableTextarea() {
-                let text_dom = this.$refs.vNoteTextarea.$el.children[1];
+                let text_dom = this.$refs.vNoteTextarea.$refs.vTextarea;
                 if (this.editable) {
                     text_dom.removeAttribute('disabled');
                 } else {
