@@ -21,6 +21,9 @@
             <mavon-editor  ref=md :subfield="subfield" :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"></mavon-editor>
+            
+            <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left"
+                aria-hidden="true" title="自定义"></button>
         </div>
         <!--自定义-->
         <div v-if="screen_phone" class="item">
@@ -84,8 +87,17 @@
             })
         },
         mounted() {
+            var md = this.$refs.md;
+            var toolbar_left = md.$refs.toolbar_left;
+            var diy = this.$refs.diy;
+            toolbar_left.$el.append(diy)
+            // toolbar_left.$el.append(diy.$el)
+            // console.log(toolbar_left)
         },
         methods: {
+            $click(val) {
+                console.log(val);
+            },
             imgreplace($e) {
                 console.log('here');
                 // this.$refs.md.$img2Url('./0', 'https://www.domain.com/this/is/my.png');
