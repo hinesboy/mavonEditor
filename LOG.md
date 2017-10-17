@@ -1,4 +1,5 @@
 # 更新日志
+- **2.2.10** 更新babel-preset-env配置 (17.10.17)
 - **2.2.8** 添加TAB缩进[#75](https://github.com/hinesboy/mavonEditor/issues/75) (17.9.29)
 - **2.2.7** 修复[#88](https://github.com/hinesboy/mavonEditor/issues/88) (17.9.26)
 - **2.2.6** 修复[#57](https://github.com/hinesboy/mavonEditor/issues/57) (17.9.11)
