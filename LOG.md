@@ -1,4 +1,5 @@
 # 更新日志
+- **2.3.1** 修复帮助文档链接无法跳转问题 [#125](https://github.com/hinesboy/mavonEditor/issues/125)(17.11.14 )
 - **2.3.0** 解决const关键字报错问题 (17.10.27 / [lwdgit](https://github.com/lwdgit))
 - **2.2.10** 更新babel-preset-env配置 (17.10.17)
 - **2.2.8** 添加TAB缩进[#75](https://github.com/hinesboy/mavonEditor/issues/75) (17.9.29)
