@@ -47,7 +47,7 @@ $ npm install mavon-editor --save
 为优化插件体积，从**2.4.0**起代码高亮将使用`hightlight.js`的`cdnjs`外链，各代码高亮文件将在使用时按需加载相应外链.
 代码中可动态更改`hljs`的代码高亮配色`css`，配色方案将动态加载相应的`cdnjs`外链.
 
-[可选配色方案]('./src/lib/core/hljs/lang.hljs.css.js') 和 [支持的语言]('./src/lib/core/hljs/lang.hljs.js') 是从 [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src) 导出的
+[可选配色方案](./src/lib/core/hljs/lang.hljs.css.js) 和 [支持的语言](./src/lib/core/hljs/lang.hljs.js) 是从 [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src) 导出的
 
 ### Use (如何引入)
 
@@ -246,7 +246,7 @@ exports default {
 | default_open | String |         | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
 | placeholder | String |    开始编辑...     |  输入框为空时默认提示文本  |
 | editable     | Boolean |    true     | 是否允许编辑     |
-| code_style | String |    code-github     | markdown样式： 默认github, [可选配色方案]('./src/lib/core/hljs/lang.hljs.css.js')   |
+| code_style | String |    code-github     | markdown样式： 默认github, [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js)   |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                |
 | toolbars     | Object  |     如下例     | 工具栏                      |
 | ishljs       | Boolean |     false     |  是否高亮代码 |

@@ -47,7 +47,7 @@ the code highlights the file will be used to load the corresponding chain as nee
 You can dynamically change the `hljs` code color scheme, 
 color scheme will dynamically load the corresponding `cdnjs` external link.
 
-[Option hljs color scheme]('./src/lib/core/hljs/lang.hljs.css.js') and [Supported language]('./src/lib/core/hljs/lang.hljs.js') is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
+[Option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js) and [Supported language](./src/lib/core/hljs/lang.hljs.js) is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
 
 ### Use
 
@@ -246,7 +246,7 @@ exports default {
 | default_open | String |         | edit: default show edit area , preview: default show preview area  , other = edit |
 | placeholder | String |    Begin editing...     |  The default prompt text when the textarea is empty  |
 | editable | Boolean     |   true       | Edit switch |
-| code_style | String |    code-github     | markdown Style: default github, [option hljs color scheme]('./src/lib/core/hljs/lang.hljs.css.js')  |
+| code_style | String |    code-github     | markdown Style: default github, [option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js)  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
 | toolbars   | Object      |   As in the following example  | toolbars |
 | ishljs       | Boolean |     false     | highlight code switch |
