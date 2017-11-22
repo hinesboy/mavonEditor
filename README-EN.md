@@ -42,51 +42,12 @@ Set ishljs = true
 ```javascript
     <mavon-editor :ishljs = "true"></mavon-editor>
 ```
+For optimize the size of pack, since **v2.4.0** `hightlight.js` will use `cdnjs` external link,
+the code highlights the file will be used to load the corresponding chain as needed.
+You can dynamically change the `hljs` code color scheme, 
+color scheme will dynamically load the corresponding `cdnjs` external link.
 
-For optimize the size of pack, since v2.0.0 `hightlight.js` will on-demand load highlight files, you should pack highlight files(`mavon-editor/dist/js/*.js`) manual.
-If you are using webpack , you sould config `webpack` as shown below
-`webpack.conf.js`:
-```javascript
-//...
-var lang = require('highlight.js-async-webpack/src/file.lang.hljs.js');
-var _entry= {
-    back_end: './src/back-end/index.js', // Original entrance
-    vue: ['vue']
-};
-for (var i = 0; i < lang.length; i++) {
-    _entry[lang[i]] = ['mavon-editor/dist/js/' + lang[i] + '.js']
-}
-//...
-module.exports = {
-    entry: _entry,
-    output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'js/[name].js',
-        //...
-    },
-    //...
-}
-```
-
-**notice**: `webpack.output.filename`must be `js/[name].js`, otherwise will cause issue `Error: Loading chunk xxx failed.`.
-
-**notice**: If you are using `HtmlWebpackPlugin` Plugin(such as the `vue-cli` default project), you will need to manually specify the plug-in chunks,
-Otherwise all code highlighted file will be introduced in HTML (probably more than two hundred js displayed in the HTML page),
-the plug-in configuration code roughly as follows:
-```javascript
-module.exports = {
-    //....
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'index.html',
-            inject: true,
-            chunks: ['app'] // chunks name of you need to introduced
-        })
-    ]
-    //....
-}
-```
+[Option hljs color scheme]('./src/lib/core/hljs/lang.hljs.css.js') and [Supported language]('./src/lib/core/hljs/lang.hljs.js') is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
 
 ### Use
 
@@ -285,7 +246,7 @@ exports default {
 | default_open | String |         | edit: default show edit area , preview: default show preview area  , other = edit |
 | placeholder | String |    Begin editing...     |  The default prompt text when the textarea is empty  |
 | editable | Boolean     |   true       | Edit switch |
-| code_style | String |    code-github     | markdown Style: code-github , code-hybrid , code-xcode  |
+| code_style | String |    code-github     | markdown Style: default github, [option hljs color scheme]('./src/lib/core/hljs/lang.hljs.css.js')  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
 | toolbars   | Object      |   As in the following example  | toolbars |
 | ishljs       | Boolean |     false     | highlight code switch |

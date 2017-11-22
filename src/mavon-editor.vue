@@ -1,5 +1,5 @@
 <template>
-    <div :class="[{'fullscreen': s_fullScreen},code_style]" class="v-note-wrapper markdown-body">
+    <div :class="[{'fullscreen': s_fullScreen}]" class="v-note-wrapper markdown-body">
         <!--工具栏-->
         <div class="v-note-op" v-show="toolbarsFlag">
             <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words" @toolbar_left_click="toolbar_left_click" :toolbars="toolbars"
@@ -58,7 +58,7 @@
         <transition name="fade">
             <div ref="help">
                 <div @click="toolbar_right_click('help')" class="v-note-help-wrapper" v-if="s_help">
-                    <div @click.stop="" class="v-note-help-content markdown-body code-hybrid">
+                    <div @click.stop="" class="v-note-help-content markdown-body">
                         <i @click.stop.prevent="toolbar_right_click('help')" class="fa fa-mavon-times" aria-hidden="true"></i>
                         <div class="scroll-style v-note-help-show" v-html="d_help"></div>
                     </div>
@@ -87,13 +87,15 @@
     // import tomarkdown from './lib/core/to-markdown.js'
     import {autoTextarea} from 'auto-textarea'
     import {keydownListen} from './lib/core/keydown-listen.js'
+    import hljsCss from './lib/core/hljs/lang.hljs.css.js'
     import {
         fullscreenchange,
         windowResize,
         scrollLink,
         insertTextAtCaret,
         getNavigation,
-        insertTab
+        insertTab,
+        loadLink
     } from './lib/core/extra-function.js'
     // import {onecolumnKeyDownEnter, onecolumnInsert} from './lib/core/onecolumn-event.js'
     import {p_ObjectCopy_DEEP} from './lib/util.js'
@@ -159,7 +161,9 @@
             },
             code_style:{
                 type:String,
-                default:'code-github'
+                default() {
+                    return 'github';
+                }
             },
             placeholder: {
                 type: String,
@@ -244,6 +248,8 @@
             this.d_value = this.value;
             // 将help添加到末尾
             document.body.appendChild(this.$refs.help);
+            loadLink('https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.9.0/github-markdown.min.css')
+            $vm.codeStyleChange('github')
         },
         beforeDestroy() {
             document.body.removeChild(this.$refs.help);
@@ -463,6 +469,11 @@
                 //     this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
                 // }
             },
+            codeStyleChange(val) {
+                if(hljsCss[val]) {
+                    loadLink('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/' + val + '.min.css');
+                }
+            }
         },
         watch: {
             d_value: function (val, oldVal) {
@@ -512,6 +523,9 @@
                     default_open_ = 'preview';
                 }
                 return this.s_preview_switch = default_open_ === 'preview' ? true : false;
+            },
+            code_style: function(val) {
+                this.codeStyleChange(val)
             }
         },
         components: {

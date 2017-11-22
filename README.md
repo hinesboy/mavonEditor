@@ -44,49 +44,10 @@ $ npm install mavon-editor --save
     <mavon-editor :ishljs = "true"></mavon-editor>
 ```
 
-为了优化打包引入体积，从**2.0.0**起`hightlight.js`各代码高亮文件将在使用时按需异步加载，必须要将`mavon-editor/dist/js/*.js`都引入
-如果你使用`webpack`打包，你需要配置webpack如下所示
-`webpack.conf.js`:
-```javascript
-//...
-var lang = require('highlight.js-async-webpack/src/file.lang.hljs.js');
-var _entry= {
-    back_end: './src/back-end/index.js', // 原始入口
-    vue: ['vue']
-};
-for (var i = 0; i < lang.length; i++) {
-    _entry[lang[i]] = ['mavon-editor/dist/js/' + lang[i] + '.js']
-}
+为优化插件体积，从**2.4.0**起代码高亮将使用`hightlight.js`的`cdnjs`外链，各代码高亮文件将在使用时按需加载相应外链.
+代码中可动态更改`hljs`的代码高亮配色`css`，配色方案将动态加载相应的`cdnjs`外链.
 
-//...
-module.exports = {
-    entry: _entry,
-    output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'js/[name].js',
-        //...
-    },
-    //...
-}
-```
-**注意**: `webpack`的配置文件中`output.filename`必须为`js/[name].js`,否则会出现错误`Error: Loading chunk xxx failed`.
-
-**注意**: 如果你使用`HtmlWebpackPlugin`插件(如默认的`vue-cli`项目)，那么需要手动指定该插件的chunks，
-否则所有代码高亮文件将会被引入html(大概有两百多个js显示在html页面上)，插件配置代码大致如下:
-```javascript
-module.exports = {
-    //....
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'index.html',
-            inject: true,
-            chunks: ['app'] // 需要引入的chunk入口名
-        })
-    ]
-    //....
-}
-```
+[可选配色方案]('./src/lib/core/hljs/lang.hljs.css.js') 和 [支持的语言]('./src/lib/core/hljs/lang.hljs.js') 是从 [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src) 导出的
 
 ### Use (如何引入)
 
@@ -285,7 +246,7 @@ exports default {
 | default_open | String |         | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
 | placeholder | String |    开始编辑...     |  输入框为空时默认提示文本  |
 | editable     | Boolean |    true     | 是否允许编辑     |
-| code_style | String |    code-github     | markdown样式： code-github , code-hybrid , code-xcode   |
+| code_style | String |    code-github     | markdown样式： 默认github, [可选配色方案]('./src/lib/core/hljs/lang.hljs.css.js')   |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                |
 | toolbars     | Object  |     如下例     | 工具栏                      |
 | ishljs       | Boolean |     false     |  是否高亮代码 |
