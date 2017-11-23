@@ -3,8 +3,8 @@
  * @Date:   2017-06-16T21:01:47+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: highlight.js
- * @Last modified by:   CHC
- * @Last modified time: 2017-06-20T00:19:42+08:00
+ * @Last modified by:   chc
+ * @Last modified time: 2017-11-23T17:22:52+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -29,7 +29,7 @@ function _highLightCode(str, callback) {
     var dom = document.createElement('div');
     var hljs = window.hljs;
     dom.innerHTML = str;
-    var pre_code = dom.querySelectorAll('pre.hljs > code');
+    var pre_code = dom.querySelectorAll('pre > div.hljs > code');
     if (pre_code && hljs) {
         var flag = 0;
         var cnt = 0;

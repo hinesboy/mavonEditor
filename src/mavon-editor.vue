@@ -249,7 +249,7 @@
             // 将help添加到末尾
             document.body.appendChild(this.$refs.help);
             loadLink('https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.9.0/github-markdown.min.css')
-            $vm.codeStyleChange('github')
+            $vm.codeStyleChange($vm.code_style, true)
         },
         beforeDestroy() {
             document.body.removeChild(this.$refs.help);
@@ -469,9 +469,15 @@
                 //     this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
                 // }
             },
-            codeStyleChange(val) {
+            codeStyleChange(val, isInit) {
+                isInit = isInit ? isInit : false;
                 if(hljsCss[val]) {
                     loadLink('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/' + val + '.min.css');
+                } else if(isInit) {
+                    console.warn('hljs color scheme', val, 'do not exist, loading default github.min.css');
+                    loadLink('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css')
+                } else {
+                    console.warn('hljs color scheme', val, 'do not exist, hljs color scheme will not change');
                 }
             }
         },

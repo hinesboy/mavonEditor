@@ -3,11 +3,13 @@
  * @Date:   2017-05-03T00:31:20+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: markdown.js
- * @Last modified by:   CHC
- * @Last modified time: 2017-06-20T12:30:58+08:00
+ * @Last modified by:   chc
+ * @Last modified time: 2017-11-23T17:21:36+08:00
  * @License: MIT
  * @Copyright: 2017
  */
+
+import hljsLangs from './hljs/lang.hljs.js'
 
 /**
  * Created by zhy on 2017/3/30.
@@ -17,12 +19,15 @@ var markdown_config = {
     html: true,        // Enable HTML tags in source
     xhtmlOut: true,        // Use '/' to close single tags (<br />).
     breaks: true,        // Convert '\n' in paragraphs into <br>
-    langPrefix: 'language-markdown',  // CSS language prefix for fenced blocks. Can be
+    langPrefix: 'language-',  // CSS language prefix for fenced blocks. Can be
     linkify: false,        // 自动识别url
     typographer: true,
     quotes: '“”‘’',
     highlight: function (str, lang) {
-        return '<pre class="hljs"><code class="' + lang + '">' + markdown.utils.escapeHtml(str) + '</code></pre>';
+        if (lang && hljsLangs[lang]) {
+            return '<pre><div class="hljs"><code class="' + lang + '">' + markdown.utils.escapeHtml(str) + '</code></div></pre>';
+        }
+        return '<pre><code class="' + lang + '">' + markdown.utils.escapeHtml(str) + '</code></pre>';
     }
 }
 
