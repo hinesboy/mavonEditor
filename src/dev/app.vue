@@ -20,6 +20,7 @@
             <button @click="imgreplace">imgreplace</button>
             <mavon-editor  ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable" :code_style="code_style"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
+                          :external_link="external_link"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"></mavon-editor>
             
             <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left"
@@ -74,7 +75,8 @@
                 editable: true,
                 toolbarsFlag: true,
                 img_file: {},
-                code_style: 'darcula'
+                code_style: 'solarized-dark',
+                external_link: null
             }
         },
         created () {

@@ -42,6 +42,8 @@ module.exports = {
     'no-unneeded-ternary': 0,
     'quotes': 0,
     'no-useless-escape': 0,
-    'no-eval': 0
+    'no-eval': 0,
+    // 允许多个空格
+    'no-multi-spaces': 0
   }
 }

@@ -83,6 +83,7 @@
     import {autoTextarea} from 'auto-textarea'
     import {keydownListen} from './lib/core/keydown-listen.js'
     import hljsCss from './lib/core/hljs/lang.hljs.css.js'
+    import hljsLangs from './lib/core/hljs/lang.hljs.js'
     import {
         fullscreenchange,
         windowResize,
@@ -102,13 +103,6 @@
 
     var s_md_toolbar_left = require('./components/s-md-toolbar-left.vue')
     var s_md_toolbar_right = require('./components/s-md-toolbar-right.vue')
-    markdown.renderAsync = function (src, env, fuc, _env) {
-        env = env || {};
-        _env = _env || {};
-        var _res = markdown.renderer.render(this.parse(src, env), this.options, env);
-        if (_env['ishljs'] === false) fuc(_res)
-        else hljs(_res, fuc);
-    }
     export default {
         markdownIt: markdown,
         props: {
@@ -170,7 +164,11 @@
             ishljs: {
                 type: Boolean,
                 default: true
-            }
+            },
+            external_link: {
+                type: Object,
+                default: null
+            },
         },
         data() {
             return {
@@ -210,10 +208,41 @@
                 s_markdown: markdown,
                 // s_tomarkdown: tomarkdown,
                 d_image_file: [],
-                d_preview_imgsrc: null // 图片预览地址
+                d_preview_imgsrc: null, // 图片预览地址
+                s_external_link: {
+                    markdown_css: function() {
+                        return 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.9.0/github-markdown.min.css';
+                    },
+                    hljs_js: function() {
+                        return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js';
+                    },
+                    hljs_lang: function(lang) {
+                        return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/' + lang + '.min.js';
+                    },
+                    hljs_css: function(css) {
+                        if(hljsCss[css]) {
+                            return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/' + css + '.min.css';
+                        }
+                        return '';
+                    }
+                }
             };
         },
         created() {
+            var $vm = this;
+            markdown.renderAsync = function (src, env, fuc, _env) {
+                env = env || {};
+                _env = _env || {};
+                var _res = markdown.renderer.render(this.parse(src, env), this.options, env);
+                if(_env['ishljs'] === false) fuc(_res)
+                else {
+                    if($vm.external_link === null) {
+                        hljs(_res, fuc, $vm.s_external_link.hljs_lang, $vm.s_external_link.hljs_js);
+                    } else {
+                        hljs(_res, fuc, $vm.external_link.hljs_lang, $vm.external_link.hljs_js);
+                    }
+                }
+            }
             // 初始化语言
             this.initLanguage();
             this.$nextTick(() => {
@@ -239,7 +268,15 @@
             this.d_value = this.value;
             // 将help添加到末尾
             document.body.appendChild(this.$refs.help);
-            loadLink('https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.9.0/github-markdown.min.css')
+            if ($vm.external_link === null) {
+                loadLink($vm.s_external_link.markdown_css());
+            } else {
+                if (typeof $vm.external_link.markdown_css === 'function') {
+                    loadLink($vm.external_link.markdown_css());
+                } else if($vm.external_link.markdown_css != false) {
+                    console.error('external_link.markdown_css is not a function, if you want to disabled it, set external_link.markdown_css to function or false');
+                }
+            }
             $vm.codeStyleChange($vm.code_style, true)
         },
         beforeDestroy() {
@@ -445,12 +482,29 @@
                     text_dom.setAttribute('disabled', 'disabled');
                 }
             },
-            codeStyleChange(val = 'github', isInit = false) {
-                let url = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/${val}.min.css`;
-                if (hljsCss[val]) {
-                    loadLink(url);
-                } else if (isInit) {
-                    console.warn('hljs color scheme', val, 'do not exist, loading default github.min.css');
+
+            codeStyleChange(val, isInit) {
+                isInit = isInit ? isInit : false;
+                var url = '';
+                if (this.external_link === null) {
+                    url = this.s_external_link.hljs_css(val);
+                    if (url.length == 0 && isInit) {
+                        console.warn('hljs color scheme', val, 'do not exist, loading default github');
+                        url = this.s_external_link('github')
+                    }
+                } else {
+                    if (typeof this.external_link.hljs_css != 'function') {
+                        if (this.external_link.hljs_css != false)
+                            console.error('external_link.hljs_css is not a function, if you want to disabled this error log, set external_link.hljs_css to function or false');
+                        return;
+                    }
+                    url = this.external_link.hljs_css(val);
+                    if (url.length === 0 && isInit) {
+                        console.warn('hljs color scheme', val, 'do not exist, loading default github');
+                        url = this.external_link.hljs_css('github')
+                    }
+                }
+                if (url.length > 0) {
                     loadLink(url)
                 } else {
                     console.warn('hljs color scheme', val, 'do not exist, hljs color scheme will not change');
