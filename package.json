@@ -39,6 +39,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-2": "^6.24.1",
+    "copy-webpack-plugin": "^4.2.3",
     "css-loader": "^0.28.1",
     "eslint": "^4.11.0",
     "eslint-config-standard": "^10.2.1",

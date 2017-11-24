@@ -3,8 +3,8 @@
  * @Date:   2017-05-07T20:11:11+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.base.js
- * @Last modified by:
- * @Last modified time: 2017-07-13T10:00:34+08:00
+ * @Last modified by:   chc
+ * @Last modified time: 2017-11-24T20:44:28+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -19,6 +19,7 @@ var WebpackMd5Hash = require('webpack-md5-hash');
 // 压缩css
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const extractCSS = new ExtractTextPlugin('css/[name].css');
 module.exports = {
@@ -117,6 +118,10 @@ module.exports = {
             cssProcessorOptions: { discardComments: { removeAll: true } },
             canPrint: true
         }),
+        new CopyWebpackPlugin([{
+            from: path.resolve(__dirname, '../resources/highlight.js-9.12.0'),
+            to: path.resolve(__dirname, '../dist/highlightjs')
+        }]),
         new BundleAnalyzerPlugin({
             // Can be `server`, `static` or `disabled`.
             // In `server` mode analyzer will start HTTP server to show bundle report.
