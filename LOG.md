@@ -1,5 +1,5 @@
 # 更新日志
-- **2.4.2** 修复`github-markdown-css`与`hljs-css`的冲突，提供一种自定义按需加载`hljs`以及`markdown`相关文件的方式(17.11.22 [CHENXCHEN](https://github.com/CHENXCHEN))
+- **2.4.2** 修复`github-markdown-css`与`hljs-css`的冲突，提供一种自定义按需加载`hljs`以及`markdown`相关文件的方式(17.11.24 [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.4.0** 抛弃集成`hljs`，改为使用`cdnjs`外链，代码高亮方案也改为使用`cdnjs`外链(17.11.22 [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.3.1** 修复帮助文档链接无法跳转问题 [#125](https://github.com/hinesboy/mavonEditor/issues/125)(17.11.14 )
 - **2.3.0** 解决const关键字报错问题 (17.10.27 / [lwdgit](https://github.com/lwdgit))
