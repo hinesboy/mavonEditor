@@ -76,7 +76,20 @@
                 toolbarsFlag: true,
                 img_file: {},
                 code_style: 'solarized-dark',
-                external_link: null
+                external_link: {
+                    markdown_css: function() {
+                        return '/markdown/github-markdown.min.css';
+                    },
+                    hljs_js: function() {
+                        return '/highlightjs/highlight.min.js';
+                    },
+                    hljs_css: function(css) {
+                        return '/highlightjs/styles/' + css + '.min.css';
+                    },
+                    hljs_lang: function(lang) {
+                        return '/highlightjs/languages/' + lang + '.min.js';
+                    },
+                }
             }
         },
         created () {

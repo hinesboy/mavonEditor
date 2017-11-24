@@ -50,6 +50,82 @@ color scheme will dynamically load the corresponding `cdnjs` external link.
 
 [Option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js) and [Supported language](./src/lib/core/hljs/lang.hljs.js) is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
 
+##### Local on-demand loading
+since **v2.4.2** code highlight and markdown support local on-demand loading, default using `cdnjs` if do not config.
+You should install plugin `copy-webpack-plugin`(`npm install copy-webpack-plugin -D`)
+
+Configuring your `webpack` as below:
+(We assume your configuration file locate in your project `/webpack/webpack.js`,
+and you want to export `hljs` and `markdown` files to `/dist/highlightjs` and `/dist/markdown`
+)
+
+```javascript
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
+module.exports = {
+    // ...
+    plugins: [
+        // ...
+        new CopyWebpackPlugin([{
+            from: 'node_modules/mavon-editor/dist/highlightjs',
+            to: path.resolve(__dirname, '../dist/highlightjs'), // plugin will export hljs files into /dist/highlightjs
+        }, {
+            from: 'node_modules/mavon-editor/dist/markdown',
+            to: path.resolve(__dirname, '../dist/markdown'), // plugin will export markdown files into /dist/markdown
+        }]),
+        // ...
+    ],
+    // ...
+}
+```
+And then you need set `external_link` to `mavon-editor`,
+the code is as follows:
+(We assume your `web root` located in your project `/dist/`, and your website url is `www.site.com`,
+then `markdown`, `hljs_js`, `hljs_css`, `hljs_lang` need return related file locations, 
+for example, the `www.site.com/markdown/github-markdown.min.css` link file should be located in the 
+`/dist/markdown/github-markdown.min.css`
+)
+```javascript
+<template>
+  <div id="app">
+      <mavon-editor
+      :subfield = "subfield"
+      :code_style="code_style"
+      :ishljs="true"
+      :external_link="external_link"
+      ></mavon-editor>
+  </div>
+</template>
+<script>
+export default {
+    data () {
+      return {
+        subfield: true,
+        code_style: 'solarized-dark',
+        external_link: {
+            markdown_css: function() {
+                // thi is your markdown css file path 这是你的markdown css文件路径
+                return '/markdown/github-markdown.min.css';
+            },
+            hljs_js: function() {
+                // 这是你的hljs文件路径
+                // this is your hljs file
+                return '/highlightjs/highlight.min.js';
+            },
+            hljs_css: function(css) {
+                // this is your hljs language file
+                return '/highlightjs/styles/' + css + '.min.css';
+            },
+            hljs_lang: function(lang) {
+                // this is your hljs css file
+                return '/highlightjs/languages/' + lang + '.min.js';
+            },
+        }
+      }
+    },
+}
+</script>
+```
 ### Use
 
 #### method 1
