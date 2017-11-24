@@ -121,6 +121,9 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: path.resolve(__dirname, '../resources/highlight.js-9.12.0'),
             to: path.resolve(__dirname, '../dist/highlightjs')
+        }, {
+            from: path.resolve(__dirname, '../resources/markdown'),
+            to: path.resolve(__dirname, '../dist/markdown')
         }]),
         new BundleAnalyzerPlugin({
             // Can be `server`, `static` or `disabled`.

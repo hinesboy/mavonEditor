@@ -5,7 +5,7 @@
   "main": "dist/mavon-editor.js",
   "scripts": {
     "test": "echo true",
-    "dev": "webpack-dev-server --progress --content-base dist --config webpack/webpack.dev.js",
+    "dev": "webpack-dev-server --progress --config webpack/webpack.dev.js",
     "build": "webpack --progress --config webpack/webpack.build.js"
   },
   "repository": {

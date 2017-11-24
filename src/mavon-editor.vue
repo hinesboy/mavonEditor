@@ -513,7 +513,7 @@
                     url = this.s_external_link.hljs_css(val);
                     if (url.length == 0 && isInit) {
                         console.warn('hljs color scheme', val, 'do not exist, loading default github');
-                        url = this.s_external_link('github')
+                        url = this.s_external_link.hljs_css('github')
                     }
                 } else {
                     if (typeof this.external_link.hljs_css != 'function') {
