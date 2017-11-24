@@ -36,7 +36,7 @@ $ npm install mavon-editor --save
 
 #### Hightlight
 
-> If you do not need code highlighting, you can ignore this step
+> If you do not need code highlighting, you need set ishljs to false
 
 Set ishljs = true
 ```javascript

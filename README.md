@@ -37,7 +37,7 @@ $ npm install mavon-editor --save
 
 #### 代码高亮
 
-> 如不需要hightlight代码高亮显示，可以忽略此步骤
+> 如不需要hightlight代码高亮显示，你应该设置ishljs为false
 
 开启代码高亮props
 ```javascript
