@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: markdown.js
  * @Last modified by:   chc
- * @Last modified time: 2017-11-23T17:21:36+08:00
+ * @Last modified time: 2017-11-24T19:34:03+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -58,9 +58,9 @@ markdown.use(emoji)
     .use(sup)
     .use(sub)
     .use(container)
-    .use(container, 'hljs-left')/*align left */
-    .use(container, 'hljs-center')/*align center */
-    .use(container, 'hljs-right')/*align right */
+    .use(container, 'hljs-left') /* align left */
+    .use(container, 'hljs-center')/* align center */
+    .use(container, 'hljs-right')/* align right */
     .use(deflist)
     .use(abbr)
     .use(footnote)

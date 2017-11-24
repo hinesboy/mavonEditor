@@ -38,6 +38,8 @@ module.exports = {
     //
     'no-unused-vars':0,
     // else 强制换行
-    'brace-style':0
+    'brace-style':0,
+    // 允许多个空格
+    'no-multi-spaces': 0,
   }
 }
