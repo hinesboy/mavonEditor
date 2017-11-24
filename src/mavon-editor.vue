@@ -2,30 +2,26 @@
     <div :class="[{'fullscreen': s_fullScreen}]" class="v-note-wrapper markdown-body">
         <!--工具栏-->
         <div class="v-note-op" v-show="toolbarsFlag">
-            <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words" @toolbar_left_click="toolbar_left_click" :toolbars="toolbars"
+            <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words"
+                               @toolbar_left_click="toolbar_left_click" :toolbars="toolbars"
                                @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch"/>
-            <s-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click" :toolbars="toolbars"
+            <s-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click"
+                                :toolbars="toolbars"
                                 :s_subfield="s_subfield"
-                                :s_preview_switch="s_preview_switch" :s_fullScreen="s_fullScreen" :s_html_code="s_html_code"
+                                :s_preview_switch="s_preview_switch" :s_fullScreen="s_fullScreen"
+                                :s_html_code="s_html_code"
                                 :s_navigation="s_navigation"/>
         </div>
         <!--编辑展示区域-->
         <div class="v-note-panel">
             <!--编辑区-->
             <div ref="vNoteEdit" @scroll="$v_edit_scroll" class="v-note-edit divarea-wrapper"
-                 :class="{'scroll-style': s_scrollStyle  , 'single-edit': !s_preview_switch && !s_html_code , 'single-show': (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code)}" @click="textAreaFocus">
-                <!-- 单栏模式 html展示 -->
-                <!-- <div v-show="!s_preview_switch&&s_html_code&&!s_screen_phone" class="content-div">
-                    {{d_render}}
-                </div> -->
-                <!-- 单栏模式 渲染区域-->
-                <!-- <div ref="vNoteDivEdit" @keydown.enter="$auto_textarea_div_enter" @keyup="$auto_textarea_div_change"
-                     spellcheck="false" v-show="!s_preview_switch&&!s_html_code&&!s_screen_phone"
-                     class="content-div content-div-edit" :contenteditable="editable">
-                </div> -->
-                <div  class="content-input-wrapper">
+                 :class="{'scroll-style': s_scrollStyle  , 'single-edit': !s_preview_switch && !s_html_code , 'single-show': (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code)}"
+                 @click="textAreaFocus">
+                <div class="content-input-wrapper">
                     <!-- 双栏 -->
-                    <v-autoTextarea ref="vNoteTextarea" :placeholder="placeholder ? placeholder : d_words.start_editor" class="content-input" fontSize="15px"
+                    <v-autoTextarea ref="vNoteTextarea" :placeholder="placeholder ? placeholder : d_words.start_editor"
+                                    class="content-input" fontSize="15px"
                                     lineHeight="1.5" v-model="d_value"></v-autoTextarea>
                 </div>
             </div>
@@ -59,25 +55,24 @@
             <div ref="help">
                 <div @click="toolbar_right_click('help')" class="v-note-help-wrapper" v-if="s_help">
                     <div @click.stop="" class="v-note-help-content markdown-body">
-                        <i @click.stop.prevent="toolbar_right_click('help')" class="fa fa-mavon-times" aria-hidden="true"></i>
+                        <i @click.stop.prevent="toolbar_right_click('help')" class="fa fa-mavon-times"
+                           aria-hidden="true"></i>
                         <div class="scroll-style v-note-help-show" v-html="d_help"></div>
                     </div>
                 </div>
+            </div>
+        </transition>
+
+        <transition name="fade">
+            <div @click="d_preview_imgsrc=null" class="v-note-img-wrapper" v-if="d_preview_imgsrc">
+                <i @click.stop.prevent="d_preview_imgsrc=null" class="fa fa-mavon-times" aria-hidden="true"></i>
+                <img @click.stop="" :src="d_preview_imgsrc" alt="error">
             </div>
         </transition>
         <!--阅读模式-->
         <div :class="{'show': s_readmodel}" class="v-note-read-model scroll-style" ref="vReadModel">
             <div class="v-note-read-content" v-html="d_render">
             </div>
-            <!--标题导航-->
-            <!-- <div v-if="toolbars.navigation" v-show="s_navigation_full" class="v-note-navigation-wrapper">
-                 <div class="v-note-navigation-title">
-                     {{d_words.navigation_title}}<i @click="toolbar_right_click('navigationfull')"
-                                                    class="fa fa-mavon-times v-note-navigation-close" aria-hidden="true"></i>
-                 </div>
-                 <div ref="navigationContentFull" class="v-note-navigation-content scroll-style">
-                 </div>
-             </div>-->
         </div>
     </div>
 </template>
@@ -95,24 +90,27 @@
         insertTextAtCaret,
         getNavigation,
         insertTab,
-        loadLink
+        loadLink,
+        ImagePreviewListener
     } from './lib/core/extra-function.js'
     // import {onecolumnKeyDownEnter, onecolumnInsert} from './lib/core/onecolumn-event.js'
     import {p_ObjectCopy_DEEP} from './lib/util.js'
     import {toolbar_left_click} from './lib/toolbar_left_click.js'
     import {toolbar_right_click} from './lib/toolbar_right_click.js'
     import {CONFIG} from './lib/config.js'
+    import hljs from './lib/core/highlight.js'
+
     var s_md_toolbar_left = require('./components/s-md-toolbar-left.vue')
     var s_md_toolbar_right = require('./components/s-md-toolbar-right.vue')
-    import hljs from './lib/core/highlight.js'
     markdown.renderAsync = function (src, env, fuc, _env) {
         env = env || {};
         _env = _env || {};
         var _res = markdown.renderer.render(this.parse(src, env), this.options, env);
-        if(_env['ishljs'] === false) fuc(_res)
+        if (_env['ishljs'] === false) fuc(_res)
         else hljs(_res, fuc);
     }
     export default {
+        markdownIt: markdown,
         props: {
             // 是否渲染滚动条样式(webkit)
             scrollStyle: {
@@ -139,7 +137,7 @@
             },
             // 默认展示 edit & 其他 为编辑区域 preview  为预览区域
             default_open: {
-                type:  String,
+                type: String,
                 default: null
             },
             // 是否开启编辑
@@ -159,8 +157,8 @@
                     return CONFIG.toolbars
                 }
             },
-            code_style:{
-                type:String,
+            code_style: {
+                type: String,
                 default() {
                     return 'github';
                 }
@@ -171,7 +169,7 @@
             },
             ishljs: {
                 type: Boolean,
-                default: false
+                default: true
             }
         },
         data() {
@@ -187,12 +185,6 @@
                 })(),// props 是否渲染滚动条样式
                 d_value: '',// props 文本内容
                 d_render: '',// props 文本内容render
-               /* d_value: (() => {
-                    return this.value
-                })(),// props 文本内容
-                d_render: (() => {
-                    return markdown.render(this.value);
-                })(),// props 文本内容render*/
                 s_preview_switch: (() => {
                     let default_open_ = this.default_open;
                     if (this.subfield && !default_open_) {
@@ -208,8 +200,6 @@
                 edit_scroll_height: -1,
                 s_readmodel: false,
                 s_table_enter: false, // 回车事件是否在表格中执行
-               /* s_screen_phone_toggle: true,
-                s_screen_phone: false,*/
                 d_history: (() => {
                     let temp_array = []
                     temp_array.push(this.value)
@@ -219,25 +209,26 @@
                 currentTimeout: '',
                 s_markdown: markdown,
                 // s_tomarkdown: tomarkdown,
-                d_image_file: []
+                d_image_file: [],
+                d_preview_imgsrc: null // 图片预览地址
             };
         },
         created() {
             // 初始化语言
             this.initLanguage();
             this.$nextTick(() => {
-                // 初始化单栏数据
-                this.loadDivData();
                 // 初始化Textarea编辑开关
                 this.editableTextarea();
+                // 图片预览事件监听
+                ImagePreviewListener(this);
             })
         },
-        mounted(){
+        mounted() {
             var $vm = this;
-            this.$el.addEventListener('paste', function(e){
+            this.$el.addEventListener('paste', function (e) {
                 $vm.$paste(e);
             })
-            this.$el.addEventListener('drop', function(e){
+            this.$el.addEventListener('drop', function (e) {
                 $vm.$drag(e);
             })
             // 浏览器siz大小
@@ -258,49 +249,38 @@
             textAreaFocus() {
                 this.$refs.vNoteTextarea.$refs.vTextarea.focus();
             },
-            $drag($e){
+            $drag($e) {
                 var dataTransfer = $e.dataTransfer;
-                if(dataTransfer){
+                if (dataTransfer) {
                     var files = dataTransfer.files;
-                    if(files.length > 0){
+                    if (files.length > 0) {
                         $e.preventDefault();
-                        /*
-                         function deepCopy(source) {
-                         var result={};
-                         for (var key in source) {
-                         result[key] = typeof(source[key])==='object'? deepCopy(source[key]): source[key];
-                         }
-                         return result;
-                         }
-                         var tmp = deepCopy(files);
-                         console.log(tmp);
-                         */
-                        for(var i = 0;i < files.length;i++){
+                        for (var i = 0; i < files.length; i++) {
                             this.$refs.toolbar_left.$imgFileAdd(files[i]);
                         }
                     }
                 }
             },
-            $paste($e){
+            $paste($e) {
                 var clipboardData = $e.clipboardData;
-                if(clipboardData){
+                if (clipboardData) {
                     var items = clipboardData.items;
-                    if(!items) return ;
+                    if (!items) return;
                     var types = clipboardData.types || [];
                     var item = null;
-                    for(var i = 0; i < types.length; i++ ){
-                        if( types[i] === 'Files' ){
+                    for (var i = 0; i < types.length; i++) {
+                        if (types[i] === 'Files') {
                             item = items[i];
                             break;
                         }
                     }
-                    if( item && item.kind === 'file' && item.type.match(/^image\//i) ){
+                    if (item && item.kind === 'file' && item.type.match(/^image\//i)) {
                         var oFile = item.getAsFile();
                         this.$refs.toolbar_left.$imgFileAdd(oFile);
                     }
                 }
             },
-            $imgTouch(pos){
+            $imgTouch(pos) {
                 var $vm = this;
                 this.insertText(this.getTextareaDom(),
                     {
@@ -309,35 +289,36 @@
                         str: ''
                     });
             },
-            $imgDel(pos){
+            $imgDel(pos) {
                 this.s_markdown.image_del(pos);
                 this.d_render = this.s_markdown.render(this.d_value);
                 this.$emit('imgDel', pos);
             },
-            $imgAdd(pos, $file, isinsert){
-                if(isinsert === undefined) isinsert = true;
+            $imgAdd(pos, $file, isinsert) {
+                if (isinsert === undefined) isinsert = true;
                 var $vm = this;
-                if(this.__rFilter == null)
-                // this.__rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+                if (this.__rFilter == null) {
+                    // this.__rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
                     this.__rFilter = /^image\//i;
+                }
                 this.__oFReader = new FileReader();
-                this.__oFReader.onload = function (oFREvent){
+                this.__oFReader.onload = function (oFREvent) {
                     $vm.s_markdown.image_add(pos, oFREvent.target.result);
-                    if(isinsert == true) {
+                    if (isinsert === true) {
                         $vm.insertText($vm.getTextareaDom(),
-                        {
-                            prefix: '\n![' + $vm.d_words.tl_image + '](' + pos + ')',
-                            subfix: '',
-                            str: ''
-                        });
-                        $vm.$nextTick(function() {
+                            {
+                                prefix: '\n![' + $vm.d_words.tl_image + '](' + pos + ')',
+                                subfix: '',
+                                str: ''
+                            });
+                        $vm.$nextTick(function () {
                             $vm.$emit('imgAdd', pos, $file);
                         })
                     }
                 }
-                if($file){
+                if ($file) {
                     var oFile = $file;
-                    if(this.__rFilter.test(oFile.type)){
+                    if (this.__rFilter.test(oFile.type)) {
                         this.__oFReader.readAsDataURL(oFile);
                     }
                 }
@@ -345,12 +326,12 @@
             $imgUpdateByUrl(pos, url) {
                 var $vm = this;
                 this.s_markdown.image_add(pos, url);
-                this.$nextTick(function() {
+                this.$nextTick(function () {
                     $vm.d_render = this.s_markdown.render(this.d_value);
                 })
             },
             $imgAddByUrl(pos, url) {
-                if(this.$refs.toolbar_left.$imgAddByUrl(pos, url)) {
+                if (this.$refs.toolbar_left.$imgAddByUrl(pos, url)) {
                     this.$imgUpdateByUrl(pos, url);
                     return true;
                 }
@@ -364,8 +345,8 @@
                 this.d_value = this.d_value.replace(reg, "$1(" + url + ")")
             },
             $imglst2Url(imglst) {
-                if(imglst instanceof Array) {
-                    for(var i = 0;i < imglst.length;i++) {
+                if (imglst instanceof Array) {
+                    for (var i = 0; i < imglst.length; i++) {
                         this.$img2Url(imglst[i][0], imglst[i][1]);
                     }
                 }
@@ -397,7 +378,7 @@
                 this.$emit('previewtoggle', status, val)
             },
             // 切换分栏触发 （status , val）
-            subfieldtoggle (status, val) {
+            subfieldtoggle(status, val) {
                 this.$emit('subfieldtoggle', status, val)
             },
             // 切换htmlcode触发 （status , val）
@@ -442,15 +423,15 @@
             insertTab() {
                 insertTab(this)
             },
-            saveHistory () {
+            saveHistory() {
                 this.d_history.splice(this.d_history_index + 1, this.d_history.length)
                 this.d_history.push(this.d_value)
                 this.d_history_index = this.d_history.length - 1
             },
-            initLanguage () {
+            initLanguage() {
                 let lang = CONFIG.langList.indexOf(this.language) >= 0 ? this.language : this.language.default;
                 var $vm = this;
-                markdown.renderAsync(CONFIG[`help_${lang}`], {}, function(res) {
+                markdown.renderAsync(CONFIG[`help_${lang}`], {}, function (res) {
                     $vm.d_help = res;
                 }, {'ishljs': $vm.ishljs})
                 this.d_words = CONFIG[`words_${lang}`];
@@ -461,21 +442,16 @@
                 if (this.editable) {
                     text_dom.removeAttribute('disabled');
                 } else {
-                    text_dom.setAttribute('disabled' , 'disabled');
+                    text_dom.setAttribute('disabled', 'disabled');
                 }
             },
-            loadDivData() {
-                // if (this.$refs.vNoteDivEdit) {
-                //     this.$refs.vNoteDivEdit.innerHTML = markdown.render(this.d_value)
-                // }
-            },
-            codeStyleChange(val, isInit) {
-                isInit = isInit ? isInit : false;
-                if(hljsCss[val]) {
-                    loadLink('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/' + val + '.min.css');
-                } else if(isInit) {
+            codeStyleChange(val = 'github', isInit = false) {
+                let url = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/${val}.min.css`;
+                if (hljsCss[val]) {
+                    loadLink(url);
+                } else if (isInit) {
                     console.warn('hljs color scheme', val, 'do not exist, loading default github.min.css');
-                    loadLink('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css')
+                    loadLink(url)
                 } else {
                     console.warn('hljs color scheme', val, 'do not exist, hljs color scheme will not change');
                 }
@@ -484,7 +460,7 @@
         watch: {
             d_value: function (val, oldVal) {
                 var $vm = this;
-                markdown.renderAsync($vm.d_value, {}, function(res) {
+                markdown.renderAsync($vm.d_value, {}, function (res) {
                     // render
                     $vm.d_render = res;
                     // change回调
@@ -497,20 +473,20 @@
                     if ($vm.d_value === $vm.d_history[$vm.d_history_index]) return
                     window.clearTimeout($vm.currentTimeout)
                     $vm.currentTimeout = setTimeout(() => {
-                        $vm.saveHistory()
+                        $vm.saveHistory();
                     }, 500);
                 }, {'ishljs': $vm.ishljs})
             },
             value: function (val, oldVal) {
                 if (val !== this.d_value) {
                     this.d_value = val
-                    this.loadDivData();
+                    let $vm = this;
                 }
             },
             subfield: function (val, oldVal) {
                 this.s_subfield = val
             },
-            d_history_index () {
+            d_history_index() {
                 if (this.d_history_index > 20) {
                     this.d_history.shift()
                     this.d_history_index = this.d_history_index - 1
@@ -530,7 +506,7 @@
                 }
                 return this.s_preview_switch = default_open_ === 'preview' ? true : false;
             },
-            code_style: function(val) {
+            code_style: function (val) {
                 this.codeStyleChange(val)
             }
         },
@@ -549,7 +525,7 @@
     @import "lib/css/mavon-editor.styl"
 </style>
 <style lang="css" scoped>
-.auto-textarea-wrapper {
-    height: 100%;
-}
+    .auto-textarea-wrapper {
+        height: 100%;
+    }
 </style>

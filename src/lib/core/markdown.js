@@ -30,11 +30,10 @@ var markdown_config = {
         return '<pre><code class="' + lang + '">' + markdown.utils.escapeHtml(str) + '</code></pre>';
     }
 }
-
 var markdown = require('markdown-it')(markdown_config);
 // 表情
 var emoji = require('markdown-it-emoji');
-//
+
 // 下标
 var sub = require('markdown-it-sub')
 // 上标

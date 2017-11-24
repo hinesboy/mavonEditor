@@ -239,3 +239,13 @@ export function loadLink(src, callback) {
     }
     head.appendChild(link);
 }
+
+export const ImagePreviewListener = ($vm) => {
+    document.querySelector('.v-show-content').onclick = document.querySelector('.v-note-read-content').onclick = function (event) {
+        event = event ? event : window.event;
+        let ele = event.srcElement ? event.srcElement : event.target;
+        if (ele.tagName === 'IMG') {
+            $vm.d_preview_imgsrc = ele.src;
+        }
+    }
+}

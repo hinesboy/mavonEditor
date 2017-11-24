@@ -1,4 +1,5 @@
 # 更新日志
+- **2.4.2** 添加图片点击预览原图、新窗口打开链接、ishljs默认值为true、开放markdown-it对象(17.11.24)
 - **2.4.0** 抛弃集成`hljs`，改为使用`cdnjs`外链，代码高亮方案也改为使用`cdnjs`外链(17.11.22 [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.3.1** 修复帮助文档链接无法跳转问题 [#125](https://github.com/hinesboy/mavonEditor/issues/125)(17.11.14 )
 - **2.3.0** 解决const关键字报错问题 (17.10.27 / [lwdgit](https://github.com/lwdgit))

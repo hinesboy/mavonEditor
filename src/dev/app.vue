@@ -18,7 +18,7 @@
             </h2>
             <button @click="uploadimg">upload</button>
             <button @click="imgreplace">imgreplace</button>
-            <mavon-editor  ref=md :subfield="subfield" :code_style="code_style" :toolbarsFlag="toolbarsFlag" :editable="editable"
+            <mavon-editor  ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable" :code_style="code_style"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"></mavon-editor>
             
@@ -74,7 +74,7 @@
                 editable: true,
                 toolbarsFlag: true,
                 img_file: {},
-                code_style: 'code-hybrid'
+                code_style: 'darcula'
             }
         },
         created () {

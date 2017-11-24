@@ -34,17 +34,18 @@
 $ npm install mavon-editor --save
 ```
 
-#### Webpack
+#### Hightlight
 
 > If you do not need code highlighting, you can ignore this step
 
 Set ishljs = true
 ```javascript
+    // default value is true
     <mavon-editor :ishljs = "true"></mavon-editor>
 ```
 For optimize the size of pack, since **v2.4.0** `hightlight.js` will use `cdnjs` external link,
 the code highlights the file will be used to load the corresponding chain as needed.
-You can dynamically change the `hljs` code color scheme, 
+You can dynamically change the `hljs` code color scheme,
 color scheme will dynamically load the corresponding `cdnjs` external link.
 
 [Option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js) and [Supported language](./src/lib/core/hljs/lang.hljs.js) is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
@@ -58,6 +59,7 @@ color scheme will dynamically load the corresponding `cdnjs` external link.
     // import with ES6
     import Vue from 'vue'
     import mavonEditor from 'mavon-editor'
+	// the Object of markdown-it : mavonEditor.markdownIt
     import 'mavon-editor/dist/css/index.css'
 
     // use
@@ -71,6 +73,7 @@ color scheme will dynamically load the corresponding `cdnjs` external link.
 ```
 `index.html`
 ```html
+// The same below
 <div id="main">
     <mavon-editor v-model="value"/>
 </div>
@@ -81,24 +84,12 @@ color scheme will dynamically load the corresponding `cdnjs` external link.
 ```javascript
     // Global Registration
     // require with Webpack/Node.js
-    var Vue = require('vue')
+    ...
     var mavonEditor = require('mavon-editor')
+	// the Object of markdown-it : mavonEditor.markdownIt
     import 'mavon-editor/dist/css/index.css'
 
-    // use
-    Vue.use(mavonEditor)
-    new Vue({
-        'el': '#main',
-        data() {
-            return { value: '' }
-        }
-    })
-```
-`index.html`
-```html
-<div id="main">
-    <mavon-editor v-model="value"/>
-</div>
+    ...
 ```
 
 #### method 3
@@ -112,6 +103,7 @@ color scheme will dynamically load the corresponding `cdnjs` external link.
     <script>
     // Local Registration
     import { mavonEditor } from 'mavon-editor'
+	// the Object of markdown-it : mavonEditor.markdownIt
     import 'mavon-editor/dist/css/index.css'
     export default {
         name: 'editor',
@@ -131,6 +123,7 @@ color scheme will dynamically load the corresponding `cdnjs` external link.
 ```
 `index.js`:
 ```javascript
+	// The same below
     import Vue from 'vue';
     var editor = require('./editor.vue');
     new Vue({
@@ -140,6 +133,7 @@ color scheme will dynamically load the corresponding `cdnjs` external link.
 ```
 `index.html`:
 ```html
+// The same below
 <div id="main">
 </div>
 ```
@@ -147,15 +141,12 @@ color scheme will dynamically load the corresponding `cdnjs` external link.
 #### method 4
 `editor.vue`:
 ```javascript
-    <template>
-        <div id="editor">
-            <mavon-editor style="height: 100%"></mavon-editor>
-        </div>
-    </template>
+    ...
     <script>
     // Local Registration
     // import mavonEditor from 'mavon-editor'
     var mavonEditor = require('mavon-editor')
+	// the Object of markdown-it : mavonEditor.markdownIt
     import 'mavon-editor/dist/css/index.css'
     export default {
         name: 'editor',
@@ -165,28 +156,9 @@ color scheme will dynamically load the corresponding `cdnjs` external link.
     }
     </script>
     <style>
-    #editor {
-        margin: auto;
-        width: 80%;
-        height: 580px;
-    }
+    ...
     </style>
 ```
-`index.js`:
-```javascript
-    import Vue from 'vue';
-    var editor = require('./editor.vue');
-    new Vue({
-        el: '#main',
-        render: h => h(editor)
-    });
-```
-`index.html`:
-```html
-<div id="main">
-</div>
-```
-
 #### Images Upload & Preview
 
 ```javascript
@@ -232,7 +204,7 @@ exports default {
 - **Default size: min-height: 300px , ming-width: 300px , Can be covered**
 - **z-index: 1500**
 - **If screen resolution less than 768px ,replace【single column | double column】 edit mode to 【edit | preview】 edit mode**
-
+- **Just for show html of md: toolbarsFlag: false , subfield: false, default_open: "preview"**
 ## API
 
 ### props
@@ -249,7 +221,7 @@ exports default {
 | code_style | String |    code-github     | markdown Style: default github, [option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js)  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
 | toolbars   | Object      |   As in the following example  | toolbars |
-| ishljs       | Boolean |     false     | highlight code switch |
+| ishljs       | Boolean |     true     | highlight code switch(cdn) |
 
 ```javascript
  /*

@@ -35,12 +35,13 @@
 $ npm install mavon-editor --save
 ```
 
-#### Webpack
+#### 代码高亮
 
 > 如不需要hightlight代码高亮显示，可以忽略此步骤
 
 开启代码高亮props
 ```javascript
+    // ishljs默认为true
     <mavon-editor :ishljs = "true"></mavon-editor>
 ```
 
@@ -58,8 +59,8 @@ $ npm install mavon-editor --save
     // import with ES6
     import Vue from 'vue'
     import mavonEditor from 'mavon-editor'
+	// 可以通过 mavonEditor.markdownIt 获取解析器markdown-it对象
     import 'mavon-editor/dist/css/index.css'
-
     // use
     Vue.use(mavonEditor)
     new Vue({
@@ -71,6 +72,7 @@ $ npm install mavon-editor --save
 ```
 `index.html`
 ```html
+// 下同
 <div id="main">
     <mavon-editor v-model="value"/>
 </div>
@@ -81,24 +83,11 @@ $ npm install mavon-editor --save
 ```javascript
     // 全局注册
     // require with Webpack/Node.js
-    var Vue = require('vue')
+    ...
     var mavonEditor = require('mavon-editor')
+	// 可以通过 mavonEditor.markdownIt 获取解析器markdown-it对象
     import 'mavon-editor/dist/css/index.css'
-
-    // use
-    Vue.use(mavonEditor)
-    new Vue({
-        'el': '#main',
-        data() {
-            return { value: '' }
-        }
-    })
-```
-`index.html`
-```html
-<div id="main">
-    <mavon-editor v-model="value"/>
-</div>
+    ...
 ```
 
 #### 方法3
@@ -112,6 +101,7 @@ $ npm install mavon-editor --save
     <script>
     // Local Registration
     import { mavonEditor } from 'mavon-editor'
+	// 可以通过 mavonEditor.markdownIt 获取解析器markdown-it对象
     import 'mavon-editor/dist/css/index.css'
     export default {
         name: 'editor',
@@ -131,8 +121,10 @@ $ npm install mavon-editor --save
 ```
 `index.js`:
 ```javascript
+	// 下同
     import Vue from 'vue';
     var editor = require('./editor.vue');
+	// 可以通过 mavonEditor.markdownIt 获取解析器markdown-it对象
     new Vue({
         el: '#main',
         render: h => h(editor)
@@ -140,6 +132,7 @@ $ npm install mavon-editor --save
 ```
 `index.html`:
 ```html
+// 下同
 <div id="main">
 </div>
 ```
@@ -147,11 +140,7 @@ $ npm install mavon-editor --save
 #### 方法4
 `editor.vue`:
 ```javascript
-    <template>
-        <div id="editor">
-            <mavon-editor style="height: 100%"></mavon-editor>
-        </div>
-    </template>
+    ...
     <script>
     // Local Registration
     // import mavonEditor from 'mavon-editor'
@@ -166,26 +155,10 @@ $ npm install mavon-editor --save
     </script>
     <style>
     #editor {
-        margin: auto;
-        width: 80%;
-        height: 580px;
-    }
+    ...
     </style>
 ```
-`index.js`:
-```javascript
-    import Vue from 'vue';
-    var editor = require('./editor.vue');
-    new Vue({
-        el: '#main',
-        render: h => h(editor)
-    });
-```
-`index.html`:
-```html
-<div id="main">
-</div>
-```
+
 
 #### Images Upload & Preview
 
@@ -231,8 +204,7 @@ exports default {
 - **默认大小样式为 min-height: 300px , ming-width: 300px 可自行覆盖**
 - **基础z-index: 1500**
 - **屏幕分辨率低于768px ，自动取消【单栏 | 双栏】编辑模式 ，更改为【编辑 | 预览】切换 )**
-- **快捷键的监听对象更改为编辑器自身，所以当编辑器失去焦点后，快捷键失效**
-
+- **仅用作展示可以设置props: toolbarsFlag: false , subfield: false, default_open: "preview"**
 ## API 文档
 
 ### props
@@ -249,7 +221,7 @@ exports default {
 | code_style | String |    code-github     | markdown样式： 默认github, [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js)   |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                |
 | toolbars     | Object  |     如下例     | 工具栏                      |
-| ishljs       | Boolean |     false     |  是否高亮代码 |
+| ishljs       | Boolean |     true     |  代码高亮(cdn外链) |
 
 ```javascript
  /*

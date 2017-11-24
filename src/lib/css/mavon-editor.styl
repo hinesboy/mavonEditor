@@ -245,4 +245,34 @@
       overflow-y auto
       padding 2% 6%
       scrollbar()
+
+
+.v-note-img-wrapper
+  position fixed
+  display flex
+  justify-content center
+  align-items center
+  left 0
+  right 0
+  top 0
+  bottom 0
+  background rgba(0, 0, 0, 0.7)
+  z-index 1600
+  transition all 0.1s linear 0s
+  &.fade-enter-active, &.fade-leave-active
+    opacity 1
+  &.fade-enter, &.fade-leave-active
+    opacity 0
+  img
+    flex 0 0 auto
+    z-index 3
+  i
+    font-size 28px
+    position absolute
+    right 15px
+    top 8px
+    color rgba(255, 255, 255, 0.7)
+    cursor pointer
+    &:hover
+      color rgba(255, 255, 255, 1)
 align()

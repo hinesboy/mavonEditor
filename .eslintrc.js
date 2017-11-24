@@ -38,6 +38,10 @@ module.exports = {
     //
     'no-unused-vars':0,
     // else 强制换行
-    'brace-style':0
+    'brace-style':0,
+    'no-unneeded-ternary': 0,
+    'quotes': 0,
+    'no-useless-escape': 0,
+    'no-eval': 0
   }
 }
