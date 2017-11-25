@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.base.js
  * @Last modified by:   chc
- * @Last modified time: 2017-11-24T20:44:28+08:00
+ * @Last modified time: 2017-11-25T11:40:57+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -20,6 +20,7 @@ var WebpackMd5Hash = require('webpack-md5-hash');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var fs = require("fs");
 
 const extractCSS = new ExtractTextPlugin('css/[name].css');
 module.exports = {
@@ -32,7 +33,12 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/
+                // exclude: /.*node_modules((?!auto-textarea).)*$/
+                // exclude: /node_modules/
+                include: [
+                    path.resolve(__dirname, '../src'),
+                    fs.realpathSync('node_modules/auto-textarea')
+                ]
             },
             {
                 test: /\.(png|jpg|gif)$/,
