@@ -1,4 +1,5 @@
 # 更新日志
+- **2.4.7** 修改外链使用方式，将`katex`提取出来作为外链(17.11.27 [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.4.6** 修复导出markdownIt不正确的错误(17.11.25 [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.4.5** 修改webpack配置,修复编译导出时的`const`问题(17.11.25 [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.4.3** 添加图片点击预览原图、开放markdown-it对象(17.11.24)

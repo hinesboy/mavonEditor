@@ -89,6 +89,12 @@
                     hljs_lang: function(lang) {
                         return '/highlightjs/languages/' + lang + '.min.js';
                     },
+                    katex_css: function() {
+                        return '/katex/katex.min.css';
+                    },
+                    katex_js: function() {
+                        return '/katex/katex.min.js';
+                    }
                 }
             }
         },

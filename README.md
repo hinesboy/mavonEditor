@@ -45,17 +45,24 @@ $ npm install mavon-editor --save
     <mavon-editor :ishljs = "true"></mavon-editor>
 ```
 
-为优化插件体积，从**2.4.0**起代码高亮将使用`hightlight.js`的`cdnjs`外链，各代码高亮文件将在使用时按需加载相应外链.
-代码中可动态更改`hljs`的代码高亮配色`css`，配色方案将动态加载相应的`cdnjs`外链.
+为优化插件体积，从**v2.4.2**起以下文件将默认使用`cdnjs`外链:
++ `highlight.js`
++ `github-markdown-css`
++ `katex`(**v2.4.7**)
+代码高亮`highlight.js`中的语言解析文件和代码高亮样式将在使用时按需加载.
+`github-markdown-css`和`katex`仅会在`mounted`时加载
 
+**Notice**:  
 [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js) 和 [支持的语言](./src/lib/core/hljs/lang.hljs.js) 是从 [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src) 导出的
 
 ##### 本地按需加载
-从**2.4.2**起代码高亮和`md.css`支持本地按需加载，若没有配置则默认使用`cdnjs`外链.
+如果你想自己引入而不希望`mavon-editor`加载的话，可以将`external_link`设置为`false`.
+
 如果想本地按需加载，你需要安装`copy-webpack-plugin`插件(`npm install copy-webpack-plugin -D`)
-配置webpack如下所示：
-(假定`webpack`配置文件位于项目的`/webpack/webpack.js`, 
-而你希望将`hljs`以及`markdown`相关文件导出位于项目的`/dist/highlightjs`以及`/dist/markdown`目录之下)
+配置webpack如下所示： 
+(假定`webpack`配置文件位于项目的`/webpack/webpack.js`,  
+而你希望将`hljs`以及`markdown`相关文件导出位于项目的`/dist/highlightjs`以及`/dist/markdown`目录之下,  
+`katex`和上面一样)  
 ```javascript
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -69,17 +76,21 @@ module.exports = {
         }, {
             from: 'node_modules/mavon-editor/dist/markdown',
             to: path.resolve(__dirname, '../dist/markdown'), // 插件将会把文件导出于/dist/markdown之下
+        }, {
+            from: 'node_modules/mavon-editor/dist/katex', // 插件将会把文件导出
+            to: path.resolve(__dirname, '../dist/katex')
         }]),
         // ...
     ],
     // ...
 }
 ```
-然后你需要给`mavon-editor`设置`external_link`
-相关代码如下所示: 
-(假定你的`web根目录`位于项目的`/dist/`, 你的网站是`www.site.com`, 那么
-`markdown`, `hljs_js`, `hljs_css`, `hljs_lang`返回的是你的网站对应文件位置，比如`www.site.com/markdown/github-markdown.min.css`
-对应的文件应该位于项目的`/dist/markdown/github-markdown.min.css`)
+然后你需要给`mavon-editor`设置`external_link`  
+相关代码如下所示:   
+(假定你的`web根目录`位于项目的`/dist/`, 你的网站是`www.site.com`, 那么  
+`markdown`, `hljs_js`, `hljs_css`, `hljs_lang`, `katex_css`, `katex_js`返回的是你的网站对应文件位置，  
+比如`www.site.com/markdown/github-markdown.min.css`  
+对应的文件应该位于项目的`/dist/markdown/github-markdown.min.css`)  
 ```javascript
 <template>
   <div id="app">
@@ -114,11 +125,52 @@ export default {
                 // 这是你的代码高亮语言解析路径
                 return '/highlightjs/languages/' + lang + '.min.js';
             },
+            katex_css: function() {
+                // 这是你的katex配色方案路径路径
+                return '/katex/katex.min.css';
+            },
+            katex_js: function() {
+                // 这是你的katex.js路径
+                return '/katex/katex.min.js';
+            },
         }
       }
     },
 }
 </script>
+```
+**Notice**: 如果你想禁用`mavon-editor`的自动加载，
+可以将`external_link`设置为`false`或`external_link`中的某函数值设置为`false`
+如：
+```javascript
+export default {
+// ...
+    data() {
+        return {
+            external_link: false, // 这里只能为`true`/`false`和一个`Object`, 如果为`true`代表全使用外链且自动加载, 如果为`false`则禁用，如果为`Object`则如上所示
+        }
+    }
+// ...
+}
+```
+或者:
+```javascript
+export default {
+// ...
+    data() {
+        return {
+            external_link: {
+                hljs_css: function(css) {
+                    // 这是你的代码高亮配色文件路径
+                    return '/highlightjs/styles/' + css + '.min.css';
+                },
+                katex_css: false, // `false`表示禁用自动加载，它也可以是个函数，如果它是个函数，那么这个函数应该返回一个可访问的`katex`的css路径字符串
+                // 我们没有设置`katex_js`, `hljs_js`, `hljs_lang`, `markdown_css`， `mavon-editor`会认为它的值为`true`，它会默认使用`cdnjs`相关外链加载
+            },
+        }
+    }
+// ...
+}
 ```
 
 ### Use (如何引入)

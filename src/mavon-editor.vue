@@ -92,6 +92,7 @@
         getNavigation,
         insertTab,
         loadLink,
+        loadScript,
         ImagePreviewListener
     } from './lib/core/extra-function.js'
     // import {onecolumnKeyDownEnter, onecolumnInsert} from './lib/core/onecolumn-event.js'
@@ -166,8 +167,8 @@
                 default: true
             },
             external_link: {
-                type: Object,
-                default: null
+                type: [Object, Boolean],
+                default: true
             },
         },
         data() {
@@ -224,23 +225,28 @@
                             return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/' + css + '.min.css';
                         }
                         return '';
+                    },
+                    katex_js: function() {
+                        return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js';
+                    },
+                    katex_css: function() {
+                        return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css';
                     }
-                }
+                },
+                p_external_link: {
+                },
             };
         },
         created() {
             var $vm = this;
+            $vm.initExternalFuc();
             markdown.renderAsync = function (src, env, fuc, _env) {
                 env = env || {};
                 _env = _env || {};
                 var _res = markdown.renderer.render(this.parse(src, env), this.options, env);
                 if(_env['ishljs'] === false) fuc(_res)
                 else {
-                    if($vm.external_link === null) {
-                        hljs(_res, fuc, $vm.s_external_link.hljs_lang, $vm.s_external_link.hljs_js);
-                    } else {
-                        hljs(_res, fuc, $vm.external_link.hljs_lang, $vm.external_link.hljs_js);
-                    }
+                    hljs(_res, fuc, $vm.p_external_link.hljs_lang, $vm.p_external_link.hljs_js);
                 }
             }
             // 初始化语言
@@ -268,21 +274,49 @@
             this.d_value = this.value;
             // 将help添加到末尾
             document.body.appendChild(this.$refs.help);
-            if ($vm.external_link === null) {
-                loadLink($vm.s_external_link.markdown_css());
-            } else {
-                if (typeof $vm.external_link.markdown_css === 'function') {
-                    loadLink($vm.external_link.markdown_css());
-                } else if($vm.external_link.markdown_css != false) {
-                    console.error('external_link.markdown_css is not a function, if you want to disabled it, set external_link.markdown_css to function or false');
-                }
-            }
+            $vm.loadExternalLink('markdown_css', 'css');
+            $vm.loadExternalLink('katex_css', 'css')
+            $vm.loadExternalLink('katex_js', 'js', function() {
+                $vm.initLanguage();
+                $vm.iRender($vm.d_value);
+            })
             $vm.codeStyleChange($vm.code_style, true)
         },
         beforeDestroy() {
             document.body.removeChild(this.$refs.help);
         },
         methods: {
+            loadExternalLink(name, type, callback) {
+                if (typeof this.p_external_link[name] != 'function') {
+                    if (this.p_external_link != false) {
+                        console.error('external_link.' + name, 'is not a function, if you want to disabled this error log, set external_link.' + name, 'to function or false');
+                    }
+                    return ;
+                }
+                var _obj = {
+                    'css': loadLink,
+                    'js': loadScript,
+                };
+                if (_obj.hasOwnProperty(type)) {
+                    _obj[type](this.p_external_link[name](), callback);
+                }
+            },
+            initExternalFuc() {
+                var $vm = this;
+                var _external_ = ['markdown_css', 'hljs_js', 'hljs_css', 'hljs_lang', 'katex_js', 'katex_css'];
+                var _type_ = typeof $vm.external_link;
+                var _is_object = (_type_ === 'object');
+                var _is_boolean = (_type_ === 'boolean');
+                for (var i = 0;i < _external_.length; i++) {
+                    if ((_is_boolean && !$vm.external_link) || (_is_object && $vm.external_link[_external_[i]] === false)) {
+                        $vm.p_external_link[_external_[i]] = false;
+                    } else if (_is_object && typeof $vm.external_link[_external_[i]] === 'function') {
+                        $vm.p_external_link[_external_[i]] = $vm.external_link[_external_[i]];
+                    } else {
+                        $vm.p_external_link[_external_[i]] = $vm.s_external_link[_external_[i]];
+                    }
+                }
+            },
             textAreaFocus() {
                 this.$refs.vNoteTextarea.$refs.vTextarea.focus();
             },
@@ -482,37 +516,25 @@
                     text_dom.setAttribute('disabled', 'disabled');
                 }
             },
-
             codeStyleChange(val, isInit) {
                 isInit = isInit ? isInit : false;
-                var url = '';
-                if (this.external_link === null) {
-                    url = this.s_external_link.hljs_css(val);
-                    if (url.length == 0 && isInit) {
-                        console.warn('hljs color scheme', val, 'do not exist, loading default github');
-                        url = this.s_external_link.hljs_css('github')
-                    }
-                } else {
-                    if (typeof this.external_link.hljs_css != 'function') {
-                        if (this.external_link.hljs_css != false)
-                            console.error('external_link.hljs_css is not a function, if you want to disabled this error log, set external_link.hljs_css to function or false');
-                        return;
-                    }
-                    url = this.external_link.hljs_css(val);
-                    if (url.length === 0 && isInit) {
-                        console.warn('hljs color scheme', val, 'do not exist, loading default github');
-                        url = this.external_link.hljs_css('github')
-                    }
+                if (typeof this.p_external_link.hljs_css != 'function') {
+                    if (this.p_external_link.hljs_css != false)
+                    console.error('external_link.hljs_css is not a function, if you want to disabled this error log, set external_link.hljs_css to function or false');
+                    return;
+                }
+                var url = this.p_external_link.hljs_css(val);
+                if (url.length === 0 && isInit) {
+                    console.warn('hljs color scheme', val, 'do not exist, loading default github');
+                    url = this.p_external_link.hljs_css('github')
                 }
                 if (url.length > 0) {
                     loadLink(url)
                 } else {
                     console.warn('hljs color scheme', val, 'do not exist, hljs color scheme will not change');
                 }
-            }
-        },
-        watch: {
-            d_value: function (val, oldVal) {
+            },
+            iRender(val) {
                 var $vm = this;
                 markdown.renderAsync($vm.d_value, {}, function (res) {
                     // render
@@ -530,6 +552,11 @@
                         $vm.saveHistory();
                     }, 500);
                 }, {'ishljs': $vm.ishljs})
+            }
+        },
+        watch: {
+            d_value: function (val, oldVal) {
+                this.iRender(val);
             },
             value: function (val, oldVal) {
                 if (val !== this.d_value) {
@@ -572,7 +599,6 @@
     };
     import "./lib/font/css/fontello.css"
     import './lib/css/md.css'
-    import 'katex/dist/katex.min.css'
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
     @import "lib/css/scroll.styl"

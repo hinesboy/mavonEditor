@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: webpack.base.js
  * @Last modified by:   chc
- * @Last modified time: 2017-11-25T11:40:57+08:00
+ * @Last modified time: 2017-11-26T22:25:40+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -130,6 +130,9 @@ module.exports = {
         }, {
             from: path.resolve(__dirname, '../resources/markdown'),
             to: path.resolve(__dirname, '../dist/markdown')
+        }, {
+            from: path.resolve(__dirname, '../node_modules/katex/dist'),
+            to: path.resolve(__dirname, '../dist/katex')
         }]),
         new BundleAnalyzerPlugin({
             // Can be `server`, `static` or `disabled`.

@@ -43,20 +43,25 @@ Set ishljs = true
     // default value is true
     <mavon-editor :ishljs = "true"></mavon-editor>
 ```
-For optimize the size of pack, since **v2.4.0** `hightlight.js` will use `cdnjs` external link,
-the code highlights the file will be used to load the corresponding chain as needed.
-You can dynamically change the `hljs` code color scheme,
-color scheme will dynamically load the corresponding `cdnjs` external link.
+For optimize the size of pack, since **v2.4.2**, the following files will default to using `cdnjs` outside the chain:
++ `highlight.js`
++ `github-markdown-css`
++ `katex`(**v2.4.7**)
+The language parsing files and code highlighting in Code Highlighting `highlight.js` will be loaded on demand.
+`github-markdown-css` and` katex` will load only when mounted.
 
+**Notice**:  
 [Option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js) and [Supported language](./src/lib/core/hljs/lang.hljs.js) is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
 
 ##### Local on-demand loading
-since **v2.4.2** code highlight and markdown support local on-demand loading, default using `cdnjs` if do not config.
-You should install plugin `copy-webpack-plugin`(`npm install copy-webpack-plugin -D`)
+You can set `external_link` to` false` if you want to introduce yourself without wanting `mavon-editor` to load.
+
+If you want to load locally, you need to install the `copy-webpack-plugin` plugin (` npm install copy-webpack-plugin -D`)
 
 Configuring your `webpack` as below:
 (We assume your configuration file locate in your project `/webpack/webpack.js`,
-and you want to export `hljs` and `markdown` files to `/dist/highlightjs` and `/dist/markdown`
+and you want to export `hljs` and `markdown` files to `/dist/highlightjs` and `/dist/markdown`,
+`katex` is the same as above
 )
 
 ```javascript
@@ -72,6 +77,9 @@ module.exports = {
         }, {
             from: 'node_modules/mavon-editor/dist/markdown',
             to: path.resolve(__dirname, '../dist/markdown'), // plugin will export markdown files into /dist/markdown
+        }, {
+            from: 'node_modules/mavon-editor/dist/katex', // plugin will export katex files into /dist/katex
+            to: path.resolve(__dirname, '../dist/katex')
         }]),
         // ...
     ],
@@ -81,7 +89,7 @@ module.exports = {
 And then you need set `external_link` to `mavon-editor`,
 the code is as follows:
 (We assume your `web root` located in your project `/dist/`, and your website url is `www.site.com`,
-then `markdown`, `hljs_js`, `hljs_css`, `hljs_lang` need return related file locations, 
+then `markdown`, `hljs_js`, `hljs_css`, `hljs_lang`, `katex_css`, `katex_js` need return related file locations, 
 for example, the `www.site.com/markdown/github-markdown.min.css` link file should be located in the 
 `/dist/markdown/github-markdown.min.css`
 )
@@ -120,12 +128,53 @@ export default {
                 // this is your hljs css file
                 return '/highlightjs/languages/' + lang + '.min.js';
             },
+            katex_css: function() {
+                // this is your katex css file
+                return '/katex/katex.min.css';
+            },
+            katex_js: function() {
+                // this is your katex js file
+                return '/katex/katex.min.js';
+            },
         }
       }
     },
 }
 </script>
 ```
+**Notice**: If you want to disable `mavon-editor` autoload from `cdnjs`,  
+You can set `external_link` to` false` or a function in `external_link` to` false`  
+example:
+```javascript
+export default {
+// ...
+    data() {
+        return {
+            external_link: false, // This can only be `true` /` false` and `Object`, if` true` means that all external links are used and loaded automatically, `false` is disabled,` Object` is as shown above
+        }
+    }
+// ...
+}
+```
+or:
+```javascript
+export default {
+// ...
+    data() {
+        return {
+            external_link: {
+                hljs_css: function(css) {
+                    return '/highlightjs/styles/' + css + '.min.css';
+                },
+                katex_css: false, // `false` means that autoloading is disabled, it can also be a function, and if it is a function then this function should return an accessible ` katex` css path string
+                // We do not set `katex_js`,` hljs_js`, `hljs_lang`,` markdown_css`, `mavon-editor` to assume that it has the value` true` and it defaults to loading using `cdnjs` related outerchain.
+            },
+        }
+    }
+// ...
+}
+```
+
 ### Use
 
 #### method 1

@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: markdown.js
  * @Last modified by:   chc
- * @Last modified time: 2017-11-24T19:34:03+08:00
+ * @Last modified time: 2017-11-26T16:40:54+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -51,7 +51,7 @@ var mark = require('markdown-it-mark')
 //
 var container = require('markdown-it-container')
 // math katex
-var katex = require('markdown-it-katex');
+var katex = require('markdown-it-katex-external');
 var miip = require('markdown-it-images-preview');
 markdown.use(emoji)
     .use(sup)
