@@ -47,6 +47,7 @@ For optimize the size of pack, since **v2.4.2**, the following files will defaul
  + `highlight.js`  
  + `github-markdown-css`  
  + `katex`(**v2.4.7**)  
+
 The language parsing files and code highlighting in Code Highlighting `highlight.js` will be loaded on demand.  
 `github-markdown-css` and` katex` will load only when mounted.  
 
@@ -61,8 +62,7 @@ If you want to load locally, you need to install the `copy-webpack-plugin` plugi
 Configuring your `webpack` as below:  
 (We assume your configuration file locate in your project `/webpack/webpack.js`,  
 and you want to export `hljs` and `markdown` files to `/dist/highlightjs` and `/dist/markdown`,  
-`katex` is the same as above  
-)
+`katex` is the same as above)
 
 ```javascript
 var CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -91,8 +91,7 @@ the code is as follows:
 (We assume your `web root` located in your project `/dist/`, and your website url is `www.site.com`,  
 then `markdown`, `hljs_js`, `hljs_css`, `hljs_lang`, `katex_css`, `katex_js` need return related file locations,  
 for example, the `www.site.com/markdown/github-markdown.min.css` link file should be located in the  
-`/dist/markdown/github-markdown.min.css`  
-)
+`/dist/markdown/github-markdown.min.css`)
 ```javascript
 <template>
   <div id="app">

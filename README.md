@@ -49,6 +49,7 @@ $ npm install mavon-editor --save
  + `highlight.js`  
  + `github-markdown-css`  
  + `katex`(**v2.4.7**)  
+
 代码高亮`highlight.js`中的语言解析文件和代码高亮样式将在使用时按需加载.  
 `github-markdown-css`和`katex`仅会在`mounted`时加载
 
