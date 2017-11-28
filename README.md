@@ -46,20 +46,20 @@ $ npm install mavon-editor --save
 ```
 
 为优化插件体积，从**v2.4.2**起以下文件将默认使用`cdnjs`外链:
-+ `highlight.js`
-+ `github-markdown-css`
-+ `katex`(**v2.4.7**)
-代码高亮`highlight.js`中的语言解析文件和代码高亮样式将在使用时按需加载.
+ + `highlight.js`  
+ + `github-markdown-css`  
+ + `katex`(**v2.4.7**)  
+代码高亮`highlight.js`中的语言解析文件和代码高亮样式将在使用时按需加载.  
 `github-markdown-css`和`katex`仅会在`mounted`时加载
 
 **Notice**:  
 [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js) 和 [支持的语言](./src/lib/core/hljs/lang.hljs.js) 是从 [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src) 导出的
 
 ##### 本地按需加载
-如果你想自己引入而不希望`mavon-editor`加载的话，可以将`external_link`设置为`false`.
+如果你想自己引入而不希望`mavon-editor`加载的话，可以将`external_link`设置为`false`.  
 
-如果想本地按需加载，你需要安装`copy-webpack-plugin`插件(`npm install copy-webpack-plugin -D`)
-配置webpack如下所示： 
+如果想本地按需加载，你需要安装`copy-webpack-plugin`插件(`npm install copy-webpack-plugin -D`)  
+配置webpack如下所示：  
 (假定`webpack`配置文件位于项目的`/webpack/webpack.js`,  
 而你希望将`hljs`以及`markdown`相关文件导出位于项目的`/dist/highlightjs`以及`/dist/markdown`目录之下,  
 `katex`和上面一样)  

@@ -44,24 +44,24 @@ Set ishljs = true
     <mavon-editor :ishljs = "true"></mavon-editor>
 ```
 For optimize the size of pack, since **v2.4.2**, the following files will default to using `cdnjs` outside the chain:
-+ `highlight.js`
-+ `github-markdown-css`
-+ `katex`(**v2.4.7**)
-The language parsing files and code highlighting in Code Highlighting `highlight.js` will be loaded on demand.
-`github-markdown-css` and` katex` will load only when mounted.
+ + `highlight.js`  
+ + `github-markdown-css`  
+ + `katex`(**v2.4.7**)  
+The language parsing files and code highlighting in Code Highlighting `highlight.js` will be loaded on demand.  
+`github-markdown-css` and` katex` will load only when mounted.  
 
 **Notice**:  
 [Option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js) and [Supported language](./src/lib/core/hljs/lang.hljs.js) is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
 
 ##### Local on-demand loading
-You can set `external_link` to` false` if you want to introduce yourself without wanting `mavon-editor` to load.
+You can set `external_link` to` false` if you want to introduce yourself without wanting `mavon-editor` to load.  
 
-If you want to load locally, you need to install the `copy-webpack-plugin` plugin (` npm install copy-webpack-plugin -D`)
+If you want to load locally, you need to install the `copy-webpack-plugin` plugin (` npm install copy-webpack-plugin -D`)  
 
-Configuring your `webpack` as below:
-(We assume your configuration file locate in your project `/webpack/webpack.js`,
-and you want to export `hljs` and `markdown` files to `/dist/highlightjs` and `/dist/markdown`,
-`katex` is the same as above
+Configuring your `webpack` as below:  
+(We assume your configuration file locate in your project `/webpack/webpack.js`,  
+and you want to export `hljs` and `markdown` files to `/dist/highlightjs` and `/dist/markdown`,  
+`katex` is the same as above  
 )
 
 ```javascript
@@ -86,12 +86,12 @@ module.exports = {
     // ...
 }
 ```
-And then you need set `external_link` to `mavon-editor`,
-the code is as follows:
-(We assume your `web root` located in your project `/dist/`, and your website url is `www.site.com`,
-then `markdown`, `hljs_js`, `hljs_css`, `hljs_lang`, `katex_css`, `katex_js` need return related file locations, 
-for example, the `www.site.com/markdown/github-markdown.min.css` link file should be located in the 
-`/dist/markdown/github-markdown.min.css`
+And then you need set `external_link` to `mavon-editor`,  
+the code is as follows:  
+(We assume your `web root` located in your project `/dist/`, and your website url is `www.site.com`,  
+then `markdown`, `hljs_js`, `hljs_css`, `hljs_lang`, `katex_css`, `katex_js` need return related file locations,  
+for example, the `www.site.com/markdown/github-markdown.min.css` link file should be located in the  
+`/dist/markdown/github-markdown.min.css`  
 )
 ```javascript
 <template>
