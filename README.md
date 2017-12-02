@@ -43,7 +43,7 @@ $ npm install mavon-editor --save
 **Notice**:  
 [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js) 和 [支持的语言](./src/lib/core/hljs/lang.hljs.js) 是从 [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src) 导出的
 
-> [不使用cnd，本地按需加载点击这里](./doc/cn/no-cnd.md)
+> [不使用cnd，本地按需加载点击这里...](./doc/cn/no-cnd.md)
 
 ### Use (如何引入)
 

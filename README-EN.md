@@ -41,7 +41,7 @@ The language parsing files and code highlighting in Code Highlighting `highlight
 **Notice**:  
 [Option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js) and [Supported language](./src/lib/core/hljs/lang.hljs.js) is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
 
-> [without cdn, Click here to local on-demand loading](./doc/en/no-cnd.md)
+> [without cdn, Click here to local on-demand loading...](./doc/en/no-cnd.md)
 
 ### Use
 
