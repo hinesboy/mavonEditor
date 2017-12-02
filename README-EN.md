@@ -8,9 +8,9 @@
 ## Example Pictures
 ### PC
 
-![PC](./img/example-en.png)
+![PC](./img/en/en-common.png)
 
-![PC](./img/images_preview_0.gif)
+![PC](./img/en/en-image.git)
 
 > [more images...](./doc/en/images.md)
 

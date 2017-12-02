@@ -361,6 +361,8 @@
             },
             $imgDel(pos) {
                 this.s_markdown.image_del(pos);
+                // 删除所有markdown中的图片
+                this.d_value.replace(`![]()`,'');
                 this.d_render = this.s_markdown.render(this.d_value);
                 this.$emit('imgDel', pos);
             },

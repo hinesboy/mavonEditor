@@ -2,20 +2,21 @@
 
 ### PC
 
-![PC](../../img/example1.png)
+![PC](../../img/cn/cn-common.png)
 
-### 图片上传&预览
+![PC](../../img/cn/cn-nav.png)
 
-![PC](../../img/images_preview_0.gif)
+![PC](../../img/cn/cn-help.png)
 
-![PC](../../img/images_preview_1.gif)
+#### 链接 & 图片
 
-![PC](../../img/images_preview_2.gif)
+![PC](../../img/cn/cn-link.gif)
 
-![PC](../../img/images_preview_3.gif)
+![PC](../../img/cn/cn-image.gif)
+
 
 ### 移动
 
-![移动](../../img/example-phone.png)
+![移动](../../img/cn/cn-phone.png)
 &nbsp;&nbsp;&nbsp;
-![移动](../../img/example-phone2.png)
+![移动](../../img/cn/cn-phone-nav.png)

@@ -10,9 +10,9 @@
 
 ### PC
 
-![PC](./img/example1.png)
+![PC](./img/cn/cn-common.png)
 
-![PC](./img/images_preview_0.gif)
+![PC](./img/cn/cn-image.git)
 
 > [查看更多图片点击这里...](./doc/cn/images.md)
 
@@ -66,7 +66,6 @@ $ npm install mavon-editor --save
 ```
 `index.html`
 ```html
-// 下同
 <div id="main">
     <mavon-editor v-model="value"/>
 </div>

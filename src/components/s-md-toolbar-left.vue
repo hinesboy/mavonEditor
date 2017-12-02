@@ -145,6 +145,10 @@
             $imgLinkAdd() {
                 this.$emit('toolbar_left_addlink', this.link_type, this.link_text, this.link_addr);
                 this.s_img_link_open = false;
+                this.img_file[0][0] = './' + this.link_text;
+                this.img_file[0][1] = {miniurl: this.link_addr};
+                this.img_file.unshift(['./' + (this.num + 1), null]);
+                this.num = this.num + 1;
             },
             $toggle_imgLinkAdd(type) {
                 this.link_type = type;
@@ -269,6 +273,8 @@
                 left -120px
                 top 0
                 transition all 0.3s linear 0s
+                width 120px
+                height 90px
 .add-image-link-wrapper
     position fixed
     left 0
