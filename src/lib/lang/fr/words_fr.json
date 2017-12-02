@@ -13,7 +13,7 @@
   "tl_ol": "Liste ",
   "tl_ul": "Puce",
   "tl_link": "Lien",
-  "tl_image": "Image",
+  "tl_image": "Image Lien",
   "tl_code": "Code",
   "tl_table": "Table",
   "tl_undo": "Annuler",
@@ -37,5 +37,10 @@
   "tl_html_off": "Désactiver le mode HTML",
   "tl_help": "Guide Markdown",
   "tl_upload": "Télécharger les images",
-  "tl_upload_remove": "Supprimer"
+  "tl_upload_remove": "Supprimer",
+  "tl_popup_link_title": "Ajouter un lien",
+  "tl_popup_link_text": "Texte du lien",
+  "tl_popup_link_addr": "Adresse de lien",
+  "tl_popup_link_sure": "sûr",
+  "tl_popup_link_cancel": "Annuler"
 }

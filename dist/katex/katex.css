@@ -374,7 +374,6 @@
 .katex .mfrac .frac-line {
   display: inline-block;
   width: 100%;
-  border-bottom-style: solid;
 }
 @media screen {
   .katex .mfrac .frac-line,
@@ -479,7 +478,6 @@
 .katex .underline .underline-line {
   display: inline-block;
   width: 100%;
-  border-bottom-style: solid;
 }
 .katex .sqrt > .root {
   margin-left: 0.27777778em;
@@ -1027,7 +1025,17 @@
 .katex .mtable .vertical-separator {
   display: inline-block;
   margin: 0 -0.025em;
-  border-right: 0.05em solid black;
+  width: 0.05em;
+}
+@media screen {
+  .katex .mtable .vertical-separator {
+    min-width: 1px;
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi) {
+  .katex .mtable .vertical-separator {
+    min-width: 0.5px;
+  }
 }
 .katex .mtable .arraycolsep {
   display: inline-block;

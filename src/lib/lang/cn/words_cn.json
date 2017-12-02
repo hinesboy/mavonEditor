@@ -13,7 +13,7 @@
   "tl_ol": "有序列表",
   "tl_ul": "无序列表",
   "tl_link": "链接",
-  "tl_image": "图片",
+  "tl_image": "添加链接",
   "tl_code": "代码块",
   "tl_table": "表格",
   "tl_undo": "上一步",
@@ -36,5 +36,10 @@
   "tl_html_off": "返回markdown文本",
   "tl_help": "markdown语法帮助",
   "tl_upload": "上传图片",
-  "tl_upload_remove": "删除"
+  "tl_upload_remove": "删除",
+  "tl_popup_link_title": "添加链接",
+  "tl_popup_link_text": "链接文本",
+  "tl_popup_link_addr": "链接地址",
+  "tl_popup_link_sure": "确定",
+  "tl_popup_link_cancel": "取消"
 }

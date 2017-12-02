@@ -78,7 +78,6 @@ function $toolbar_right_navigation_click($vm) {
         $vm.getNavigation($vm, false)
     }
 }
-
 export const toolbar_right_click = (_type, $vm) => {
     var _other_right_click = {
         'help': $toolbar_right_help_click,

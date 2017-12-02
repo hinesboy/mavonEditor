@@ -39,6 +39,15 @@ function $toolbar_left_trash_click($vm) {
 function $toolbar_left_save_click($vm) {
     $vm.save($vm.d_value, $vm.d_render)
 }
+// 直接添加链接
+export const toolbar_left_addlink = (type, text, link, $vm) => {
+    let insert_text = {
+        prefix: type === 'link' ? `[${text}](` : `![${text}](`,
+        subfix: ')',
+        str: link
+    };
+    $vm.insertText($vm.getTextareaDom(), insert_text);
+}
 export const toolbar_left_click = (_type, $vm) => {
      var _param_of_insert_text = {
          'bold': {

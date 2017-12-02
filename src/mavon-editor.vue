@@ -3,7 +3,7 @@
         <!--工具栏-->
         <div class="v-note-op" v-show="toolbarsFlag">
             <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words"
-                               @toolbar_left_click="toolbar_left_click" :toolbars="toolbars"
+                               @toolbar_left_click="toolbar_left_click" @toolbar_left_addlink="toolbar_left_addlink" :toolbars="toolbars"
                                @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch"/>
             <s-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click"
                                 :toolbars="toolbars"
@@ -62,11 +62,11 @@
                 </div>
             </div>
         </transition>
-
+        <!-- 预览图片 -->
         <transition name="fade">
             <div @click="d_preview_imgsrc=null" class="v-note-img-wrapper" v-if="d_preview_imgsrc">
                 <i @click.stop.prevent="d_preview_imgsrc=null" class="fa fa-mavon-times" aria-hidden="true"></i>
-                <img @click.stop="" :src="d_preview_imgsrc" alt="error">
+                <img @click.stop="" :src="d_preview_imgsrc" alt="none">
             </div>
         </transition>
         <!--阅读模式-->
@@ -95,9 +95,8 @@
         loadScript,
         ImagePreviewListener
     } from './lib/core/extra-function.js'
-    // import {onecolumnKeyDownEnter, onecolumnInsert} from './lib/core/onecolumn-event.js'
     import {p_ObjectCopy_DEEP} from './lib/util.js'
-    import {toolbar_left_click} from './lib/toolbar_left_click.js'
+    import {toolbar_left_click, toolbar_left_addlink} from './lib/toolbar_left_click.js'
     import {toolbar_right_click} from './lib/toolbar_right_click.js'
     import {CONFIG} from './lib/config.js'
     import hljs from './lib/core/highlight.js'
@@ -375,10 +374,11 @@
                 this.__oFReader = new FileReader();
                 this.__oFReader.onload = function (oFREvent) {
                     $vm.s_markdown.image_add(pos, oFREvent.target.result);
+                    $file.miniurl = oFREvent.target.result;
                     if (isinsert === true) {
                         $vm.insertText($vm.getTextareaDom(),
                             {
-                                prefix: '\n![' + $vm.d_words.tl_image + '](' + pos + ')',
+                                prefix: '\n![' + $file.name + '](' + pos + ')',
                                 subfix: '',
                                 str: ''
                             });
@@ -424,6 +424,9 @@
             },
             toolbar_left_click(_type) {
                 toolbar_left_click(_type, this);
+            },
+            toolbar_left_addlink(_type, text, link) {
+                toolbar_left_addlink(_type, text, link, this);
             },
             toolbar_right_click(_type) {
                 toolbar_right_click(_type, this);

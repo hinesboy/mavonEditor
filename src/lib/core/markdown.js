@@ -33,7 +33,6 @@ var markdown_config = {
 var markdown = require('markdown-it')(markdown_config);
 // 表情
 var emoji = require('markdown-it-emoji');
-
 // 下标
 var sub = require('markdown-it-sub')
 // 上标
@@ -50,6 +49,23 @@ var insert = require('markdown-it-ins')
 var mark = require('markdown-it-mark')
 //
 var container = require('markdown-it-container')
+// add target="_blank" to all link
+var defaultRender = markdown.renderer.rules.link_open || function(tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+};
+markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+    // If you are sure other plugins can't add `target` - drop check below
+    var aIndex = tokens[idx].attrIndex('target');
+
+    if (aIndex < 0) {
+        tokens[idx].attrPush(['target', '_blank']); // add new attribute
+    } else {
+        tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
+    }
+
+    // pass token to default renderer.
+    return defaultRender(tokens, idx, options, env, self);
+};
 // math katex
 var katex = require('markdown-it-katex-external');
 var miip = require('markdown-it-images-preview');
