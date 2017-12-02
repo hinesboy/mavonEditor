@@ -14,7 +14,6 @@
 
 ![PC](../../img/cn/cn-image.gif)
 
-
 ### 移动
 
 ![移动](../../img/cn/cn-phone.png)
