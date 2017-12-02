@@ -350,21 +350,22 @@
                     }
                 }
             },
-            $imgTouch(pos) {
+            $imgTouch(file) {
                 var $vm = this;
                 this.insertText(this.getTextareaDom(),
                     {
-                        prefix: '\n![' + $vm.d_words.tl_image + '](' + pos + ')',
+                        prefix: '\n![' + file[1].name + '](' + file[0] + ')',
                         subfix: '',
                         str: ''
                     });
             },
-            $imgDel(pos) {
-                this.s_markdown.image_del(pos);
+            $imgDel(file) {
+                this.s_markdown.image_del(file[0]);
                 // 删除所有markdown中的图片
-                this.d_value.replace(`![]()`,'');
-                this.d_render = this.s_markdown.render(this.d_value);
-                this.$emit('imgDel', pos);
+                let reg = new RegExp(`\\!\\[${file[1].name}\\]\\(\\${file[0]}\\)`, "g")
+                this.d_value = this.d_value.replace(reg, '');
+                this.iRender(this.d_value);
+                this.$emit('imgDel', file[0]);
             },
             $imgAdd(pos, $file, isinsert) {
                 if (isinsert === undefined) isinsert = true;

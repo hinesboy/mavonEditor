@@ -68,6 +68,7 @@
                     <!-- 缩略图展示 -->
                     <img class = "image-show" :src="item[1].miniurl" alt="none">
                 </div>
+
             </div>
         </button>
         <button :disabled="!editable" type="button" v-if="toolbars.code" @click="$clicks('code')"
@@ -145,10 +146,6 @@
             $imgLinkAdd() {
                 this.$emit('toolbar_left_addlink', this.link_type, this.link_text, this.link_addr);
                 this.s_img_link_open = false;
-                this.img_file[0][0] = './' + this.link_text;
-                this.img_file[0][1] = {miniurl: this.link_addr};
-                this.img_file.unshift(['./' + (this.num + 1), null]);
-                this.num = this.num + 1;
             },
             $toggle_imgLinkAdd(type) {
                 this.link_type = type;
@@ -157,7 +154,7 @@
                 this.s_img_dropdown_open = false;
             },
             $imgFileListClick(pos) {
-                this.$emit('imgTouch', this.img_file[pos][0]);
+                this.$emit('imgTouch', this.img_file[pos]);
             },
             $imgFileAdd($file) {
                 this.img_file[0][0] = './' + this.num;
@@ -171,8 +168,9 @@
                 this.$imgFileAdd($e.target.files[0]);
             },
             $imgDel(pos) {
-                this.$emit('imgDel', this.img_file[pos][0]);
+                this.$emit('imgDel', this.img_file[pos]);
                 this.img_file.splice(pos, 1);
+                this.s_img_dropdown_open = false;
             },
             $imgDelByFilename(filename) {
                 var pos = 0;
@@ -270,11 +268,12 @@
             .image-show
                 display none
                 position absolute
-                left -120px
+                left -122px
                 top 0
                 transition all 0.3s linear 0s
                 width 120px
                 height 90px
+                border 1px solid #eeece8
 .add-image-link-wrapper
     position fixed
     left 0
