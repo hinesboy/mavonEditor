@@ -1,6 +1,0 @@
-*.js linguist-language=Vue
-*.css linguist-language=Vue
-*.html linguist-language=Vue
-*.vue linguist-language=Vue
-*.less linguist-language=Vue
-*.sass linguist-language=Vue
