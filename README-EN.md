@@ -10,7 +10,7 @@
 
 ![PC](./img/en/en-common.png)
 
-![PC](./img/en/en-image.git)
+![PC](./img/en/en-image.gif)
 
 > [more images...](./doc/en/images.md)
 

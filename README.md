@@ -12,7 +12,7 @@
 
 ![PC](./img/cn/cn-common.png)
 
-![PC](./img/cn/cn-image.git)
+![PC](./img/cn/cn-image.gif)
 
 > [查看更多图片点击这里...](./doc/cn/images.md)
 
