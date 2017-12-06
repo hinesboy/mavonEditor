@@ -1,9 +1,9 @@
 ### Upload images
 
-#### Upload to File server
+#### method 1: Upload to File server
 
+> Each time you add a image to trigger the upload
 ```javascript
-// Each time you add a image to trigger the upload
 <template>
     <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
 </template>
@@ -29,9 +29,8 @@ exports default {
 }
 ```
 
-
+> Multiple images unified upload
 ```javascript
-// Multiple images unified upload
 <template>
     <button @click="uploadimg">upload</button>
     <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
@@ -77,7 +76,7 @@ exports default {
 }
 ```
 
-#### base64
+#### method 2:base64
 
 ```javascript
 <template>

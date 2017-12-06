@@ -1,9 +1,9 @@
 ### 图片上传
 
-#### 图片上传至文件服务器
+#### 方式1：图片上传至文件服务器
 
+> 每次添加图片触发上传
 ```javascript
-// 每次添加图片触发上传
 <template>
     <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
 </template>
@@ -29,9 +29,8 @@ exports default {
 }
 ```
 
-
+> 统一上传多张图片
 ```javascript
-// 事件触发多张图片统一上传
 <template>
     <!--点击按钮触发图片统一上传-->
     <button @click="uploadimg">upload</button>
@@ -80,7 +79,7 @@ exports default {
 }
 ```
 
-#### 直接将图片保存为base64编码
+#### 方式2：直接将图片保存为base64编码
 
 ```javascript
 <template>

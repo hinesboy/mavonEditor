@@ -16,7 +16,7 @@
 
 > [查看更多图片点击这里...](./doc/cn/images.md)
 
-### Install mavon-editor (安装)
+### 安装 (Install mavon-editor)
 
 ```
 $ npm install mavon-editor --save
@@ -95,8 +95,8 @@ exports default {
                // 第二步.将返回的url替换到文本原位置![...](./0) -> ![...](url)
                /**
                * $vm 指为mavonEditor实例，可以通过如下两种方式获取
-               * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，此时`$vm`即为`mavonEditor`
-               * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>， 此时`$vm`为 `this.$refs.md`
+               * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，`$vm`为`mavonEditor`
+               * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>，`$vm`为 `this.$refs.md`
                */
                $vm.$img2Url(pos, url);
            })
