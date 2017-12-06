@@ -21,28 +21,6 @@
 $ npm install mavon-editor --save
 ```
 
-#### Hightlight
-
-> If you do not need code highlighting, you need set ishljs to false
-
-Set ishljs = true
-```javascript
-    // default value is true
-    <mavon-editor :ishljs = "true"></mavon-editor>
-```
-For optimize the size of pack, since **v2.4.2**, the following files will default to using `cdnjs` outside the chain:
- + `highlight.js`  
- + `github-markdown-css`  
- + `katex`(**v2.4.7**)  
-
-The language parsing files and code highlighting in Code Highlighting `highlight.js` will be loaded on demand.  
-`github-markdown-css` and` katex` will load only when mounted.  
-
-**Notice**:  
-[Option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js) and [Supported language](./src/lib/core/hljs/lang.hljs.js) is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
-
-> [without cdn, Click here to local on-demand loading...](./doc/en/no-cnd.md)
-
 ### Use
 
 `index.js`:
@@ -73,45 +51,56 @@ The language parsing files and code highlighting in Code Highlighting `highlight
 
 > [more ways...](./doc/cn/use.md)
 
-#### 图片上传demo
+#### Hightlight
+
+> If you do not need code highlighting, you need set ishljs to false
+
+Set ishljs = true
+```javascript
+    // default value is true
+    <mavon-editor :ishljs = "true"></mavon-editor>
+```
+For optimize the size of pack, since **v2.4.2**, the following files will default to using `cdnjs` outside the chain:
+ + `highlight.js`
+ + `github-markdown-css`
+ + `katex`(**v2.4.7**)
+
+The language parsing files and code highlighting in Code Highlighting `highlight.js` will be loaded on demand.
+`github-markdown-css` and` katex` will load only when mounted.
+
+**Notice**:
+[Option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js) and [Supported language](./src/lib/core/hljs/lang.hljs.js) is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
+
+> [without cdn, Click here to local on-demand loading...](./doc/en/no-cnd.md)
+
+
+#### Upload images
 
 ```javascript
 <template>
-    <button @click="uploadimg">upload</button>
-    <mavon-editor @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
+    <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
 </template>
 exports default {
-    data(){
-        return {
-            img_file: {}
-        }
-    },
     methods: {
+        // bind @imgAdd event
         $imgAdd(pos, $file){
-            this.img_file[pos] = $file;
-        },
-        $imgDel(pos){
-            delete this.img_file[pos];
-        },
-        uploadimg($e){
-            // upload files in one request.
-            console.log(this.img_file);
-            var formdata = new FormData();
-            for(var _img in this.img_file){
-                formdata.append(_img, this.img_file[_img]);
-            }
-            axios({
-                url: 'http://127.0.0.1/index.php',
-                method: 'post',
-                data: formdata,
-                headers: { 'Content-Type': 'multipart/form-data' },
-            }).then((res) => {
-                console.log(res);
-            })
-        },
+            // step 1. upload image to server.
+           var formdata = new FormData();
+           formdata.append('image', $file);
+           axios({
+               url: 'server url',
+               method: 'post',
+               data: formdata,
+               headers: { 'Content-Type': 'multipart/form-data' },
+           }).then((url) => {
+               // step 2. replace url ![...](./0) -> ![...](url)
+               $vm.$img2Url(pos, url);
+           })
+        }
     }
 }
 ```
+> [more info about upload images ...](./doc/en/upload-images.md)
 
 ### Note
 
@@ -200,18 +189,6 @@ toolbars: {
 | imgAdd | String: filename, File: imgfile |  Add image file callback event(filename: write in origin md, File: File Object) |
 | imgDel | String: filename |  Delete image file callback event(filename: write in origin md) |
 
-### methods
-| name      |            params         | describe      |
-| ----------------   | :-----------------------------: | ---------------------------------------- |
-| $vm.$refs.toolbar_left.$imgDelByFilename(>=**2.1.6**) |  String: filename | Delete the image by filename, return true if sucess, false otherwise |
-| $vm.$refs.toolbar_left.$imgAddByFilename(>=**2.1.6**) |  String: filename, File: file | Add the image by filename (The filename alias style must be "./filename"), return true if sucess, false otherwise |
-| $vm.$refs.toolbar_left.$imgUpdateByFilename(>=**2.1.6**) |  String: filename, File: file | Update the image by filename(The filename alias style must be "./filename"), return true if sucess, false otherwise |
-| $vm.$imgUpdateByUrl(>=**2.1.6**)    |  String: filename, String: url | Update filename to url(example: ./0 -> http://path/to/png/some.png) |
-| $vm.$imgAddByUrl(>=**2.1.11**)    |  String: filename, String: url | Same as above |
-| $vm.$img2Url(>=**2.1.11**)    |  String: filename, String: url | replace filename to url(example: `![h](./0)` -> `![h](http://path/to/png/some.png)`) |
-| $vm.$imglst2Url(>=**2.1.11**)    |  Array: filenameLst | Same as above(filenameLst: [[filename, url], ...]) |
-
-**Notice**: `$vm` => reference instance of component
 
 ## Dependencies
 - [markdown-it](https://github.com/markdown-it/markdown-it)

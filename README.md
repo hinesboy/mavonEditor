@@ -22,29 +22,6 @@
 $ npm install mavon-editor --save
 ```
 
-#### 代码高亮
-
-> 如不需要hightlight代码高亮显示，你应该设置ishljs为false
-
-开启代码高亮props
-```javascript
-    // ishljs默认为true
-    <mavon-editor :ishljs = "true"></mavon-editor>
-```
-
-为优化插件体积，从**v2.4.2**起以下文件将默认使用`cdnjs`外链:
- + `highlight.js`  
- + `github-markdown-css`  
- + `katex`(**v2.4.7**)  
-
-代码高亮`highlight.js`中的语言解析文件和代码高亮样式将在使用时按需加载.  
-`github-markdown-css`和`katex`仅会在`mounted`时加载
-
-**Notice**:  
-[可选配色方案](./src/lib/core/hljs/lang.hljs.css.js) 和 [支持的语言](./src/lib/core/hljs/lang.hljs.js) 是从 [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src) 导出的
-
-> [不使用cdn，本地按需加载点击这里...](./doc/cn/no-cnd.md)
-
 ### Use (如何引入)
 
 `index.js`:
@@ -73,45 +50,62 @@ $ npm install mavon-editor --save
 
 > [更多引入方式点击这里...](./doc/cn/use.md)
 
-#### 图片上传&预览 例子
+#### 代码高亮
+
+> 如不需要hightlight代码高亮显示，你应该设置ishljs为false
+
+开启代码高亮props
+```javascript
+    // ishljs默认为true
+    <mavon-editor :ishljs = "true"></mavon-editor>
+```
+
+为优化插件体积，从**v2.4.2**起以下文件将默认使用`cdnjs`外链:
+ + `highlight.js`
+ + `github-markdown-css`
+ + `katex`(**v2.4.7**)
+
+代码高亮`highlight.js`中的语言解析文件和代码高亮样式将在使用时按需加载.
+`github-markdown-css`和`katex`仅会在`mounted`时加载
+
+**Notice**:
+[可选配色方案](./src/lib/core/hljs/lang.hljs.css.js) 和 [支持的语言](./src/lib/core/hljs/lang.hljs.js) 是从 [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src) 导出的
+
+> [不使用cdn，本地按需加载点击这里...](./doc/cn/no-cnd.md)
+
+#### 图片上传
 
 ```javascript
 <template>
-    <button @click="uploadimg">upload</button>
-    <mavon-editor @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
+    <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
 </template>
 exports default {
-    data(){
-        return {
-            img_file: {}
-        }
-    },
     methods: {
+        // 绑定@imgAdd event
         $imgAdd(pos, $file){
-            this.img_file[pos] = $file;
-        },
-        $imgDel(pos){
-            delete this.img_file[pos];
-        },
-        uploadimg($e){
-            // upload files in one request.
-            console.log(this.img_file);
-            var formdata = new FormData();
-            for(var _img in this.img_file){
-                formdata.append(_img, this.img_file[_img]);
-            }
-            axios({
-                url: 'http://127.0.0.1/index.php',
-                method: 'post',
-                data: formdata,
-                headers: { 'Content-Type': 'multipart/form-data' },
-            }).then((res) => {
-                console.log(res);
-            })
-        },
+            // 第一步.将图片上传到服务器.
+           var formdata = new FormData();
+           formdata.append('image', $file);
+           axios({
+               url: 'server url',
+               method: 'post',
+               data: formdata,
+               headers: { 'Content-Type': 'multipart/form-data' },
+           }).then((url) => {
+               // 第二步.将返回的url替换到文本原位置![...](./0) -> ![...](url)
+               /**
+               * $vm 指为mavonEditor实例，可以通过如下两种方式获取
+               * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，此时`$vm`即为`mavonEditor`
+               * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>， 此时`$vm`为 `this.$refs.md`
+               */
+               $vm.$img2Url(pos, url);
+           })
+        }
     }
 }
 ```
+> [图片上传详情点击这里...](./doc/cn/upload-images.md)
+
 ### 注
 
 - **默认大小样式为 min-height: 300px , ming-width: 300px 可自行覆盖**
@@ -200,18 +194,6 @@ toolbars: {
 | imgAdd           | String: filename, File: imgfile | 图片文件添加回调事件(filename: 写在md中的文件名, File: File Object) |
 | imgDel           |        String: filename         | 图片文件删除回调事件(filename: 写在md中的文件名)          |
 
-### methods
-| name 方法名        |            params 参数            | describe 描述                              |
-| ----------------   | :-----------------------------: | ---------------------------------------- |
-| $vm.$refs.toolbar_left.$imgDelByFilename(>=**2.1.6**) |  String: filename | 主动删除对应图片文件, 如果成功返回TRUE，否则返回FALSE |
-| $vm.$refs.toolbar_left.$imgAddByFilename(>=**2.1.6**) |  String: filename, File: file | 添加对应图片文件，文件别名为filename(filename 必须为 ./filename 样式), 如果成功返回TRUE，否则返回FALSE |
-| $vm.$refs.toolbar_left.$imgUpdateByFilename(>=**2.1.6**) |  String: filename, File: file | 更新对应文件名的图片文件(filename 必须为 ./filename 样式), 如果成功返回TRUE，否则返回FALSE |
-| $vm.$imgUpdateByUrl(>=**2.1.5**)    |  String: filename, String: url | 将相对路径值替换为url(如./0 -> http://path/to/png/some.png) |
-| $vm.$imgAddByUrl(>=**2.1.11**)    |  String: filename, String: url | 同上(如./0 -> http://path/to/png/some.png) |
-| $vm.$img2Url(>=**2.1.11**)    |  String: filename, String: url | 将图片文件名替换为url(如`![h](./0)` -> `![h](http://path/to/png/some.png)`) |
-| $vm.$imglst2Url(>=**2.1.11**)    |  Array: filenameLst | 同上(filenameLst: [[filename, url], ...]) |
-
-注意:`$vm` => 组件引用实例
 
 ## Dependencies (依赖)
 
