@@ -7,9 +7,11 @@
 
 ![PC](../../img/en/en-help.png)
 
-### Images Preview
+### Link & Upload Images
 
 ![PC](../../img/en/en-link.gif)
+
+![PC](../../img/en/en-drag.gif)
 
 ![PC](../../img/en/en-image.gif)
 

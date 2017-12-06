@@ -73,7 +73,7 @@ $ npm install mavon-editor --save
 
 > [更多引入方式点击这里...](./doc/cn/use.md)
 
-#### Images Upload & Preview
+#### 图片上传&预览 例子
 
 ```javascript
 <template>

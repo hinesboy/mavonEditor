@@ -362,7 +362,7 @@
             $imgDel(file) {
                 this.s_markdown.image_del(file[0]);
                 // 删除所有markdown中的图片
-                let reg = new RegExp(`\\!\\[${file[1].name}\\]\\(\\${file[0]}\\)`, "g")
+                let reg = new RegExp(`\\!\\[${file[1]._name}\\]\\(\\${file[0]}\\)`, "g")
                 this.d_value = this.d_value.replace(reg, '');
                 this.iRender(this.d_value);
                 this.$emit('imgDel', file[0]);
@@ -379,9 +379,11 @@
                     $vm.s_markdown.image_add(pos, oFREvent.target.result);
                     $file.miniurl = oFREvent.target.result;
                     if (isinsert === true) {
+                        // 去除特殊字符
+                        $file._name = $file.name.replace(/[\[\]\(\)\.\+\{\}&\|\\\*^%$#@\-]/g, '');
                         $vm.insertText($vm.getTextareaDom(),
                             {
-                                prefix: '\n![' + $file.name + '](' + pos + ')',
+                                prefix: '\n![' + $file._name + '](' + pos + ')',
                                 subfix: '',
                                 str: ''
                             });

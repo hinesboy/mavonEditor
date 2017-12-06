@@ -8,9 +8,11 @@
 
 ![PC](../../img/cn/cn-help.png)
 
-#### 链接 & 图片
+#### 链接 & 上传图片
 
 ![PC](../../img/cn/cn-link.gif)
+
+![PC](../../img/cn/cn-drag.gif)
 
 ![PC](../../img/cn/cn-image.gif)
 
