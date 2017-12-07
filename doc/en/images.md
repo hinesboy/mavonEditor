@@ -7,7 +7,7 @@
 
 ![PC](../../img/en/en-help.png)
 
-### Link & Upload Images
+### Link & Upload Images Gif
 
 ![PC](../../img/en/en-link.gif)
 

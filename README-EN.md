@@ -49,7 +49,7 @@ $ npm install mavon-editor --save
 </div>
 ```
 
-> [more ways...](./doc/cn/use.md)
+> [more ways...](./doc/en/use.md)
 
 #### Hightlight
 
