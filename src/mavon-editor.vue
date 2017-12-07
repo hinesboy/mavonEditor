@@ -287,7 +287,7 @@
         methods: {
             loadExternalLink(name, type, callback) {
                 if (typeof this.p_external_link[name] != 'function') {
-                    if (this.p_external_link != false) {
+                    if (this.p_external_link[name] != false) {
                         console.error('external_link.' + name, 'is not a function, if you want to disabled this error log, set external_link.' + name, 'to function or false');
                     }
                     return ;
