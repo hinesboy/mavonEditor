@@ -354,7 +354,7 @@
                 var $vm = this;
                 this.insertText(this.getTextareaDom(),
                     {
-                        prefix: '\n![' + file[1].name + '](' + file[0] + ')',
+                        prefix: '\n![' + file[1]._name + '](' + file[0] + ')',
                         subfix: '',
                         str: ''
                     });
@@ -380,7 +380,7 @@
                     $file.miniurl = oFREvent.target.result;
                     if (isinsert === true) {
                         // 去除特殊字符
-                        $file._name = $file.name.replace(/[\[\]\(\)\.\+\{\}&\|\\\*^%$#@\-]/g, '');
+                        $file._name = $file.name.replace(/[\[\]\(\)\+\{\}&\|\\\*^%$#@\-]/g, '');
                         $vm.insertText($vm.getTextareaDom(),
                             {
                                 prefix: '\n![' + $file._name + '](' + pos + ')',
