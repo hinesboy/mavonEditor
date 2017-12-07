@@ -5,6 +5,7 @@
 > 基于Vue的markdown编辑器
 
 ### [English Documents](./README-EN.md)
+[Demo for jsfiddle](https://jsfiddle.net/CHENXCHEN/qf7gLw3a/3/)
 
 ## example (图片展示)
 
