@@ -16,7 +16,7 @@
 
 > [查看更多图片点击这里...](./doc/cn/images.md)
 
-### 安装 (Install mavon-editor)
+### Install mavon-editor (安装)
 
 ```
 $ npm install mavon-editor --save
