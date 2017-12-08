@@ -326,7 +326,9 @@
                     if (files.length > 0) {
                         $e.preventDefault();
                         for (var i = 0; i < files.length; i++) {
-                            this.$refs.toolbar_left.$imgFileAdd(files[i]);
+                            if(files[i].type.match(/^image\//i)) {
+                                this.$refs.toolbar_left.$imgFileAdd(files[i]);
+                            }
                         }
                     }
                 }
