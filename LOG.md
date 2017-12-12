@@ -1,4 +1,5 @@
 # 更新日志
+- **2.4.13** 修复bug[#79](https://github.com/hinesboy/mavonEditor/issues/79), 修改`markdown-it`实例获取方式，引入插件`markdown-it-highlightjs-external`(17.12.12 [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.4.11** 修复bug[#147](https://github.com/hinesboy/mavonEditor/issues/147)(17.12.7 [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.4.10** 添加图片名正则过滤(17.12.6)
 - **2.4.9** 删除上传图片时同时删除其文本(17.12.2)

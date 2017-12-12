@@ -78,7 +78,6 @@
 </template>
 
 <script>
-    import markdown from './lib/core/markdown.js'
     // import tomarkdown from './lib/core/to-markdown.js'
     import {autoTextarea} from 'auto-textarea'
     import {keydownListen} from './lib/core/keydown-listen.js'
@@ -100,13 +99,13 @@
     import {toolbar_right_click} from './lib/toolbar_right_click.js'
     import {CONFIG} from './lib/config.js'
     import hljs from './lib/core/highlight.js'
+    import markdown from './lib/mixins/markdown.js'
 
     var s_md_toolbar_left = require('./components/s-md-toolbar-left.vue')
     var s_md_toolbar_right = require('./components/s-md-toolbar-right.vue')
     export default {
-        markdownIt: markdown,
-        props: {
-            // 是否渲染滚动条样式(webkit)
+        mixins: [markdown],
+        props: { // 是否渲染滚动条样式(webkit)
             scrollStyle: {
                 type: Boolean,
                 default: true
@@ -205,8 +204,6 @@
                 })(), // 编辑记录
                 d_history_index: 0, // 编辑记录索引
                 currentTimeout: '',
-                s_markdown: markdown,
-                // s_tomarkdown: tomarkdown,
                 d_image_file: [],
                 d_preview_imgsrc: null, // 图片预览地址
                 s_external_link: {
@@ -239,15 +236,6 @@
         created() {
             var $vm = this;
             $vm.initExternalFuc();
-            markdown.renderAsync = function (src, env, fuc, _env) {
-                env = env || {};
-                _env = _env || {};
-                var _res = markdown.renderer.render(this.parse(src, env), this.options, env);
-                if(_env['ishljs'] === false) fuc(_res)
-                else {
-                    hljs(_res, fuc, $vm.p_external_link.hljs_lang, $vm.p_external_link.hljs_js);
-                }
-            }
             // 初始化语言
             this.initLanguage();
             this.$nextTick(() => {
@@ -259,6 +247,7 @@
         },
         mounted() {
             var $vm = this;
+            console.log($vm.testformixin);
             this.$el.addEventListener('paste', function (e) {
                 $vm.$paste(e);
             })
@@ -267,7 +256,7 @@
             })
             // 浏览器siz大小
             windowResize(this);
-            keydownListen(this, markdown);
+            keydownListen(this);
             // fullscreen事件
             fullscreenchange(this);
             this.d_value = this.value;
@@ -277,7 +266,11 @@
             $vm.loadExternalLink('katex_css', 'css')
             $vm.loadExternalLink('katex_js', 'js', function() {
                 $vm.initLanguage();
-                $vm.iRender($vm.d_value);
+                $vm.iRender();
+            })
+            $vm.loadExternalLink('hljs_js', 'js', function() {
+                $vm.initLanguage();
+                $vm.iRender();
             })
             $vm.codeStyleChange($vm.code_style, true)
         },
@@ -366,7 +359,7 @@
                 // 删除所有markdown中的图片
                 let reg = new RegExp(`\\!\\[${file[1]._name}\\]\\(\\${file[0]}\\)`, "g")
                 this.d_value = this.d_value.replace(reg, '');
-                this.iRender(this.d_value);
+                this.iRender();
                 this.$emit('imgDel', file[0]);
             },
             $imgAdd(pos, $file, isinsert) {
@@ -512,9 +505,9 @@
             initLanguage() {
                 let lang = CONFIG.langList.indexOf(this.language) >= 0 ? this.language : this.language.default;
                 var $vm = this;
-                markdown.renderAsync(CONFIG[`help_${lang}`], {}, function (res) {
+                $vm.$render(CONFIG[`help_${lang}`], function(res) {
                     $vm.d_help = res;
-                }, {'ishljs': $vm.ishljs})
+                })
                 this.d_words = CONFIG[`words_${lang}`];
             },
             // 编辑开关
@@ -544,9 +537,9 @@
                     console.warn('hljs color scheme', val, 'do not exist, hljs color scheme will not change');
                 }
             },
-            iRender(val) {
+            iRender() {
                 var $vm = this;
-                markdown.renderAsync($vm.d_value, {}, function (res) {
+                $vm.$render($vm.d_value, function(res) {
                     // render
                     $vm.d_render = res;
                     // change回调
@@ -554,14 +547,14 @@
                     // 改变标题导航
                     if ($vm.s_navigation) getNavigation($vm, false);
                     // v-model 语法糖
-                    $vm.$emit('input', val)
+                    $vm.$emit('input', $vm.d_value)
                     // 塞入编辑记录数组
                     if ($vm.d_value === $vm.d_history[$vm.d_history_index]) return
                     window.clearTimeout($vm.currentTimeout)
                     $vm.currentTimeout = setTimeout(() => {
                         $vm.saveHistory();
                     }, 500);
-                }, {'ishljs': $vm.ishljs})
+                })
             }
         },
         watch: {

@@ -3,8 +3,8 @@
  * @Date:   2017-05-03T00:31:20+08:00
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: keydown-listen.js
- * @Last modified by:   chc
- * @Last modified time: 2017-09-10T22:31:18+08:00
+ * @Last modified by:   chenhuachao
+ * @Last modified time: 2017-12-04T00:03:33+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -35,7 +35,7 @@ const KEY_CODE = {
     DELETE: 8,
     TAB: 9
 };
-export const keydownListen = ($vm , markdown) => {
+export const keydownListen = ($vm) => {
     $vm.$el.addEventListener('keydown', function (e) {
         // 注册监听键盘事件
         if (!(e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {

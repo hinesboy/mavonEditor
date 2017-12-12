@@ -1,6 +1,6 @@
 {
   "name": "mavon-editor",
-  "version": "2.4.12",
+  "version": "2.4.13",
   "description": "Vue markdown editor",
   "main": "dist/mavon-editor.js",
   "scripts": {
@@ -64,6 +64,7 @@
     "markdown-it-emoji": "^1.1.1",
     "markdown-it-footnote": "^3.0.1",
     "markdown-it-for-inline": "~0.1.0",
+    "markdown-it-highlightjs-external": "^1.0.1",
     "markdown-it-images-preview": "^1.0.0",
     "markdown-it-ins": "^2.0.0",
     "markdown-it-katex-external": "^1.0.0",
