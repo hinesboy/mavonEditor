@@ -84,7 +84,6 @@ export default {
     data() {
         return {
             s_markdown: markdown,
-            'testformixin': 'In test'
         }
     },
     mounted() {

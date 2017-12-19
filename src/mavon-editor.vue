@@ -247,7 +247,6 @@
         },
         mounted() {
             var $vm = this;
-            console.log($vm.testformixin);
             this.$el.addEventListener('paste', function (e) {
                 $vm.$paste(e);
             })
