@@ -31,7 +31,9 @@ $ npm install mavon-editor --save
     // import with ES6
     import Vue from 'vue'
     import mavonEditor from 'mavon-editor'
-	// markdown-it对象：md.s_markdown, md => mavonEditor实例
+    // markdown-it对象：md.s_markdown, md => mavonEditor实例
+    //                 or
+    //                 mavonEditor.markdownIt 
     import 'mavon-editor/dist/css/index.css'
     // use
     Vue.use(mavonEditor)
