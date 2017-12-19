@@ -4,7 +4,7 @@
  * @Email:  chenhuachaoxyz@gmail.com
  * @Filename: extra-function.js
  * @Last modified by:   CHC
- * @Last modified time: 2017-06-16T00:11:55+08:00
+ * @Last modified time: 2017-12-19T17:46:48+08:00
  * @License: MIT
  * @Copyright: 2017
  */
@@ -166,17 +166,7 @@ export const windowResize = ($vm) => {
     }
 
     sizeToStatus();
-    window.addEventListener('resize', function() {
-        // 媒介查询
-        if ($vm.$el.clientWidth > 768) {
-            // > 768
-            $vm.s_subfield = $vm.subfield;
-        }
-        else {
-            // <  768
-            $vm.s_subfield = false;
-        }
-    })
+    window.addEventListener('resize', sizeToStatus);
 }
 
 export function loadScript(src, callback) {
