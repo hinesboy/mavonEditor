@@ -85,7 +85,7 @@
     import hljsLangs from './lib/core/hljs/lang.hljs.js'
     import {
         fullscreenchange,
-        windowResize,
+       /* windowResize, */
         scrollLink,
         insertTextAtCaret,
         getNavigation,
@@ -184,8 +184,8 @@
                 d_render: '',// props 文本内容render
                 s_preview_switch: (() => {
                     let default_open_ = this.default_open;
-                    if (this.subfield && !default_open_) {
-                        default_open_ = 'preview';
+                    if (!default_open_) {
+                        default_open_ = this.subfield ? 'preview' : 'edit';
                     }
                     return default_open_ === 'preview' ? true : false;
                 })(), // props true 展示编辑 false展示预览
@@ -254,7 +254,7 @@
                 $vm.$drag(e);
             })
             // 浏览器siz大小
-            windowResize(this);
+           /* windowResize(this); */
             keydownListen(this);
             // fullscreen事件
             fullscreenchange(this);
@@ -584,8 +584,8 @@
             },
             default_open: function (val) {
                 let default_open_ = val;
-                if (this.subfield && !default_open_) {
-                    default_open_ = 'preview';
+                if ( !default_open_) {
+                    default_open_ = this.subfield?'preview':'edit';
                 }
                 return this.s_preview_switch = default_open_ === 'preview' ? true : false;
             },

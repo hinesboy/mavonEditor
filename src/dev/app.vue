@@ -18,7 +18,7 @@
             </h2>
             <button @click="uploadimg">upload</button>
             <button @click="imgreplace">imgreplace</button>
-            <mavon-editor  ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable" :code_style="code_style"
+            <mavon-editor   ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :external_link="external_link"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"></mavon-editor>
@@ -73,9 +73,8 @@
                 },
                 subfield: true,
                 editable: true,
-                toolbarsFlag: true,
+                toolbarsFlag: true, 
                 img_file: {},
-                code_style: 'solarized-dark',
                 external_link: {
                     markdown_css: function() {
                         return '/markdown/github-markdown.min.css';
@@ -95,6 +94,31 @@
                     katex_js: function() {
                         return '/katex/katex.min.js';
                     }
+                },
+                toolbar_settings: {
+                    undo: true, // 上一步
+                    redo: true, // 下一步
+                    bold: true, // 粗体
+                    italic: true, // 斜体
+                    header: true, // 标题
+                    underline: true, // 下划线
+                    strikethrough: true, // 中划线
+                    quote: true, // 引用
+                    ol: true, // 有序列表
+                    ul: true, // 无序列表
+                    link: true, // 链接
+                    code: true, // code
+                    readmodel: true, // 沉浸式阅读
+                    htmlcode: true, // 展示html源码
+                    /* 2.1.8 */
+                    alignleft: true, // 左对齐
+                    aligncenter: true, // 居中
+                    alignright: true, // 右对齐
+                    /* 2.2.1 */
+                    subfield: true, // 单双栏模式
+                    preview: true, // 预览
+                    /* 1.4.2 */
+                    navigation: true, // 导航目录
                 }
             }
         },

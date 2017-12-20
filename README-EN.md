@@ -106,9 +106,8 @@ exports default {
 
 ### Note
 
-- **Default size: min-height: 300px , ming-width: 300px , Can be covered**
+- **Default size: min-height: 300px , min-width: 300px , Can be covered**
 - **z-index: 1500**
-- **If screen resolution less than 768px ,replace【single column | double column】 edit mode to 【edit | preview】 edit mode**
 - **Just for show html of md: toolbarsFlag: false , subfield: false, default_open: "preview"**
 ## API
 

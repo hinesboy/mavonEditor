@@ -53,12 +53,10 @@ function $toolbar_right_fullscreen_click($vm) {
 }
 function $toolbar_right_subfield_click ($vm) {
     $vm.s_subfield = !$vm.s_subfield
-    if ($vm.s_subfield) {
-        $vm.s_preview_switch = true;
-        // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
-        if ($vm.previewtoggle) {
-            $vm.previewtoggle($vm.s_preview_switch, $vm.d_value)
-        }
+    $vm.s_preview_switch = $vm.s_subfield;
+    // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
+    if ($vm.previewtoggle) {
+        $vm.previewtoggle($vm.s_preview_switch, $vm.d_value)
     }
     // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
     if ($vm.subfieldtoggle) {

@@ -1,4 +1,10 @@
 # 更新日志
+- **2.4.14** 细节性调整(17.12.20)
+    - 在mavon最外层添加样式`text-align: left`，防止受到外部样式影响
+    - 单双栏切换逻辑调整，单双栏切换更加合理
+    - 去除自动切换单双栏逻辑(在 `width < 768px`变单栏)
+    - 添加链接、图片链接弹出页面优化，支持TAB键、回车键操作
+    - 上传图片限制文件格式为`gif,jpeg,jpg,png,svg`
 - **2.4.13** 修复bug[#79](https://github.com/hinesboy/mavonEditor/issues/79), 修改`markdown-it`实例获取方式，引入插件`markdown-it-highlightjs-external`(17.12.12 [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.4.11** 修复bug[#147](https://github.com/hinesboy/mavonEditor/issues/147)(17.12.7 [CHENXCHEN](https://github.com/CHENXCHEN))
 - **2.4.10** 添加图片名正则过滤(17.12.6)

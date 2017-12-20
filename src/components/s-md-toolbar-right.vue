@@ -6,12 +6,6 @@
         <button type="button" v-if="toolbars.navigation" @click="$clicks('navigation')" v-show="s_navigation"
                 class="op-icon fa fa-mavon-bars selected"
                 aria-hidden="true" :title="`${d_words.tl_navigation_off} (F8)`"></button>
-       <!-- <button type="button" @click="$clicks('phone')" v-show="s_screen_phone && s_screen_phone_toggle"
-                class="op-icon fa fa-mavon-eye"
-                aria-hidden="true" :title="`${d_words.tl_preview} (F9)`"></button>
-        <button type="button" @click="$clicks('phone')" v-show="s_screen_phone && !s_screen_phone_toggle"
-                class="op-icon fa fa-mavon-eye-slash selected"
-                aria-hidden="true" :title="`${d_words.tl_edit} (F9)`"></button>-->
         <button type="button" v-if="toolbars.preview" @click="$clicks('preview')" v-show="s_preview_switch"
                 class="op-icon fa fa-mavon-eye-slash selected"
                 aria-hidden="true" :title="`${d_words.tl_edit} (F9)`"></button>

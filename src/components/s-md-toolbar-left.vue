@@ -57,7 +57,7 @@
             <div  class="op-image popup-dropdown" v-show="s_img_dropdown_open">
                 <div  class="dropdown-item" @click.stop="$toggle_imgLinkAdd('imagelink')" title="ctrl+alt+l"><span>{{d_words.tl_image}}</span></div>
                 <div class="dropdown-item" style="overflow: hidden">
-                    <input type="file" @change="$imgAdd($event)" :key="img_file[0][0]"/>{{d_words.tl_upload}}
+                    <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" :key="img_file[0][0]"/>{{d_words.tl_upload}}
                 </div>
 
                 <div class="dropdown-item dropdown-images" v-if="index > 0" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
@@ -99,7 +99,7 @@
                        aria-hidden="true"></i>
                     <h3 class="title">{{d_words.tl_popup_link_title}}</h3>
                     <div class="link-text input-wrapper">
-                        <input type="text" v-model="link_text" :placeholder="d_words.tl_popup_link_text">
+                        <input ref="linkTextInput" type="text" v-model="link_text" :placeholder="d_words.tl_popup_link_text">
                     </div>
                     <div class="link-addr input-wrapper">
                         <input type="text" v-model="link_addr" :placeholder="d_words.tl_popup_link_addr">
@@ -137,8 +137,8 @@
                 s_img_link_open: false,
                 trigger: null,
                 num: 0,
-                link_text: null,
-                link_addr: null,
+                link_text: '',
+                link_addr: '',
                 link_type: 'link'
             }
         },
@@ -149,8 +149,11 @@
             },
             $toggle_imgLinkAdd(type) {
                 this.link_type = type;
-                this.link_text = this.link_addr = null;
+                this.link_text = this.link_addr = '';
                 this.s_img_link_open = true;
+                this.$nextTick(() => {
+                    this.$refs.linkTextInput.focus()
+                })
                 this.s_img_dropdown_open = false;
             },
             $imgFileListClick(pos) {

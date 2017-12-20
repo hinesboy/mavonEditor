@@ -33,7 +33,8 @@ const KEY_CODE = {
     C: 76,
     T: 84,
     DELETE: 8,
-    TAB: 9
+    TAB: 9,
+    ENTER: 13
 };
 export const keydownListen = ($vm) => {
     $vm.$el.addEventListener('keydown', function (e) {
@@ -83,10 +84,21 @@ export const keydownListen = ($vm) => {
                 }
                 case KEY_CODE.TAB: {
                     // TAB
-                    e.preventDefault()
-                    $vm.insertTab();
+                    if (!$vm.$refs.toolbar_left.s_img_link_open) {
+                        e.preventDefault()
+                        $vm.insertTab();
+                    }
                     break;
                 }
+                case KEY_CODE.ENTER: {
+                // enter
+                console.log('enter')
+                if ($vm.$refs.toolbar_left.s_img_link_open) {
+                    e.preventDefault()
+                    $vm.$refs.toolbar_left.$imgLinkAdd();
+                }
+                break;
+            }
             }
         } else if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
             // ctrl +

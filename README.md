@@ -111,9 +111,8 @@ exports default {
 
 ### 注
 
-- **默认大小样式为 min-height: 300px , ming-width: 300px 可自行覆盖**
+- **默认大小样式为 min-height: 300px , min-width: 300px 可自行覆盖**
 - **基础z-index: 1500**
-- **屏幕分辨率低于768px ，自动取消【单栏 | 双栏】编辑模式 ，更改为【编辑 | 预览】切换 )**
 - **仅用作展示可以设置props: toolbarsFlag: false , subfield: false, default_open: "preview"**
 
 ## API 文档

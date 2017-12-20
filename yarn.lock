@@ -3323,6 +3323,10 @@ markdown-it-for-inline@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/markdown-it-for-inline/-/markdown-it-for-inline-0.1.1.tgz#435f2316f5b5e68e1450cfa2242f2b8d59adc75f"
 
+markdown-it-highlightjs-external@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/markdown-it-highlightjs-external/-/markdown-it-highlightjs-external-1.0.1.tgz#8595fd4b0207ec429c93341f996637fa31da2d53"
+
 markdown-it-images-preview@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/markdown-it-images-preview/-/markdown-it-images-preview-1.0.1.tgz#17d6eb8491cccd2343d4e4419a1abe9ca43c0bbb"
