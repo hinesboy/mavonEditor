@@ -49,6 +49,7 @@ $ npm install mavon-editor --save
 ```
 
 > [more ways...](./doc/en/use.md)
+
 > [set markdown-it object...](./doc/en/markdown.md)
 #### Hightlight
 

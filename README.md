@@ -49,6 +49,7 @@ $ npm install mavon-editor --save
 ```
 
 > [更多引入方式点击这里...](./doc/cn/use.md)
+
 > [如何获取并设置markdown-it对象...](./doc/cn/markdown.md)
 
 #### 代码高亮
