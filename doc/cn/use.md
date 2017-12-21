@@ -7,7 +7,6 @@
     // import with ES6
     import Vue from 'vue'
     import mavonEditor from 'mavon-editor'
-	// 可以通过 mavonEditor.markdownIt 获取解析器markdown-it对象
     import 'mavon-editor/dist/css/index.css'
     // use
     Vue.use(mavonEditor)
@@ -33,7 +32,6 @@
     // require with Webpack/Node.js
     ...
     var mavonEditor = require('mavon-editor')
-	// 可以通过 mavonEditor.markdownIt 获取解析器markdown-it对象
     import 'mavon-editor/dist/css/index.css'
     ...
 ```
@@ -49,7 +47,6 @@
     <script>
     // Local Registration
     import { mavonEditor } from 'mavon-editor'
-	// 可以通过 mavonEditor.markdownIt 获取解析器markdown-it对象
     import 'mavon-editor/dist/css/index.css'
     export default {
         name: 'editor',
@@ -72,7 +69,6 @@
 	// 下同
     import Vue from 'vue';
     var editor = require('./editor.vue');
-	// 可以通过 mavonEditor.markdownIt 获取解析器markdown-it对象
     new Vue({
         el: '#main',
         render: h => h(editor)

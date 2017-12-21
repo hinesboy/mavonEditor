@@ -29,9 +29,6 @@ $ npm install mavon-editor --save
     // import with ES6
     import Vue from 'vue'
     import mavonEditor from 'mavon-editor'
-	// The Object of markdown-it : md.s_markdown, md => The instance of mavonEditor
-    //                              or
-    //                             mavonEditor.markdownIt 
     import 'mavon-editor/dist/css/index.css'
 
     // use
@@ -52,7 +49,7 @@ $ npm install mavon-editor --save
 ```
 
 > [more ways...](./doc/en/use.md)
-
+> [set markdown-it object...](./doc/en/markdown.md)
 #### Hightlight
 
 > If you do not need code highlighting, you need set ishljs to false
