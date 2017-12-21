@@ -1,5 +1,4 @@
 ## Markdown-It
-> [markdown-it主页](https://github.com/markdown-it/markdown-it)
 
 ### 获取mavonEditor中的markdown-it对象
 
@@ -24,7 +23,7 @@
    this.refs.md.s_markdown
 ```
 
-#### 使用markdown-it对象
+### 使用markdown-it对象
 
 > 设置markdown换行格式必须为行尾添加两空格
 

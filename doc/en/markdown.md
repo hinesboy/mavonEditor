@@ -1,5 +1,4 @@
 ## Markdown-It
-> [markdown-it page](https://github.com/markdown-it/markdown-it)
 
 ### Get the markdown-it object of mavonEditor
 
@@ -24,7 +23,7 @@
    this.refs.md.s_markdown
 ```
 
-#### Use markdown-it object
+### Use markdown-it object
 
 > eg: set the line break style
 
