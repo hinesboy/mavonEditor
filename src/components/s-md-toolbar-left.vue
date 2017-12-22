@@ -51,7 +51,7 @@
         <button :disabled="!editable" type="button" v-if="toolbars.link" @click.stop="$toggle_imgLinkAdd('link')"
                 class="op-icon fa fa-mavon-link" aria-hidden="true"
                 :title="`${d_words.tl_link} (ctrl+l)`"></button>
-        <button :disabled="!editable" :class="{'selected': s_img_dropdown_open}" type="button" v-if="toolbars.imagelink" @click.stop="$click_toggle_image_dropdown()"
+        <div :disabled="!editable" :class="{'selected': s_img_dropdown_open}" type="button" v-if="toolbars.imagelink" @click.stop="$click_toggle_image_dropdown()"
                 class="op-icon fa fa-mavon-picture-o dropdown"
                 aria-hidden="true">
             <div  class="op-image popup-dropdown" v-show="s_img_dropdown_open">
@@ -70,7 +70,7 @@
                 </div>
 
             </div>
-        </button>
+        </div>
         <button :disabled="!editable" type="button" v-if="toolbars.code" @click="$clicks('code')"
                 class="op-icon fa fa-mavon-code" aria-hidden="true"
                 :title="`${d_words.tl_code} (ctrl+alt+c)`"></button>
@@ -233,10 +233,12 @@
         position relative
         .popup-dropdown
             position absolute
+            display block
             background #fff
             top 34px
             left -20px
             width 120px
+            z-index 1600
             box-shadow: 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
         .dropdown-item
             height 40px
