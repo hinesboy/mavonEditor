@@ -10,20 +10,20 @@
  * @desc 初始化配置项
  */
 
-import help_cn from './lang/cn/help_cn.md'
+import help_zh_CN from './lang/zh-CN/help_zh-CN.md'
 import help_en from './lang/en/help_en.md'
 import help_fr from './lang/fr/help_fr.md'
-import words_cn from './lang/cn/words_cn.json'
+import words_zh_CN from './lang/zh-CN/words_zh-CN.json'
 import words_en from './lang/en/words_en.json'
 import words_fr from './lang/fr/words_fr.json'
 export const CONFIG = {
-    'help_cn': help_cn,
+    'help_zh-CN': help_zh_CN,
     'help_en': help_en,
     'help_fr': help_fr,
-    'words_cn': words_cn,
+    'words_zh-CN': words_zh_CN,
     'words_en': words_en,
     'words_fr': words_fr,
-    'langList': ['en' , 'cn' , 'fr'],
+    'langList': ['en' , 'zh-CN' , 'fr'],
     'toolbars': {
         'bold': true,
         'italic': true,

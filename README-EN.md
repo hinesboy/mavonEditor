@@ -114,7 +114,7 @@ exports default {
 | name    | type    |  default value | describe  |
 | -------- | :---------: | :------------: | ------- |
 | value      | String      |               | Initial value |
-| language   | String      |      cn         | Language switch,  cn: Simplified Chinese ， en: English ， fr: French |
+| language   | String      |      zh-CN         | Language switch,  zh-CN: Simplified Chinese ， en: English ， fr: French |
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | subfield   | Boolean     |   true        | true: Double columns - Edit preview same screen , Single Columns - otherwise not |
 | default_open | String |         | edit: default show edit area , preview: default show preview area  , other = edit |

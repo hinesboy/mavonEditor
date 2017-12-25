@@ -122,7 +122,7 @@
             // 初始value
             language: {
                 type: String,
-                default: 'cn'
+                default: 'zh-CN'
             },
             subfield: {
                 type: Boolean,
