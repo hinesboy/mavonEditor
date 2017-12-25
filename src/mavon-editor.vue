@@ -502,7 +502,7 @@
                 this.d_history_index = this.d_history.length - 1
             },
             initLanguage() {
-                let lang = CONFIG.langList.indexOf(this.language) >= 0 ? this.language : this.language.default;
+                let lang = CONFIG.langList.indexOf(this.language) >= 0 ? this.language : 'zh-CN';
                 var $vm = this;
                 $vm.$render(CONFIG[`help_${lang}`], function(res) {
                     $vm.d_help = res;
