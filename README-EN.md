@@ -123,7 +123,8 @@ exports default {
 | code_style | String |    code-github     | markdown Style: default github, [option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js)  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
 | toolbars   | Object      |   As in the following example  | toolbars |
-| ishljs       | Boolean |     true     | highlight code switch(cdn) |
+| ishljs       | Boolean |     true     | highlight code switch |
+| image_filter | Function |     null     | Image file filter Function, params is a `File Object`, you should return `Boolean` about the test result |
 
 ```javascript
  /*

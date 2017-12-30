@@ -118,7 +118,7 @@ exports default {
 ### 图片事件
 | name 方法名        |            params 参数            | describe 描述                              |
 | ----------------   | :-----------------------------: | ---------------------------------------- |
-| $vm.$refs.toolbar_left.$imgDelByFilename(>=**2.1.6**) |  String: filename | 主动删除对应图片文件, 如果成功返回TRUE，否则返回FALSE |
+| $vm.$refs.toolbar_left.$imgDelByFilename(>=**2.1.6**) |  String: filename | 主动删除对应图片文件, 如果成功返回TRUE，否则返回FALSE, (并将其从 `md` 源码中删除 (>=**2.4.16**)) |
 | $vm.$refs.toolbar_left.$imgAddByFilename(>=**2.1.6**) |  String: filename, File: file | 添加对应图片文件，文件别名为filename(filename 必须为 ./filename 样式), 如果成功返回TRUE，否则返回FALSE |
 | $vm.$refs.toolbar_left.$imgUpdateByFilename(>=**2.1.6**) |  String: filename, File: file | 更新对应文件名的图片文件(filename 必须为 ./filename 样式), 如果成功返回TRUE，否则返回FALSE |
 | $vm.$imgUpdateByUrl(>=**2.1.5**)    |  String: filename, String: url | 将<img>标签src相对路径值替换为url(如./0 -> http://path/to/png/some.png) |
@@ -129,5 +129,3 @@ exports default {
 **注意**: `$vm`指为`mavonEditor`实例，可以通过如下两种方式获取
 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，此时`$vm`即为`mavonEditor`
 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>， 此时`$vm`为 `this.$refs.md`
-
-
