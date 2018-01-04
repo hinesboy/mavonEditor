@@ -18,10 +18,13 @@
             </h2>
             <button @click="uploadimg">upload</button>
             <button @click="imgreplace">imgreplace</button>
+            <input type="text" v-model="imgName" />
+            <button @click="imgdelete">delete</button>
             <mavon-editor   ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :external_link="external_link"
-                          @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"></mavon-editor>
+                          @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"
+                          :image_filter="image_filter"></mavon-editor>
             
             <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left"
                 aria-hidden="true" title="自定义"></button>
@@ -119,7 +122,13 @@
                     preview: true, // 预览
                     /* 1.4.2 */
                     navigation: true, // 导航目录
-                }
+                },
+                image_filter: function($files) {
+                    console.log('image_filter files:', $files);
+                    // console.log('here for you', $files);
+                    return true;
+                },
+                imgName: '',
             }
         },
         created () {
@@ -218,6 +227,11 @@
             },
             $previewtoggle(flag , value) {
                 console.log('preview toggle' + flag)
+            },
+            imgdelete() {
+                var md = this.$refs.md;
+                var toolbar_left = md.$refs.toolbar_left;
+                toolbar_left.$imgDelByFilename(this.imgName);
             }
         },
         watch: {

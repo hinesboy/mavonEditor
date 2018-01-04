@@ -57,7 +57,7 @@
             <div  class="op-image popup-dropdown" v-show="s_img_dropdown_open">
                 <div  class="dropdown-item" @click.stop="$toggle_imgLinkAdd('imagelink')" title="ctrl+alt+l"><span>{{d_words.tl_image}}</span></div>
                 <div class="dropdown-item" style="overflow: hidden">
-                    <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" :key="img_file[0][0]"/>{{d_words.tl_upload}}
+                    <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" :key="img_file[0][0]" multiple="multiple"/>{{d_words.tl_upload}}
                 </div>
 
                 <div class="dropdown-item dropdown-images" v-if="index > 0" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
@@ -128,6 +128,10 @@
             d_words: {
                 type: Object,
                 required: true
+            },
+            image_filter: {
+                type: Function,
+                default: null,
             }
         },
         data() {
@@ -166,9 +170,19 @@
                 this.num = this.num + 1;
                 this.$emit('imgAdd', this.img_file[1][0], $file);
             },
+            $imgFilesAdd($files) {
+                // valid means if the image_filter exist.
+                let valid = (typeof this.image_filter == 'function');
+                for(let i = 0;i < $files.length;i++) {
+                    if(valid && this.image_filter($files[i]) === true) {
+                        this.$imgFileAdd($files[i]);
+                    } else if(!valid && $files[i].type.match(/^image\//i)) {
+                        this.$imgFileAdd($files[i]);
+                    }
+                }
+            },
             $imgAdd($e) {
-                // 新增加
-                this.$imgFileAdd($e.target.files[0]);
+                this.$imgFilesAdd($e.target.files);
             },
             $imgDel(pos) {
                 this.$emit('imgDel', this.img_file[pos]);
@@ -179,8 +193,7 @@
                 var pos = 0;
                 while (this.img_file.length > pos) {
                     if (this.img_file[pos][0] == filename) {
-                        this.$emit('imgDel', filename);
-                        this.img_file.splice(pos, 1);
+                        this.$imgDel(pos);
                         return true;
                     }
                     pos += 1;

@@ -130,7 +130,8 @@ exports default {
 | code_style | String |    code-github     | markdown样式： 默认github, [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js)   |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                |
 | toolbars     | Object  |     如下例     | 工具栏                      |
-| ishljs       | Boolean |     true     |  代码高亮(cdn外链) |
+| ishljs       | Boolean |     true     |  代码高亮 |
+| image_filter | function |     null     |  图片过滤函数，参数为一个`File Object`，要求返回一个`Boolean`, `true`表示文件合法，`false`表示文件不合法 |
 
 ```javascript
  /*

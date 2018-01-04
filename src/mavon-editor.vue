@@ -4,7 +4,7 @@
         <div class="v-note-op" v-show="toolbarsFlag">
             <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words"
                                @toolbar_left_click="toolbar_left_click" @toolbar_left_addlink="toolbar_left_addlink" :toolbars="toolbars"
-                               @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch"/>
+                               @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch" :image_filter="image_filter"/>
             <s-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click"
                                 :toolbars="toolbars"
                                 :s_subfield="s_subfield"
@@ -168,6 +168,10 @@
                 type: [Object, Boolean],
                 default: true
             },
+            image_filter: {
+                type: Function,
+                default: null,
+            }
         },
         data() {
             return {
@@ -317,11 +321,7 @@
                     var files = dataTransfer.files;
                     if (files.length > 0) {
                         $e.preventDefault();
-                        for (var i = 0; i < files.length; i++) {
-                            if(files[i].type.match(/^image\//i)) {
-                                this.$refs.toolbar_left.$imgFileAdd(files[i]);
-                            }
-                        }
+                        this.$refs.toolbar_left.$imgFilesAdd(files);
                     }
                 }
             },
@@ -338,9 +338,9 @@
                             break;
                         }
                     }
-                    if (item && item.kind === 'file' && item.type.match(/^image\//i)) {
+                    if (item && item.kind === 'file') {
                         var oFile = item.getAsFile();
-                        this.$refs.toolbar_left.$imgFileAdd(oFile);
+                        this.$refs.toolbar_left.$imgFilesAdd([oFile,]);
                     }
                 }
             },

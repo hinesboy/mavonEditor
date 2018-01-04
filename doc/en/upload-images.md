@@ -115,7 +115,7 @@ exports default {
 ### image methods
 | name      |            params         | describe      |
 | ----------------   | :-----------------------------: | ---------------------------------------- |
-| $vm.$refs.toolbar_left.$imgDelByFilename(>=**2.1.6**) |  String: filename | Delete the image by filename, return true if sucess, false otherwise |
+| $vm.$refs.toolbar_left.$imgDelByFilename(>=**2.1.6**) |  String: filename | Delete the image by filename, return true if sucess, false otherwise, (and it will remove from `md` (>=**2.4.16**)) |
 | $vm.$refs.toolbar_left.$imgAddByFilename(>=**2.1.6**) |  String: filename, File: file | Add the image by filename (The filename alias style must be "./filename"), return true if sucess, false otherwise |
 | $vm.$refs.toolbar_left.$imgUpdateByFilename(>=**2.1.6**) |  String: filename, File: file | Update the image by filename(The filename alias style must be "./filename"), return true if sucess, false otherwise |
 | $vm.$imgUpdateByUrl(>=**2.1.6**)    |  String: filename, String: url | Update filename to url(example: ./0 -> http://path/to/png/some.png) |
@@ -126,5 +126,3 @@ exports default {
 **Notice**: `$vm` => reference instance of component, you can get it:
 1. `import {mavonEditor} from ...`: `$vm` == `mavonEditor`
 2. `<mavon-editor ref=md ></mavon-editor>: `$vm` == `this.$refs.md`
-
-
