@@ -92,7 +92,6 @@ export const keydownListen = ($vm) => {
                 }
                 case KEY_CODE.ENTER: {
                 // enter
-                console.log('enter')
                 if ($vm.$refs.toolbar_left.s_img_link_open) {
                     e.preventDefault()
                     $vm.$refs.toolbar_left.$imgLinkAdd();
