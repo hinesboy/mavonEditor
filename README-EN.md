@@ -126,6 +126,7 @@ exports default {
 | toolbars   | Object      |   As in the following example  | toolbars |
 | ishljs       | Boolean |     true     | highlight code switch |
 | imageFilter | Function |     null     | Image file filter Function, params is a `File Object`, you should return `Boolean` about the test result |
+| imageClick | function |     null     |  Image Click Function |
 
 ```javascript
  /*

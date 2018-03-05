@@ -20,11 +20,11 @@
             <button @click="imgreplace">imgreplace</button>
             <input type="text" v-model="imgName" />
             <button @click="imgdelete">delete</button>
-            <mavon-editor  ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
+            <mavon-editor :imageClick="imageClick" ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :external_link="external_link"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"
-                          :image_filter="image_filter"></mavon-editor>
+                          :imageFilter="image_filter"></mavon-editor>
             
             <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left"
                 aria-hidden="true" title="自定义"></button>
@@ -127,6 +127,9 @@
                     console.log('image_filter files:', $files);
                     // console.log('here for you', $files);
                     return true;
+                },
+                imageClick: function (file) {
+                    console.log(file);
                 },
                 imgName: '',
             }

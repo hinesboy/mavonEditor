@@ -174,6 +174,10 @@
             imageFilter: {
                 type: Function,
                 default: null
+            },
+            imageClick: {
+                type: Function,
+                default: null
             }
         },
         data() {
@@ -238,8 +242,7 @@
                         return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css';
                     }
                 },
-                p_external_link: {
-                },
+                p_external_link: {}
             };
         },
         created() {

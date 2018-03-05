@@ -235,7 +235,12 @@ export const ImagePreviewListener = ($vm) => {
         event = event ? event : window.event;
         let ele = event.srcElement ? event.srcElement : event.target;
         if (ele.tagName === 'IMG') {
-            $vm.d_preview_imgsrc = ele.src;
+            if ($vm.imageClick) {
+                // 覆盖图片点击事件
+                $vm.imageClick(ele);
+            } else {
+                $vm.d_preview_imgsrc = ele.src;
+            }
         }
     }
 }
