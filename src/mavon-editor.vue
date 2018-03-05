@@ -4,7 +4,7 @@
         <div class="v-note-op" v-show="toolbarsFlag">
             <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words"
                                @toolbar_left_click="toolbar_left_click" @toolbar_left_addlink="toolbar_left_addlink" :toolbars="toolbars"
-                               @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch" :image_filter="image_filter"/>
+                               @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch" :image_filter="imageFilter"/>
             <s-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click"
                                 :toolbars="toolbars"
                                 :s_subfield="s_subfield"
@@ -128,8 +128,11 @@
                 type: Boolean,
                 default: true
             },
-            // 默认展示 edit & 其他 为编辑区域 preview  为预览区域
-            default_open: {
+            navigation: {
+                type: Boolean,
+                default: false
+            },
+            defaultOpen: {
                 type: String,
                 default: null
             },
@@ -150,7 +153,7 @@
                     return CONFIG.toolbars
                 }
             },
-            code_style: {
+            codeStyle: {
                 type: String,
                 default() {
                     return 'github';
@@ -164,13 +167,13 @@
                 type: Boolean,
                 default: true
             },
-            external_link: {
+            externalLink: {
                 type: [Object, Boolean],
                 default: true
             },
-            image_filter: {
+            imageFilter: {
                 type: Function,
-                default: null,
+                default: null
             }
         },
         data() {
@@ -180,14 +183,16 @@
                 })(),
                 s_autofocus: true,
                 // 标题导航
-                s_navigation: false,
+                s_navigation: (() => {
+                    return this.navigation;
+                })(),
                 s_scrollStyle: (() => {
                     return this.scrollStyle
                 })(),// props 是否渲染滚动条样式
                 d_value: '',// props 文本内容
                 d_render: '',// props 文本内容render
                 s_preview_switch: (() => {
-                    let default_open_ = this.default_open;
+                    let default_open_ = this.defaultOpen;
                     if (!default_open_) {
                         default_open_ = this.subfield ? 'preview' : 'edit';
                     }
@@ -275,7 +280,7 @@
                 $vm.initLanguage();
                 $vm.iRender();
             })
-            $vm.codeStyleChange($vm.code_style, true)
+            $vm.codeStyleChange($vm.codeStyle, true)
         },
         beforeDestroy() {
             document.body.removeChild(this.$refs.help);
@@ -299,14 +304,14 @@
             initExternalFuc() {
                 var $vm = this;
                 var _external_ = ['markdown_css', 'hljs_js', 'hljs_css', 'hljs_lang', 'katex_js', 'katex_css'];
-                var _type_ = typeof $vm.external_link;
+                var _type_ = typeof $vm.externalLink;
                 var _is_object = (_type_ === 'object');
                 var _is_boolean = (_type_ === 'boolean');
                 for (var i = 0;i < _external_.length; i++) {
-                    if ((_is_boolean && !$vm.external_link) || (_is_object && $vm.external_link[_external_[i]] === false)) {
+                    if ((_is_boolean && !$vm.externalLink) || (_is_object && $vm.externalLink[_external_[i]] === false)) {
                         $vm.p_external_link[_external_[i]] = false;
-                    } else if (_is_object && typeof $vm.external_link[_external_[i]] === 'function') {
-                        $vm.p_external_link[_external_[i]] = $vm.external_link[_external_[i]];
+                    } else if (_is_object && typeof $vm.externalLink[_external_[i]] === 'function') {
+                        $vm.p_external_link[_external_[i]] = $vm.externalLink[_external_[i]];
                     } else {
                         $vm.p_external_link[_external_[i]] = $vm.s_external_link[_external_[i]];
                     }
@@ -440,27 +445,27 @@
             },
             // 切换全屏触发 （status , val）
             fullscreen(status, val) {
-                this.$emit('fullscreen', status, val)
+                this.$emit('fullScreen', status, val)
             },
             // 打开阅读模式触发（status , val）
             readmodel(status, val) {
-                this.$emit('readmodel', status, val)
+                this.$emit('readModel', status, val)
             },
             // 切换阅读编辑触发 （status , val）
             previewtoggle(status, val) {
-                this.$emit('previewtoggle', status, val)
+                this.$emit('previewToggle', status, val)
             },
             // 切换分栏触发 （status , val）
             subfieldtoggle(status, val) {
-                this.$emit('subfieldtoggle', status, val)
+                this.$emit('subfieldToggle', status, val)
             },
             // 切换htmlcode触发 （status , val）
             htmlcode(status, val) {
-                this.$emit('htmlcode', status, val)
+                this.$emit('htmlCode', status, val)
             },
             // 打开 , 关闭 help触发 （status , val）
             helptoggle(status, val) {
-                this.$emit('helptoggle', status, val)
+                this.$emit('helpToggle', status, val)
             },
             // 监听ctrl + s
             save(val, render) {
@@ -468,7 +473,7 @@
             },
             // 导航栏切换
             navigationtoggle(status, val) {
-                this.$emit('navigationtoggle', status, val)
+                this.$emit('navigationToggle', status, val)
             },
             $toolbar_right_read_change_status() {
                 this.s_readmodel = !this.s_readmodel
@@ -582,14 +587,14 @@
             editable: function () {
                 this.editableTextarea();
             },
-            default_open: function (val) {
+            defaultOpen: function (val) {
                 let default_open_ = val;
                 if ( !default_open_) {
                     default_open_ = this.subfield?'preview':'edit';
                 }
                 return this.s_preview_switch = default_open_ === 'preview' ? true : false;
             },
-            code_style: function (val) {
+            codeStyle: function (val) {
                 this.codeStyleChange(val)
             }
         },

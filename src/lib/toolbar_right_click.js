@@ -22,7 +22,7 @@ function $toolbar_right_help_click($vm) {
         $vm.helptoggle($vm.s_help, $vm.d_value)
     }
 }
-// todo 导航
+// 导航
 function $toolbar_right_read_click($vm) {
     let element = $vm.$refs.vReadModel
     // 单栏编辑

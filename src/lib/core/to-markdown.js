@@ -139,11 +139,6 @@ const coverterMark = {
 const converterImg = {
     filter: 'img',
     replacement: function(content, tag) {
-        // console.log(content);
-        // console.log('tag', tag);
-        // for(var i in tag){
-            // console.log(i, tag[i]);
-        // }
         var rel = tag.getAttribute('rel');
         var alt = tag.getAttribute('alt');
         if (rel && alt) {

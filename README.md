@@ -112,7 +112,7 @@ exports default {
 
 - **默认大小样式为 min-height: 300px , min-width: 300px 可自行覆盖**
 - **基础z-index: 1500**
-- **仅用作展示可以设置props: toolbarsFlag: false , subfield: false, default_open: "preview"**
+- **仅用作展示可以设置props: toolbarsFlag: false , subfield: false, defaultOpen: "preview"**
 
 ## API 文档
 
@@ -124,14 +124,15 @@ exports default {
 | language     | String  |     cn      | 语言选择，暂支持 cn: 中文简体 ， en: 英文 ， fr: 法语 |
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)              |
 | subfield     | Boolean |    true     | true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)    |
-| default_open | String |         | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
+| defaultOpen | String |         | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
 | placeholder | String |    开始编辑...     |  输入框为空时默认提示文本  |
 | editable     | Boolean |    true     | 是否允许编辑     |
-| code_style | String |    code-github     | markdown样式： 默认github, [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js)   |
+| codeStyle | String |    code-github     | markdown样式： 默认github, [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js)   |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                |
+| navigation | Boolean |    false    |  默认展示目录  |
 | toolbars     | Object  |     如下例     | 工具栏                      |
 | ishljs       | Boolean |     true     |  代码高亮 |
-| image_filter | function |     null     |  图片过滤函数，参数为一个`File Object`，要求返回一个`Boolean`, `true`表示文件合法，`false`表示文件不合法 |
+| imageFilter | function |     null     |  图片过滤函数，参数为一个`File Object`，要求返回一个`Boolean`, `true`表示文件合法，`false`表示文件不合法 |
 
 ```javascript
  /*
@@ -186,13 +187,13 @@ toolbars: {
 | ---------------- | :-----------------------------: | ---------------------------------------- |
 | change           |  String: value , String: render  | 编辑区发生变化的回调事件(render: value 经过markdown解析后的结果) |
 | save             |  String: value , String: render  | ctrl + s 的回调事件(保存按键,同样触发该回调)             |
-| fullscreen       | Boolean: status , String: value | 切换全屏编辑的回调事件(boolean: 全屏开启状态)             |
-| readmodel        | Boolean: status , String: value | 切换沉浸式阅读的回调事件(boolean: 阅读开启状态)            |
-| htmlcode         | Boolean: status , String: value | 查看html源码的回调事件(boolean: 源码开启状态)           |
-| subfieldtoggle   | Boolean: status , String: value | 切换单双栏编辑的回调事件(boolean: 双栏开启状态)            |
-| previewtoggle   | Boolean: status , String: value | 切换预览编辑的回调事件(boolean: 预览开启状态)            |
-| helptoggle       | Boolean: status , String: value | 查看帮助的回调事件(boolean: 帮助开启状态)               |
-| navigationtoggle | Boolean: status , String: value | 切换导航目录的回调事件(boolean: 导航开启状态)             |
+| fullScreen       | Boolean: status , String: value | 切换全屏编辑的回调事件(boolean: 全屏开启状态)             |
+| readModel        | Boolean: status , String: value | 切换沉浸式阅读的回调事件(boolean: 阅读开启状态)            |
+| htmlCode         | Boolean: status , String: value | 查看html源码的回调事件(boolean: 源码开启状态)           |
+| subfieldToggle   | Boolean: status , String: value | 切换单双栏编辑的回调事件(boolean: 双栏开启状态)            |
+| previewToggle   | Boolean: status , String: value | 切换预览编辑的回调事件(boolean: 预览开启状态)            |
+| helpToggle       | Boolean: status , String: value | 查看帮助的回调事件(boolean: 帮助开启状态)               |
+| navigationToggle | Boolean: status , String: value | 切换导航目录的回调事件(boolean: 导航开启状态)             |
 | imgAdd           | String: filename, File: imgfile | 图片文件添加回调事件(filename: 写在md中的文件名, File: File Object) |
 | imgDel           |        String: filename         | 图片文件删除回调事件(filename: 写在md中的文件名)          |
 

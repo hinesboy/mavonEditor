@@ -106,7 +106,7 @@ exports default {
 
 - **Default size: min-height: 300px , min-width: 300px , Can be covered**
 - **z-index: 1500**
-- **Just for show html of md: toolbarsFlag: false , subfield: false, default_open: "preview"**
+- **Just for show html of md: toolbarsFlag: false , subfield: false, defaultOpen: "preview"**
 ## API
 
 ### props
@@ -117,14 +117,15 @@ exports default {
 | language   | String      |      cn         | Language switch,  cn: Simplified Chinese ， en: English ， fr: French |
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | subfield   | Boolean     |   true        | true: Double columns - Edit preview same screen , Single Columns - otherwise not |
-| default_open | String |         | edit: default show edit area , preview: default show preview area  , other = edit |
+| defaultOpen | String |         | edit: default show edit area , preview: default show preview area  , other = edit |
 | placeholder | String |    Begin editing...     |  The default prompt text when the textarea is empty  |
 | editable | Boolean     |   true       | Edit switch |
-| code_style | String |    code-github     | markdown Style: default github, [option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js)  |
+| codeStyle | String |    code-github     | markdown Style: default github, [option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js)  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
+| navigation | Boolean |    false    |  Show navigation  |
 | toolbars   | Object      |   As in the following example  | toolbars |
 | ishljs       | Boolean |     true     | highlight code switch |
-| image_filter | Function |     null     | Image file filter Function, params is a `File Object`, you should return `Boolean` about the test result |
+| imageFilter | Function |     null     | Image file filter Function, params is a `File Object`, you should return `Boolean` about the test result |
 
 ```javascript
  /*
@@ -179,13 +180,13 @@ toolbars: {
 | -------- | :---------: | ------- |
 | change   | String: value , String: reder    |  Edit area change callback event (render: Html source code) |
 | save     | String: value , String: reder     |  Ctrl+s and click save button |
-| fullscreen | Boolean: status , String: value     |  Fullscreen editing toggle callback event(boolean: Fullscreen status) |
-| readmodel |  Boolean: status , String: value    |  Reading mode toggle callback event(boolean: Reading mode status) |
-| htmlcode | Boolean: status , String: value     |Html code mode toggle callback event(boolean: status) |
-| subfieldtoggle  |  Boolean: status , String: value     |  Double columns edit mode toggle callback event(boolean: double columns status) |
-| previewtoggle   | Boolean: status , String: value | Preview & Edit toggle callback event(boolean: preview status)            |
-| helptoggle | Boolean: status , String: value   |  Help-me toggle callback event(boolean: help status) |
-| navigationtoggle | Boolean: status , String: value   |  Navigation mode toggle callback event(boolean: nav status) |
+| fullScreen | Boolean: status , String: value     |  Fullscreen editing toggle callback event(boolean: Fullscreen status) |
+| readModel |  Boolean: status , String: value    |  Reading mode toggle callback event(boolean: Reading mode status) |
+| htmlCode | Boolean: status , String: value     |Html code mode toggle callback event(boolean: status) |
+| subfieldToggle  |  Boolean: status , String: value     |  Double columns edit mode toggle callback event(boolean: double columns status) |
+| previewToggle   | Boolean: status , String: value | Preview & Edit toggle callback event(boolean: preview status)            |
+| helpToggle | Boolean: status , String: value   |  Help-me toggle callback event(boolean: help status) |
+| navigationToggle | Boolean: status , String: value   |  Navigation mode toggle callback event(boolean: nav status) |
 | imgAdd | String: filename, File: imgfile |  Add image file callback event(filename: write in origin md, File: File Object) |
 | imgDel | String: filename |  Delete image file callback event(filename: write in origin md) |
 
