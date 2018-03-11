@@ -172,7 +172,8 @@ toolbars: {
       alignright: true,
       /* 2.2.1 */
       subfield: true,
-      preview: true
+      preview: true,
+      imageupload: true
   }
 ```
 ### events

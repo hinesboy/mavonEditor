@@ -38,6 +38,7 @@ export const CONFIG = {
         'ul': true,
         'link': true,
         'imagelink': true,
+        'imageupload': true,
         'code': true,
         'table': true,
         'undo': true,
