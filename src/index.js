@@ -7,7 +7,6 @@
  * mavonEditor
  * @author hinesboy
  */
-
 const mavonEditor = require('./mavon-editor.vue');
 const VueMavonEditor = {
     markdownIt: mavonEditor.mixins[0].data().s_markdown,

@@ -58,7 +58,7 @@
         name: 'app',
         data () {
             return {
-                d_language: 'cn',
+                d_language: 'zh-CN',
                 help1: '',
                 help2: '',
                 d_words: {},
@@ -76,7 +76,7 @@
                 },
                 subfield: true,
                 editable: true,
-                toolbarsFlag: true, 
+                toolbarsFlag: true,
                 img_file: {},
                 external_link: {
                     markdown_css: function() {

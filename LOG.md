@@ -1,4 +1,7 @@
 # 更新日志
+- **2.5.2** 合并PR(18.3.14)
+    - [#160](https://github.com/hinesboy/mavonEditor/pull/160)
+    - [#161](https://github.com/hinesboy/mavonEditor/pull/161)
 - **2.5.1** 问题修复(18.3.5)
     - 点击图片自定义事件
     - 添加Prop navigation 默认展示目录
