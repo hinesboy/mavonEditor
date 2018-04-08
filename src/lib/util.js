@@ -39,3 +39,15 @@ export function p_urlParse() {
   return obj;
 };
 
+export function stopEvent(e) {
+  if (!e) {
+    return;
+  }
+  if (e.preventDefault) {
+    e.preventDefault();
+  }
+  if (e.stopPropagation) {
+    e.stopPropagation();
+  }
+};
+

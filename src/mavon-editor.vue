@@ -94,7 +94,7 @@
         loadScript,
         ImagePreviewListener
     } from './lib/core/extra-function.js'
-    import {p_ObjectCopy_DEEP} from './lib/util.js'
+    import {p_ObjectCopy_DEEP, stopEvent} from './lib/util.js'
     import {toolbar_left_click, toolbar_left_addlink} from './lib/toolbar_left_click.js'
     import {toolbar_right_click} from './lib/toolbar_right_click.js'
     import {CONFIG} from './lib/config.js'
@@ -347,6 +347,9 @@
                         }
                     }
                     if (item && item.kind === 'file') {
+                        // prevent filename being pasted parallel along
+                        // with the image pasting process
+                        stopEvent($e)
                         var oFile = item.getAsFile();
                         this.$refs.toolbar_left.$imgFilesAdd([oFile,]);
                     }
