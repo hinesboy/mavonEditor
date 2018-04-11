@@ -1,5 +1,5 @@
 <template>
-      <div class="right">
+      <div class="v-right-item">
         <button type="button" v-if="toolbars.navigation" @click="$clicks('navigation')" v-show="!s_navigation"
                 class="op-icon fa fa-mavon-bars"
                 aria-hidden="true" :title="`${d_words.tl_navigation_on} (F8)`"></button>

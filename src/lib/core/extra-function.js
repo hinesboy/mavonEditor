@@ -231,7 +231,8 @@ export function loadLink(src, callback) {
 }
 
 export const ImagePreviewListener = ($vm) => {
-    document.querySelector('.v-show-content').onclick = document.querySelector('.v-note-read-content').onclick = function (event) {
+    // vShowContent
+    $vm.$refs.vShowContent.addEventListener('click', function (event) {
         event = event ? event : window.event;
         let ele = event.srcElement ? event.srcElement : event.target;
         if (ele.tagName === 'IMG') {
@@ -242,5 +243,5 @@ export const ImagePreviewListener = ($vm) => {
                 $vm.d_preview_imgsrc = ele.src;
             }
         }
-    }
+    })
 }

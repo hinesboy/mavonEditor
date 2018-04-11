@@ -115,6 +115,7 @@ exports default {
 | -------- | :---------: | :------------: | ------- |
 | value      | String      |               | Initial value |
 | language   | String      |      zh-CN         | Language switch,  zh-CN: Simplified Chinese ， en: English ， fr: French |
+| fontSize     | String  |     15px      | font-size of edit area  |
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | subfield   | Boolean     |   true        | true: Double columns - Edit preview same screen , Single Columns - otherwise not |
 | defaultOpen | String |         | edit: default show edit area , preview: default show preview area  , other = edit |

@@ -20,12 +20,11 @@
             <button @click="imgreplace">imgreplace</button>
             <input type="text" v-model="imgName" />
             <button @click="imgdelete">delete</button>
-            <mavon-editor :imageClick="imageClick" ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
+            <mavon-editor ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :external_link="external_link"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"
                           :imageFilter="image_filter"></mavon-editor>
-            
             <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left"
                 aria-hidden="true" title="自定义"></button>
         </div>

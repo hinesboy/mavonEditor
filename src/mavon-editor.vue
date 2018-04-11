@@ -21,7 +21,7 @@
                 <div class="content-input-wrapper">
                     <!-- 双栏 -->
                     <v-autoTextarea ref="vNoteTextarea" :placeholder="placeholder ? placeholder : d_words.start_editor"
-                                    class="content-input" fontSize="15px"
+                                    class="content-input" :fontSize="fontSize"
                                     lineHeight="1.5" v-model="d_value"></v-autoTextarea>
                 </div>
             </div>
@@ -71,7 +71,7 @@
         </transition>
         <!--阅读模式-->
         <div :class="{'show': s_readmodel}" class="v-note-read-model scroll-style" ref="vReadModel">
-            <div class="v-note-read-content" v-html="d_render">
+            <div ref="vNoteReadContent" class="v-note-read-content" v-html="d_render">
             </div>
         </div>
     </div>
@@ -109,6 +109,10 @@
             scrollStyle: {
                 type: Boolean,
                 default: true
+            },
+            fontSize: {
+                type: String,
+                default: '15px'
             },
             help: {
                 type: String,
@@ -253,8 +257,6 @@
             this.$nextTick(() => {
                 // 初始化Textarea编辑开关
                 this.editableTextarea();
-                // 图片预览事件监听
-                ImagePreviewListener(this);
             })
         },
         mounted() {
@@ -268,6 +270,8 @@
             // 浏览器siz大小
            /* windowResize(this); */
             keydownListen(this);
+            // 图片预览事件监听
+            ImagePreviewListener(this);
             // fullscreen事件
             fullscreenchange(this);
             this.d_value = this.value;

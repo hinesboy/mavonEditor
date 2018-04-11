@@ -1,4 +1,9 @@
 # 更新日志
+- **2.5.3** 问题修复(18.4.11)
+    - [#203](https://github.com/hinesboy/mavonEditor/pull/203)
+    - [#202](https://github.com/hinesboy/mavonEditor/pull/202)
+    - 个别类选择器名称更换
+    - 图标样式垂直居中
 - **2.5.2** 合并PR(18.3.14)
     - [#160](https://github.com/hinesboy/mavonEditor/pull/160)
     - [#161](https://github.com/hinesboy/mavonEditor/pull/161)

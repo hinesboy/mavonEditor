@@ -122,6 +122,7 @@ exports default {
 | ------------ | :-----: | :---------: | ---------------------------------------- |
 | value        | String  |             | 初始值                                     |
 | language     | String  |     zh-CN      | 语言选择，暂支持 zh-CN: 中文简体 ， en: 英文 ， fr: 法语 |
+| fontSize     | String  |     15px      | 编辑区域文字大小 |
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)              |
 | subfield     | Boolean |    true     | true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)    |
 | defaultOpen | String |         | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
