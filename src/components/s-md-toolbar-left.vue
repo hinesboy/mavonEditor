@@ -250,7 +250,7 @@
             background #fff
             top 34px
             left -20px
-            width 120px
+            min-width 120px
             z-index 1600
             box-shadow: 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
         .dropdown-item
