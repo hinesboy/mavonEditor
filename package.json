@@ -1,6 +1,6 @@
 {
   "name": "mavon-editor",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "description": "Vue markdown editor",
   "main": "dist/mavon-editor.js",
   "scripts": {
@@ -103,6 +103,7 @@
     "webpack": "^2.4.1",
     "webpack-bundle-analyzer": "^2.8.1",
     "webpack-dev-server": "^2.4.4",
-    "webpack-md5-hash": "^0.0.5"
+    "webpack-md5-hash": "^0.0.5",
+    "autoprefixer": "^8.3.0"
   }
 }

@@ -21,6 +21,7 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var fs = require("fs");
+// var postcss = require('postcss-loader')
 
 const extractCSS = new ExtractTextPlugin('css/[name].css');
 module.exports = {
@@ -28,7 +29,14 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+                options: {
+                    postcss: [
+                        require('autoprefixer')({
+                            browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']
+                        })
+                    ]
+                }
             },
             {
                 test: /\.js$/,
@@ -47,13 +55,19 @@ module.exports = {
             },
             { test: /\.(woff|ttf|eot|svg)/, loader: 'file-loader?name=font/[name].[ext]&publicPath=../' },
             {
+                test: /\.styl$/,
+                loader: 'style-loader!css-loader!stylus-loader'
+            },
+            {
                 // css代码分割打包
                 test: /\.css$/,
                 // exclude: /node_modules/,
                 use: extractCSS.extract({
                     fallback: 'style-loader',
                     use: [
-                        'css-loader',
+                        {
+                            loader: 'css-loader'
+                        },
                         {
                             loader: 'postcss-loader',
                             options: {
@@ -97,9 +111,6 @@ module.exports = {
                         }
                     ]
                 })
-            },{
-                test: /\.styl$/,
-                loader: 'style-loader!css-loader!stylus-loader'
             },{
                 test: /\.md$/,
                 loader: 'raw-loader'

@@ -569,6 +569,11 @@
                         $vm.saveHistory();
                     }, 500);
                 })
+            },
+            // 清空上一步 下一步缓存
+            $emptyHistory() {
+                this.d_history = [this.d_value] // 编辑记录
+                this.d_history_index = 0 // 编辑记录索引
             }
         },
         watch: {
