@@ -1,5 +1,5 @@
 {
-	"start_editor": "Cemeçar edição...",
+	"start_editor": "Começar edição...",
 	"navigation_title": "Navegação",
 	"tl_bold": "Negrito",
 	"tl_italic": "Itálico",
@@ -20,8 +20,8 @@
 	"tl_redo": "Refazer",
 	"tl_trash": "Lixo",
 	"tl_save": "Salvar",
-	"tl_navigation_on": "Mostrar Navigation",
-	"tl_navigation_off": "Esconder Navigation",
+	"tl_navigation_on": "Mostrar Navegação",
+	"tl_navigation_off": "Esconder Navegação",
 	"tl_preview": "Preview",
 	"tl_aligncenter": "Alinhar no centro",
 	"tl_alignleft": "Alinhar à esquerda",
