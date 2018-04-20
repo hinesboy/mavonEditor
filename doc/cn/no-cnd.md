@@ -1,5 +1,5 @@
 ### 本地按需加载
-如果你想自己引入而不希望`mavon-editor`加载的话，可以将`external_link`设置为`false`.
+如果你想自己引入而不希望`mavon-editor`加载的话，可以将`externalLink`设置为`false`.
 
 如果想本地按需加载，你需要安装`copy-webpack-plugin`插件(`npm install copy-webpack-plugin -D`)
 配置webpack如下所示：
@@ -28,7 +28,7 @@ module.exports = {
     // ...
 }
 ```
-然后你需要给`mavon-editor`设置`external_link`
+然后你需要给`mavon-editor`设置`externalLink`
 相关代码如下所示:
 (假定你的`web根目录`位于项目的`/dist/`, 你的网站是`www.site.com`, 那么
 `markdown`, `hljs_js`, `hljs_css`, `hljs_lang`, `katex_css`, `katex_js`返回的是你的网站对应文件位置，
@@ -41,7 +41,7 @@ module.exports = {
       :subfield = "subfield"
       :code_style="code_style"
       :ishljs="true"
-      :external_link="external_link"
+      :externalLink="externalLink"
       ></mavon-editor>
   </div>
 </template>
@@ -51,7 +51,7 @@ export default {
       return {
         subfield: true,
         code_style: 'solarized-dark',
-        external_link: {
+        externalLink: {
             markdown_css: function() {
                 // 这是你的markdown css文件路径
                 return '/markdown/github-markdown.min.css';
@@ -83,14 +83,14 @@ export default {
 </script>
 ```
 **Notice**: 如果你想禁用`mavon-editor`的自动加载，
-可以将`external_link`设置为`false`或`external_link`中的某函数值设置为`false`
+可以将`externalLink`设置为`false`或`externalLink`中的某函数值设置为`false`
 如：
 ```javascript
 export default {
 // ...
     data() {
         return {
-            external_link: false, // 这里只能为`true`/`false`和一个`Object`, 如果为`true`代表全使用外链且自动加载, 如果为`false`则禁用，如果为`Object`则如上所示
+            externalLink: false, // 这里只能为`true`/`false`和一个`Object`, 如果为`true`代表全使用外链且自动加载, 如果为`false`则禁用，如果为`Object`则如上所示
         }
     }
 // ...
@@ -102,7 +102,7 @@ export default {
 // ...
     data() {
         return {
-            external_link: {
+            externalLink: {
                 hljs_css: function(css) {
                     // 这是你的代码高亮配色文件路径
                     return '/highlightjs/styles/' + css + '.min.css';

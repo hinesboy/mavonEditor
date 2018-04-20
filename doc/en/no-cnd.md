@@ -1,5 +1,5 @@
 ### Local on-demand loading
-You can set `external_link` to` false` if you want to introduce yourself without wanting `mavon-editor` to load.
+You can set `externalLink` to` false` if you want to introduce yourself without wanting `mavon-editor` to load.
 
 If you want to load locally, you need to install the `copy-webpack-plugin` plugin (` npm install copy-webpack-plugin -D`)
 
@@ -30,7 +30,7 @@ module.exports = {
     // ...
 }
 ```
-And then you need set `external_link` to `mavon-editor`,
+And then you need set `externalLink` to `mavon-editor`,
 the code is as follows:
 (We assume your `web root` located in your project `/dist/`, and your website url is `www.site.com`,
 then `markdown`, `hljs_js`, `hljs_css`, `hljs_lang`, `katex_css`, `katex_js` need return related file locations,
@@ -43,7 +43,7 @@ for example, the `www.site.com/markdown/github-markdown.min.css` link file shoul
       :subfield = "subfield"
       :code_style="code_style"
       :ishljs="true"
-      :external_link="external_link"
+      :externalLink="externalLink"
       ></mavon-editor>
   </div>
 </template>
@@ -53,7 +53,7 @@ export default {
       return {
         subfield: true,
         code_style: 'solarized-dark',
-        external_link: {
+        externalLink: {
             markdown_css: function() {
                 // thi is your markdown css file path 这是你的markdown css文件路径
                 return '/markdown/github-markdown.min.css';
@@ -86,14 +86,14 @@ export default {
 </script>
 ```
 **Notice**: If you want to disable `mavon-editor` autoload from `cdnjs`,
-You can set `external_link` to` false` or a function in `external_link` to` false`
+You can set `externalLink` to` false` or a function in `externalLink` to` false`
 example:
 ```javascript
 export default {
 // ...
     data() {
         return {
-            external_link: false, // This can only be `true` /` false` and `Object`, if` true` means that all external links are used and loaded automatically, `false` is disabled,` Object` is as shown above
+            externalLink: false, // This can only be `true` /` false` and `Object`, if` true` means that all external links are used and loaded automatically, `false` is disabled,` Object` is as shown above
         }
     }
 // ...
@@ -105,7 +105,7 @@ export default {
 // ...
     data() {
         return {
-            external_link: {
+            externalLink: {
                 hljs_css: function(css) {
                     return '/highlightjs/styles/' + css + '.min.css';
                 },
