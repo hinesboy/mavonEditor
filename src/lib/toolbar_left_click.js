@@ -62,8 +62,38 @@ export const toolbar_left_click = (_type, $vm) => {
          },
          'header': {
              prefix: '# ',
-             subfix: ' #',
+             subfix: '',
              str: $vm.d_words.tl_header
+         },
+         'header1': {
+             prefix: '# ',
+             subfix: '',
+             str: $vm.d_words.tl_header_one
+         },
+         'header2': {
+             prefix: '## ',
+             subfix: '',
+             str: $vm.d_words.tl_header_two
+         },
+         'header3': {
+             prefix: '### ',
+             subfix: '',
+             str: $vm.d_words.tl_header_three
+         },
+         'header4': {
+             prefix: '#### ',
+             subfix: '',
+             str: $vm.d_words.tl_header_four
+         },
+         'header5': {
+             prefix: '##### ',
+             subfix: '',
+             str: $vm.d_words.tl_header_five
+         },
+         'header6': {
+             prefix: '###### ',
+             subfix: '',
+             str: $vm.d_words.tl_header_six
          },
          'underline': {
              prefix: '++',

@@ -6,9 +6,20 @@
         <button :disabled="!editable" type="button" v-if="toolbars.italic" @click="$clicks('italic')"
                 class="op-icon fa fa-mavon-italic" aria-hidden="true"
                 :title="`${d_words.tl_italic} (ctrl+i)`"></button>
-        <button :disabled="!editable" type="button" v-if="toolbars.header" @click="$clicks('header')"
-                class="op-icon fa fa-mavon-header" aria-hidden="true"
-                :title="`${d_words.tl_header} (ctrl+h)`"></button>
+        <div :class="{'selected': s_header_dropdown_open}" :disabled="!editable" type="button" v-if="toolbars.header" @mouseleave="$mouseleave_header_dropdown" @mouseenter="$mouseenter_header_dropdown"
+                class="op-icon fa fa-mavon-header dropdown dropdown-wrapper" aria-hidden="true"
+                :title="`${d_words.tl_header} (ctrl+h)`">
+            <transition name="fade">
+                <div class="op-header popup-dropdown" v-show="s_header_dropdown_open" @mouseenter="$mouseenter_header_dropdown" @mouseleave="$mouseleave_header_dropdown">
+                    <div title="#"  class="dropdown-item" @click.stop="$click_header('header1')"><span>{{d_words.tl_header_one}}</span></div>
+                    <div title="## " class="dropdown-item" @click.stop="$click_header('header2')"><span>{{d_words.tl_header_two}}</span></div>
+                    <div title="### " class="dropdown-item" @click.stop="$click_header('header3')"><span>{{d_words.tl_header_three}}</span></div>
+                    <div title="#### " class="dropdown-item" @click.stop="$click_header('header4')"><span>{{d_words.tl_header_four}}</span></div>
+                    <div title="##### " class="dropdown-item" @click.stop="$click_header('header5')"><span>{{d_words.tl_header_five}}</span></div>
+                    <div title="###### " class="dropdown-item" @click.stop="$click_header('header6')"><span>{{d_words.tl_header_six}}</span></div>
+                </div>
+            </transition>
+        </div>
         <span v-if="toolbars.header || toolbars.italic || toolbars.bold" class="op-icon-divider"></span>
         <button :disabled="!editable" type="button" v-if="toolbars.underline" @click="$clicks('underline')"
                 class="op-icon fa fa-mavon-underline"
@@ -51,25 +62,26 @@
         <button :disabled="!editable" type="button" v-if="toolbars.link" @click.stop="$toggle_imgLinkAdd('link')"
                 class="op-icon fa fa-mavon-link" aria-hidden="true"
                 :title="`${d_words.tl_link} (ctrl+l)`"></button>
-        <div :disabled="!editable" :class="{'selected': s_img_dropdown_open}" type="button" v-if="toolbars.imagelink" @click.stop="$click_toggle_image_dropdown()"
-                class="op-icon fa fa-mavon-picture-o dropdown"
+        <div :disabled="!editable" :class="{'selected': s_img_dropdown_open}" type="button" v-if="toolbars.imagelink" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown"
+                class="op-icon fa fa-mavon-picture-o dropdown dropdown-wrapper"
                 aria-hidden="true">
-            <div  class="op-image popup-dropdown" v-show="s_img_dropdown_open">
-                <div  class="dropdown-item" @click.stop="$toggle_imgLinkAdd('imagelink')" title="ctrl+alt+l"><span>{{d_words.tl_image}}</span></div>
-                <div class="dropdown-item" style="overflow: hidden">
-                    <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" :key="img_file[0][0]" multiple="multiple"/>{{d_words.tl_upload}}
-                </div>
+            <transition name="fade">
+                <div  class="op-image popup-dropdown" v-show="s_img_dropdown_open" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown">
+                    <div  class="dropdown-item" @click.stop="$toggle_imgLinkAdd('imagelink')"><span>{{d_words.tl_image}}</span></div>
+                    <div class="dropdown-item" style="overflow: hidden">
+                        <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" :key="img_file[0][0]" multiple="multiple"/>{{d_words.tl_upload}}
+                    </div>
 
-                <div class="dropdown-item dropdown-images" v-if="index > 0" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
-                    <span>{{item[0]}}</span>
-                    <button slot="right" type="button" @click.stop="$imgDel(index)"
-                            class="op-icon fa fa-mavon-trash-o" aria-hidden="true"
-                            :title="d_words.tl_upload_remove"></button>
-                    <!-- 缩略图展示 -->
-                    <img class = "image-show" :src="item[1].miniurl" alt="none">
+                    <div class="dropdown-item dropdown-images" v-if="index > 0" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
+                        <span>{{item[0]}}</span>
+                        <button slot="right" type="button" @click.stop="$imgDel(index)"
+                                class="op-icon fa fa-mavon-trash-o" aria-hidden="true"
+                                :title="d_words.tl_upload_remove"></button>
+                        <!-- 缩略图展示 -->
+                        <img class = "image-show" :src="item[1].miniurl" alt="none">
+                    </div>
                 </div>
-
-            </div>
+            </transition>
         </div>
         <button :disabled="!editable" type="button" v-if="toolbars.code" @click="$clicks('code')"
                 class="op-icon fa fa-mavon-code" aria-hidden="true"
@@ -137,7 +149,9 @@
         data() {
             return {
                 img_file: [['./0', null]],
+                timer: null,
                 s_img_dropdown_open: false,
+                s_header_dropdown_open: false,
                 s_img_link_open: false,
                 trigger: null,
                 num: 0,
@@ -228,12 +242,34 @@
                 return false;
             },
             // 工具栏功能图标click-----------------
-            $click_toggle_image_dropdown() {
-                this.s_img_dropdown_open = !this.s_img_dropdown_open;
+            $mouseenter_img_dropdown() {
+                clearTimeout(this.timer)
+                this.s_img_dropdown_open = true
+            },
+            $mouseleave_img_dropdown() {
+                let vm = this
+                this.timer = setTimeout(function() {
+                    vm.s_img_dropdown_open = false
+                },200)
+            },
+            $mouseenter_header_dropdown() {
+                clearTimeout(this.timer)
+                this.s_header_dropdown_open = true
+            },
+            $mouseleave_header_dropdown() {
+                let vm = this
+                this.timer = setTimeout(function() {
+                    vm.s_header_dropdown_open = false
+                },200)
             },
             $clicks(_type) {
                 // 让父节点来绑定事件并
                 this.$emit('toolbar_left_click', _type);
+            },
+            $click_header(_type) {
+                // 让父节点来绑定事件并
+                this.$emit('toolbar_left_click', _type);
+                this.s_header_dropdown_open = false
             },
             handleClose(e) {
                 this.s_img_dropdown_open = false;
@@ -242,20 +278,28 @@
     }
 </script>
 <style lang="stylus" scoped>
-    .op-icon.fa.fa-mavon-picture-o.dropdown
+    .op-icon.dropdown-wrapper.dropdown
         position relative
         .popup-dropdown
             position absolute
             display block
             background #fff
-            top 34px
-            left -20px
-            min-width 120px
+            top 32px
+            left -30px
+            min-width 112px
             z-index 1600
             box-shadow: 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
+            transition all 0.2s linear 0s
+            &.op-header
+                min-width 90px
+            &.fade-enter-active, &.fade-leave-active
+                opacity 1
+            &.fade-enter, &.fade-leave-active
+                opacity 0
         .dropdown-item
-            height 40px
+            height 35px
             line-height @height
+            font-size 12px
             transition all 0.2s linear 0s
             position relative
             &:hover
