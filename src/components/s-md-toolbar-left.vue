@@ -149,7 +149,8 @@
         data() {
             return {
                 img_file: [['./0', null]],
-                timer: null,
+                img_timer: null,
+                header_timer: null,
                 s_img_dropdown_open: false,
                 s_header_dropdown_open: false,
                 s_img_link_open: false,
@@ -243,22 +244,22 @@
             },
             // 工具栏功能图标click-----------------
             $mouseenter_img_dropdown() {
-                clearTimeout(this.timer)
+                clearTimeout(this.img_timer)
                 this.s_img_dropdown_open = true
             },
             $mouseleave_img_dropdown() {
                 let vm = this
-                this.timer = setTimeout(function() {
+                this.img_timer = setTimeout(function() {
                     vm.s_img_dropdown_open = false
                 },200)
             },
             $mouseenter_header_dropdown() {
-                clearTimeout(this.timer)
+                clearTimeout(this.header_timer)
                 this.s_header_dropdown_open = true
             },
             $mouseleave_header_dropdown() {
                 let vm = this
-                this.timer = setTimeout(function() {
+                this.header_timer = setTimeout(function() {
                     vm.s_header_dropdown_open = false
                 },200)
             },
