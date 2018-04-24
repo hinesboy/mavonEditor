@@ -93,8 +93,12 @@ export const keydownListen = ($vm) => {
                 case KEY_CODE.ENTER: {
                 // enter
                 if ($vm.$refs.toolbar_left.s_img_link_open) {
+                    // 当添加外部链接的弹出层打开时， enter表示确定输入此链接
                     e.preventDefault()
                     $vm.$refs.toolbar_left.$imgLinkAdd();
+                } else {
+                    // 在文本框中输入enter
+                    $vm.insertEnter(e)
                 }
                 break;
             }
@@ -222,6 +226,19 @@ export const keydownListen = ($vm) => {
                     // S
                     e.preventDefault()
                     $vm.toolbar_left_click('subscript')
+                    break;
+                }
+            }
+        } else if (!(e.ctrlKey || e.metaKey) && e.shiftKey && !e.altKey) {
+            // shift +
+            switch (e.keyCode) {
+                case KEY_CODE.TAB: {
+                    // TAB
+                    if (!$vm.$refs.toolbar_left.s_img_link_open) {
+                        e.preventDefault()
+                        console.log('unshift')
+                        $vm.unInsertTab();
+                    }
                     break;
                 }
             }

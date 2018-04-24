@@ -90,6 +90,10 @@
         insertTextAtCaret,
         getNavigation,
         insertTab,
+        unInsertTab,
+        insertOl,
+        insertUl,
+        insertEnter,
         loadLink,
         loadScript,
         ImagePreviewListener
@@ -504,12 +508,24 @@
                 return this.$refs.vNoteTextarea.$refs.vTextarea;
             },
             // 工具栏插入内容
-            insertText(obj, {prefix, subfix, str}) {
+            insertText(obj, {prefix, subfix, str, type}) {
                 // if (this.s_preview_switch) {
-                insertTextAtCaret(obj, {prefix, subfix, str}, this);
+                insertTextAtCaret(obj, {prefix, subfix, str, type}, this);
             },
             insertTab() {
                 insertTab(this)
+            },
+            insertOl() {
+                insertOl(this)
+            },
+            insertUl() {
+                insertUl(this)
+            },
+            unInsertTab() {
+                unInsertTab(this)
+            },
+            insertEnter(event) {
+                insertEnter(this, event)
             },
             saveHistory() {
                 this.d_history.splice(this.d_history_index + 1, this.d_history.length)

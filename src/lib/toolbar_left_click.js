@@ -39,6 +39,14 @@ function $toolbar_left_trash_click($vm) {
 function $toolbar_left_save_click($vm) {
     $vm.save($vm.d_value, $vm.d_render)
 }
+// ol
+function $toolbar_left_ol_click($vm) {
+    $vm.insertOl()
+}
+// ul
+function $toolbar_left_ul_click($vm) {
+    $vm.insertUl()
+}
 // 直接添加链接
 export const toolbar_left_addlink = (type, text, link, $vm) => {
     let insert_text = {
@@ -125,16 +133,18 @@ export const toolbar_left_click = (_type, $vm) => {
              subfix: '',
              str: $vm.d_words.tl_quote
          },
-         'ol': {
+        /* 'ol': {
              prefix: '1. ',
              subfix: '',
-             str: $vm.d_words.tl_ol
+             str: '',
+             type: 'ol'
          },
          'ul': {
              prefix: '- ',
              subfix: '',
-             str: $vm.d_words.tl_ul
-         },
+             str: '',
+             type: 'ul'
+         }, */
          'link': {
              prefix: '[](',
              subfix: ')',
@@ -180,7 +190,9 @@ export const toolbar_left_click = (_type, $vm) => {
          'undo': $toolbar_left_undo_click,
          'redo': $toolbar_left_redo_click,
          'trash': $toolbar_left_trash_click,
-         'save': $toolbar_left_save_click
+         'save': $toolbar_left_save_click,
+         'ol': $toolbar_left_ol_click,
+         'ul': $toolbar_left_ul_click,
      };
      if (_other_left_click.hasOwnProperty(_type)) {
          _other_left_click[_type]($vm);

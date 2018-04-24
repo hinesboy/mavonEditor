@@ -15,7 +15,7 @@
 /**
  * textarea 插入内容
  */
-export const insertTextAtCaret = (obj, {prefix, subfix, str}, $vm) => {
+export const insertTextAtCaret = (obj, {prefix, subfix, str, type}, $vm) => {
     obj.focus()
     if (document.selection) {
     } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
@@ -42,12 +42,81 @@ export const insertTextAtCaret = (obj, {prefix, subfix, str}, $vm) => {
             }
         }
     } else {
-        alert('else')
+        alert('Error: Browser version is too low')
         // obj.value += str;
     }
     // 触发change事件
     $vm.d_value = obj.value
     obj.focus()
+}
+// 插入有序列表
+export const insertOl = ($vm) => {
+    let obj = $vm.getTextareaDom();
+    if (document.selection) {
+    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+        var startPos = obj.selectionStart;
+        var endPos = obj.selectionEnd;
+        var tmpStr = obj.value;
+        if (startPos === endPos) {
+            // 直接插入
+            obj.value = tmpStr.substring(0, startPos) + '1. ' + tmpStr.substring(endPos, tmpStr.length);
+            obj.selectionEnd = obj.selectionStart = startPos + 3;
+        } else {
+            // 存在选中区域
+            let start = startPos
+            while (start > 0 && tmpStr.substring(start - 1, start) !== '\n') {
+                start--
+            }
+            let selectStr = tmpStr.substring(start, endPos)
+            let selectStrs = selectStr.split('\n')
+            for (let i = 0; i < selectStrs.length; i++) {
+                selectStrs[i] = (i + 1) + '. ' + selectStrs[i]
+            }
+            let newSelectStr = selectStrs.join('\n')
+            obj.value = tmpStr.substring(0, start) + newSelectStr + tmpStr.substring(endPos, tmpStr.length);
+            obj.selectionStart = start
+            obj.selectionEnd = endPos + newSelectStr.length - selectStr.length;
+        }
+    } else {
+        alert('Error: Browser version is too low')
+        // obj.value += str;
+    }
+    // 触发change事件
+    $vm.d_value = obj.value
+    obj.focus();
+}
+// 插入无序列表
+export const insertUl = ($vm) => {
+    let obj = $vm.getTextareaDom();
+    if (document.selection) {
+    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+        var startPos = obj.selectionStart;
+        var endPos = obj.selectionEnd;
+        var tmpStr = obj.value;
+        if (startPos === endPos) {
+            // 直接插入
+            obj.value = tmpStr.substring(0, startPos) + '- ' + tmpStr.substring(endPos, tmpStr.length);
+            obj.selectionEnd = obj.selectionStart = startPos + 2;
+        } else {
+            // 存在选中区域
+            let start = startPos
+            while (start > 0 && tmpStr.substring(start - 1, start) !== '\n') {
+                start--
+            }
+            let selectStr = tmpStr.substring(start, endPos)
+            let newSelectStr = selectStr.replace(/\n/g, '\n- ')
+            newSelectStr = '- ' + newSelectStr
+            obj.value = tmpStr.substring(0, start) + newSelectStr + tmpStr.substring(endPos, tmpStr.length);
+            obj.selectionStart = start
+            obj.selectionEnd = endPos + newSelectStr.length - selectStr.length;
+        }
+    } else {
+        alert('Error: Browser version is too low')
+        // obj.value += str;
+    }
+    // 触发change事件
+    $vm.d_value = obj.value
+    obj.focus();
 }
 // 插入tab
 export const insertTab = ($vm) => {
@@ -57,13 +126,88 @@ export const insertTab = ($vm) => {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
-        obj.value = tmpStr.substring(0, startPos) + '    ' + tmpStr.substring(endPos, tmpStr.length);
-        obj.selectionStart = obj.selectionEnd = startPos + 4;
+        let lastLine = tmpStr.substring(0, startPos).split('\n').pop()
+        if (lastLine.match(/^\s*[0-9]+\.\s+\S*/)) {
+            // 有序列表
+            let temp = lastLine.replace(/(\d+)/, 1)
+            obj.value = tmpStr.substring(0, startPos - temp.length) + '\t' +  temp + tmpStr.substring(endPos, tmpStr.length);
+        } else if (lastLine.match(/^\s*-\s+\S*/)) {
+            // 无序列表
+            obj.value = tmpStr.substring(0, startPos - lastLine.length) + '\t' +  lastLine + tmpStr.substring(endPos, tmpStr.length);
+        } else {
+            obj.value = tmpStr.substring(0, startPos) + '\t' + tmpStr.substring(endPos, tmpStr.length);
+        }
+        obj.selectionStart = obj.selectionEnd = startPos + 1;
     } else {
-        alert('else')
+        alert('Error: Browser version is too low')
         // obj.value += str;
     }
     // 触发change事件
+    $vm.d_value = obj.value
+    obj.focus();
+}
+// shift + tab
+export const unInsertTab = ($vm) => {
+    let obj = $vm.getTextareaDom();
+    if (document.selection) {
+    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+        var startPos = obj.selectionStart;
+        var endPos = obj.selectionEnd;
+        var tmpStr = obj.value;
+        let lastLine = tmpStr.substring(0, startPos).split('\n').pop()
+        if (lastLine.search(/\t/) >= 0) {
+            // 替换最后一个制表符为空
+            obj.value = tmpStr.substring(0, startPos - lastLine.length) +  lastLine.replace(/(.*)\t/, '$1') + tmpStr.substring(endPos, tmpStr.length);
+            obj.selectionStart = obj.selectionEnd = startPos - 1;
+        }
+    } else {
+        alert('Error: Browser version is too low')
+        // obj.value += str;
+    }
+    // 触发change事件
+    $vm.d_value = obj.value
+    obj.focus();
+}
+// 插入enter
+export const insertEnter = ($vm, event) => {
+    let obj = $vm.getTextareaDom()
+    if (document.selection) {
+    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+        var startPos = obj.selectionStart;
+        var endPos = obj.selectionEnd;
+        var tmpStr = obj.value;
+        // 获取光标前最后一行字符串
+        let lastLine = tmpStr.substring(0, startPos).split('\n').pop()
+        let matchListNeedChangeLine = lastLine.match(/^\s*(?:[0-9]+\.|-)\s+\S+/)
+        if (matchListNeedChangeLine) {
+            // 需要自动产生下一个列表项
+            event.preventDefault()
+            // eg: [1.  test] 仅获取[1. ]
+            let subfix = matchListNeedChangeLine.shift().match(/^\s*(?:[0-9]+\.|-)\s/).shift()
+            if (subfix.search(/-/) >= 0) {
+                // 无序列表
+                obj.value = tmpStr.substring(0, startPos) + '\n' + subfix + tmpStr.substring(endPos, tmpStr.length);
+                obj.selectionStart = obj.selectionEnd = startPos + subfix.length + 1
+            } else {
+                // 有序列表
+                let temp = subfix.replace(/(\d+)/, parseInt(subfix) + 1)
+                obj.value = tmpStr.substring(0, startPos) + '\n' + temp + tmpStr.substring(endPos, tmpStr.length);
+                obj.selectionStart = obj.selectionEnd = startPos + temp.length + 1
+            }
+        } else {
+            let matchListNeedRemoveLine = lastLine.match(/^\s*(?:[0-9]+\.|-)\s+$/)
+            if (matchListNeedRemoveLine) {
+                // 需要跳出列表
+                event.preventDefault()
+                let preLength = matchListNeedRemoveLine.shift().length
+                obj.value = tmpStr.substring(0, startPos - preLength) + '\n' + tmpStr.substring(endPos, tmpStr.length);
+                obj.selectionStart = obj.selectionEnd = startPos - preLength
+                // TODO 检测是否存在嵌套列表，自动生成上一级
+            }
+        }
+    } else {
+        alert('Error: Browser version is too low')
+    }
     $vm.d_value = obj.value
     obj.focus();
 }
