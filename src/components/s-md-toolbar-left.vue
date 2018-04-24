@@ -26,7 +26,7 @@
                 :title="`${d_words.tl_underline} (ctrl+u)`" aria-hidden="true"></button>
         <button :disabled="!editable" type="button" v-if="toolbars.strikethrough" @click="$clicks('strikethrough')"
                 class="op-icon fa fa-mavon-strikethrough"
-                :title="`${d_words.tl_strikethrough} (ctrl+d)`" aria-hidden="true"></button>
+                :title="`${d_words.tl_strikethrough} (ctrl+shift+d)`" aria-hidden="true"></button>
         <button :disabled="!editable" type="button" v-if="toolbars.mark" @click="$clicks('mark')"
                 class="op-icon fa fa-mavon-thumb-tack" :title="`${d_words.tl_mark} (ctrl+m)`"
                 aria-hidden="true"></button>

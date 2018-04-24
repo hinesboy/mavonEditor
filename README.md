@@ -183,7 +183,7 @@ toolbars: {
   }
 ```
 
-### events
+### events 事件绑定
 
 | name 方法名         |            params 参数            | describe 描述                              |
 | ---------------- | :-----------------------------: | ---------------------------------------- |
@@ -198,6 +198,41 @@ toolbars: {
 | navigationToggle | Boolean: status , String: value | 切换导航目录的回调事件(boolean: 导航开启状态)             |
 | imgAdd           | String: filename, File: imgfile | 图片文件添加回调事件(filename: 写在md中的文件名, File: File Object) |
 | imgDel           |        String: filename         | 图片文件删除回调事件(filename: 写在md中的文件名)          |
+
+### 快捷键
+
+| key       | keycode  |            功能            |
+| ---------------- | :----------------: | :-----------------------------: |
+| F8           | 119 |  开启/关闭导航  |
+| F9           | 120   |  预览/编辑切换  |
+| F10     | 121   | 开启/关闭全屏 |
+| F11      | 122   | 开启/关闭阅读模式 |
+| F12       | 123   | 单栏/双栏切换 |
+| TAB  | 9  | 缩进 |
+| CTRL + S    | 17 + 83 | 触发保存 |
+| CTRL + D    | 17 + 68 | 删除选中行 |
+| CTRL + Z    | 17 + 90 | 上一步 |
+| CTRL + Y    | 17 + 89 | 下一步 |
+| CTRL + BreakSpace    | 17 + 8 | 清空编辑 |
+| CTRL + B       | 17 + 66 | **加粗** |
+| CTRL + I | 17 + 73 | *斜体* |
+| CTRL + H       | 17 + 72 | # 标题 |
+| CTRL + U    | 17 + 85 | ++下划线++ |
+| CTRL + M    | 17 + 77 | ==标记== |
+| CTRL + Q    | 17 + 81 | > 引用 |
+| CTRL + O    | 17 + 79 | 1. 有序列表 |
+| CTRL + L    | 17 + 76 | [链接]() |
+| CTRL + ALT + S    | 17 + 18 + 83 | ^上角标^ |
+| CTRL + ALT + U    | 17 + 18 + 85 | - 无序列表 |
+| CTRL + ALT + C    | 17 + 18 + 67 | ``` 代码块 |
+| CTRL + ALT + L    | 17 + 18 + 76 | ![图片链接]() |
+| CTRL + ALT + T    | 17 + 18 + 84 | 表格 |
+| CTRL + SHIFT + S    | 17 + 16 + 83 | ~下角标~ |
+| CTRL + SHIFT + D    | 17 + 16 + 68 | ~~中划线~~ |
+| CTRL + SHIFT + C    | 17 + 16 + 67 | 居中 |
+| CTRL + SHIFT + L    | 17 + 16 + 76 | 居左 |
+| CTRL + SHIFT + R    | 17 + 16 + 82 | 居右 |
+| SHIFT + TAB    | 16 + 9 | 取消缩进 |
 
 
 ## Dependencies (依赖)

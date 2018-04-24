@@ -94,6 +94,7 @@
         insertOl,
         insertUl,
         insertEnter,
+        removeLine,
         loadLink,
         loadScript,
         ImagePreviewListener
@@ -517,6 +518,9 @@
             },
             insertOl() {
                 insertOl(this)
+            },
+            removeLine() {
+                removeLine(this)
             },
             insertUl() {
                 insertUl(this)

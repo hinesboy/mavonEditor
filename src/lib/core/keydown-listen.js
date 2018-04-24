@@ -13,7 +13,7 @@
  * Created by zhy on 2017/4/24.
  */
 const KEY_CODE = {
-    F8: 118,
+    F8: 119,
     F9: 120,
     F10: 121,
     F11: 122,
@@ -30,8 +30,9 @@ const KEY_CODE = {
     S: 83,
     Z: 90,
     Y: 89,
-    C: 76,
+    C: 67,
     T: 84,
+    R: 82,
     DELETE: 8,
     TAB: 9,
     ENTER: 13
@@ -75,7 +76,7 @@ export const keydownListen = ($vm) => {
                     break;
                 }
                 case KEY_CODE.F12: {
-                    // F12 单双栏切花
+                    // F12 单双栏切换
                     if ($vm.toolbars.subfield) {
                         e.preventDefault()
                         $vm.toolbar_right_click('subfield')
@@ -133,7 +134,7 @@ export const keydownListen = ($vm) => {
                 case KEY_CODE.D: {
                     // D
                     e.preventDefault()
-                    $vm.toolbar_left_click('strikethrough')
+                    $vm.toolbar_left_click('removeLine')
                     break;
                 }
                 case KEY_CODE.M: {
@@ -200,14 +201,14 @@ export const keydownListen = ($vm) => {
                     $vm.toolbar_left_click('ul')
                     break;
                 }
-                case KEY_CODE.C: {
-                    // C
+                case KEY_CODE.L: {
+                    // L
                     e.preventDefault()
                     $vm.toolbar_left_click('imagelink')
                     break;
                 }
-                case KEY_CODE.L: {
-                    // L
+                case KEY_CODE.C: {
+                    // C
                     e.preventDefault()
                     $vm.toolbar_left_click('code')
                     break;
@@ -228,6 +229,30 @@ export const keydownListen = ($vm) => {
                     $vm.toolbar_left_click('subscript')
                     break;
                 }
+                case KEY_CODE.D: {
+                    // D
+                    e.preventDefault()
+                    $vm.toolbar_left_click('strikethrough')
+                    break;
+                }
+                case KEY_CODE.L: {
+                    // D
+                    e.preventDefault()
+                    $vm.toolbar_left_click('alignleft')
+                    break;
+                }
+                case KEY_CODE.R: {
+                    // D
+                    e.preventDefault()
+                    $vm.toolbar_left_click('alignright')
+                    break;
+                }
+                case KEY_CODE.C: {
+                    // D
+                    e.preventDefault()
+                    $vm.toolbar_left_click('aligncenter')
+                    break;
+                }
             }
         } else if (!(e.ctrlKey || e.metaKey) && e.shiftKey && !e.altKey) {
             // shift +
@@ -236,7 +261,6 @@ export const keydownListen = ($vm) => {
                     // TAB
                     if (!$vm.$refs.toolbar_left.s_img_link_open) {
                         e.preventDefault()
-                        console.log('unshift')
                         $vm.unInsertTab();
                     }
                     break;

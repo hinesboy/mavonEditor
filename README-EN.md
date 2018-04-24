@@ -192,6 +192,40 @@ toolbars: {
 | imgAdd | String: filename, File: imgfile |  Add image file callback event(filename: write in origin md, File: File Object) |
 | imgDel | String: filename |  Delete image file callback event(filename: write in origin md) |
 
+### keyboard shortcuts
+
+| key       | keycode  |       fun          |
+| ---------------- | :----------------: | :-----------------------------: |
+| F8           | 119 |  toggle navigation  |
+| F9           | 120   |  toggle [edit/preview]  |
+| F10     | 121   | toggle fullscreen |
+| F11      | 122   | toggle readModel |
+| F12       | 123   | toggle [double columns / single column] |
+| TAB  | 9  | \t |
+| CTRL + S    | 17 + 83 | @save |
+| CTRL + D    | 17 + 68 | remove selected lines |
+| CTRL + Z    | 17 + 90 | prev step |
+| CTRL + Y    | 17 + 89 | next step |
+| CTRL + BreakSpace    | 17 + 8 | trash |
+| CTRL + B       | 17 + 66 | **Bold** |
+| CTRL + I | 17 + 73 | *Italic* |
+| CTRL + H       | 17 + 72 | # Header |
+| CTRL + U    | 17 + 85 | ++Underline++ |
+| CTRL + M    | 17 + 77 | ==Mark== |
+| CTRL + Q    | 17 + 81 | > Quote |
+| CTRL + O    | 17 + 79 | 1. OL |
+| CTRL + L    | 17 + 76 | [link]() |
+| CTRL + ALT + S    | 17 + 18 + 83 | ^Superscript^ |
+| CTRL + ALT + U    | 17 + 18 + 85 | - UL |
+| CTRL + ALT + C    | 17 + 18 + 67 | ``` Code |
+| CTRL + ALT + L    | 17 + 18 + 76 | ![Image Link]() |
+| CTRL + ALT + T    | 17 + 18 + 84 | Table |
+| CTRL + SHIFT + S    | 17 + 16 + 83 | ~Subscript~ |
+| CTRL + SHIFT + D    | 17 + 16 + 68 | ~~Strikethrough~~ |
+| CTRL + SHIFT + C    | 17 + 16 + 67 | align center |
+| CTRL + SHIFT + L    | 17 + 16 + 76 | align left |
+| CTRL + SHIFT + R    | 17 + 16 + 82 | align right |
+| SHIFT + TAB    | 16 + 9 | remove \t |
 
 ## Dependencies
 - [markdown-it](https://github.com/markdown-it/markdown-it)

@@ -85,6 +85,36 @@ export const insertOl = ($vm) => {
     $vm.d_value = obj.value
     obj.focus();
 }
+// 删除行
+export const removeLine = ($vm) => {
+    let obj = $vm.getTextareaDom();
+    if (document.selection) {
+    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+        var startPos = obj.selectionStart;
+        var endPos = obj.selectionEnd;
+        var tmpStr = obj.value;
+        // 找到行首、行尾
+        let start = startPos
+        while (start > 0 && tmpStr.substring(start - 1, start) !== '\n') {
+            start--
+        }
+        let end = endPos
+        while (end < tmpStr.length && tmpStr.substring(end, end + 1) !== '\n') {
+            end++
+        }
+        if (end < tmpStr.length) {
+            end++
+        }
+        obj.value = tmpStr.substring(0, start)  + tmpStr.substring(end, tmpStr.length);
+        obj.selectionEnd = obj.selectionStart = start === 0 ? 0 : start - 1;
+    } else {
+        alert('Error: Browser version is too low')
+        // obj.value += str;
+    }
+    // 触发change事件
+    $vm.d_value = obj.value
+    obj.focus();
+}
 // 插入无序列表
 export const insertUl = ($vm) => {
     let obj = $vm.getTextareaDom();
