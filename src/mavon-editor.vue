@@ -1,11 +1,11 @@
 <template>
     <div :class="[{'fullscreen': s_fullScreen}]" class="v-note-wrapper markdown-body">
         <!--工具栏-->
-        <div class="v-note-op" v-show="toolbarsFlag">
-            <s-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words"
+        <div class="v-note-op" v-show="toolbarsFlag" :class="{'shadow': boxShadow}">
+            <v-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words"
                                @toolbar_left_click="toolbar_left_click" @toolbar_left_addlink="toolbar_left_addlink" :toolbars="toolbars"
                                @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch" :image_filter="imageFilter"/>
-            <s-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click"
+            <v-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click"
                                 :toolbars="toolbars"
                                 :s_subfield="s_subfield"
                                 :s_preview_switch="s_preview_switch" :s_fullScreen="s_fullScreen"
@@ -13,7 +13,7 @@
                                 :s_navigation="s_navigation"/>
         </div>
         <!--编辑展示区域-->
-        <div class="v-note-panel">
+        <div class="v-note-panel" :class="{'shadow': boxShadow}">
             <!--编辑区-->
             <div ref="vNoteEdit" @scroll="$v_edit_scroll" class="v-note-edit divarea-wrapper"
                  :class="{'scroll-style': s_scrollStyle  , 'single-edit': !s_preview_switch && !s_html_code , 'single-show': (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code)}"
@@ -22,7 +22,7 @@
                     <!-- 双栏 -->
                     <v-autoTextarea ref="vNoteTextarea" :placeholder="placeholder ? placeholder : d_words.start_editor"
                                     class="content-input" :fontSize="fontSize"
-                                    lineHeight="1.5" v-model="d_value"></v-autoTextarea>
+                                    lineHeight="1.5" v-model="d_value" fullHeight></v-autoTextarea>
                 </div>
             </div>
             <!--展示区-->
@@ -38,8 +38,8 @@
 
             <!--标题导航-->
             <transition name="slideTop">
-                <div v-show="s_navigation" class="v-note-navigation-wrapper">
-                    <div class="v-note-navigation-title">
+                <div v-show="s_navigation" class="v-note-navigation-wrapper" :class="{'shadow': boxShadow}">
+                    <div class="v-note-navigation-title" :class="{'shadow': boxShadow}">
                         {{d_words.navigation_title}}<i @click="toolbar_right_click('navigation')"
                                                        class="fa fa-mavon-times v-note-navigation-close"
                                                        aria-hidden="true"></i>
@@ -54,7 +54,7 @@
         <transition name="fade">
             <div ref="help">
                 <div @click="toolbar_right_click('help')" class="v-note-help-wrapper" v-if="s_help">
-                    <div @click.stop="" class="v-note-help-content markdown-body">
+                    <div @click.stop="" class="v-note-help-content markdown-body" :class="{'shadow': boxShadow}">
                         <i @click.stop.prevent="toolbar_right_click('help')" class="fa fa-mavon-times"
                            aria-hidden="true"></i>
                         <div class="scroll-style v-note-help-show" v-html="d_help"></div>
@@ -106,12 +106,16 @@
     import hljs from './lib/core/highlight.js'
     import markdown from './lib/mixins/markdown.js'
 
-    var s_md_toolbar_left = require('./components/s-md-toolbar-left.vue')
-    var s_md_toolbar_right = require('./components/s-md-toolbar-right.vue')
+    import md_toolbar_left from './components/md-toolbar-left.vue'
+    import md_toolbar_right from './components/md-toolbar-right.vue'
     export default {
         mixins: [markdown],
         props: { // 是否渲染滚动条样式(webkit)
             scrollStyle: {
+                type: Boolean,
+                default: true
+            },
+            boxShadow: {
                 type: Boolean,
                 default: true
             },
@@ -191,6 +195,9 @@
         },
         data() {
             return {
+                s_right_click_menu_show: false,
+                right_click_menu_top: 0,
+                right_click_menu_left: 0,
                 s_subfield: (() => {
                     return this.subfield;
                 })(),
@@ -603,7 +610,6 @@
             value: function (val, oldVal) {
                 if (val !== this.d_value) {
                     this.d_value = val
-                    let $vm = this;
                 }
             },
             subfield: function (val, oldVal) {
@@ -635,8 +641,8 @@
         },
         components: {
             'v-autoTextarea': autoTextarea,
-            's-md-toolbar-left': s_md_toolbar_left,
-            's-md-toolbar-right': s_md_toolbar_right
+            'v-md-toolbar-left': md_toolbar_left,
+            'v-md-toolbar-right': md_toolbar_right
         }
     };
     import "./lib/font/css/fontello.css"

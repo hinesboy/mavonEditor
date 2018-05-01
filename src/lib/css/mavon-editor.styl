@@ -1,4 +1,4 @@
-
+  border-color = 1px solid #e0e0e0
   op-height = 40px
   textarea:disabled
     background-color #ffffff
@@ -28,7 +28,11 @@
       white-space pre-line
       flex none
       min-height op-height
-      box-shadow: 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
+      border border-color
+      border-bottom none
+      &.shadow
+        border none
+        box-shadow 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
       background #fff
       z-index 1
       .v-left-item, .v-right-item
@@ -72,7 +76,10 @@
         padding-left 6px
     .v-note-panel
       position relative
-      box-shadow: 0 0px 3px rgba(0, 0, 0, .156863), 0 0px 3px rgba(0, 0, 0, .227451)
+      border border-color
+      &.shadow
+        border none
+        box-shadow 0 0px 3px rgba(0, 0, 0, .156863), 0 0px 3px rgba(0, 0, 0, .227451)
       display flex
       flex 1
       width 100%
@@ -106,7 +113,6 @@
           font-size 16px
         .content-input-wrapper
           width 100%
-          height auto
           padding 8px 25px 15px 25px
       .v-note-show
         flex 0 0 50%
@@ -135,7 +141,10 @@
         display flex
         flex-direction column
         background rgba(255,255,255,0.98)
-        box-shadow 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
+        border border-color
+        &.shadow
+          box-shadow 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
+          border none
         transition all 0.1s linear 0s
         @media only screen and (max-width 768px)
           width 50%
@@ -153,7 +162,8 @@
           font-weight 500
           box-sizing border-box
           padding 0 12px
-          box-shadow 0 0px 1px rgba(0, 0, 0, .156863), 0 0px 1px rgba(0, 0, 0, .227451)
+          &.shadow
+            box-shadow 0 0px 1px rgba(0, 0, 0, .156863), 0 0px 1px rgba(0, 0, 0, .227451)
           .v-note-navigation-close
             float right
             color #757575
@@ -208,7 +218,6 @@
       box-sizing border-box
       &.show
         display block
-
 .v-note-help-wrapper
   position fixed
   left 0
@@ -231,7 +240,10 @@
     min-width 320px
     transition all 0.1s linear 0s
     z-index 3
-    box-shadow: 0 0px 5px rgba(0, 0, 0, .156863), 0 0px 5px rgba(0, 0, 0, .227451)
+    border border-color
+    &.shadow
+      border none
+      box-shadow 0 0px 5px rgba(0, 0, 0, .156863), 0 0px 5px rgba(0, 0, 0, .227451)
     i
       font-size 28px
       position absolute
