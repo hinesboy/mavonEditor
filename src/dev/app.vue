@@ -163,9 +163,8 @@
                 console.log('here');
                 // this.$refs.md.$img2Url('./0', 'https://www.domain.com/this/is/my.png');
                 this.$refs.md.$imglst2Url([
-                    ['./0', 'https://www.domain.com/this/is/my.0.png'],
-                    ['./1', 'https://www.domain.com/this/is/my.1.png'],
-                    ['./2', 'https://www.domain.com/this/is/my.2.png'],
+                    [0, 'https://raw.githubusercontent.com/hinesboy/mavonEditor/master/img/cn/cn-common.png'],
+                    [1, 'https://raw.githubusercontent.com/hinesboy/mavonEditor/master/img/cn/cn-common.png']
                 ]);
             },
             uploadimg($e){

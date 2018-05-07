@@ -20,7 +20,7 @@ exports default {
                data: formdata,
                headers: { 'Content-Type': 'multipart/form-data' },
            }).then((url) => {
-               // 第二步.将返回的url替换到文本原位置![...](./0) -> ![...](url)
+               // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
                // $vm.$img2Url 详情见本页末尾
                $vm.$img2Url(pos, url);
            })
@@ -65,10 +65,10 @@ exports default {
             }).then((res) => {
                 /**
                  * 例如：返回数据为 [[pos: url], [pos, url]...]
-                 * pos 为原图片标志（./0）
+                 * pos 为原图片标志（0）
                  * url 为上传后图片的url地址
                  */
-                 // 第二步.将返回的url替换到文本原位置![...](./0) -> ![...](url)
+                 // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
                 for (var i in res) {
                     // $vm.$img2Url 详情见本页末尾
                     $vm.$img2Url(res[i].[0],res[i].[1]);
@@ -88,14 +88,14 @@ exports default {
 exports default {
     data() {
         return {
-            mdStr: '### demo \n ![image](./0)'
+            mdStr: '### demo \n ![image](0)'
         };
     },
     mounted() {
         // 如果原始md字符串中存在曾上传的图片， 则需要将对应<img>中的src替换为base64
         this.$nextTick(() => {
             // $vm.$imgUpdateByUrl 详情见本页末尾
-            $vm.$imgUpdateByUrl('./0', base64内容);
+            $vm.$imgUpdateByUrl(0, base64内容);
         }
     },
     methods: {

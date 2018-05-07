@@ -72,8 +72,8 @@
                         <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" :key="img_file[0][0]" multiple="multiple"/>{{d_words.tl_upload}}
                     </div>
 
-                    <div class="dropdown-item dropdown-images" v-if="index > 0" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
-                        <span>{{item[0]}}</span>
+                    <div class="dropdown-item dropdown-images" :title="item[1].name" v-if="index > 0" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
+                        <span>{{item[1].name}}</span>
                         <button slot="right" type="button" @click.stop="$imgDel(index)"
                                 class="op-icon fa fa-mavon-trash-o" aria-hidden="true"
                                 :title="d_words.tl_upload_remove"></button>
@@ -148,7 +148,8 @@
         },
         data() {
             return {
-                img_file: [['./0', null]],
+                // [index, file]
+                img_file: [[0, null]],
                 img_timer: null,
                 header_timer: null,
                 s_img_dropdown_open: false,
@@ -178,12 +179,16 @@
             $imgFileListClick(pos) {
                 this.$emit('imgTouch', this.img_file[pos]);
             },
+            $changeUrl(index,url) {
+                this.img_file[index][2] = url;
+            },
             $imgFileAdd($file) {
-                this.img_file[0][0] = './' + this.num;
+                this.img_file[0][0] = this.num;
                 this.img_file[0][1] = $file;
-                this.img_file.unshift(['./' + (this.num + 1), null]);
+                this.img_file.unshift([(this.num + 1), null]);
                 this.num = this.num + 1;
                 this.$emit('imgAdd', this.img_file[1][0], $file);
+                this.s_img_dropdown_open = false;
             },
             $imgFilesAdd($files) {
                 // valid means if the image_filter exist.
@@ -286,12 +291,13 @@
             display block
             background #fff
             top 32px
-            left -30px
-            min-width 112px
+            left -45px
+            min-width 130px
             z-index 1600
             box-shadow: 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
             transition all 0.2s linear 0s
             &.op-header
+                left -30px
                 min-width 90px
             &.fade-enter-active, &.fade-leave-active
                 opacity 1
@@ -321,7 +327,7 @@
                     color #db2828
             span
                 display inline-block
-                width 90px
+                width 80px
                 white-space nowrap
                 overflow hidden
                 text-overflow ellipsis

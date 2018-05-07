@@ -93,7 +93,7 @@ exports default {
                data: formdata,
                headers: { 'Content-Type': 'multipart/form-data' },
            }).then((url) => {
-               // step 2. replace url ![...](./0) -> ![...](url)
+               // step 2. replace url ![...](0) -> ![...](url)
                $vm.$img2Url(pos, url);
            })
         }

@@ -373,20 +373,16 @@
             },
             $imgTouch(file) {
                 var $vm = this;
-                this.insertText(this.getTextareaDom(),
-                    {
-                        prefix: '\n![' + file[1]._name + '](' + file[0] + ')',
-                        subfix: '',
-                        str: ''
-                    });
+                // TODO 跳转到图片位置
             },
             $imgDel(file) {
                 this.s_markdown.image_del(file[0]);
                 // 删除所有markdown中的图片
-                let reg = new RegExp(`\\!\\[${file[1]._name}\\]\\(\\${file[0]}\\)`, "g")
+                let fileReg = file[2] ? file[2] : file[0]
+                let reg = new RegExp(`\\!\\[${file[1]._name}\\]\\(${fileReg}\\)`, "g")
                 this.d_value = this.d_value.replace(reg, '');
                 this.iRender();
-                this.$emit('imgDel', file[0]);
+                this.$emit('imgDel', fileReg);
             },
             $imgAdd(pos, $file, isinsert) {
                 if (isinsert === undefined) isinsert = true;
@@ -404,7 +400,7 @@
                         $file._name = $file.name.replace(/[\[\]\(\)\+\{\}&\|\\\*^%$#@\-]/g, '');
                         $vm.insertText($vm.getTextareaDom(),
                             {
-                                prefix: '\n![' + $file._name + '](' + pos + ')',
+                                prefix: '![' + $file._name + '](' + pos + ')',
                                 subfix: '',
                                 str: ''
                             });
@@ -434,12 +430,12 @@
                 }
                 return false;
             },
-            $img2Url(filename, url) {
+            $img2Url(fileIndex, url) {
                 // x.replace(/(\[[^\[]*?\](?=\())\(\s*(\.\/2)\s*\)/g, "$1(http://path/to/png.png)")
-                filename = filename.replace(/(\.|\\|\+|\*|\?|\^|\$|\[|\]|\{|\}|\(|\)|\||\/)/g, "\\$1")
-                var reg_str = "/(!\\[\[^\\[\]*?\\]\(?=\\(\)\)\\(\\s*\(" + filename + "\)\\s*\\)/g"
+                var reg_str = "/(!\\[\[^\\[\]*?\\]\(?=\\(\)\)\\(\\s*\(" + fileIndex + "\)\\s*\\)/g"
                 var reg = eval(reg_str);
                 this.d_value = this.d_value.replace(reg, "$1(" + url + ")")
+                this.$refs.toolbar_left.$changeUrl(fileIndex, url)
             },
             $imglst2Url(imglst) {
                 if (imglst instanceof Array) {
