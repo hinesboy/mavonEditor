@@ -67,6 +67,17 @@ lista com marcadores
 -
 ...
 ```
+
+## Todo Listas
+
+- [x] Tarefa 1
+- [ ] Tarefa 2
+
+```
+- [x] Tarefa 1
+- [ ] Tarefa 2
+```
+
 ## Link
 ```
 Link Texto

@@ -55,6 +55,7 @@
     // import {CONFIG} from './assets/config.js'
     import {CONFIG} from '../lib/config.js'
     import axios from 'axios'
+    import {mavonEditor} from '../index'
     export default {
         name: 'app',
         data () {
@@ -132,7 +133,7 @@
                 imageClick: function (file) {
                     console.log(file);
                 },
-                imgName: '',
+                imgName: ''
             }
         },
         created () {
@@ -161,18 +162,17 @@
             },
             imgreplace($e) {
                 console.log('here');
-                // this.$refs.md.$img2Url('./0', 'https://www.domain.com/this/is/my.png');
                 this.$refs.md.$imglst2Url([
                     [0, 'https://raw.githubusercontent.com/hinesboy/mavonEditor/master/img/cn/cn-common.png'],
                     [1, 'https://raw.githubusercontent.com/hinesboy/mavonEditor/master/img/cn/cn-common.png']
                 ]);
             },
-            uploadimg($e){
-                // upload files in one request.
+            uploadimg($e) {
                 console.log(this.img_file);
-                // this.$refs.md.$imgAddByUrl('./dfs', 'http://www.baidu.com/1.png')
-                // var _imglst = [];
-                var formdata = new FormData();
+                for (var _img in this.img_file) {
+                    this.$refs.md.$img2Url(_img, 'https://raw.githubusercontent.com/hinesboy/mavonEditor/master/img/cn/cn-common.png')
+                }
+                /* var formdata = new FormData();
                 for (var _img in this.img_file) {
                     formdata.append(_img, this.img_file[_img]);
                     // _imglst.push([_img, this.img_file[_img]]);
@@ -184,11 +184,9 @@
                     headers: {'Content-Type': 'multipart/form-data'},
                 }).then((res) => {
                     console.log(res);
-                })
-                // console.log(_imglst);
-                // console.log(formdata);
+                }) */
             },
-            $imgAdd(pos, $file){
+            $imgAdd(pos, $file) {
                 console.log('imgAdd', pos, $file);
                 this.img_file[pos] = $file;
                 // console.log(this.$refs.md.$refs.toolbar_left.$imgDelByFilename(pos));

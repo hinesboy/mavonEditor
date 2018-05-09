@@ -9,7 +9,7 @@
  */
 const mavonEditor = require('./mavon-editor.vue');
 const VueMavonEditor = {
-    markdownIt: mavonEditor.mixins[0].data().s_markdown,
+    markdownIt: mavonEditor.mixins[0].data().markdownIt,
     mavonEditor: mavonEditor,
     install: function(Vue) {
         Vue.component('mavon-editor', mavonEditor);

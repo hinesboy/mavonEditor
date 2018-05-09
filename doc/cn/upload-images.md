@@ -64,14 +64,14 @@ exports default {
                 headers: { 'Content-Type': 'multipart/form-data' },
             }).then((res) => {
                 /**
-                 * 例如：返回数据为 [[pos: url], [pos, url]...]
+                 * 例如：返回数据为 res = [[pos, url], [pos, url]...]
                  * pos 为原图片标志（0）
                  * url 为上传后图片的url地址
                  */
                  // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
-                for (var i in res) {
+                for (var img in res) {
                     // $vm.$img2Url 详情见本页末尾
-                    $vm.$img2Url(res[i].[0],res[i].[1]);
+                    $vm.$img2Url(img[0], img[1]);
                 }
             })
         },

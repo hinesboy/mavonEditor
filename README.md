@@ -132,10 +132,10 @@ exports default {
 | codeStyle | String |    code-github     | markdown样式： 默认github, [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js)   |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                |
 | navigation | Boolean |    false    |  默认展示目录  |
-| toolbars     | Object  |     如下例     | 工具栏                      |
 | ishljs       | Boolean |     true     |  代码高亮 |
 | imageFilter | function |     null     |  图片过滤函数，参数为一个`File Object`，要求返回一个`Boolean`, `true`表示文件合法，`false`表示文件不合法 |
 | imageClick | function |     null     |  图片点击事件，默认为预览，可覆盖 |
+| toolbars     | Object  |     如下例     | 工具栏                      |
 
 ```javascript
  /*
@@ -242,8 +242,23 @@ toolbars: {
 
 - [auto-textarea](https://github.com/hinesboy/auto-textarea)
 
-- [stylus](https://github.com/stylus/stylus)
 
+## Markdown 语法拓展
+
+- [emoji](https://github.com/markdown-it/markdown-it-emoji)
+- [subscript](https://github.com/markdown-it/markdown-it-sub)
+- [superscript](https://github.com/markdown-it/markdown-it-sup)
+- [container(https://github.com/markdown-it/markdown-it-container)
+- [definition list](https://github.com/markdown-it/markdown-it-deflist)
+- [abbreviation](https://github.com/markdown-it/markdown-it-abbr)
+- [footnote](https://github.com/markdown-it/markdown-it-footnote)
+- [insert](https://github.com/markdown-it/markdown-it-ins)
+- [mark](https://github.com/markdown-it/markdown-it-mark)
+- [todo list](https://github.com/revin/markdown-it-task-lists)
+- [highlight](https://github.com/isagalaev/highlight.js)
+- [katex](https://github.com/Khan/KaTeX)
+- [images preview](https://github.com/CHENXCHEN/markdown-it-images-preview)
+- 可通过[获取markdown-it对象](./doc/cn/markdown.md)引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
 
 ## update(更新内容)
 

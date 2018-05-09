@@ -65,8 +65,7 @@
         <!-- 预览图片 -->
         <transition name="fade">
             <div @click="d_preview_imgsrc=null" class="v-note-img-wrapper" v-if="d_preview_imgsrc">
-                <i @click.stop.prevent="d_preview_imgsrc=null" class="fa fa-mavon-times" aria-hidden="true"></i>
-                <img @click.stop="" :src="d_preview_imgsrc" alt="none">
+                <img :src="d_preview_imgsrc" alt="none">
             </div>
         </transition>
         <!--阅读模式-->
@@ -304,6 +303,9 @@
         beforeDestroy() {
             document.body.removeChild(this.$refs.help);
         },
+        getMarkdownIt() {
+            return this.mixins[0].data().markdownIt
+        },
         methods: {
             loadExternalLink(name, type, callback) {
                 if (typeof this.p_external_link[name] != 'function') {
@@ -376,7 +378,7 @@
                 // TODO 跳转到图片位置
             },
             $imgDel(file) {
-                this.s_markdown.image_del(file[0]);
+                this.markdownIt.image_del(file[0]);
                 // 删除所有markdown中的图片
                 let fileReg = file[2] ? file[2] : file[0]
                 let reg = new RegExp(`\\!\\[${file[1]._name}\\]\\(${fileReg}\\)`, "g")
@@ -393,7 +395,7 @@
                 }
                 this.__oFReader = new FileReader();
                 this.__oFReader.onload = function (oFREvent) {
-                    $vm.s_markdown.image_add(pos, oFREvent.target.result);
+                    $vm.markdownIt.image_add(pos, oFREvent.target.result);
                     $file.miniurl = oFREvent.target.result;
                     if (isinsert === true) {
                         // 去除特殊字符
@@ -418,9 +420,9 @@
             },
             $imgUpdateByUrl(pos, url) {
                 var $vm = this;
-                this.s_markdown.image_add(pos, url);
+                this.markdownIt.image_add(pos, url);
                 this.$nextTick(function () {
-                    $vm.d_render = this.s_markdown.render(this.d_value);
+                    $vm.d_render = this.markdownIt.render(this.d_value);
                 })
             },
             $imgAddByUrl(pos, url) {
@@ -436,6 +438,7 @@
                 var reg = eval(reg_str);
                 this.d_value = this.d_value.replace(reg, "$1(" + url + ")")
                 this.$refs.toolbar_left.$changeUrl(fileIndex, url)
+                this.iRender()
             },
             $imglst2Url(imglst) {
                 if (imglst instanceof Array) {

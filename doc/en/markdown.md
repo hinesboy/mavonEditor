@@ -13,6 +13,8 @@
 #### method 2: Local Registration
 ```javascript
   import {mavonEditor} from 'mavon-editor'
+  mavonEditor.getMarkdownIt()
+  or
   mavonEditor.mixins[0].data().s_markdown
 ```
 
@@ -20,7 +22,7 @@
 ```javascript
    <mavonEditor ref=md></mavonEditor>
    ...
-   this.refs.md.s_markdown
+   this.refs.md.markdownIt
 ```
 
 ### Use markdown-it object

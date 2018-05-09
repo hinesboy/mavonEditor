@@ -28,6 +28,8 @@ var footnote = require('markdown-it-footnote')
 var insert = require('markdown-it-ins')
 // mark
 var mark = require('markdown-it-mark')
+// taskLists
+var taskLists = require('markdown-it-task-lists')
 //
 var container = require('markdown-it-container')
 // add target="_blank" to all link
@@ -79,11 +81,12 @@ markdown.use(mihe, hljs_opts)
     .use(container)
     .use(miip)
     .use(katex)
+    .use(taskLists)
 
 export default {
     data() {
         return {
-            s_markdown: markdown,
+            markdownIt: markdown
         }
     },
     mounted() {

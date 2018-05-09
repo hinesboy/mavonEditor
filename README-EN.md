@@ -125,10 +125,10 @@ exports default {
 | codeStyle | String |    code-github     | markdown Style: default github, [option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js)  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
 | navigation | Boolean |    false    |  Show navigation  |
-| toolbars   | Object      |   As in the following example  | toolbars |
 | ishljs       | Boolean |     true     | highlight code switch |
 | imageFilter | Function |     null     | Image file filter Function, params is a `File Object`, you should return `Boolean` about the test result |
 | imageClick | function |     null     |  Image Click Function |
+| toolbars   | Object      |   As in the following example  | toolbars |
 
 ```javascript
  /*
@@ -233,7 +233,22 @@ toolbars: {
 
 - [auto-textarea](https://github.com/hinesboy/auto-textarea)
 
-- [stylus](https://github.com/stylus/stylus)
+## Syntax extensions
+
+- [emoji](https://github.com/markdown-it/markdown-it-emoji)
+- [subscript](https://github.com/markdown-it/markdown-it-sub)
+- [superscript](https://github.com/markdown-it/markdown-it-sup)
+- [container(https://github.com/markdown-it/markdown-it-container)
+- [definition list](https://github.com/markdown-it/markdown-it-deflist)
+- [abbreviation](https://github.com/markdown-it/markdown-it-abbr)
+- [footnote](https://github.com/markdown-it/markdown-it-footnote)
+- [insert](https://github.com/markdown-it/markdown-it-ins)
+- [mark](https://github.com/markdown-it/markdown-it-mark)
+- [todo list](https://github.com/revin/markdown-it-task-lists)
+- [highlight](https://github.com/isagalaev/highlight.js)
+- [katex](https://github.com/Khan/KaTeX)
+- [images preview](https://github.com/CHENXCHEN/markdown-it-images-preview)
+- 可通过获取[markdown-it](./doc/cn/markdown.md)对象引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
 
 ## Collaborators
 

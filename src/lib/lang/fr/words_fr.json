@@ -45,8 +45,11 @@
   "tl_upload": "Télécharger les images",
   "tl_upload_remove": "Supprimer",
   "tl_popup_link_title": "Ajouter un lien",
-  "tl_popup_link_text": "Texte du lien",
-  "tl_popup_link_addr": "Adresse de lien",
+  "tl_popup_link_text": "Description",
+  "tl_popup_link_addr": "Link",
+  "tl_popup_img_link_title": "Ajouter une image",
+  "tl_popup_img_link_text": "Description",
+  "tl_popup_img_link_addr": "Link",
   "tl_popup_link_sure": "sûr",
   "tl_popup_link_cancel": "Annuler"
 }

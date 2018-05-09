@@ -44,8 +44,11 @@
 	"tl_upload": "Upload de Imagens",
 	"tl_upload_remove": "Remover",
 	"tl_popup_link_title": "Adicionar Link",
-	"tl_popup_link_text": "Link Texto",
-	"tl_popup_link_addr": "Link Endereço",
+	"tl_popup_link_text": "Descrição",
+	"tl_popup_link_addr": "Link",
+	"tl_popup_img_link_title": "Adicionar fotos",
+	"tl_popup_img_link_text": "Descrição",
+	"tl_popup_img_link_addr": "Link",
 	"tl_popup_link_sure": "Confirmar",
 	"tl_popup_link_cancel": "Cancelar"
 }

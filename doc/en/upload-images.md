@@ -63,12 +63,12 @@ exports default {
                 headers: { 'Content-Type': 'multipart/form-data' },
             }).then((res) => {
                 /**
-                 * eg：res == [[pos: url], [pos, url]...]
+                 * eg：res = [[pos, url], [pos, url]...]
                  */
-                // step 2. replace url ![...](./0) -> ![...](url)
-                for (var i in res) {
+                // step 2. replace url ![...](0) -> ![...](url)
+                for (var img in res) {
                     // $vm.$img2Url. The details at the end of this page
-                    $vm.$img2Url(res[i].[0],res[i].[1]);
+                    $vm.$img2Url(img[0], img[1]);
                 }
             })
         },

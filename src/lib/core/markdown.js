@@ -47,6 +47,8 @@ var footnote = require('markdown-it-footnote')
 var insert = require('markdown-it-ins')
 // mark
 var mark = require('markdown-it-mark')
+// taskLists
+var taskLists = require('markdown-it-task-lists')
 //
 var container = require('markdown-it-container')
 // add target="_blank" to all link
@@ -70,6 +72,7 @@ markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
 var katex = require('markdown-it-katex-external');
 var miip = require('markdown-it-images-preview');
 markdown.use(emoji)
+    .use(taskLists)
     .use(sup)
     .use(sub)
     .use(container)

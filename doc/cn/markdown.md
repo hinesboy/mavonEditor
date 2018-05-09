@@ -13,14 +13,16 @@
 #### 方法2 通过局部引入的mavonEditor获取
 ```javascript
   import {mavonEditor} from 'mavon-editor'
-  mavonEditor.mixins[0].data().s_markdown
+  mavonEditor.getMarkdownIt()
+  或者
+  mavonEditor.mixins[0].data().markdownIt
 ```
 
 #### 方法3 通过mavonEditor的实例获取
 ```javascript
    <mavonEditor ref=md></mavonEditor>
    ...
-   this.refs.md.s_markdown
+   this.refs.md.markdownIt
 ```
 
 ### 使用markdown-it对象

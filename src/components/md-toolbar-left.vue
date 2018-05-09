@@ -109,12 +109,12 @@
                 <div class="add-image-link">
                     <i @click.stop.prevent="s_img_link_open = false" class="fa fa-mavon-times"
                        aria-hidden="true"></i>
-                    <h3 class="title">{{d_words.tl_popup_link_title}}</h3>
+                    <h3 class="title">{{link_type == 'link' ? d_words.tl_popup_link_title : d_words.tl_popup_img_link_title}}</h3>
                     <div class="link-text input-wrapper">
-                        <input ref="linkTextInput" type="text" v-model="link_text" :placeholder="d_words.tl_popup_link_text">
+                        <input ref="linkTextInput" type="text" v-model="link_text" :placeholder="link_type == 'link' ? d_words.tl_popup_link_text : d_words.tl_popup_img_link_text">
                     </div>
                     <div class="link-addr input-wrapper">
-                        <input type="text" v-model="link_addr" :placeholder="d_words.tl_popup_link_addr">
+                        <input type="text" v-model="link_addr" :placeholder="link_type == 'link' ? d_words.tl_popup_link_addr : d_words.tl_popup_img_link_addr">
                     </div>
                     <div class="op-btn cancel" @click.stop="s_img_link_open = false">{{d_words.tl_popup_link_cancel}}</div>
                     <div class="op-btn sure" @click.stop="$imgLinkAdd()">{{d_words.tl_popup_link_sure}}</div>

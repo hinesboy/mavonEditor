@@ -46,6 +46,9 @@
   "tl_popup_link_title": "Add Link",
   "tl_popup_link_text": "Link text",
   "tl_popup_link_addr": "Link address",
+  "tl_popup_img_link_title": "Add Image",
+  "tl_popup_img_link_text": "Image Text",
+  "tl_popup_img_link_addr": "Image Link",
   "tl_popup_link_sure": "Sure",
   "tl_popup_link_cancel": "Cancel"
 }

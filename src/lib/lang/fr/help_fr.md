@@ -68,6 +68,17 @@ ul
 ...
 ```
 ## Link
+
+## Todo List
+
+- [x] Équipe 1
+- [ ] Équipe 2
+
+```
+- [x] Équipe 1
+- [ ] Équipe 2
+```
+
 ```
 Text Link
 [Text](www.baidu.com)

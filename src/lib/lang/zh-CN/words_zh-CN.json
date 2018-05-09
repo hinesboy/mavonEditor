@@ -44,8 +44,11 @@
   "tl_upload": "上传图片",
   "tl_upload_remove": "删除",
   "tl_popup_link_title": "添加链接",
-  "tl_popup_link_text": "链接文本",
+  "tl_popup_link_text": "链接描述",
   "tl_popup_link_addr": "链接地址",
+  "tl_popup_img_link_title": "添加图片",
+  "tl_popup_img_link_text": "图片描述",
+  "tl_popup_img_link_addr": "图片链接",
   "tl_popup_link_sure": "确定",
   "tl_popup_link_cancel": "取消"
 }
