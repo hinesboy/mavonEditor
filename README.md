@@ -249,7 +249,7 @@ exports default {
 - [emoji](https://github.com/markdown-it/markdown-it-emoji)
 - [subscript](https://github.com/markdown-it/markdown-it-sub)
 - [superscript](https://github.com/markdown-it/markdown-it-sup)
-- [container(https://github.com/markdown-it/markdown-it-container)
+- [container](https://github.com/markdown-it/markdown-it-container)
 - [definition list](https://github.com/markdown-it/markdown-it-deflist)
 - [abbreviation](https://github.com/markdown-it/markdown-it-abbr)
 - [footnote](https://github.com/markdown-it/markdown-it-footnote)
