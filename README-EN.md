@@ -51,62 +51,7 @@ $ npm install mavon-editor --save
 > [more ways...](./doc/en/use.md)
 
 > [set markdown-it object...](./doc/en/markdown.md)
-#### Hightlight
 
-> If you do not need code highlighting, you need set ishljs to false
-
-Set ishljs = true
-```javascript
-    // default value is true
-    <mavon-editor :ishljs = "true"></mavon-editor>
-```
-For optimize the size of pack, since **v2.4.2**, the following files will default to using `cdnjs` outside the chain:
- + `highlight.js`
- + `github-markdown-css`
- + `katex`(**v2.4.7**)
-
-The language parsing files and code highlighting in Code Highlighting `highlight.js` will be loaded on demand.
-`github-markdown-css` and` katex` will load only when mounted.
-
-**Notice**:
-[Option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js) and [Supported language](./src/lib/core/hljs/lang.hljs.js) is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
-
-> [without cdn, Click here to local on-demand loading...](./doc/en/no-cnd.md)
-
-
-#### Upload images
-
-```javascript
-<template>
-    <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
-</template>
-exports default {
-    methods: {
-        // bind @imgAdd event
-        $imgAdd(pos, $file){
-            // step 1. upload image to server.
-           var formdata = new FormData();
-           formdata.append('image', $file);
-           axios({
-               url: 'server url',
-               method: 'post',
-               data: formdata,
-               headers: { 'Content-Type': 'multipart/form-data' },
-           }).then((url) => {
-               // step 2. replace url ![...](0) -> ![...](url)
-               $vm.$img2Url(pos, url);
-           })
-        }
-    }
-}
-```
-> [more info about upload images ...](./doc/en/upload-images.md)
-
-### Note
-
-- **Default size: min-height: 300px , min-width: 300px , Can be covered**
-- **z-index: 1500**
-- **Just for show html of md: toolbarsFlag: false , subfield: false, defaultOpen: "preview"**
 ## API
 
 ### props
@@ -192,6 +137,63 @@ toolbars: {
 | navigationToggle | Boolean: status , String: value   |  Navigation mode toggle callback event(boolean: nav status) |
 | imgAdd | String: filename, File: imgfile |  Add image file callback event(filename: write in origin md, File: File Object) |
 | imgDel | String: filename |  Delete image file callback event(filename: write in origin md) |
+
+#### Hightlight
+
+> If you do not need code highlighting, you need set ishljs to false
+
+Set ishljs = true
+```javascript
+    // default value is true
+    <mavon-editor :ishljs = "true"></mavon-editor>
+```
+For optimize the size of pack, since **v2.4.2**, the following files will default to using `cdnjs` outside the chain:
+ + `highlight.js`
+ + `github-markdown-css`
+ + `katex`(**v2.4.7**)
+
+The language parsing files and code highlighting in Code Highlighting `highlight.js` will be loaded on demand.
+`github-markdown-css` and` katex` will load only when mounted.
+
+**Notice**:
+[Option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js) and [Supported language](./src/lib/core/hljs/lang.hljs.js) is export from [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src)
+
+> [without cdn, Click here to local on-demand loading...](./doc/en/no-cnd.md)
+
+
+#### Upload images
+
+```javascript
+<template>
+    <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
+</template>
+exports default {
+    methods: {
+        // bind @imgAdd event
+        $imgAdd(pos, $file){
+            // step 1. upload image to server.
+           var formdata = new FormData();
+           formdata.append('image', $file);
+           axios({
+               url: 'server url',
+               method: 'post',
+               data: formdata,
+               headers: { 'Content-Type': 'multipart/form-data' },
+           }).then((url) => {
+               // step 2. replace url ![...](0) -> ![...](url)
+               $vm.$img2Url(pos, url);
+           })
+        }
+    }
+}
+```
+> [more info about upload images ...](./doc/en/upload-images.md)
+
+### Note
+
+- **Default size: min-height: 300px , min-width: 300px , Can be covered**
+- **z-index: 1500**
+- **Just for show html of md: toolbarsFlag: false , subfield: false, defaultOpen: "preview"**
 
 ### keyboard shortcuts
 

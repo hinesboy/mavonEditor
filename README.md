@@ -52,68 +52,6 @@ $ npm install mavon-editor --save
 
 > [如何获取并设置markdown-it对象...](./doc/cn/markdown.md)
 
-#### 代码高亮
-
-> 如不需要hightlight代码高亮显示，你应该设置ishljs为false
-
-开启代码高亮props
-```javascript
-    // ishljs默认为true
-    <mavon-editor :ishljs = "true"></mavon-editor>
-```
-
-为优化插件体积，从**v2.4.2**起以下文件将默认使用`cdnjs`外链:
- + `highlight.js`
- + `github-markdown-css`
- + `katex`(**v2.4.7**)
-
-代码高亮`highlight.js`中的语言解析文件和代码高亮样式将在使用时按需加载.
-`github-markdown-css`和`katex`仅会在`mounted`时加载
-
-**Notice**:
-[可选配色方案](./src/lib/core/hljs/lang.hljs.css.js) 和 [支持的语言](./src/lib/core/hljs/lang.hljs.js) 是从 [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src) 导出的
-
-> [不使用cdn，本地按需加载点击这里...](./doc/cn/no-cnd.md)
-
-#### 图片上传
-
-```javascript
-<template>
-    <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
-</template>
-exports default {
-    methods: {
-        // 绑定@imgAdd event
-        $imgAdd(pos, $file){
-            // 第一步.将图片上传到服务器.
-           var formdata = new FormData();
-           formdata.append('image', $file);
-           axios({
-               url: 'server url',
-               method: 'post',
-               data: formdata,
-               headers: { 'Content-Type': 'multipart/form-data' },
-           }).then((url) => {
-               // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
-               /**
-               * $vm 指为mavonEditor实例，可以通过如下两种方式获取
-               * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，`$vm`为`mavonEditor`
-               * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>，`$vm`为 `this.$refs.md`
-               */
-               $vm.$img2Url(pos, url);
-           })
-        }
-    }
-}
-```
-> [图片上传详情点击这里...](./doc/cn/upload-images.md)
-
-### 注
-
-- **默认大小样式为 min-height: 300px , min-width: 300px 可自行覆盖**
-- **基础z-index: 1500**
-- **仅用作展示可以设置props: toolbarsFlag: false , subfield: false, defaultOpen: "preview"**
-
 ## API 文档
 
 ### props
@@ -199,6 +137,69 @@ toolbars: {
 | navigationToggle | Boolean: status , String: value | 切换导航目录的回调事件(boolean: 导航开启状态)             |
 | imgAdd           | String: filename, File: imgfile | 图片文件添加回调事件(filename: 写在md中的文件名, File: File Object) |
 | imgDel           |        String: filename         | 图片文件删除回调事件(filename: 写在md中的文件名)          |
+
+#### 代码高亮
+
+> 如不需要hightlight代码高亮显示，你应该设置ishljs为false
+
+开启代码高亮props
+```javascript
+    // ishljs默认为true
+    <mavon-editor :ishljs = "true"></mavon-editor>
+```
+
+为优化插件体积，从**v2.4.2**起以下文件将默认使用`cdnjs`外链:
+ + `highlight.js`
+ + `github-markdown-css`
+ + `katex`(**v2.4.7**)
+
+代码高亮`highlight.js`中的语言解析文件和代码高亮样式将在使用时按需加载.
+`github-markdown-css`和`katex`仅会在`mounted`时加载
+
+**Notice**:
+[可选配色方案](./src/lib/core/hljs/lang.hljs.css.js) 和 [支持的语言](./src/lib/core/hljs/lang.hljs.js) 是从 [highlight.js/9.12.0](https://github.com/isagalaev/highlight.js/tree/master/src) 导出的
+
+> [不使用cdn，本地按需加载点击这里...](./doc/cn/no-cnd.md)
+
+#### 图片上传
+
+```javascript
+<template>
+    <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
+</template>
+exports default {
+    methods: {
+        // 绑定@imgAdd event
+        $imgAdd(pos, $file){
+            // 第一步.将图片上传到服务器.
+           var formdata = new FormData();
+           formdata.append('image', $file);
+           axios({
+               url: 'server url',
+               method: 'post',
+               data: formdata,
+               headers: { 'Content-Type': 'multipart/form-data' },
+           }).then((url) => {
+               // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+               /**
+               * $vm 指为mavonEditor实例，可以通过如下两种方式获取
+               * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，`$vm`为`mavonEditor`
+               * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>，`$vm`为 `this.$refs.md`
+               */
+               $vm.$img2Url(pos, url);
+           })
+        }
+    }
+}
+```
+> [图片上传详情点击这里...](./doc/cn/upload-images.md)
+
+### 注
+
+- **默认大小样式为 min-height: 300px , min-width: 300px 可自行覆盖**
+- **基础z-index: 1500**
+- **仅用作展示可以设置props: toolbarsFlag: false , subfield: false, defaultOpen: "preview"**
+
 
 ### 快捷键
 
