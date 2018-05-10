@@ -6,7 +6,7 @@
         <button :disabled="!editable" type="button" v-if="toolbars.italic" @click="$clicks('italic')"
                 class="op-icon fa fa-mavon-italic" aria-hidden="true"
                 :title="`${d_words.tl_italic} (ctrl+i)`"></button>
-        <div :class="{'selected': s_header_dropdown_open}" :disabled="!editable" type="button" v-if="toolbars.header" @mouseleave="$mouseleave_header_dropdown" @mouseenter="$mouseenter_header_dropdown"
+        <div :class="{'selected': s_header_dropdown_open}" :disabled="!editable"  v-if="toolbars.header" @mouseleave="$mouseleave_header_dropdown" @mouseenter="$mouseenter_header_dropdown"
                 class="op-icon fa fa-mavon-header dropdown dropdown-wrapper" aria-hidden="true"
                 :title="`${d_words.tl_header} (ctrl+h)`">
             <transition name="fade">
@@ -62,7 +62,7 @@
         <button :disabled="!editable" type="button" v-if="toolbars.link" @click.stop="$toggle_imgLinkAdd('link')"
                 class="op-icon fa fa-mavon-link" aria-hidden="true"
                 :title="`${d_words.tl_link} (ctrl+l)`"></button>
-        <div :disabled="!editable" :class="{'selected': s_img_dropdown_open}" type="button" v-if="toolbars.imagelink" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown"
+        <div :disabled="!editable" :class="{'selected': s_img_dropdown_open}"  v-if="toolbars.imagelink" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown"
                 class="op-icon fa fa-mavon-picture-o dropdown dropdown-wrapper"
                 aria-hidden="true">
             <transition name="fade">
