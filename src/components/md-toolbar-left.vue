@@ -62,7 +62,7 @@
         <button :disabled="!editable" type="button" v-if="toolbars.link" @click.stop="$toggle_imgLinkAdd('link')"
                 class="op-icon fa fa-mavon-link" aria-hidden="true"
                 :title="`${d_words.tl_link} (ctrl+l)`"></button>
-        <div :disabled="!editable" :class="{'selected': s_img_dropdown_open}" type="button" v-if="toolbars.imagelink" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown"
+        <div :disabled="!editable" :class="{'selected': s_img_dropdown_open}"  v-if="toolbars.imagelink" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown"
                 class="op-icon fa fa-mavon-picture-o dropdown dropdown-wrapper"
                 aria-hidden="true">
             <transition name="fade">
