@@ -6,7 +6,7 @@
         <button :disabled="!editable" type="button" v-if="toolbars.italic" @click="$clicks('italic')"
                 class="op-icon fa fa-mavon-italic" aria-hidden="true"
                 :title="`${d_words.tl_italic} (ctrl+i)`"></button>
-        <div :class="{'selected': s_header_dropdown_open}" :disabled="!editable" type="button" v-if="toolbars.header" @mouseleave="$mouseleave_header_dropdown" @mouseenter="$mouseenter_header_dropdown"
+        <button :class="{'selected': s_header_dropdown_open}" :disabled="!editable" type="button" v-if="toolbars.header" @mouseleave="$mouseleave_header_dropdown" @mouseenter="$mouseenter_header_dropdown"
                 class="op-icon fa fa-mavon-header dropdown dropdown-wrapper" aria-hidden="true"
                 :title="`${d_words.tl_header} (ctrl+h)`">
             <transition name="fade">
@@ -19,7 +19,7 @@
                     <div title="###### " class="dropdown-item" @click.stop="$click_header('header6')"><span>{{d_words.tl_header_six}}</span></div>
                 </div>
             </transition>
-        </div>
+        </button>
         <span v-if="toolbars.header || toolbars.italic || toolbars.bold" class="op-icon-divider"></span>
         <button :disabled="!editable" type="button" v-if="toolbars.underline" @click="$clicks('underline')"
                 class="op-icon fa fa-mavon-underline"
@@ -62,7 +62,7 @@
         <button :disabled="!editable" type="button" v-if="toolbars.link" @click.stop="$toggle_imgLinkAdd('link')"
                 class="op-icon fa fa-mavon-link" aria-hidden="true"
                 :title="`${d_words.tl_link} (ctrl+l)`"></button>
-        <div :disabled="!editable" :class="{'selected': s_img_dropdown_open}" type="button" v-if="toolbars.imagelink" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown"
+        <button :disabled="!editable" :class="{'selected': s_img_dropdown_open}" type="button" v-if="toolbars.imagelink" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown"
                 class="op-icon fa fa-mavon-picture-o dropdown dropdown-wrapper"
                 aria-hidden="true">
             <transition name="fade">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </transition>
-        </div>
+        </button>
         <button :disabled="!editable" type="button" v-if="toolbars.code" @click="$clicks('code')"
                 class="op-icon fa fa-mavon-code" aria-hidden="true"
                 :title="`${d_words.tl_code} (ctrl+alt+c)`"></button>
