@@ -1,4 +1,5 @@
 # 更新日志
+- **2.6.4** [issue #248](https://github.com/hinesboy/mavonEditor/pull/48)(18.6.1)
 - **2.6.3** [issue #231](https://github.com/hinesboy/mavonEditor/pull/231)(18.5.10)
 - **2.6.2**  (18.5.9)
     - 修改添加链接与添加图片的弹出框文字描述

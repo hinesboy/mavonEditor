@@ -212,7 +212,7 @@
             $imgDelByFilename(filename) {
                 var pos = 0;
                 while (this.img_file.length > pos) {
-                    if (this.img_file[pos][0] == filename) {
+                    if (this.img_file[pos][0] == filename || this.img_file[pos][2] == filename) {
                         this.$imgDel(pos);
                         return true;
                     }
@@ -225,6 +225,7 @@
                     if (this.img_file[i][0] == filename) return false;
                 this.img_file[0][0] = filename;
                 this.img_file[0][1] = $file;
+                this.img_file[0][2] = filename;
                 this.img_file.unshift(['./' + (this.num), null])
                 this.$emit('imgAdd', this.img_file[1][0], $file, false);
                 return true;
@@ -239,7 +240,7 @@
             },
             $imgUpdateByFilename(filename, $file) {
                 for (var i = 0; i < this.img_file.length; i++) {
-                    if (this.img_file[i][0] == filename) {
+                    if (this.img_file[i][0] == filename || this.img_file[i][2] == filename) {
                         this.img_file[i][1] = $file;
                         this.$emit('imgAdd', filename, $file, false);
                         return true;
