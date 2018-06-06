@@ -35,7 +35,19 @@ const KEY_CODE = {
     R: 82,
     DELETE: 8,
     TAB: 9,
-    ENTER: 13
+    ENTER: 13,
+    ONE: 97,
+    TWO: 98,
+    THREE: 99,
+    FOUR: 100,
+    FIVE: 101,
+    SIX: 102,
+    _ONE: 49,
+    _TWO: 50,
+    _THREE: 51,
+    _FOUR: 52,
+    _FIVE: 53,
+    _SIX: 54
 };
 export const keydownListen = ($vm) => {
     $vm.$el.addEventListener('keydown', function (e) {
@@ -183,6 +195,78 @@ export const keydownListen = ($vm) => {
                     // delete
                     e.preventDefault()
                     $vm.toolbar_left_click('trash')
+                    break;
+                }
+                case KEY_CODE.ONE: {
+                    // ONE
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header1')
+                    break;
+                }
+                case KEY_CODE.TWO: {
+                    // TWO
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header2')
+                    break;
+                }
+                case KEY_CODE.THREE: {
+                    // THREE
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header3')
+                    break;
+                }
+                case KEY_CODE.FOUR: {
+                    // FOUR
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header4')
+                    break;
+                }
+                case KEY_CODE.FIVE: {
+                    // FIVE
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header5')
+                    break;
+                }
+                case KEY_CODE.SIX: {
+                    // SIX
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header6')
+                    break;
+                }
+                case KEY_CODE._ONE: {
+                    // ONE
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header1')
+                    break;
+                }
+                case KEY_CODE._TWO: {
+                    // TWO
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header2')
+                    break;
+                }
+                case KEY_CODE._THREE: {
+                    // THREE
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header3')
+                    break;
+                }
+                case KEY_CODE._FOUR: {
+                    // FOUR
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header4')
+                    break;
+                }
+                case KEY_CODE._FIVE: {
+                    // FIVE
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header5')
+                    break;
+                }
+                case KEY_CODE._SIX: {
+                    // SIX
+                    e.preventDefault()
+                    $vm.toolbar_left_click('header6')
                     break;
                 }
             }

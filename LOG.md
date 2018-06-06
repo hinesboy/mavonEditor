@@ -1,4 +1,10 @@
 # 更新日志
+- **2.6.5** 修复issues(18.6.6)
+    - [issue #257](https://github.com/hinesboy/mavonEditor/pull/257)
+    - [issue #256](https://github.com/hinesboy/mavonEditor/pull/256)
+    - [issue #255](https://github.com/hinesboy/mavonEditor/pull/255)
+    - [issue #253](https://github.com/hinesboy/mavonEditor/pull/253)
+    - [issue #246](https://github.com/hinesboy/mavonEditor/pull/246)
 - **2.6.4** [issue #248](https://github.com/hinesboy/mavonEditor/pull/48)(18.6.1)
 - **2.6.3** [issue #231](https://github.com/hinesboy/mavonEditor/pull/231)(18.5.10)
 - **2.6.2**  (18.5.9)
