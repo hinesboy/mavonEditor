@@ -69,16 +69,16 @@
                 <div  class="op-image popup-dropdown" v-show="s_img_dropdown_open" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown">
                     <div  class="dropdown-item" @click.stop="$toggle_imgLinkAdd('imagelink')"><span>{{d_words.tl_image}}</span></div>
                     <div class="dropdown-item" style="overflow: hidden">
-                        <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" :key="img_file[0][0]" multiple="multiple"/>{{d_words.tl_upload}}
+                        <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" multiple="multiple"/>{{d_words.tl_upload}}
                     </div>
 
-                    <div class="dropdown-item dropdown-images" :title="item[1].name" v-if="index > 0" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
-                        <span>{{item[1].name}}</span>
+                    <div class="dropdown-item dropdown-images" :title="item[0].name" v-if="index >= 0" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
+                        <span>{{item[0].name}}</span>
                         <button slot="right" type="button" @click.stop="$imgDel(index)"
                                 class="op-icon fa fa-mavon-trash-o" aria-hidden="true"
                                 :title="d_words.tl_upload_remove"></button>
                         <!-- 缩略图展示 -->
-                        <img class = "image-show" :src="item[1].miniurl" alt="none">
+                        <img class = "image-show" :src="item[0].miniurl" alt="none">
                     </div>
                 </div>
             </transition>
@@ -180,14 +180,15 @@
                 this.$emit('imgTouch', this.img_file[pos]);
             },
             $changeUrl(index,url) {
-                this.img_file[index][2] = url;
+                this.img_file[index][1] = url;
             },
             $imgFileAdd($file) {
-                this.img_file[0][0] = this.num;
-                this.img_file[0][1] = $file;
-                this.img_file.unshift([(this.num + 1), null]);
-                this.num = this.num + 1;
-                this.$emit('imgAdd', this.img_file[1][0], $file);
+                // this.img_file[0][0] = this.num;
+                // this.img_file[0][1] = $file;
+                // this.img_file.unshift([(this.num + 1), null]);
+                // this.num = this.num + 1;
+                this.img_file.push([$file,null])
+                this.$emit('imgAdd', this.img_file.length-1, $file);
                 this.s_img_dropdown_open = false;
             },
             $imgFilesAdd($files) {
