@@ -72,7 +72,7 @@
                         <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" multiple="multiple"/>{{d_words.tl_upload}}
                     </div>
 
-                    <div class="dropdown-item dropdown-images" :title="item[0].name" v-if="index >= 0" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
+                    <div class="dropdown-item dropdown-images" :title="item[0].name" v-if="item" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
                         <span>{{item[0].name}}</span>
                         <button slot="right" type="button" @click.stop="$imgDel(index)"
                                 class="op-icon fa fa-mavon-trash-o" aria-hidden="true"
@@ -187,8 +187,9 @@
                 // this.img_file[0][1] = $file;
                 // this.img_file.unshift([(this.num + 1), null]);
                 // this.num = this.num + 1;
-                this.img_file.push([$file,,this.img_file.length])
-                this.$emit('imgAdd', this.img_file.length-1, $file);
+                this.img_file.push([$file,this.num])
+                this.$emit('imgAdd', this.num, $file);
+                this.num = this.num + 1;
                 this.s_img_dropdown_open = false;
             },
             $imgFilesAdd($files) {
@@ -207,7 +208,9 @@
             },
             $imgDel(pos) {
                 this.$emit('imgDel', this.img_file[pos]);
-                this.img_file.splice(pos, 1);
+               // this.img_file.splice(pos, 1);
+                               delete this.img_file[pos];
+
                 this.s_img_dropdown_open = false;
             },
             isEqualName(filename, pos) {

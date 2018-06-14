@@ -378,11 +378,11 @@
                 // TODO 跳转到图片位置
             },
             $imgDel(file) {
-                this.markdownIt.image_del(file[1]);
+                this.markdownIt.image_del(file[0]);
                 // 删除所有markdown中的图片
                 let fileReg = file[1]
                 let reg = new RegExp(`\\!\\[${file[0]._name}\\]\\(${fileReg}\\)`, "g")
-                console.log("reg----",reg)
+
                 this.d_value = this.d_value.replace(reg, '');
                 this.iRender();
                 this.$emit('imgDel', file);
