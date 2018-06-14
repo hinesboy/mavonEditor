@@ -17,8 +17,7 @@
  */
 export const insertTextAtCaret = (obj, {prefix, subfix, str, type}, $vm) => {
     obj.focus()
-    if (document.selection) {
-    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -52,8 +51,7 @@ export const insertTextAtCaret = (obj, {prefix, subfix, str, type}, $vm) => {
 // 插入有序列表
 export const insertOl = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if (document.selection) {
-    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -88,8 +86,7 @@ export const insertOl = ($vm) => {
 // 删除行
 export const removeLine = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if (document.selection) {
-    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -118,8 +115,7 @@ export const removeLine = ($vm) => {
 // 插入无序列表
 export const insertUl = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if (document.selection) {
-    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -151,8 +147,7 @@ export const insertUl = ($vm) => {
 // 插入tab
 export const insertTab = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if (document.selection) {
-    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -179,8 +174,7 @@ export const insertTab = ($vm) => {
 // shift + tab
 export const unInsertTab = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if (document.selection) {
-    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -201,8 +195,7 @@ export const unInsertTab = ($vm) => {
 // 插入enter
 export const insertEnter = ($vm, event) => {
     let obj = $vm.getTextareaDom()
-    if (document.selection) {
-    } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
