@@ -385,7 +385,7 @@
                 console.log("reg----",reg)
                 this.d_value = this.d_value.replace(reg, '');
                 this.iRender();
-                this.$emit('imgDel', fileReg);
+                this.$emit('imgDel', file);
             },
             $imgAdd(pos, $file, isinsert) {
                 if (isinsert === undefined) isinsert = true;
