@@ -187,7 +187,7 @@
                 // this.img_file[0][1] = $file;
                 // this.img_file.unshift([(this.num + 1), null]);
                 // this.num = this.num + 1;
-                this.img_file.push([$file,null])
+                this.img_file.push([$file,,this.img_file.length])
                 this.$emit('imgAdd', this.img_file.length-1, $file);
                 this.s_img_dropdown_open = false;
             },
