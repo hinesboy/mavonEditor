@@ -265,6 +265,7 @@ exports default {
 - [highlight](https://github.com/isagalaev/highlight.js)
 - [katex](https://github.com/Khan/KaTeX)
 - [images preview](https://github.com/CHENXCHEN/markdown-it-images-preview)
+- [toc](https://github.com/tylerlong/markdown-it-toc)
 - 可通过[获取markdown-it对象](./doc/cn/markdown.md)引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
 
 ## update(更新内容)
