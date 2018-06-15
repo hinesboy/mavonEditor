@@ -1,4 +1,7 @@
 # 更新日志
+- **2.6.6** PR合并(18.6.15)
+    - [pr #266](https://github.com/hinesboy/mavonEditor/pull/266)
+    - [pr #265](https://github.com/hinesboy/mavonEditor/pull/265)
 - **2.6.5** 修复issues(18.6.6)
     - [issue #257](https://github.com/hinesboy/mavonEditor/pull/257)
     - [issue #256](https://github.com/hinesboy/mavonEditor/pull/256)
