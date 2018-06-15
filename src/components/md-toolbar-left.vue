@@ -72,7 +72,7 @@
                         <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" multiple="multiple"/>{{d_words.tl_upload}}
                     </div>
 
-                    <div class="dropdown-item dropdown-images" :title="item[0].name" v-if="item" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
+                    <div class="dropdown-item dropdown-images" :title="item[0].name" v-if="item && item[0]" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
                         <span>{{item[0].name}}</span>
                         <button slot="right" type="button" @click.stop="$imgDel(index)"
                                 class="op-icon fa fa-mavon-trash-o" aria-hidden="true"
