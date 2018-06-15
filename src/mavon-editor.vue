@@ -380,11 +380,12 @@
             $imgDel(file) {
                 this.markdownIt.image_del(file[0]);
                 // 删除所有markdown中的图片
-                let fileReg = file[2] ? file[2] : file[0]
-                let reg = new RegExp(`\\!\\[${file[1]._name}\\]\\(${fileReg}\\)`, "g")
+                let fileReg = file[1]
+                let reg = new RegExp(`\\!\\[${file[0]._name}\\]\\(${fileReg}\\)`, "g")
+
                 this.d_value = this.d_value.replace(reg, '');
                 this.iRender();
-                this.$emit('imgDel', fileReg);
+                this.$emit('imgDel', file);
             },
             $imgAdd(pos, $file, isinsert) {
                 if (isinsert === undefined) isinsert = true;
