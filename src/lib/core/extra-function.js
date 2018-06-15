@@ -28,7 +28,7 @@ export const insertTextAtCaret = (obj, {prefix, subfix, str, type}, $vm) => {
             obj.selectionEnd = startPos + (str.length + prefix.length);
         } else {
             // 存在选中区域
-            if (tmpStr.substring(startPos - prefix.length, startPos) === prefix && tmpStr.substring(endPos, endPos + subfix.length) === subfix) {
+            if (tmpStr.substring(startPos - prefix.length, startPos) === prefix && tmpStr.substring(endPos, endPos + subfix.length) === subfix && judgeItalicAndBold(prefix, subfix, tmpStr, startPos, endPos)) {
                 // 取消
                 obj.value = tmpStr.substring(0, startPos - prefix.length) + tmpStr.substring(startPos, endPos) + tmpStr.substring(endPos + subfix.length, tmpStr.length);
                 obj.selectionStart = startPos - prefix.length;
@@ -47,6 +47,15 @@ export const insertTextAtCaret = (obj, {prefix, subfix, str, type}, $vm) => {
     // 触发change事件
     $vm.d_value = obj.value
     obj.focus()
+}
+// 处理粗体与斜体冲突问题
+function judgeItalicAndBold(prefix, subfix, tmpStr, startPos, endPos) {
+    if (prefix === '*' && subfix ===  '*') {
+        if (tmpStr.substring(startPos - 2, startPos - 1) === '*' && tmpStr.substring(endPos + 1, endPos + 2) === '*') {
+            return false
+        }
+    }
+    return true
 }
 // 插入有序列表
 export const insertOl = ($vm) => {

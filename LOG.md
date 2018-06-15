@@ -1,4 +1,6 @@
 # 更新日志
+- **2.6.7** 处理粗体+斜体不生效问题(18.6.15)
+    - [issue #264](https://github.com/hinesboy/mavonEditor/pull/264)
 - **2.6.6** PR合并(18.6.15)
     - [pr #266](https://github.com/hinesboy/mavonEditor/pull/266)
     - [pr #265](https://github.com/hinesboy/mavonEditor/pull/265)
