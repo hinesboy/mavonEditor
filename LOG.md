@@ -1,4 +1,7 @@
 # 更新日志
+- **2.6.12** 修复issues(18.7.3)
+    - [issue #276](https://github.com/hinesboy/mavonEditor/pull/276)
+    - [issue #275](https://github.com/hinesboy/mavonEditor/pull/275)
 - **2.6.11** [pr #274](https://github.com/hinesboy/mavonEditor/pull/274)(18.7.1)
 - **2.6.9** 增加toc插件(18.6.15)
 - **2.6.7** 处理粗体+斜体不生效问题(18.6.15)

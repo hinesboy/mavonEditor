@@ -224,7 +224,6 @@
             $imgDelByFilename(filename) {
                 var pos = 0;
                 while (this.img_file.length > pos) {
-                    console.log('=============')
                     console.log(this.img_file[pos])
                     if (this.img_file[pos][0] == filename || this.isEqualName(filename, pos)) {
                         this.$imgDel(pos);
@@ -264,8 +263,10 @@
             },
             // 工具栏功能图标click-----------------
             $mouseenter_img_dropdown() {
-                clearTimeout(this.img_timer)
-                this.s_img_dropdown_open = true
+                if (this.editable) {
+                    clearTimeout(this.img_timer)
+                    this.s_img_dropdown_open = true
+                }
             },
             $mouseleave_img_dropdown() {
                 let vm = this
@@ -274,8 +275,10 @@
                 },200)
             },
             $mouseenter_header_dropdown() {
-                clearTimeout(this.header_timer)
-                this.s_header_dropdown_open = true
+                if (this.editable) {
+                    clearTimeout(this.header_timer)
+                    this.s_header_dropdown_open = true
+                }
             },
             $mouseleave_header_dropdown() {
                 let vm = this
@@ -285,7 +288,9 @@
             },
             $clicks(_type) {
                 // 让父节点来绑定事件并
-                this.$emit('toolbar_left_click', _type);
+                if (this.editable) {
+                    this.$emit('toolbar_left_click', _type);
+                }
             },
             $click_header(_type) {
                 // 让父节点来绑定事件并

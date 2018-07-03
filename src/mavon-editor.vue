@@ -283,6 +283,8 @@
             keydownListen(this);
             // 图片预览事件监听
             ImagePreviewListener(this);
+            // 设置默认焦点
+            this.getTextareaDom().focus();
             // fullscreen事件
             fullscreenchange(this);
             this.d_value = this.value;
