@@ -24,16 +24,19 @@ function $toolbar_left_undo_click($vm) {
             $vm.getTextareaDom().selectionEnd = start
         })
     }
+    $vm.getTextareaDom().focus()
 }
 // redo
 function $toolbar_left_redo_click($vm) {
     if ($vm.d_history_index < $vm.d_history.length - 1) {
         $vm.d_history_index++
     }
+    $vm.getTextareaDom().focus()
     // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
 }
 function $toolbar_left_trash_click($vm) {
     $vm.d_value = ''
+    $vm.getTextareaDom().focus()
     // $vm.$refs.vNoteDivEdit.innerHTML = $vm.s_markdown.render($vm.d_value)
 }
 function $toolbar_left_save_click($vm) {
