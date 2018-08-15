@@ -306,7 +306,7 @@
             document.body.removeChild(this.$refs.help);
         },
         getMarkdownIt() {
-            return this.mixins[0].data().markdownIt
+            return this.markdownIt;
         },
         methods: {
             loadExternalLink(name, type, callback) {
