@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo true",
     "dev": "webpack-dev-server --open --progress --config webpack/webpack.dev.js",
-    "build": "webpack --progress --config webpack/webpack.build.js"
+    "build": "webpack --progress --config webpack/webpack.build.js",
+    "lint": "eslint --fix --ext .js,.vue src/"
   },
   "repository": {
     "type": "git",
