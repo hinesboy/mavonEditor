@@ -1,5 +1,6 @@
 <template>
       <div class="v-right-item">
+        <slot name="right-toolbar-before" />
         <button type="button" v-if="toolbars.navigation" @click="$clicks('navigation')" v-show="!s_navigation"
                 class="op-icon fa fa-mavon-bars"
                 aria-hidden="true" :title="`${d_words.tl_navigation_on} (F8)`"></button>
@@ -34,6 +35,7 @@
         <button type="button"  v-if="toolbars.help" @click="$clicks('help')" class="op-icon fa fa-mavon-question-circle"
                  style="font-size: 17px;padding: 5px 6px 5px 3px"
                  :title="d_words.tl_help" aria-hidden="true"></button>
+        <slot name="right-toolbar-after" />
       </div>
 </template>
 <script type="text/ecmascript-6">

@@ -1,5 +1,6 @@
 <template>
     <div class="v-left-item">
+        <slot name="left-toolbar-before" />
         <button :disabled="!editable" type="button" v-if="toolbars.bold" @click="$clicks('bold')"
                 class="op-icon fa fa-mavon-bold" aria-hidden="true"
                 :title="`${d_words.tl_bold} (ctrl+b)`"></button>
@@ -102,6 +103,7 @@
         <button type="button" v-if="toolbars.save" @click="$clicks('save')" class="op-icon fa fa-mavon-floppy-o"
                 aria-hidden="true"
                 :title="`${d_words.tl_save} (ctrl+s)`"></button>
+        <slot name="left-toolbar-after" />
 
         <!-- 添加image链接 -->
         <transition name="fade">

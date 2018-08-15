@@ -27,7 +27,21 @@
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :external_link="external_link"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"
-                          :imageFilter="image_filter"></mavon-editor>
+                          :imageFilter="image_filter">
+                <!-- <template slot="left-toolbar-before">
+                    左工具栏前
+                </template>
+                <template slot="left-toolbar-after">
+                    左工具栏后
+                </template>
+
+                <template slot="right-toolbar-before">
+                    右工具栏前
+                </template>
+                <template slot="right-toolbar-after">
+                    右工具栏后
+                </template> -->          
+            </mavon-editor>
             <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left"
                 aria-hidden="true" title="自定义"></button>
         </div>

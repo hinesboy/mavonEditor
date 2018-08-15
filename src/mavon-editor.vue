@@ -4,13 +4,19 @@
         <div class="v-note-op" v-show="toolbarsFlag" :class="{'shadow': boxShadow}">
             <v-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words"
                                @toolbar_left_click="toolbar_left_click" @toolbar_left_addlink="toolbar_left_addlink" :toolbars="toolbars"
-                               @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch" :image_filter="imageFilter"/>
+                               @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch" :image_filter="imageFilter">
+                <slot name="left-toolbar-before" slot="left-toolbar-before" />
+                <slot name="left-toolbar-after" slot="left-toolbar-after" />
+            </v-md-toolbar-left>
             <v-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click"
                                 :toolbars="toolbars"
                                 :s_subfield="s_subfield"
                                 :s_preview_switch="s_preview_switch" :s_fullScreen="s_fullScreen"
                                 :s_html_code="s_html_code"
-                                :s_navigation="s_navigation"/>
+                                :s_navigation="s_navigation">
+                <slot name="right-toolbar-before" slot="right-toolbar-before" />
+                <slot name="right-toolbar-after" slot="right-toolbar-after" />
+            </v-md-toolbar-right>
         </div>
         <!--编辑展示区域-->
         <div class="v-note-panel" :class="{'shadow': boxShadow}">
