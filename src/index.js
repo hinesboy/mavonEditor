@@ -7,12 +7,10 @@
  * mavonEditor
  * @author hinesboy
  */
-const MavonEditor = require('./mavon-editor.vue');
-const { defaultMarkdownIt } = require('./lib/mixins/markdown');
+const mavonEditor = require('./mavon-editor.vue');
 const VueMavonEditor = {
     markdownIt: mavonEditor.mixins[0].data().markdownIt,
-    MavonEditor,
-    defaultMarkdownIt,
+    mavonEditor: mavonEditor,
     LeftToolbar: require('./components/md-toolbar-left'),
     RightToolbar: require('./components/md-toolbar-right'),
     install: function(Vue) {

@@ -314,7 +314,7 @@ export default {
         document.body.removeChild(this.$refs.help);
     },
     getMarkdownIt() {
-        return this.markdownIt;
+        return this.mixins[0].data().markdownIt
     },
     methods: {
         loadExternalLink(name, type, callback) {

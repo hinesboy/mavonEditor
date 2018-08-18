@@ -86,12 +86,10 @@ markdown.use(mihe, hljs_opts)
     .use(taskLists)
     .use(toc)
 
-export const defaultMarkdownIt = markdown;
 export default {
-    props: {
-        markdownIt: {
-            type: Object,
-            default: () => defaultMarkdownIt
+    data() {
+        return {
+            markdownIt: markdown
         }
     },
     mounted() {
@@ -103,7 +101,7 @@ export default {
             var $vm = this;
             missLangs = {};
             needLangs = [];
-            var res = $vm.markdownIt.render(src);
+            var res = markdown.render(src);
             if (this.ishljs) {
                 if (needLangs.length > 0) {
                     $vm.$_render(src, func, res);
@@ -119,7 +117,7 @@ export default {
                 loadScript(url, function() {
                     deal = deal + 1;
                     if (deal === needLangs.length) {
-                        res = $vm.markdownIt.render(src);
+                        res = markdown.render(src);
                         func(res);
                     }
                 })
