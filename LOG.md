@@ -1,4 +1,7 @@
 # 更新日志
+- **2.6.16** 合并Pull Request(18.8.18)
+    - [pr #303](https://github.com/hinesboy/mavonEditor/pull/303)
+    - [pr #302](https://github.com/hinesboy/mavonEditor/pull/302)
 - **2.6.12** 修复issues(18.7.3)
     - [issue #276](https://github.com/hinesboy/mavonEditor/pull/276)
     - [issue #275](https://github.com/hinesboy/mavonEditor/pull/275)
