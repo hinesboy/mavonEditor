@@ -1,5 +1,6 @@
 <template>
     <div class="v-left-item">
+        <slot name="left-toolbar-before" />
         <button :disabled="!editable" type="button" v-if="toolbars.bold" @click="$clicks('bold')"
                 class="op-icon fa fa-mavon-bold" aria-hidden="true"
                 :title="`${d_words.tl_bold} (ctrl+b)`"></button>
@@ -72,7 +73,14 @@
                         <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" multiple="multiple"/>{{d_words.tl_upload}}
                     </div>
 
-                    <div class="dropdown-item dropdown-images" :title="item[0].name" v-if="item && item[0]" v-for="(item, index) in img_file" @click.stop="$imgFileListClick(index)">
+                    <div
+                        v-for="(item, index) in img_file"
+                        v-if="item && item[0]"
+                        class="dropdown-item dropdown-images"
+                        :title="item[0].name"
+                        :key="index"
+                        @click.stop="$imgFileListClick(index)"
+                    >
                         <span>{{item[0].name}}</span>
                         <button slot="right" type="button" @click.stop="$imgDel(index)"
                                 class="op-icon fa fa-mavon-trash-o" aria-hidden="true"
@@ -102,6 +110,7 @@
         <button type="button" v-if="toolbars.save" @click="$clicks('save')" class="op-icon fa fa-mavon-floppy-o"
                 aria-hidden="true"
                 :title="`${d_words.tl_save} (ctrl+s)`"></button>
+        <slot name="left-toolbar-after" />
 
         <!-- 添加image链接 -->
         <transition name="fade">
@@ -143,7 +152,7 @@
             },
             image_filter: {
                 type: Function,
-                default: null,
+                default: null
             }
         },
         data() {
@@ -194,11 +203,11 @@
             },
             $imgFilesAdd($files) {
                 // valid means if the image_filter exist.
-                let valid = (typeof this.image_filter == 'function');
-                for(let i = 0;i < $files.length;i++) {
-                    if(valid && this.image_filter($files[i]) === true) {
+                let valid = (typeof this.image_filter === 'function');
+                for (let i = 0; i < $files.length; i++) {
+                    if (valid && this.image_filter($files[i]) === true) {
                         this.$imgFileAdd($files[i]);
-                    } else if(!valid && $files[i].type.match(/^image\//i)) {
+                    } else if (!valid && $files[i].type.match(/^image\//i)) {
                         this.$imgFileAdd($files[i]);
                     }
                 }
@@ -235,7 +244,7 @@
             },
             $imgAddByFilename(filename, $file) {
                 for (var i = 0; i < this.img_file.length; i++)
-                    if (this.img_file[i][0] == filename) return false;
+                    { if (this.img_file[i][0] == filename) return false; }
                 this.img_file[0][0] = filename;
                 this.img_file[0][1] = $file;
                 this.img_file[0][2] = filename;
@@ -245,7 +254,7 @@
             },
             $imgAddByUrl(filename, $url) {
                 for (var i = 0; i < this.img_file.length; i++)
-                    if (this.img_file[i][0] == filename) return false;
+                    { if (this.img_file[i][0] == filename) return false; }
                 this.img_file[0][0] = filename;
                 this.img_file[0][1] = $url;
                 this.img_file.unshift(['./' + (this.num), null])

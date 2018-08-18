@@ -27,7 +27,21 @@
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :external_link="external_link"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"
-                          :imageFilter="image_filter"></mavon-editor>
+                          :imageFilter="image_filter">
+                <!-- <template slot="left-toolbar-before">
+                    左工具栏前
+                </template>
+                <template slot="left-toolbar-after">
+                    左工具栏后
+                </template>
+
+                <template slot="right-toolbar-before">
+                    右工具栏前
+                </template>
+                <template slot="right-toolbar-after">
+                    右工具栏后
+                </template> -->          
+            </mavon-editor>
             <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left"
                 aria-hidden="true" title="自定义"></button>
         </div>
@@ -75,7 +89,7 @@
                     fullscreen: true, // 全屏编辑
                     navigation: true,
                     preview: true,
-                    subfield: false,
+                    subfield: false
                 },
                 subfield: true,
                 editable: true,
@@ -124,7 +138,7 @@
                     subfield: true, // 单双栏模式
                     preview: true, // 预览
                     /* 1.4.2 */
-                    navigation: true, // 导航目录
+                    navigation: true // 导航目录
                 },
                 image_filter: function($files) {
                     console.log('image_filter files:', $files);
@@ -197,7 +211,7 @@
                 // console.log(this.$refs.md);
                 // this.$refs.md.$imgUpdateByUrl(pos, 'http://pic.58pic.com/58pic/13/46/50/61758PICWZY_1024.jpg');
             },
-            $imgDel(pos){
+            $imgDel(pos) {
                 console.log('imgDel', pos);
                 delete this.img_file[pos];
             },
