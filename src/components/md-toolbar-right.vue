@@ -21,7 +21,7 @@
         <button type="button" v-if="toolbars.readmodel" @click="$clicks('read')" class="op-icon fa fa-mavon-window-maximize" aria-hidden="true"
                 :title="`${d_words.tl_read} (F11)`"></button>
         <button type="button" v-if="toolbars.subfield" @click="$clicks('subfield')" class="op-icon fa fa-mavon-columns" aria-hidden="true"
-                :class = "{'selected': s_subfield}":title="`${s_subfield ? d_words.tl_single_column : d_words.tl_double_column} (F12)`"></button>
+                :class = "{'selected': s_subfield}" :title="`${s_subfield ? d_words.tl_single_column : d_words.tl_double_column} (F12)`"></button>
         <span
                 v-if=" toolbars.help && toolbars.htmlcode && toolbars.readmodel && toolbars.fullscreen && toolbars.subfield && toolbars.navigation"
                 class="op-icon-divider"></span>

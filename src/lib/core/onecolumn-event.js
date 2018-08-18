@@ -126,7 +126,7 @@ export const judgeRender = (dom , $event , self , pre , $vm) => {
                 sel.removeAllRanges();
                 sel.addRange(range);
             }
-            return ;
+            return;
         }
         judgeRender(dom.parentElement , $event , self , dom , $vm)
         /* let obj = document.createElement('div')
