@@ -50,4 +50,3 @@ export function stopEvent(e) {
     e.stopPropagation();
   }
 };
-

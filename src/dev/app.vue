@@ -89,7 +89,7 @@
                     fullscreen: true, // 全屏编辑
                     navigation: true,
                     preview: true,
-                    subfield: false,
+                    subfield: false
                 },
                 subfield: true,
                 editable: true,
@@ -138,7 +138,7 @@
                     subfield: true, // 单双栏模式
                     preview: true, // 预览
                     /* 1.4.2 */
-                    navigation: true, // 导航目录
+                    navigation: true // 导航目录
                 },
                 image_filter: function($files) {
                     console.log('image_filter files:', $files);
@@ -211,7 +211,7 @@
                 // console.log(this.$refs.md);
                 // this.$refs.md.$imgUpdateByUrl(pos, 'http://pic.58pic.com/58pic/13/46/50/61758PICWZY_1024.jpg');
             },
-            $imgDel(pos){
+            $imgDel(pos) {
                 console.log('imgDel', pos);
                 delete this.img_file[pos];
             },

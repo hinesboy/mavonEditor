@@ -6,7 +6,7 @@
 <script>
 module.exports = {
     name: 'editor',
-    data: function(){
+    data: function() {
         return {
 
         };
