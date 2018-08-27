@@ -126,6 +126,10 @@ export default {
             type: Boolean,
             default: true
         },
+        autofocus: {
+            type: Boolean,
+            default: false
+        },
         fontSize: {
             type: String,
             default: '15px'
@@ -292,7 +296,9 @@ export default {
         // 图片预览事件监听
         ImagePreviewListener(this);
         // 设置默认焦点
-        this.getTextareaDom().focus();
+        if(this.autofocus) {
+            this.getTextareaDom().focus();
+        }
         // fullscreen事件
         fullscreenchange(this);
         this.d_value = this.value;
