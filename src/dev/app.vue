@@ -25,6 +25,7 @@
             <button @click="imgdelete">delete</button>
             <mavon-editor ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
+                          :autofocus="autofocus"
                           :external_link="external_link"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"
                           :imageFilter="image_filter">
@@ -91,6 +92,7 @@
                     preview: true,
                     subfield: false
                 },
+                autofocus: true,
                 subfield: true,
                 editable: true,
                 toolbarsFlag: true,
