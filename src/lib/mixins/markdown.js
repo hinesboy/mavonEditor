@@ -63,7 +63,7 @@ var hljs_opts = {
     langCheck: function(lang) {
         if (lang && hljsLangs[lang] && !missLangs[lang]) {
             missLangs[lang] = 1;
-            needLangs.push(lang)
+            needLangs.push(hljsLangs[lang])
         }
     }
 };
