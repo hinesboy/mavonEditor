@@ -39,6 +39,8 @@ var defaultRender = markdown.renderer.rules.link_open || function(tokens, idx, o
     return self.renderToken(tokens, idx, options);
 };
 markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+    var hIndex = tokens[idx].attrIndex('href');
+    if (tokens[idx].attrs[hIndex][1].startsWith('#')) return defaultRender(tokens, idx, options, env, self);
     // If you are sure other plugins can't add `target` - drop check below
     var aIndex = tokens[idx].attrIndex('target');
 
