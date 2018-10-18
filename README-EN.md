@@ -112,7 +112,7 @@ toolbars: {
       trash: true,
       save: true,
       /* 1.4.2 */
-      navigation: true，
+      navigation: true,
       /* 2.1.8 */
       alignleft: true,
       aligncenter: true,
