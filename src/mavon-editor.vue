@@ -146,7 +146,7 @@ export default {
         // 初始value
         language: {
             type: String,
-            default: 'zh-CN'
+            default: 'ja'
         },
         subfield: {
             type: Boolean,
