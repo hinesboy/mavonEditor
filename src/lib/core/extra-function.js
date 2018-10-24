@@ -154,7 +154,8 @@ export const insertUl = ($vm) => {
     obj.focus();
 }
 // 插入tab
-export const insertTab = ($vm) => {
+export const insertTab = ($vm, tab) => {
+    tab = tab ? (new Array(tab)).fill(' ').join('') : '\t'
     let obj = $vm.getTextareaDom();
     if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         var startPos = obj.selectionStart;
@@ -164,14 +165,14 @@ export const insertTab = ($vm) => {
         if (lastLine.match(/^\s*[0-9]+\.\s+\S*/)) {
             // 有序列表
             let temp = lastLine.replace(/(\d+)/, 1)
-            obj.value = tmpStr.substring(0, startPos - temp.length) + '\t' +  temp + tmpStr.substring(endPos, tmpStr.length);
+            obj.value = tmpStr.substring(0, startPos - temp.length) + tab + temp + tmpStr.substring(endPos, tmpStr.length);
         } else if (lastLine.match(/^\s*-\s+\S*/)) {
             // 无序列表
-            obj.value = tmpStr.substring(0, startPos - lastLine.length) + '\t' +  lastLine + tmpStr.substring(endPos, tmpStr.length);
+            obj.value = tmpStr.substring(0, startPos - lastLine.length) + tab + lastLine + tmpStr.substring(endPos, tmpStr.length);
         } else {
-            obj.value = tmpStr.substring(0, startPos) + '\t' + tmpStr.substring(endPos, tmpStr.length);
+            obj.value = tmpStr.substring(0, startPos) + tab + tmpStr.substring(endPos, tmpStr.length);
         }
-        obj.selectionStart = obj.selectionEnd = startPos + 1;
+        obj.selectionStart = obj.selectionEnd = startPos + tab.length;
     } else {
         alert('Error: Browser version is too low')
         // obj.value += str;
@@ -181,17 +182,19 @@ export const insertTab = ($vm) => {
     obj.focus();
 }
 // shift + tab
-export const unInsertTab = ($vm) => {
+export const unInsertTab = ($vm, tab) => {
+    let regTab = new RegExp(tab ? `\\s{${tab}}` : '\t')
+    console.log(`regTab:`, regTab)
     let obj = $vm.getTextareaDom();
     if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
         let lastLine = tmpStr.substring(0, startPos).split('\n').pop()
-        if (lastLine.search(/\t/) >= 0) {
+        if (lastLine.search(regTab) >= 0) {
             // 替换最后一个制表符为空
-            obj.value = tmpStr.substring(0, startPos - lastLine.length) +  lastLine.replace(/(.*)\t/, '$1') + tmpStr.substring(endPos, tmpStr.length);
-            obj.selectionStart = obj.selectionEnd = startPos - 1;
+            obj.value = tmpStr.substring(0, startPos - lastLine.length) +  lastLine.replace(regTab, '') + tmpStr.substring(endPos, tmpStr.length);
+            obj.selectionStart = obj.selectionEnd = startPos - (tab || 1);
         }
     } else {
         alert('Error: Browser version is too low')

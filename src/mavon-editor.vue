@@ -202,6 +202,10 @@ export default {
         imageClick: {
             type: Function,
             default: null
+        },
+        tabSize: {
+            type: Number,
+            default: 0
         }
     },
     data() {
@@ -296,7 +300,7 @@ export default {
         // 图片预览事件监听
         ImagePreviewListener(this);
         // 设置默认焦点
-        if(this.autofocus) {
+        if (this.autofocus) {
             this.getTextareaDom().focus();
         }
         // fullscreen事件
@@ -537,7 +541,7 @@ export default {
             insertTextAtCaret(obj, {prefix, subfix, str, type}, this);
         },
         insertTab() {
-            insertTab(this)
+            insertTab(this, this.tabSize)
         },
         insertOl() {
             insertOl(this)
@@ -549,7 +553,7 @@ export default {
             insertUl(this)
         },
         unInsertTab() {
-            unInsertTab(this)
+            unInsertTab(this, this.tabSize)
         },
         insertEnter(event) {
             insertEnter(this, event)

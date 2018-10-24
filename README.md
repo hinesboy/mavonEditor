@@ -73,6 +73,7 @@ $ npm install mavon-editor --save
 | ishljs       | Boolean |     true     |  代码高亮 |
 | imageFilter | function |     null     |  图片过滤函数，参数为一个`File Object`，要求返回一个`Boolean`, `true`表示文件合法，`false`表示文件不合法 |
 | imageClick | function |     null     |  图片点击事件，默认为预览，可覆盖 |
+| tabSize     | Number  |     \t     | tab转化为几个空格，默认为\t                      |
 | toolbars     | Object  |     如下例     | 工具栏                      |
 
 ```javascript
