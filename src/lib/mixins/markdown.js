@@ -53,7 +53,7 @@ markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
 };
 var mihe = require('markdown-it-highlightjs-external');
 // mathjax
-var mathjax = rrequire('markdown-it-mathjax');
+var mathjax = require('markdown-it-mathjax');
 var miip = require('markdown-it-images-preview');
 var missLangs = {};
 var needLangs = [];
