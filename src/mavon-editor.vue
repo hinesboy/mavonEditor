@@ -304,6 +304,7 @@ export default {
         $vm.loadExternalLink('markdown_css', 'css');
         $vm.loadExternalLink('mathjax_js', 'js', function() {
             $vm.initLanguage();
+            $vm.initMathJax();
             $vm.iRender();
         })
         $vm.loadExternalLink('hljs_js', 'js', function() {
@@ -562,6 +563,26 @@ export default {
                 $vm.d_help = res;
             })
             this.d_words = CONFIG[`words_${lang}`];
+        },
+        initMathJax() {
+            if (window.MathJax) {
+                window.MathJax.Hub.Config({
+                    TeX: {
+                        equationNumbers: { autoNumber: 'AMS' },
+                    },
+
+                    tex2jax: {
+                        inlineMath: [['$', '$'], ['\\(','\\)']],
+                        displayMath: [['$$', '$$'], ['\\[','\\]']],
+                        processEscapes: true,
+                        processEnvironments: true
+                    },
+
+                    linebreaks: {
+                        automatic: true
+                    }
+                })
+            }
         },
         // 编辑开关
         editableTextarea() {
