@@ -262,11 +262,8 @@ export default {
                     }
                     return '';
                 },
-                katex_js: function() {
-                    return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js';
-                },
-                katex_css: function() {
-                    return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css';
+                mathjax_js: function() {
+                    return 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
                 }
             },
             p_external_link: {}
@@ -305,8 +302,7 @@ export default {
         // 将help添加到末尾
         document.body.appendChild(this.$refs.help);
         $vm.loadExternalLink('markdown_css', 'css');
-        $vm.loadExternalLink('katex_css', 'css')
-        $vm.loadExternalLink('katex_js', 'js', function() {
+        $vm.loadExternalLink('mathjax_js', 'js', function() {
             $vm.initLanguage();
             $vm.iRender();
         })
@@ -340,7 +336,7 @@ export default {
         },
         initExternalFuc() {
             var $vm = this;
-            var _external_ = ['markdown_css', 'hljs_js', 'hljs_css', 'hljs_lang', 'katex_js', 'katex_css'];
+            var _external_ = ['markdown_css', 'hljs_js', 'hljs_css', 'hljs_lang', 'mathjax_js'];
             var _type_ = typeof $vm.externalLink;
             var _is_object = (_type_ === 'object');
             var _is_boolean = (_type_ === 'boolean');

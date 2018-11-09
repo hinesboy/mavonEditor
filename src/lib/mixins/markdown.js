@@ -52,8 +52,8 @@ markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     return defaultRender(tokens, idx, options, env, self);
 };
 var mihe = require('markdown-it-highlightjs-external');
-// math katex
-var katex = require('markdown-it-katex-external');
+// mathjax
+var mathjax = rrequire('markdown-it-mathjax');
 var miip = require('markdown-it-images-preview');
 var missLangs = {};
 var needLangs = [];
@@ -82,7 +82,7 @@ markdown.use(mihe, hljs_opts)
     .use(mark)
     .use(container)
     .use(miip)
-    .use(katex)
+    .use(mathjax)
     .use(taskLists)
     .use(toc)
 
@@ -106,6 +106,10 @@ export default {
                 if (needLangs.length > 0) {
                     $vm.$_render(src, func, res);
                 }
+            }
+            if (window.MathJax) {
+                var math = document.getElementsByClassName("v-show-content-html");
+                window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
             }
             func(res);
         },

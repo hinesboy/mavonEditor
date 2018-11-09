@@ -28,7 +28,8 @@
   "homepage": "https://github.com/hinesboy/mavonEditor#readme",
   "dependencies": {
     "highlight.js": "^9.11.0",
-    "highlight.js-async-webpack": "^1.0.4"
+    "highlight.js-async-webpack": "^1.0.4",
+    "markdown-it-mathjax": "^2.0.0"
   },
   "devDependencies": {
     "auto-textarea": "git://github.com/naoki-kishi/auto-textarea.git",
