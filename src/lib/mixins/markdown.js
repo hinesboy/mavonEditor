@@ -67,24 +67,25 @@ var hljs_opts = {
         }
     }
 };
-markdown.use(mihe, hljs_opts)
-    .use(emoji)
-    .use(sup)
-    .use(sub)
-    .use(container)
-    .use(container, 'hljs-left') /* align left */
-    .use(container, 'hljs-center')/* align center */
-    .use(container, 'hljs-right')/* align right */
-    .use(deflist)
-    .use(abbr)
-    .use(footnote)
-    .use(insert)
-    .use(mark)
-    .use(container)
-    .use(miip)
-    .use(mathjax)
-    .use(taskLists)
-    .use(toc)
+// markdown.use(mihe, hljs_opts)
+//     .use(emoji)
+//     .use(sup)
+//     .use(sub)
+//     .use(container)
+//     .use(container, 'hljs-left') /* align left */
+//     .use(container, 'hljs-center')/* align center */
+//     .use(container, 'hljs-right')/* align right */
+//     .use(deflist)
+//     .use(abbr)
+//     .use(footnote)
+//     .use(insert)
+//     .use(mark)
+//     .use(container)
+//     .use(miip)
+//     .use(mathjax)
+//     .use(taskLists)
+//     .use(toc)
+markdown.use(mathjax)
 
 export default {
     data() {
