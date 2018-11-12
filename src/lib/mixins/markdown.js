@@ -8,7 +8,7 @@ var markdown_config = {
     breaks: true,        // Convert '\n' in paragraphs into <br>
     langPrefix: 'lang-',  // CSS language prefix for fenced blocks. Can be
     linkify: false,        // 自动识别url
-    typographer: true,
+    typographer: false,
     quotes: '“”‘’'
 }
 var markdown = require('markdown-it')(markdown_config);
@@ -101,7 +101,6 @@ export default {
             var $vm = this;
             missLangs = {};
             needLangs = [];
-            console.log(src)
             var res = markdown.render(src);
             if (this.ishljs) {
                 if (needLangs.length > 0) {
