@@ -101,6 +101,7 @@ export default {
             var $vm = this;
             missLangs = {};
             needLangs = [];
+            console.log(src)
             var res = markdown.render(src);
             if (this.ishljs) {
                 if (needLangs.length > 0) {
