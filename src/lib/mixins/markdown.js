@@ -3,8 +3,8 @@ import {
     loadScript
 } from '../core/extra-function.js'
 var markdown_config = {
-    html: true,        // Enable HTML tags in source
-    xhtmlOut: true,        // Use '/' to close single tags (<br />).
+    html: false,        // Disable HTML tags in source
+    xhtmlOut: false,        // Don't Use '/' to close single tags (<br />).
     breaks: true,        // Convert '\n' in paragraphs into <br>
     langPrefix: 'lang-',  // CSS language prefix for fenced blocks. Can be
     linkify: false,        // 自动识别url
@@ -67,25 +67,24 @@ var hljs_opts = {
         }
     }
 };
-// markdown.use(mihe, hljs_opts)
-//     .use(emoji)
-//     .use(sup)
-//     .use(sub)
-//     .use(container)
-//     .use(container, 'hljs-left') /* align left */
-//     .use(container, 'hljs-center')/* align center */
-//     .use(container, 'hljs-right')/* align right */
-//     .use(deflist)
-//     .use(abbr)
-//     .use(footnote)
-//     .use(insert)
-//     .use(mark)
-//     .use(container)
-//     .use(miip)
-//     .use(mathjax)
-//     .use(taskLists)
-//     .use(toc)
-markdown.use(mathjax)
+markdown.use(mihe, hljs_opts)
+    .use(emoji)
+    .use(sup)
+    .use(sub)
+    .use(container)
+    .use(container, 'hljs-left') /* align left */
+    .use(container, 'hljs-center')/* align center */
+    .use(container, 'hljs-right')/* align right */
+    .use(deflist)
+    .use(abbr)
+    .use(footnote)
+    .use(insert)
+    .use(mark)
+    .use(container)
+    .use(miip)
+    .use(mathjax)
+    .use(taskLists)
+    .use(toc)
 
 export default {
     data() {
