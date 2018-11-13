@@ -561,11 +561,6 @@ export default {
             var $vm = this;
             $vm.$render(CONFIG[`help_${lang}`], function(res) {
                 $vm.d_help = res;
-                $vm.initMathJax();
-                if (window.MathJax) {
-                    var math = document.getElementsByClassName('v-note-help-show');
-                    window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
-                }
             })
             this.d_words = CONFIG[`words_${lang}`];
         },
@@ -679,6 +674,15 @@ export default {
         },
         codeStyle: function (val) {
             this.codeStyleChange(val)
+        },
+        s_help: function (val) {
+            if (val) {
+                // 表示時にTypesetをかけないと機能しないため
+                if (window.MathJax) {
+                    var math = document.getElementsByClassName('v-note-help-show');
+                    window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
+                }
+            }
         }
     },
     components: {
