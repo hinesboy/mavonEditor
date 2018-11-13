@@ -107,10 +107,6 @@ export default {
                     $vm.$_render(src, func, res);
                 }
             }
-            if (window.MathJax) {
-                var math = document.getElementsByClassName("v-show-content-html");
-                window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
-            }
             func(res);
         },
         $_render(src, func, res) {

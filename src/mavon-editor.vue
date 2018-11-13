@@ -561,6 +561,10 @@ export default {
             var $vm = this;
             $vm.$render(CONFIG[`help_${lang}`], function(res) {
                 $vm.d_help = res;
+                if (window.MathJax) {
+                    var math = document.getElementsByClassName('v-note-help-show');
+                    window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
+                }
             })
             this.d_words = CONFIG[`words_${lang}`];
         },
@@ -616,6 +620,10 @@ export default {
             $vm.$render($vm.d_value, function(res) {
                 // render
                 $vm.d_render = res;
+                if (window.MathJax) {
+                    var math = document.getElementsByClassName("v-show-content-html");
+                    window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+                }
                 // change回调
                 if ($vm.change) $vm.change($vm.d_value, $vm.d_render);
                 // 改变标题导航
