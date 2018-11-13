@@ -563,6 +563,11 @@ export default {
             var $vm = this;
             $vm.$render(CONFIG[`help_${lang}`], function(res) {
                 $vm.d_help = res;
+                if (window.MathJax && window.MathJax.isReady) {
+                    var math = document.getElementsByClassName('v-note-help-show');
+                    window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
+                    $vm.help_mathjax_applied = true
+                }
             })
             this.d_words = CONFIG[`words_${lang}`];
         },
@@ -677,28 +682,28 @@ export default {
         codeStyle: function (val) {
             this.codeStyleChange(val)
         },
-        s_help: function (val) {
-            var $vm = this;
-            if (val) {
-                // 2度以上Typesetかけるとバグるので1度目だけ
-                if (!$vm.help_mathjax_applied) {
-                    // 要素の描画まで一瞬待つ
-                    // TODO: v-ifの代わりにv-show使えばいけそうだが、パフォーマンス悪化の懸念
-                    window.clearTimeout(this.helpMathJaxTimeout)
+        // s_help: function (val) {
+        //     var $vm = this;
+        //     if (val) {
+        //         // 2度以上Typesetかけるとバグるので1度目だけ
+        //         if (!$vm.help_mathjax_applied) {
+        //             // 要素の描画まで一瞬待つ
+        //             // TODO: v-ifの代わりにv-show使えばいけそうだが、パフォーマンス悪化の懸念
+        //             window.clearTimeout(this.helpMathJaxTimeout)
 
-                    $vm.helpMathJaxTimeout = setTimeout(() => {
-                        // 表示時にTypesetをかけないと機能しないため
-                        if (window.MathJax && window.MathJax.isReady) {
-                            var math = document.getElementsByClassName('v-note-help-show');
-                            window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
-                            $vm.help_mathjax_applied = true
-                        }
-                    }, 500);
-                }
-            } else {
-                window.clearTimeout($vm.helpMathJaxTimeout)
-            }
-        }
+        //             $vm.helpMathJaxTimeout = setTimeout(() => {
+        //                 // 表示時にTypesetをかけないと機能しないため
+        //                 if (window.MathJax && window.MathJax.isReady) {
+        //                     var math = document.getElementsByClassName('v-note-help-show');
+        //                     window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
+        //                     $vm.help_mathjax_applied = true
+        //                 }
+        //             }, 500);
+        //         }
+        //     } else {
+        //         window.clearTimeout($vm.helpMathJaxTimeout)
+        //     }
+        // }
     },
     components: {
         'v-autoTextarea': autoTextarea,
