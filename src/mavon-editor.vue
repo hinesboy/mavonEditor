@@ -59,7 +59,7 @@
         <!--帮助文档-->
         <transition name="fade">
             <div ref="help">
-                <div @click="toolbar_right_click('help')" class="v-note-help-wrapper" v-if="s_help">
+                <div @click="toolbar_right_click('help')" class="v-note-help-wrapper" v-show="s_help">
                     <div class="v-note-help-content markdown-body" :class="{'shadow': boxShadow}">
                         <i @click.stop.prevent="toolbar_right_click('help')" class="fa fa-mavon-times"
                            aria-hidden="true"></i>
