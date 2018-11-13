@@ -681,9 +681,11 @@ export default {
                 // 要素の描画まで一瞬待つ
                 // TODO: v-ifの代わりにv-show使えばいけそうだが、パフォーマンス悪化の懸念
                 window.clearTimeout($vm.helpMathJaxTimeout)
+                console.log("setTimeout")
                 $vm.helpMathJaxTimeout = setTimeout(() => {
                     // 表示時にTypesetをかけないと機能しないため
                     if (window.MathJax) {
+                        console.log("tickTimeout")
                         var math = document.getElementsByClassName('v-note-help-show');
                         window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
                     }
