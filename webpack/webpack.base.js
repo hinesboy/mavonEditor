@@ -140,9 +140,6 @@ module.exports = {
         }, {
             from: path.resolve(__dirname, '../resources/markdown'),
             to: path.resolve(__dirname, '../dist/markdown')
-        }, {
-            from: path.resolve(__dirname, '../node_modules/katex/dist'),
-            to: path.resolve(__dirname, '../dist/katex')
         }])
     ]
 }

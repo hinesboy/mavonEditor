@@ -16,12 +16,12 @@ import hljsLangs from './hljs/lang.hljs.js'
  */
 // default mode
 var markdown_config = {
-    html: true,        // Enable HTML tags in source
-    xhtmlOut: true,        // Use '/' to close single tags (<br />).
+    html: false,        // Enable HTML tags in source
+    xhtmlOut: false,        // Use '/' to close single tags (<br />).
     breaks: true,        // Convert '\n' in paragraphs into <br>
     langPrefix: 'language-',  // CSS language prefix for fenced blocks. Can be
     linkify: false,        // 自动识别url
-    typographer: true,
+    typographer: false,
     quotes: '“”‘’',
     highlight: function (str, lang) {
         if (lang && hljsLangs[lang]) {
@@ -68,8 +68,8 @@ markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     // pass token to default renderer.
     return defaultRender(tokens, idx, options, env, self);
 };
-// math katex
-var katex = require('markdown-it-katex-external');
+// mathjax
+var mathjax = require('markdown-it-mathjax');
 var miip = require('markdown-it-images-preview');
 markdown.use(emoji)
     .use(taskLists)
@@ -86,5 +86,5 @@ markdown.use(emoji)
     .use(mark)
     .use(container)
     .use(miip)
-    .use(katex)
+    .use(mathjax())
 export default markdown
