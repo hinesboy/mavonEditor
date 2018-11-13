@@ -35,7 +35,7 @@ var container = require('markdown-it-container')
 //
 var toc = require('markdown-it-toc')
 // add target="_blank" to all link
-var defaultRender = markdown.renderer.rules.link_open || function(tokens, idx, options, env, self) {
+var defaultRender = markdown.renderer.rules.link_open || function (tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options);
 };
 markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
@@ -60,7 +60,7 @@ var needLangs = [];
 var hljs_opts = {
     hljs: 'auto',
     highlighted: true,
-    langCheck: function(lang) {
+    langCheck: function (lang) {
         if (lang && hljsLangs[lang] && !missLangs[lang]) {
             missLangs[lang] = 1;
             needLangs.push(lang)
@@ -82,7 +82,7 @@ markdown.use(mihe, hljs_opts)
     .use(mark)
     .use(container)
     .use(miip)
-    .use(mathjax)
+    .use(mathjax())
     .use(taskLists)
     .use(toc)
 
@@ -118,7 +118,7 @@ export default {
             var deal = 0;
             for (var i = 0; i < needLangs.length; i++) {
                 var url = $vm.p_external_link.hljs_lang(needLangs[i]);
-                loadScript(url, function() {
+                loadScript(url, function () {
                     deal = deal + 1;
                     if (deal === needLangs.length) {
                         res = markdown.render(src);
@@ -129,7 +129,7 @@ export default {
         }
     },
     watch: {
-        ishljs: function(val) {
+        ishljs: function (val) {
             hljs_opts.highlighted = val;
         }
     }
