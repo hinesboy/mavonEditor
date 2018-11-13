@@ -561,6 +561,7 @@ export default {
             var $vm = this;
             $vm.$render(CONFIG[`help_${lang}`], function(res) {
                 $vm.d_help = res;
+                $vm.initMathJax();
                 if (window.MathJax) {
                     var math = document.getElementsByClassName('v-note-help-show');
                     window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
