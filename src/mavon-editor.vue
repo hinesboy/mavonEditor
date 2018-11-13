@@ -562,11 +562,6 @@ export default {
             var $vm = this;
             $vm.$render(CONFIG[`help_${lang}`], function(res) {
                 $vm.d_help = res;
-                if (window.MathJax) {
-                    console.log("setMathJax")
-                    var math = document.getElementsByClassName('v-note-help-show');
-                    window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
-                }
             })
             this.d_words = CONFIG[`words_${lang}`];
         },
@@ -682,22 +677,28 @@ export default {
             this.codeStyleChange(val)
         },
         s_help: function (val) {
-            // if (val) {
-            //     // 要素の描画まで一瞬待つ
-            //     // TODO: v-ifの代わりにv-show使えばいけそうだが、パフォーマンス悪化の懸念
-            //     window.clearTimeout(this.helpMathJaxTimeout)
-            //     console.log("setTimeout")
-            //     this.helpMathJaxTimeout = setTimeout(() => {
-            //         // 表示時にTypesetをかけないと機能しないため
-            //         if (window.MathJax) {
-            //             console.log("tickTimeout")
-            //             var math = document.getElementsByClassName('v-note-help-show');
-            //             window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
-            //         }
-            //     }, 500);
-            // } else {
-            //     window.clearTimeout(this.helpMathJaxTimeout)
-            // }
+            if (val) {
+                // 表示時にTypesetをかけないと機能しないため
+                if (window.MathJax) {
+                    console.log("setMathJax on watch")
+                    var math = document.getElementsByClassName('v-note-help-show');
+                    window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
+                }
+                // 要素の描画まで一瞬待つ
+                // TODO: v-ifの代わりにv-show使えばいけそうだが、パフォーマンス悪化の懸念
+                // window.clearTimeout(this.helpMathJaxTimeout)
+                // console.log("setTimeout")
+                // this.helpMathJaxTimeout = setTimeout(() => {
+                //     // 表示時にTypesetをかけないと機能しないため
+                //     if (window.MathJax) {
+                //         console.log("tickTimeout")
+                //         var math = document.getElementsByClassName('v-note-help-show');
+                //         window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
+                //     }
+                // }, 500);
+            } else {
+                // window.clearTimeout(this.helpMathJaxTimeout)
+            }
         }
     },
     components: {
