@@ -303,8 +303,8 @@ export default {
         document.body.appendChild(this.$refs.help);
         $vm.loadExternalLink('markdown_css', 'css');
         $vm.loadExternalLink('mathjax_js', 'js', function() {
-            $vm.initLanguage();
             $vm.initMathJax();
+            $vm.initLanguage();
             $vm.iRender();
         })
         $vm.loadExternalLink('hljs_js', 'js', function() {
