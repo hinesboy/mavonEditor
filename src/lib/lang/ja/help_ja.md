@@ -123,6 +123,14 @@ int main()
 
 [^こんにちは]: 注釈です。
 
+## $\LaTeX$ 数式
+数式をこのように $E = mc^2$ 文中に埋め込むことができます。。
+$a_n = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \cos nx dx$ のように分数やインテグラルが入る場合は、 $\displaystyle b_n = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \sin nx dx$ とすると見やすくなります。
+
+また、式$\eqref{label}$といったように数式にラベルをつけて参照することも可能です。
+$$\begin{equation} \label{label}
+\frac{\mathrm{d}}{\mathrm{d} x} \int_{a}^{x} f(s)ds = f(x)
+\end{equation}$$
 
 ## レイアウト
 
