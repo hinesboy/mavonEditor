@@ -244,6 +244,7 @@ export default {
             })(), // 编辑记录
             d_history_index: 0, // 编辑记录索引
             currentTimeout: '',
+            helpMathJaxTimeout: '',
             d_image_file: [],
             d_preview_imgsrc: null, // 图片预览地址
             s_external_link: {
@@ -677,11 +678,18 @@ export default {
         },
         s_help: function (val) {
             if (val) {
-                // 表示時にTypesetをかけないと機能しないため
-                if (window.MathJax) {
-                    var math = document.getElementsByClassName('v-note-help-show');
-                    window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
-                }
+                // 要素の描画まで一瞬待つ
+                // TODO: v-ifの代わりにv-show使えばいけそうだが、パフォーマンス悪化の懸念
+                window.clearTimeout($vm.helpMathJaxTimeout)
+                $vm.helpMathJaxTimeout = setTimeout(() => {
+                    // 表示時にTypesetをかけないと機能しないため
+                    if (window.MathJax) {
+                        var math = document.getElementsByClassName('v-note-help-show');
+                        window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
+                    }
+                }, 500);
+            } else {
+                window.clearTimeout($vm.helpMathJaxTimeout)
             }
         }
     },
