@@ -262,11 +262,8 @@ export default {
                     }
                     return '';
                 },
-                katex_js: function() {
-                    return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js';
-                },
-                katex_css: function() {
-                    return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css';
+                mathjax_js: function() {
+                    return 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
                 }
             },
             p_external_link: {}
@@ -305,8 +302,8 @@ export default {
         // 将help添加到末尾
         document.body.appendChild(this.$refs.help);
         $vm.loadExternalLink('markdown_css', 'css');
-        $vm.loadExternalLink('katex_css', 'css')
-        $vm.loadExternalLink('katex_js', 'js', function() {
+        $vm.loadExternalLink('mathjax_js', 'js', function() {
+            $vm.initMathJax();
             $vm.initLanguage();
             $vm.iRender();
         })
@@ -340,7 +337,7 @@ export default {
         },
         initExternalFuc() {
             var $vm = this;
-            var _external_ = ['markdown_css', 'hljs_js', 'hljs_css', 'hljs_lang', 'katex_js', 'katex_css'];
+            var _external_ = ['markdown_css', 'hljs_js', 'hljs_css', 'hljs_lang', 'mathjax_js'];
             var _type_ = typeof $vm.externalLink;
             var _is_object = (_type_ === 'object');
             var _is_boolean = (_type_ === 'boolean');
@@ -564,8 +561,32 @@ export default {
             var $vm = this;
             $vm.$render(CONFIG[`help_${lang}`], function(res) {
                 $vm.d_help = res;
+                if (window.MathJax && window.MathJax.isReady) {
+                    var math = document.getElementsByClassName('v-note-help-show');
+                    window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
+                }
             })
             this.d_words = CONFIG[`words_${lang}`];
+        },
+        initMathJax() {
+            if (window.MathJax) {
+                window.MathJax.Hub.Config({
+                    TeX: {
+                        equationNumbers: { autoNumber: 'AMS' },
+                    },
+
+                    tex2jax: {
+                        inlineMath: [['$', '$'], ['\\(','\\)']],
+                        displayMath: [['$$', '$$'], ['\\[','\\]']],
+                        processEscapes: true,
+                        processEnvironments: true
+                    },
+
+                    linebreaks: {
+                        automatic: true
+                    }
+                })
+            }
         },
         // 编辑开关
         editableTextarea() {
@@ -599,6 +620,10 @@ export default {
             $vm.$render($vm.d_value, function(res) {
                 // render
                 $vm.d_render = res;
+                if (window.MathJax && window.MathJax.isReady) {
+                    var math = document.getElementsByClassName("v-show-content-html");
+                    window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+                }
                 // change回调
                 if ($vm.change) $vm.change($vm.d_value, $vm.d_render);
                 // 改变标题导航
