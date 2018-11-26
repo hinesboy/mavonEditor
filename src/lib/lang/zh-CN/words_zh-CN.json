@@ -2,6 +2,8 @@
   "start_editor": "开始编辑...",
   "navigation_title": "导航目录",
   "tl_bold": "粗体",
+  "tl_math": "数学公式",
+  "tl_math_inline": "行内公式",
   "tl_italic": "斜体",
   "tl_header": "标题",
   "tl_header_one": "一级标题",

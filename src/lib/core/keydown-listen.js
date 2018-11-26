@@ -19,6 +19,7 @@ const KEY_CODE = {
     F11: 122,
     F12: 123,
     B: 66,
+    E: 69,
     I: 73,
     H: 72,
     U: 85,
@@ -123,6 +124,12 @@ export const keydownListen = ($vm) => {
                     // B
                     e.preventDefault()
                     $vm.toolbar_left_click('bold')
+                    break;
+                }
+                case KEY_CODE.E: {
+                    // E
+                    e.preventDefault()
+                    $vm.toolbar_left_click('math')
                     break;
                 }
                 case KEY_CODE.I: {
@@ -307,6 +314,13 @@ export const keydownListen = ($vm) => {
         } else if ((e.ctrlKey || e.metaKey) && e.shiftKey && !e.altKey) {
             // ctrl + shift
             switch (e.keyCode) {
+                case KEY_CODE.E: {
+                    console.log('ctrl + shift +e')
+                    // E
+                    e.preventDefault()
+                    $vm.toolbar_left_click('math-inline')
+                    break;
+                }
                 case KEY_CODE.S: {
                     // S
                     e.preventDefault()

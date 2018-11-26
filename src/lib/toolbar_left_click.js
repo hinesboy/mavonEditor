@@ -64,6 +64,16 @@ export const toolbar_left_addlink = (type, text, link, $vm) => {
 }
 export const toolbar_left_click = (_type, $vm) => {
      var _param_of_insert_text = {
+         'math': {
+             prefix: '$$',
+             subfix: '$$',
+             str: $vm.d_words.tl_math
+         },
+         'math-inline': {
+             prefix: '$',
+             subfix: '$',
+             str: $vm.d_words.tl_math_inline
+         },
          'bold': {
              prefix: '**',
              subfix: '**',
