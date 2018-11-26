@@ -218,6 +218,8 @@ exports default {
 | CTRL + BreakSpace    | 17 + 8 | 清空编辑 |
 | CTRL + B       | 17 + 66 | **加粗** |
 | CTRL + I | 17 + 73 | *斜体* |
+| CTRL + E | 17 + 69 | $$数学公式$$ |
+| CTRL + SHIFT + E | 17 + 18 + 69 | $行内公式$ |
 | CTRL + H       | 17 + 72 | # 标题 |
 | CTRL + 1       | 17 + 97 or 49 | # 标题 |
 | CTRL + 2       | 17 + 98 or 50 | ## 标题 |
