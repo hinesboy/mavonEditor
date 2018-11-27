@@ -3,12 +3,12 @@ import {
     loadScript
 } from '../core/extra-function.js'
 var markdown_config = {
-    html: true,        // Enable HTML tags in source
-    xhtmlOut: true,        // Use '/' to close single tags (<br />).
+    html: false,        // Disable HTML tags in source
+    xhtmlOut: false,        // Don't Use '/' to close single tags (<br />).
     breaks: true,        // Convert '\n' in paragraphs into <br>
     langPrefix: 'lang-',  // CSS language prefix for fenced blocks. Can be
     linkify: false,        // 自动识别url
-    typographer: true,
+    typographer: false,
     quotes: '“”‘’'
 }
 var markdown = require('markdown-it')(markdown_config);
@@ -52,8 +52,8 @@ markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     return defaultRender(tokens, idx, options, env, self);
 };
 var mihe = require('markdown-it-highlightjs-external');
-// math katex
-var katex = require('markdown-it-katex-external');
+// mathjax
+var mathjax = require('markdown-it-mathjax');
 var miip = require('markdown-it-images-preview');
 var missLangs = {};
 var needLangs = [];
@@ -82,7 +82,7 @@ markdown.use(mihe, hljs_opts)
     .use(mark)
     .use(container)
     .use(miip)
-    .use(katex)
+    .use(mathjax())
     .use(taskLists)
     .use(toc)
 
