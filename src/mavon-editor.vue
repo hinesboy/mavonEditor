@@ -562,8 +562,7 @@ export default {
             $vm.$render(CONFIG[`help_${lang}`], function(res) {
                 $vm.d_help = res;
                 if (window.MathJax && window.MathJax.isReady) {
-                    var math = document.getElementsByClassName('v-note-help-show');
-                    window.MathJax.Hub.Queue(['Typeset', MathJax.Hub, math]);
+                  window.MathJax.Hub.Queue(['resetEquationNumbers', MathJax.InputJax.TeX], ['Typeset', window.MathJax.Hub])
                 }
             })
             this.d_words = CONFIG[`words_${lang}`];
@@ -621,8 +620,7 @@ export default {
                 // render
                 $vm.d_render = res;
                 if (window.MathJax && window.MathJax.isReady) {
-                    var math = document.getElementsByClassName("v-show-content-html");
-                    window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+                  window.MathJax.Hub.Queue(['resetEquationNumbers', MathJax.InputJax.TeX], ['Typeset', window.MathJax.Hub])
                 }
                 // change回调
                 if ($vm.change) $vm.change($vm.d_value, $vm.d_render);

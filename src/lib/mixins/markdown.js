@@ -3,12 +3,12 @@ import {
     loadScript
 } from '../core/extra-function.js'
 var markdown_config = {
-    html: true,        // Enable HTML tags in source
-    xhtmlOut: true,        // Use '/' to close single tags (<br />).
+    html: false,        // Disable HTML tags in source
+    xhtmlOut: false,        // Don't Use '/' to close single tags (<br />).
     breaks: true,        // Convert '\n' in paragraphs into <br>
     langPrefix: 'lang-',  // CSS language prefix for fenced blocks. Can be
     linkify: false,        // 自动识别url
-    typographer: true,
+    typographer: false,
     quotes: '“”‘’'
 }
 var markdown = require('markdown-it')(markdown_config);
