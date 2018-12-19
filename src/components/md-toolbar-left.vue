@@ -70,7 +70,7 @@
                 <div  class="op-image popup-dropdown" v-show="s_img_dropdown_open" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown">
                     <div  class="dropdown-item" @click.stop="$toggle_imgLinkAdd('imagelink')"><span>{{d_words.tl_image}}</span></div>
                     <div class="dropdown-item" style="overflow: hidden">
-                        <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" multiple="multiple"/>{{d_words.tl_upload}}
+                        <input ref="fileInput" type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" multiple="multiple"/>{{d_words.tl_upload}}
                     </div>
 
                     <div
@@ -200,6 +200,7 @@
                 this.$emit('imgAdd', this.num, $file);
                 this.num = this.num + 1;
                 this.s_img_dropdown_open = false;
+                this.$refs.fileInput.value = '';
             },
             $imgFilesAdd($files) {
                 // valid means if the image_filter exist.
