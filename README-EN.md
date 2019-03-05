@@ -47,6 +47,53 @@ $ npm install mavon-editor --save
     <mavon-editor v-model="value"/>
 </div>
 ```
+### Use in nuxt.js
+> new file: vue-mavon-editor.js
+``` javascrpt
+import Vue from 'vue';
+import mavonEditor from 'mavon-editor';
+import 'mavon-editor/dist/css/index.css';
+
+Vue.use(mavonEditor);
+```
+> nuxt.config.js
+``` javascript
+  plugins: [
+  ...
+    { src: '@/plugins/vue-mavon-editor', srr: false }
+  ],
+```
+> page
+```vue
+<template>
+  <div class="mavonEditor">
+    <no-ssr>
+      <mavon-editor :toolbars="markdownOption" v-model="handbook"/>
+    </no-ssr>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      markdownOption: {
+        bold: true,
+        ... // more params
+      },
+      handbook: "#### how to use mavonEditor in nuxt.js"
+    };
+  }
+};
+</script>
+
+<style scoped>
+.mavonEditor {
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+```
 
 > [more ways...](./doc/en/use.md)
 
