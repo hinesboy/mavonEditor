@@ -6,6 +6,7 @@
             <option value="fr">Français</option>
             <option value="pt-BR">Português</option>
             <option value="ru">Русский</option>
+            <option value="de">Deutsch</option>
         </select>
         <section class="page-header">
             <h1 class="project-name">mavonEditor</h1>
