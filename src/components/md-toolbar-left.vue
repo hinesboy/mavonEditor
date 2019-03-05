@@ -214,6 +214,7 @@
             },
             $imgAdd($e) {
                 this.$imgFilesAdd($e.target.files);
+                $e.target.value = ''; // 初始化
             },
             $imgDel(pos) {
                 this.$emit('imgDel', this.img_file[pos]);
