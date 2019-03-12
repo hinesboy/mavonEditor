@@ -1,4 +1,6 @@
 # 更新日志
+- **2.7.0** 合并Pull Request(19.3.12)
+    - [pr #400](https://github.com/hinesboy/mavonEditor/pull/400)
 - **2.7.0** 合并Pull Request(19.3.5)
     - [pr #394](https://github.com/hinesboy/mavonEditor/pull/394)
     - [pr #377](https://github.com/hinesboy/mavonEditor/pull/377)

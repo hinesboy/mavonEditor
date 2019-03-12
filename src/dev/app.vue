@@ -4,9 +4,10 @@
             <option value="zh-CN">中文</option>
             <option value="en">English</option>
             <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="ja">日本語 </option>
             <option value="pt-BR">Português</option>
             <option value="ru">Русский</option>
-            <option value="de">Deutsch</option>
         </select>
         <section class="page-header">
             <h1 class="project-name">mavonEditor</h1>
