@@ -39,7 +39,7 @@ export const CONFIG = {
     'words_ru': words_ru,
     'words_de': words_de,
     'words_ja': words_ja,
-    'langList': ['en', 'zh-CN', 'fr', 'pt-BR', 'ru','de'],
+    'langList': ['en', 'zh-CN', 'fr', 'pt-BR', 'ru', 'de', 'ja'],
     'toolbars': {
         'bold': true,
         'italic': true,
