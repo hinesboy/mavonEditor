@@ -50,6 +50,10 @@ const KEY_CODE = {
     _SIX: 54
 };
 export const keydownListen = ($vm) => {
+    if (!$vm.shortCut)
+    {
+        return
+    }
     $vm.$el.addEventListener('keydown', function (e) {
         // 注册监听键盘事件
         if (!(e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {

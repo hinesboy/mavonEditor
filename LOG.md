@@ -1,4 +1,8 @@
 # 更新日志
+- **2.7.3** (19.3.28)
+    - 添加shortCut控制快捷键的开关
+    - 修复自定义图片上传bug
+    - 修复多次触发change事件bug
 - **2.7.2** 合并Pull Request(19.3.19)
     - [pr #404](https://github.com/hinesboy/mavonEditor/pull/404)
 - **2.7.0** 合并Pull Request(19.3.12)

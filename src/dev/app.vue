@@ -28,7 +28,8 @@
             <mavon-editor ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :autofocus="autofocus"
-                          :external_link="external_link"
+                          :shortCut="true"
+                          :externalLink="external_link"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"
                           :imageFilter="image_filter">
                 <!-- <template slot="left-toolbar-before">
@@ -235,7 +236,7 @@
                 alert('save two')
             },
             change (val, render) {
-                console.log('change')
+                console.log(val)
             },
             opchange (event) {
                 this.d_language = event.target.value;

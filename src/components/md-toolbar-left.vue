@@ -189,6 +189,7 @@
                 this.$emit('imgTouch', this.img_file[pos]);
             },
             $changeUrl(index,url) {
+                index = index + 1;
                 this.img_file[index][1] = url;
             },
             $imgFileAdd($file) {

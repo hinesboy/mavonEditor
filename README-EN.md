@@ -117,6 +117,7 @@ export default {
 | codeStyle | String |    code-github     | markdown Style: default github, [option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js)  |
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
 | navigation | Boolean |    false    |  Show navigation  |
+| shortCut | Boolean |    true    |  shortcut switch  |
 | ishljs       | Boolean |     true     | highlight code switch |
 | imageFilter | Function |     null     | Image file filter Function, params is a `File Object`, you should return `Boolean` about the test result |
 | imageClick | function |     null     |  Image Click Function |

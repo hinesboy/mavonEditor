@@ -118,6 +118,7 @@ export default {
 | codeStyle | String |    code-github     | markdown样式： 默认github, [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js)   |
 | toolbarsFlag | Boolean |    true     | 工具栏是否显示                |
 | navigation | Boolean |    false    |  默认展示目录  |
+| shortCut | Boolean |    true    |  是否启用快捷键  |
 | ishljs       | Boolean |     true     |  代码高亮 |
 | imageFilter | function |     null     |  图片过滤函数，参数为一个`File Object`，要求返回一个`Boolean`, `true`表示文件合法，`false`表示文件不合法 |
 | imageClick | function |     null     |  图片点击事件，默认为预览，可覆盖 |

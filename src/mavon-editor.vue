@@ -206,6 +206,10 @@ export default {
         tabSize: {
             type: Number,
             default: 0
+        },
+        shortCut:{
+            type: Boolean,
+            default: true
         }
     },
     data() {
@@ -278,12 +282,12 @@ export default {
     },
     created() {
         var $vm = this;
-        $vm.initExternalFuc();
         // 初始化语言
         this.initLanguage();
+        this.initExternalFuc();
         this.$nextTick(() => {
             // 初始化Textarea编辑开关
-            this.editableTextarea();
+            $vm.editableTextarea();
         })
     },
     mounted() {
@@ -308,18 +312,16 @@ export default {
         this.d_value = this.value;
         // 将help添加到末尾
         document.body.appendChild(this.$refs.help);
-        $vm.loadExternalLink('markdown_css', 'css');
-        $vm.loadExternalLink('katex_css', 'css')
-        $vm.loadExternalLink('katex_js', 'js', function() {
-            $vm.initLanguage();
-            $vm.iRender();
+        this.loadExternalLink('markdown_css', 'css');
+        this.loadExternalLink('katex_css', 'css')
+        this.loadExternalLink('katex_js', 'js', function() {
+            $vm.iRender(true);
         })
-        $vm.loadExternalLink('hljs_js', 'js', function() {
-            $vm.initLanguage();
-            $vm.iRender();
+        this.loadExternalLink('hljs_js', 'js', function() {
+            $vm.iRender(true);
         })
 
-        if (!(typeof $vm.externalLink === 'object'&& typeof $vm.externalLink['markdown_css'] === 'function')) {
+        if (!(typeof $vm.externalLink === 'object' && typeof $vm.externalLink['markdown_css'] === 'function')) {
             // 没有外部文件要来接管markdown样式，可以更改markdown样式。
             $vm.codeStyleChange($vm.codeStyle, true)
         }
@@ -602,13 +604,16 @@ export default {
                 console.warn('hljs color scheme', val, 'do not exist, hljs color scheme will not change');
             }
         },
-        iRender() {
+        iRender(toggleChange) {
             var $vm = this;
-            $vm.$render($vm.d_value, function(res) {
+            this.$render($vm.d_value, function(res) {
                 // render
                 $vm.d_render = res;
-                // change回调
-                if ($vm.change) $vm.change($vm.d_value, $vm.d_render);
+                // change回调  toggleChange == false 时候触发change回调
+                if (!toggleChange)
+                {
+                    if ($vm.change) $vm.change($vm.d_value, $vm.d_render);
+                }
                 // 改变标题导航
                 if ($vm.s_navigation) getNavigation($vm, false);
                 // v-model 语法糖
@@ -629,7 +634,7 @@ export default {
     },
     watch: {
         d_value: function (val, oldVal) {
-            this.iRender(val);
+            this.iRender();
         },
         value: function (val, oldVal) {
             if (val !== this.d_value) {
