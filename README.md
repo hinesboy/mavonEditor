@@ -1,3 +1,9 @@
+近期由于个人原因，近期维护较少，非常抱歉！
+
+计划于暑期阶段（7~9月份）对mavonEditor进行一次大版本的更新，尤其针对图片上传以及代码高亮（目前文档繁琐使用不便 + 存在一些bug）。
+
+如有兴趣或建议可以通过邮件联系我，或者提供您的Pull Request！
+
 # mavonEditor
 
 ![npm](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)
