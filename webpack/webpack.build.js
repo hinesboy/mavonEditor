@@ -22,7 +22,7 @@ var config = {
         // publicPath: '/dist/',
         filename: 'mavon-editor.js',
         chunkFilename: 'js/[name].js',
-        library: 'mavon-editor',
+        library: 'MavonEditor',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
