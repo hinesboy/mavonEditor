@@ -225,7 +225,7 @@
                 this.s_img_dropdown_open = false;
             },
             isEqualName(filename, pos) {
-                if (this.img_file[pos][1]) {
+                if (this.img_file[pos][1] !== null) {
                     if (this.img_file[pos][1].name == filename || this.img_file[pos][1]._name == filename) {
                         return true
                     }
