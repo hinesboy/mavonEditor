@@ -75,18 +75,18 @@
 
                     <div
                         v-for="(item, index) in img_file"
-                        v-if="item && item[0]"
+                        v-if="item && item[1]"
                         class="dropdown-item dropdown-images"
-                        :title="item[0].name"
+                        :title="item[1].name"
                         :key="index"
                         @click.stop="$imgFileListClick(index)"
                     >
-                        <span>{{item[0].name}}</span>
+                        <span>{{item[1].name}}</span>
                         <button slot="right" type="button" @click.stop="$imgDel(index)"
                                 class="op-icon fa fa-mavon-trash-o" aria-hidden="true"
                                 :title="d_words.tl_upload_remove"></button>
                         <!-- 缩略图展示 -->
-                        <img class = "image-show" :src="item[0].miniurl" alt="none">
+                        <img class = "image-show" :src="item[1].miniurl" alt="none">
                     </div>
                 </div>
             </transition>
@@ -189,17 +189,15 @@
                 this.$emit('imgTouch', this.img_file[pos]);
             },
             $changeUrl(index,url) {
-                index = index + 1;
-                this.img_file[index][1] = url;
+                this.img_file[index][0] = url;
             },
             $imgFileAdd($file) {
                 // this.img_file[0][0] = this.num;
                 // this.img_file[0][1] = $file;
                 // this.img_file.unshift([(this.num + 1), null]);
                 // this.num = this.num + 1;
-                this.img_file.push([$file,this.num])
+                this.img_file.push([++this.num,$file])
                 this.$emit('imgAdd', this.num, $file);
-                this.num = this.num + 1;
                 this.s_img_dropdown_open = false;
             },
             $imgFilesAdd($files) {
@@ -219,8 +217,8 @@
             },
             $imgDel(pos) {
                 this.$emit('imgDel', this.img_file[pos]);
-               // this.img_file.splice(pos, 1);
-                               delete this.img_file[pos];
+               this.img_file.splice(pos, 1);
+               this.num--;
 
                 this.s_img_dropdown_open = false;
             },
@@ -235,8 +233,7 @@
             $imgDelByFilename(filename) {
                 var pos = 0;
                 while (this.img_file.length > pos) {
-                    console.log(this.img_file[pos])
-                    if (this.img_file[pos][0] == filename || this.isEqualName(filename, pos)) {
+                    if (this.img_file[pos][1] == filename || this.isEqualName(filename, pos)) {
                         this.$imgDel(pos);
                         return true;
                     }

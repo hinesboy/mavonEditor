@@ -404,10 +404,10 @@ export default {
             // TODO 跳转到图片位置
         },
         $imgDel(file) {
-            this.markdownIt.image_del(file[0]);
+            this.markdownIt.image_del(file[1]);
             // 删除所有markdown中的图片
-            let fileReg = file[1]
-            let reg = new RegExp(`\\!\\[${file[0]._name}\\]\\(${fileReg}\\)`, "g")
+            let fileReg = file[0]
+            let reg = new RegExp(`\\!\\[${file[1]._name}\\]\\(${fileReg}\\)`, "g")
 
             this.d_value = this.d_value.replace(reg, '');
             this.iRender();
@@ -427,6 +427,7 @@ export default {
                 if (isinsert === true) {
                     // 去除特殊字符
                     $file._name = $file.name.replace(/[\[\]\(\)\+\{\}&\|\\\*^%$#@\-]/g, '');
+                    
                     $vm.insertText($vm.getTextareaDom(),
                         {
                             prefix: '![' + $file._name + '](' + pos + ')',
@@ -544,6 +545,7 @@ export default {
         // 工具栏插入内容
         insertText(obj, {prefix, subfix, str, type}) {
             // if (this.s_preview_switch) {
+          
             insertTextAtCaret(obj, {prefix, subfix, str, type}, this);
         },
         insertTab() {
