@@ -1,4 +1,7 @@
 # 更新日志
+- **2.7.4** (19.4.30)
+    - [pr #415](https://github.com/hinesboy/mavonEditor/pull/415)
+    - [pr #417](https://github.com/hinesboy/mavonEditor/pull/417)
 - **2.7.3** (19.3.28)
     - 添加shortCut控制快捷键的开关
     - 修复自定义图片上传bug
