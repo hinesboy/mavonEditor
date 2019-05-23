@@ -25,14 +25,8 @@
 
 ### Install mavon-editor (安装)
 
-#### For `npm` user
 ```
-$ npm install mavon-editor
-```
-
-#### For `yarn` user
-```
-$ yarn add mavon-editor
+$ npm install mavon-editor --save
 ```
 
 ### Use (如何引入)
