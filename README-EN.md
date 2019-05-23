@@ -17,13 +17,8 @@
 ## Use Setup
 
 ### Install mavon-editor
-#### For `npm` user
 ```
-$ npm install mavon-editor
-```
-#### For `yarn` user
-```
-$ yarn add mavon-editor
+$ npm install mavon-editor --save
 ```
 
 ### Use
@@ -123,7 +118,6 @@ export default {
 | toolbarsFlag | Boolean     |   true       | Show toolbars |
 | navigation | Boolean |    false    |  Show navigation  |
 | shortCut | Boolean |    true    |  shortcut switch  |
-| autofocus | Boolean |    true     | Autofocus on textbox |
 | ishljs       | Boolean |     true     | highlight code switch |
 | imageFilter | Function |     null     | Image file filter Function, params is a `File Object`, you should return `Boolean` about the test result |
 | imageClick | function |     null     |  Image Click Function |
