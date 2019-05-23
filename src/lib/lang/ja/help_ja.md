@@ -1,6 +1,6 @@
-@[toc](Catalog)
+@[toc](目次)
 
-Markdown Guide
+Markdown 文法ガイド
 ===
 > Detailed: [http://commonmark.org/help/](http://commonmark.org/help/)
 
@@ -9,10 +9,10 @@ Markdown Guide
 **太字**
 __太字__
 ```
-## *イタリック*
+## *斜体*
 ```
-*イタリック*
-_イタリック_
+*斜体*
+_斜体_
 ```
 ## 見出し
 ```
@@ -33,7 +33,7 @@ h2
 ---
 ```
 ****
-## ^上付き^文字 & ~添~文
+## ^上付き^文字 & ~下付き~文字
 ```
 super x^2^
 sub H~2~0
@@ -43,7 +43,7 @@ sub H~2~0
 ++underline++
 ~~strikethrough~~
 ```
-## ==マーク==
+## ==蛍光ペン==
 ```
 ==mark==
 ```
@@ -58,13 +58,13 @@ sub H~2~0
 
 ## リスト
 ```
-ol
+番号付きリスト
 1.
 2.
 3.
 ...
 
-ul
+箇条書きリスト
 -
 -
 ...
@@ -115,6 +115,7 @@ int main()
 | :--  | :--: | ----: |
 | left | center | right |
 | ---------------------- | ------------- | ----------------- |
+
 ## 脚注
 ```
 hello[^hello]
@@ -125,7 +126,7 @@ Look at the bottom[^hello]
 [^hello]: footnote
 
 ## 絵文字
-Detailed: [https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
+> Detailed: [https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
 ```
 :laughing:
 :blush:
@@ -135,12 +136,12 @@ Detailed: [https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpa
 ```
 :laughing::blush::smiley::)
 
-## $\KaTeX$ Mathematics
+## $\KaTeX$ 数式
+> Detailed: [KaTeXマニュアル](http://www.intmath.com/cg5/katex-mathjax-comparison.php)、[KaTeX function](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX)、[LaTeXマニュアル](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
 
-We can render formulas for example：$x_i + y_i = z_i$ and $\sum_{i=1}^n a_i=0$
+We can render formulas for example：$x_i + y_i = z_i$ and $\sum_{i=1}^n a_i=0$  
 We can also single-line rendering
 $$\sum_{i=1}^n a_i=0$$
-Detailed: [katex](http://www.intmath.com/cg5/katex-mathjax-comparison.php)和[katex function](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX)以及[latex](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
 
 ## レイアウト
 
@@ -162,7 +163,7 @@ Detailed: [katex](http://www.intmath.com/cg5/katex-mathjax-comparison.php)和[ka
 `:::`
 :::
 
-## deflist
+## 定義リスト
 
 Term 1
 
