@@ -3,6 +3,7 @@
   "version": "2.7.4",
   "description": "Vue markdown editor",
   "main": "dist/mavon-editor.js",
+  "types": "./mavon-editor.d.ts",
   "scripts": {
     "test": "echo true",
     "dev": "webpack-dev-server --open --progress --config webpack/webpack.dev.js",
