@@ -20,18 +20,25 @@
             <h2 class="item-header">
                 {{d_words.default_setting}}
             </h2>
-            <button @click="clearCache">clear cache</button>
-            <button @click="uploadimg">upload</button>
-            <button @click="imgreplace">imgreplace</button>
-            <input type="text" v-model="imgName" />
-            <button @click="imgdelete">delete</button>
+            <div class="item-button">
+              <button @click="clearCache">clear cache</button>
+              <button @click="uploadimg">upload</button>
+              <button @click="imgreplace">imgreplace</button>
+              <input type="text" v-model="imgName" />
+              <button @click="imgdelete">delete</button>
+            </div>
             <mavon-editor ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :autofocus="autofocus"
                           :shortCut="true"
                           :externalLink="external_link"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"
-                          :imageFilter="image_filter">
+                          :imageFilter="image_filter"
+                          :boxShadow="true"
+                          :scrollStyle="true"
+                          :transition="true"
+                          toolbars-background="#ffffff"
+                          preview-background="#fbfbfb">
                 <!-- <template slot="left-toolbar-before">
                     左工具栏前
                 </template>
@@ -345,6 +352,8 @@
             @media only screen and (max-width 768px)
                 margin-top: 2rem
                 margin-bottom: 1rem
+        .item-button
+            margin-bottom: 4rem
         .item-editor
             width 100%
             height 700px
