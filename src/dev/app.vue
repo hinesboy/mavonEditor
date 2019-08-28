@@ -37,6 +37,7 @@
                           :boxShadow="true"
                           :scrollStyle="true"
                           :transition="true"
+                          box-shadow-style="0 2px 12px 0 rgba(0, 0, 0, 0.1)"
                           toolbars-background="#ffffff"
                           preview-background="#fbfbfb">
                 <!-- <template slot="left-toolbar-before">

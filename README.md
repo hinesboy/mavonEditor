@@ -111,6 +111,7 @@ export default {
 | fontSize     | String  |     15px      | 编辑区域文字大小 |
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)              |
 | boxShadow     | Boolean  |     true     | 开启边框阴影                |
+| boxShadowStyle | String | 0 2px 12px 0 rgba(0, 0, 0, 0.1) | 边框阴影样式 |
 | transition | Boolean | true | 是否开启过渡动画 |
 | toolbarsBackground | String | #ffffff | 工具栏背景颜色 |
 | previewBackground | String | #fbfbfb | 预览框背景颜色 |

@@ -1,5 +1,5 @@
 <template>
-    <div :class="[{ 'fullscreen': s_fullScreen, 'shadow': boxShadow }]" class="v-note-wrapper markdown-body">
+    <div :class="[{ 'fullscreen': s_fullScreen, 'shadow': boxShadow }]" class="v-note-wrapper markdown-body" :style="{'box-shadow': boxShadow ? boxShadowStyle : ''}">
         <!--工具栏-->
         <div class="v-note-op" v-show="toolbarsFlag" :style="{'background': toolbarsBackground}">
             <v-md-toolbar-left ref="toolbar_left" :editable="editable" :transition="transition" :d_words="d_words"
@@ -154,6 +154,10 @@ export default {
         previewBackground: { // 预览栏背景色
             type: String,
             default: '#fbfbfb'
+        },
+        boxShadowStyle: { // 阴影样式
+            type: String,
+            default: '0 2px 12px 0 rgba(0, 0, 0, 0.1)'
         },
         help: {
             type: String,
