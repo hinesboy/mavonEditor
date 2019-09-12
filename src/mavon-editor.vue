@@ -1,10 +1,11 @@
 <template>
-    <div :class="[{'fullscreen': s_fullScreen}]" class="v-note-wrapper markdown-body">
+    <div :class="[{ 'fullscreen': s_fullScreen, 'shadow': boxShadow }]" class="v-note-wrapper markdown-body" :style="{'box-shadow': boxShadow ? boxShadowStyle : ''}">
         <!--工具栏-->
-        <div class="v-note-op" v-show="toolbarsFlag" :class="{'shadow': boxShadow}">
-            <v-md-toolbar-left ref="toolbar_left" :editable="editable" :d_words="d_words"
+        <div class="v-note-op" v-show="toolbarsFlag" :style="{'background': toolbarsBackground}">
+            <v-md-toolbar-left ref="toolbar_left" :editable="editable" :transition="transition" :d_words="d_words"
                                @toolbar_left_click="toolbar_left_click" @toolbar_left_addlink="toolbar_left_addlink" :toolbars="toolbars"
-                               @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch" :image_filter="imageFilter">
+                               @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch" :image_filter="imageFilter"
+                               :class="{'transition': transition}">
                 <slot name="left-toolbar-before" slot="left-toolbar-before" />
                 <slot name="left-toolbar-after" slot="left-toolbar-after" />
             </v-md-toolbar-left>
@@ -13,44 +14,48 @@
                                 :s_subfield="s_subfield"
                                 :s_preview_switch="s_preview_switch" :s_fullScreen="s_fullScreen"
                                 :s_html_code="s_html_code"
-                                :s_navigation="s_navigation">
+                                :s_navigation="s_navigation"
+                                :class="{'transition': transition}">
                 <slot name="right-toolbar-before" slot="right-toolbar-before" />
                 <slot name="right-toolbar-after" slot="right-toolbar-after" />
             </v-md-toolbar-right>
         </div>
         <!--编辑展示区域-->
-        <div class="v-note-panel" :class="{'shadow': boxShadow}">
+        <div class="v-note-panel">
             <!--编辑区-->
             <div ref="vNoteEdit" @scroll="$v_edit_scroll" class="v-note-edit divarea-wrapper"
-                 :class="{'scroll-style': s_scrollStyle  , 'single-edit': !s_preview_switch && !s_html_code , 'single-show': (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code)}"
+                 :class="{'scroll-style': s_scrollStyle, 'scroll-style-border-radius': s_scrollStyle && !s_preview_switch && !s_html_code, 'single-edit': !s_preview_switch && !s_html_code, 'single-show': (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code), 'transition': transition}"
                  @click="textAreaFocus">
-                <div class="content-input-wrapper">
+                <div class="content-input-wrapper" :style="{'background-color': editorBackground}">
                     <!-- 双栏 -->
                     <v-autoTextarea ref="vNoteTextarea" :placeholder="placeholder ? placeholder : d_words.start_editor"
                                     class="content-input" :fontSize="fontSize"
-                                    lineHeight="1.5" v-model="d_value" fullHeight></v-autoTextarea>
+                                    lineHeight="1.5" v-model="d_value" fullHeight
+                                    :style="{'background-color': editorBackground}"></v-autoTextarea>
                 </div>
             </div>
             <!--展示区-->
             <div :class="{'single-show': (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code)}"
                  v-show="s_preview_switch || s_html_code" class="v-note-show">
                 <div ref="vShowContent" v-html="d_render" v-show="!s_html_code"
-                     :class="{'scroll-style': s_scrollStyle}" class="v-show-content">
+                     :class="{'scroll-style': s_scrollStyle, 'scroll-style-border-radius': s_scrollStyle}" class="v-show-content"
+                     :style="{'background-color': previewBackground}">
                 </div>
-                <div v-show="s_html_code" :class="{'scroll-style': s_scrollStyle}" class="v-show-content-html">
+                <div v-show="s_html_code" :class="{'scroll-style': s_scrollStyle, 'scroll-style-border-radius': s_scrollStyle}" class="v-show-content-html"
+                  :style="{'background-color': previewBackground}">
                     {{d_render}}
                 </div>
             </div>
 
             <!--标题导航-->
             <transition name="slideTop">
-                <div v-show="s_navigation" class="v-note-navigation-wrapper" :class="{'shadow': boxShadow}">
-                    <div class="v-note-navigation-title" :class="{'shadow': boxShadow}">
+                <div v-show="s_navigation" class="v-note-navigation-wrapper" :class="{'transition': transition}">
+                    <div class="v-note-navigation-title">
                         {{d_words.navigation_title}}<i @click="toolbar_right_click('navigation')"
                                                        class="fa fa-mavon-times v-note-navigation-close"
                                                        aria-hidden="true"></i>
                     </div>
-                    <div ref="navigationContent" class="v-note-navigation-content scroll-style">
+                    <div ref="navigationContent" class="v-note-navigation-content" :class="{'scroll-style': s_scrollStyle}">
                     </div>
                 </div>
             </transition>
@@ -117,34 +122,52 @@ import "./lib/font/css/fontello.css"
 import './lib/css/md.css'
 export default {
     mixins: [markdown],
-    props: { // 是否渲染滚动条样式(webkit)
-        scrollStyle: {
+    props: {
+        scrollStyle: {  // 是否渲染滚动条样式(webkit)
             type: Boolean,
             default: true
         },
-        boxShadow: {
+        boxShadow: { // 是否添加阴影
             type: Boolean,
             default: true
         },
-        autofocus: {
+        transition: { // 是否开启动画过渡
             type: Boolean,
             default: true
         },
-        fontSize: {
+        autofocus: { // 是否自动获取焦点
+            type: Boolean,
+            default: true
+        },
+        fontSize: { // 字体大小
             type: String,
             default: '15px'
+        },
+        toolbarsBackground: { // 工具栏背景色
+            type: String,
+            default: '#ffffff'
+        },
+        editorBackground: { // TODO: 编辑栏背景色
+            type: String,
+            default: '#ffffff'
+        },
+        previewBackground: { // 预览栏背景色
+            type: String,
+            default: '#fbfbfb'
+        },
+        boxShadowStyle: { // 阴影样式
+            type: String,
+            default: '0 2px 12px 0 rgba(0, 0, 0, 0.1)'
         },
         help: {
             type: String,
             default: null
         },
-        // 初始value
-        value: {
+        value: { // 初始 value
             type: String,
             default: ''
         },
-        // 初始value
-        language: {
+        language: {  // 初始语言
             type: String,
             default: 'zh-CN'
         },
@@ -160,30 +183,27 @@ export default {
             type: String,
             default: null
         },
-        // 是否开启编辑
-        editable: {
+        editable: { // 是否开启编辑
             type: Boolean,
             default: true
         },
-        // 是否开启工具栏
-        toolbarsFlag: {
+        toolbarsFlag: { // 是否开启工具栏
             type: Boolean,
             default: true
         },
-        // 工具栏
-        toolbars: {
+        toolbars: { // 工具栏
             type: Object,
             default() {
                 return CONFIG.toolbars
             }
         },
-        codeStyle: {
+        codeStyle: { // <code></code> 样式
             type: String,
             default() {
                 return 'github';
             }
         },
-        placeholder: {
+        placeholder: { // 编辑器默认内容
             type: String,
             default: null
         },

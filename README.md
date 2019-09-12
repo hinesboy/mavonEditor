@@ -111,6 +111,10 @@ export default {
 | fontSize     | String  |     15px      | 编辑区域文字大小 |
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)              |
 | boxShadow     | Boolean  |     true     | 开启边框阴影                |
+| boxShadowStyle | String | 0 2px 12px 0 rgba(0, 0, 0, 0.1) | 边框阴影样式 |
+| transition | Boolean | true | 是否开启过渡动画 |
+| toolbarsBackground | String | #ffffff | 工具栏背景颜色 |
+| previewBackground | String | #fbfbfb | 预览框背景颜色 |
 | subfield     | Boolean |    true     | true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)    |
 | defaultOpen | String |         | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
 | placeholder | String |    开始编辑...     |  输入框为空时默认提示文本  |

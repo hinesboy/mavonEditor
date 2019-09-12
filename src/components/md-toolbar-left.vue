@@ -11,7 +11,7 @@
                 class="op-icon fa fa-mavon-header dropdown dropdown-wrapper" aria-hidden="true"
                 :title="`${d_words.tl_header} (ctrl+h)`">
             <transition name="fade">
-                <div class="op-header popup-dropdown" v-show="s_header_dropdown_open" @mouseenter="$mouseenter_header_dropdown" @mouseleave="$mouseleave_header_dropdown">
+                <div class="op-header popup-dropdown" :class="{'transition': transition}" v-show="s_header_dropdown_open" @mouseenter="$mouseenter_header_dropdown" @mouseleave="$mouseleave_header_dropdown">
                     <div title="#"  class="dropdown-item" @click.stop="$click_header('header1')"><span>{{d_words.tl_header_one}}</span></div>
                     <div title="## " class="dropdown-item" @click.stop="$click_header('header2')"><span>{{d_words.tl_header_two}}</span></div>
                     <div title="### " class="dropdown-item" @click.stop="$click_header('header3')"><span>{{d_words.tl_header_three}}</span></div>
@@ -67,7 +67,7 @@
                 class="op-icon fa fa-mavon-picture-o dropdown dropdown-wrapper"
                 aria-hidden="true">
             <transition name="fade">
-                <div  class="op-image popup-dropdown" v-show="s_img_dropdown_open" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown">
+                <div  class="op-image popup-dropdown" :class="{'transition': transition}" v-show="s_img_dropdown_open" @mouseleave="$mouseleave_img_dropdown" @mouseenter="$mouseenter_img_dropdown">
                     <div  class="dropdown-item" @click.stop="$toggle_imgLinkAdd('imagelink')"><span>{{d_words.tl_image}}</span></div>
                     <div class="dropdown-item" style="overflow: hidden">
                         <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" multiple="multiple"/>{{d_words.tl_upload}}
@@ -83,10 +83,10 @@
                     >
                         <span>{{item[1].name}}</span>
                         <button slot="right" type="button" @click.stop="$imgDel(index)"
-                                class="op-icon fa fa-mavon-trash-o" aria-hidden="true"
+                                class="op-icon fa fa-mavon-times" aria-hidden="true"
                                 :title="d_words.tl_upload_remove"></button>
                         <!-- 缩略图展示 -->
-                        <img class = "image-show" :src="item[1].miniurl" alt="none">
+                        <img class = "image-show" :class="{'transition': transition}" :src="item[1].miniurl" alt="none">
                     </div>
                 </div>
             </transition>
@@ -136,13 +136,15 @@
     export default {
         name: 's-md-toolbar-left',
         props: {
-            // 是否开启编辑
-            editable: {
+            editable: { // 是否开启编辑
                 type: Boolean,
                 default: true
             },
-            // 工具栏
-            toolbars: {
+            transition: { // TODO: 是否开启动画过渡
+                type: Boolean,
+                default: true
+            },
+            toolbars: { // 工具栏
                 type: Object,
                 required: true
             },
@@ -196,7 +198,7 @@
                 // this.img_file[0][1] = $file;
                 // this.img_file.unshift([(this.num + 1), null]);
                 // this.num = this.num + 1;
-                this.img_file.push([++this.num,$file])
+                this.img_file.push([++this.num, $file])
                 this.$emit('imgAdd', this.num, $file);
                 this.s_img_dropdown_open = false;
             },
@@ -314,6 +316,8 @@
 <style lang="stylus" scoped>
     .op-icon.dropdown-wrapper.dropdown
         position relative
+        &[type=button]
+            -webkit-appearance unset
         .popup-dropdown
             position absolute
             display block
@@ -322,8 +326,15 @@
             left -45px
             min-width 130px
             z-index 1600
-            box-shadow: 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
-            transition all 0.2s linear 0s
+            border 1px solid #ebeef5
+            border-radius 4px
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+            .dropdown-item:first-child
+                border-top-left-radius 3px
+                border-top-right-radius 3px
+            .dropdown-item:last-child
+                border-bottom-left-radius 3px
+                border-bottom-right-radius 3px
             &.op-header
                 left -30px
                 min-width 90px
@@ -331,14 +342,18 @@
                 opacity 1
             &.fade-enter, &.fade-leave-active
                 opacity 0
+            &.transition
+              &, .dropdown-item
+                transition all 0.2s linear 0s
         .dropdown-item
-            height 35px
+            height 40px
             line-height @height
-            font-size 12px
-            transition all 0.2s linear 0s
+            font-size 14px
+            color #606266
             position relative
             &:hover
-                background #eaeaea
+                color #303133
+                background-color #e9e9eb
             input
                 position absolute
                 font-size 100px
@@ -350,9 +365,12 @@
             box-sizing border-box
             button
                 position absolute
+                top -1px
                 right 5px
+                font-size: 14px
                 &:hover
-                    color #db2828
+                    color #F56C6C
+                    background-color: transparent
             span
                 display inline-block
                 width 80px
@@ -365,12 +383,16 @@
             .image-show
                 display none
                 position absolute
-                left -122px
+                left -128px
                 top 0
-                transition all 0.3s linear 0s
                 width 120px
                 height 90px
-                border 1px solid #eeece8
+                object-fit contain
+                border 1px solid #F2F6FC
+                &.transition
+                    transition all 0.2s linear 0s
+            &.transition
+                transition all 0.2s linear 0s
 .add-image-link-wrapper
     position fixed
     left 0
@@ -406,7 +428,7 @@
         z-index 3
         background #fff
         border-radius 2px
-        box-shadow: 0 0px 5px rgba(255,255,255, .156863), 0 0px 5px rgba(255,255,255, .227451)
+
         i
             font-size 24px
             position absolute

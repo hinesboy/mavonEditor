@@ -1,4 +1,4 @@
-  border-color = 1px solid #e0e0e0
+  border-color = 1px solid #F2F6FC
   op-height = 40px
   textarea:disabled
     background-color #ffffff
@@ -10,30 +10,31 @@
     min-height 300px
     display flex
     flex-direction column
-    transition all 0.3s linear 0s
-    background #fff
+    background-color #fff
     z-index 1500
     text-align left
+    border border-color
+    border-radius 4px
     &.fullscreen
       position fixed
       left 0
       right 0
       bottom 0
       top 0
+      margin 0
       height auto
       z-index 1501
     .v-note-op
+      padding 1px
       width 100%
       display flex
       white-space pre-line
       flex none
       min-height op-height
-      border border-color
-      border-bottom none
-      &.shadow
-        border none
-        box-shadow 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
-      background #fff
+      user-select none
+      border-bottom border-color
+      border-radius 4px 4px 0 0
+      background-color #fff
       z-index 1
       .v-left-item, .v-right-item
         flex 1
@@ -59,7 +60,7 @@
           border none
           outline none
           line-height 1
-          vertical-align middle
+          //vertical-align middle
           &.dropdown-wrapper
             line-height 18px
           &.selected
@@ -67,7 +68,10 @@
             background #eaeaea
           &:hover
             color rgba(0, 0, 0, 0.8)
-            background #e5e5e5
+            background #e9e9eb
+        &.transition
+          .op-icon
+            transition all 0.2s linear 0s
       .v-right-item
         text-align right
         padding-right 6px
@@ -77,10 +81,7 @@
         padding-left 6px
     .v-note-panel
       position relative
-      border border-color
-      &.shadow
-        border none
-        box-shadow 0 0px 3px rgba(0, 0, 0, .156863), 0 0px 3px rgba(0, 0, 0, .227451)
+      border-top none
       display flex
       flex 1
       width 100%
@@ -93,9 +94,11 @@
         overflow-y scroll
         overflow-x hidden
         box-sizing border-box
-        transition all 0.2s linear 0s
         cursor text
+        border-bottom-left-radius: 4px;
         scrollbar()
+        &.transition
+          transition all 0.2s linear 0s
         &.single-edit
           width 100%
           flex 0 0 100%
@@ -131,47 +134,43 @@
           overflow-y auto
           box-sizing border-box
           overflow-x hidden
-          background #fbfbfb
           scrollbar()
       .v-note-navigation-wrapper
+        display flex
         position absolute
         width 250px
         right 0
         top 0
         bottom 0
-        display flex
+        height 100%
         flex-direction column
-        background rgba(255,255,255,0.98)
-        border border-color
-        &.shadow
-          box-shadow 0 0px 4px rgba(0, 0, 0, .156863), 0 0px 4px rgba(0, 0, 0, .227451)
-          border none
-        transition all 0.1s linear 0s
+        background-color rgba(255,255,255,0.98)
+        border-left border-color
+        border-right border-color
+        &.transition
+          transition all 0.1s linear 0s
         @media only screen and (max-width 768px)
           width 50%
         &.slideTop-enter-active, &.slideTop-leave-active
-          bottom 0
+          height 100%
         &.slideTop-enter, &.slideTop-leave-active
-          bottom 100%
+          height 0
         .v-note-navigation-title
           height 50px
           width 100%
-          border-bottom 1px solid #eeece8
+          border-bottom border-color
           flex none
           line-height @height
-          font-size 18px
-          font-weight 500
+          font-size 16px
           box-sizing border-box
-          padding 0 12px
-          &.shadow
-            box-shadow 0 0px 1px rgba(0, 0, 0, .156863), 0 0px 1px rgba(0, 0, 0, .227451)
+          padding 0 12px 0 18px
           .v-note-navigation-close
             float right
-            color #757575
-            font-size 20px
+            color #606266
+            font-size 18px
             cursor pointer
             &:hover
-              color #696969
+              color #303133
         .v-note-navigation-content
           overflow-y auto
           flex 1
@@ -219,6 +218,9 @@
       box-sizing border-box
       &.show
         display block
+    &.shadow
+      border none
+      // box-shadow 0 2px 12px 0 rgba(0, 0, 0, 0.1) 
 .v-note-help-wrapper
   position fixed
   left 0
