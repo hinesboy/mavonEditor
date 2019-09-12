@@ -1,4 +1,6 @@
 # 更新日志
+- **2.7.6** (19.9.12)
+    - [pr #478](https://github.com/hinesboy/mavonEditor/pull/478)
 - **2.7.5** (19.6.12)
     - [pr #421](https://github.com/hinesboy/mavonEditor/pull/421)
     - [pr #428](https://github.com/hinesboy/mavonEditor/pull/428)
