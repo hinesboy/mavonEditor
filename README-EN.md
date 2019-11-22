@@ -106,7 +106,7 @@ export default {
 | name    | type    |  default value | describe  |
 | -------- | :---------: | :------------: | ------- |
 | value      | String      |               | Initial value |
-| language   | String      |      zh-CN         | Language switch,  zh-CN: Simplified Chinese, en: English， fr: French, pt-BR: Brazilian Portuguese, ru: Russian, de: German, ja: Japanese |
+| language   | String      |      zh-CN         | Language switch,  zh-CN: Simplified Chinese, zh-TW: Traditional Chinese, en: English， fr: French, pt-BR: Brazilian Portuguese, ru: Russian, de: German, ja: Japanese |
 | fontSize     | String  |     15px      | font-size of edit area  |
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | boxShadow     | Boolean  |     true     | css: box-shadow  of mavonEditor              |
