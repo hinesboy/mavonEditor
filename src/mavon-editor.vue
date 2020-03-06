@@ -93,7 +93,7 @@ import {autoTextarea} from 'auto-textarea'
 import {keydownListen} from './lib/core/keydown-listen.js'
 import hljsCss from './lib/core/hljs/lang.hljs.css.js'
 import hljsLangs from './lib/core/hljs/lang.hljs.js'
-var xss = require('xss');
+const xss = require('xss');
 import {
     fullscreenchange,
    /* windowResize, */
