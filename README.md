@@ -60,7 +60,7 @@ Vue.use(mavonEditor);
 ``` javascript
   plugins: [
   ...
-    { src: '@/plugins/vue-mavon-editor', srr: false }
+    { src: '@/plugins/vue-mavon-editor', ssr: false }
   ],
 ```
 > 最后一步在页面或者组件中引入
