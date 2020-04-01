@@ -93,6 +93,7 @@ import {autoTextarea} from 'auto-textarea'
 import {keydownListen} from './lib/core/keydown-listen.js'
 import hljsCss from './lib/core/hljs/lang.hljs.css.js'
 import hljsLangs from './lib/core/hljs/lang.hljs.js'
+const xss = require('xss');
 import {
     fullscreenchange,
    /* windowResize, */
@@ -668,6 +669,9 @@ export default {
             this.iRender();
         },
         value: function (val, oldVal) {
+            // Escaping all XSS characters
+            val = xss(val);
+
             if (val !== this.d_value) {
                 this.d_value = val
             }
