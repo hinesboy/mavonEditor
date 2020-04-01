@@ -297,7 +297,9 @@ export default {
                     return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css';
                 }
             },
-            p_external_link: {}
+            p_external_link: {},
+            textarea_selectionEnd: 0,
+            textarea_selectionEnds: [0],
         };
     },
     created() {
@@ -589,7 +591,13 @@ export default {
         saveHistory() {
             this.d_history.splice(this.d_history_index + 1, this.d_history.length)
             this.d_history.push(this.d_value)
+            this.textarea_selectionEnds.splice(this.d_history_index + 1, this.textarea_selectionEnds.length)
+            this.textarea_selectionEnds.push(this.textarea_selectionEnd)
             this.d_history_index = this.d_history.length - 1
+        },
+        saveSelectionEndsHistory() {
+            const textarea = this.$refs.vNoteTextarea && this.$refs.vNoteTextarea.$el.querySelector('textarea');
+            this.textarea_selectionEnd = textarea ? textarea.selectionEnd : this.textarea_selectionEnd;
         },
         initLanguage() {
             let lang = CONFIG.langList.indexOf(this.language) >= 0 ? this.language : 'zh-CN';
@@ -656,6 +664,7 @@ export default {
     },
     watch: {
         d_value: function (val, oldVal) {
+            this.saveSelectionEndsHistory();
             this.iRender();
         },
         value: function (val, oldVal) {
