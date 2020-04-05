@@ -142,7 +142,7 @@ export default {
         },
         fontSize: { // 字体大小
             type: String,
-            default: '15px'
+            default: '14px'
         },
         toolbarsBackground: { // 工具栏背景色
             type: String,

@@ -108,7 +108,7 @@ export default {
 | ------------ | :-----: | :---------: | ---------------------------------------- |
 | value        | String  |             | 初始值                                     |
 | language     | String  |     zh-CN      | 语言选择，暂支持 zh-CN: 简体中文, zh-TW: 正体中文 ， en: 英文 ， fr: 法语， pt-BR: 葡萄牙语， ru: 俄语， de: 德语， ja: 日语 |
-| fontSize     | String  |     15px      | 编辑区域文字大小 |
+| fontSize     | String  |     14px      | 编辑区域文字大小 |
 | scrollStyle  | Boolean |    true     | 开启滚动条样式(暂时仅支持chrome)              |
 | boxShadow     | Boolean  |     true     | 开启边框阴影                |
 | boxShadowStyle | String | 0 2px 12px 0 rgba(0, 0, 0, 0.1) | 边框阴影样式 |
