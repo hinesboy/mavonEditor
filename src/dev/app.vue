@@ -9,6 +9,7 @@
             <option value="ja">日本語 </option>
             <option value="pt-BR">Português</option>
             <option value="ru">Русский</option>
+            <option value="fa">فارسی</option>
         </select>
         <section class="page-header">
             <h1 class="project-name">mavonEditor</h1>

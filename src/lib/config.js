@@ -18,6 +18,7 @@ import help_pt_BR from './lang/pt-BR/help_pt-BR.md'
 import help_ru from './lang/ru/help_ru.md'
 import help_de from './lang/de/help_de.md'
 import help_ja from './lang/ja/help_ja.md'
+import help_fa from './lang/fa/help_fa.md'
 
 import words_zh_CN from './lang/zh-CN/words_zh-CN.json'
 import words_zh_TW from './lang/zh-TW/words_zh-TW.json'
@@ -27,6 +28,7 @@ import words_pt_BR from './lang/pt-BR/words_pt-BR.json'
 import words_ru from './lang/ru/words_ru.json'
 import words_de from './lang/de/words_de.json'
 import words_ja from './lang/ja/words_ja.json'
+import words_fa from './lang/fa/words_fa.json'
 export const CONFIG = {
     'help_zh-CN': help_zh_CN,
     'help_zh-TW': help_zh_TW,
@@ -36,6 +38,7 @@ export const CONFIG = {
     'help_ru': help_ru,
     'help_de': help_de,
     'help_ja': help_ja,
+    'help_fa': help_fa,
     'words_zh-CN': words_zh_CN,
     'words_zh-TW': words_zh_TW,
     'words_pt-BR': words_pt_BR,
@@ -44,7 +47,8 @@ export const CONFIG = {
     'words_ru': words_ru,
     'words_de': words_de,
     'words_ja': words_ja,
-    'langList': ['en', 'zh-CN', 'zh-TW', 'fr', 'pt-BR', 'ru', 'de', 'ja'],
+    'words_fa': words_fa,
+    'langList': ['en', 'zh-CN', 'zh-TW', 'fr', 'pt-BR', 'ru', 'de', 'ja','fa'],
     'toolbars': {
         'bold': true,
         'italic': true,
