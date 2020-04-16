@@ -1,6 +1,6 @@
 {
   "name": "mavon-editor-fa",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Vue markdown editor",
   "main": "dist/mavon-editor.js",
   "types": "./mavon-editor.d.ts",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hinesboy/mavonEditor.git"
+    "url": "git+https://github.com/alirezamires/mavonEditor.git"
   },
   "keywords": [
     "javascript",
@@ -24,9 +24,9 @@
   "author": "hinesboy",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hinesboy/mavonEditor/issues"
+    "url": "https://github.com/alirezamires/mavonEditor/issues"
   },
-  "homepage": "https://github.com/hinesboy/mavonEditor#readme",
+  "homepage": "https://github.com/alirezamires/mavonEditor#readme",
   "dependencies": {
     "highlight.js": "^9.11.0",
     "highlight.js-async-webpack": "^1.0.4",
