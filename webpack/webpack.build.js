@@ -20,7 +20,7 @@ var config = {
     output: {
         path: path.resolve(__dirname, '../dist'),
         // publicPath: '/dist/',
-        filename: 'mavon-editor.js',
+        filename: 'mavon-editor-fa.js',
         chunkFilename: 'js/[name].js',
         library: 'MavonEditor',
         libraryTarget: 'umd',

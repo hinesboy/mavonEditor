@@ -2,8 +2,8 @@
   "name": "mavon-editor-fa",
   "version": "1.0.6",
   "description": "Vue markdown editor",
-  "main": "dist/mavon-editor.js",
-  "types": "./mavon-editor.d.ts",
+  "main": "dist/mavon-editor-fa.js",
+  "types": "./mavon-editor-fa.d.ts",
   "scripts": {
     "test": "echo true",
     "dev": "webpack-dev-server --open --progress --config webpack/webpack.dev.js",
