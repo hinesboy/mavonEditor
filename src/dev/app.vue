@@ -29,7 +29,7 @@
               <input type="text" v-model="imgName" />
               <button @click="imgdelete">delete</button>
             </div>
-            <mavon-editor ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
+            <mavon-editor-fa ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :autofocus="autofocus"
                           :shortCut="true"
@@ -55,7 +55,7 @@
                 <template slot="right-toolbar-after">
                     右工具栏后
                 </template> -->          
-            </mavon-editor>
+            </mavon-editor-fa>
             <button ref="diy" type="button" @click="$click('selftest')" class="op-icon fa fa-mavon-align-left"
                 aria-hidden="true" title="自定义"></button>
         </div>
