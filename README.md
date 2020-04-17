@@ -101,7 +101,10 @@ export default {
 > [如何获取并设置markdown-it对象...](./doc/cn/markdown.md)
 
 ## API 文档
-
+### options(2.8.3+)
+| name 名称      | type 类型 | default 默认值 | describe 描述                          |
+| ------------ | :-----: | :---------: | ---------------------------------------- |
+| xss   | Object/function/false|       | 默认开启，设置为false即可关闭xss防御功能，自定义过滤条件详见[markdown-it-xss](https://github.com/yzyeengang/markdown-it-xss)
 ### props
 
 | name 名称      | type 类型 | default 默认值 | describe 描述                          |

@@ -13,8 +13,6 @@ var markdown_config = {
 }
 
 var markdown = require('markdown-it')(markdown_config);
-// sanitizer
-var sanitizer = require('markdown-it-sanitizer')
 // 表情
 var emoji = require('markdown-it-emoji');
 // 下标
@@ -73,7 +71,6 @@ var hljs_opts = {
     }
 };
 markdown.use(mihe, hljs_opts)
-    .use(sanitizer)
     .use(emoji)
     .use(sup)
     .use(sub)
