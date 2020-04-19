@@ -1,5 +1,5 @@
 <template>
-      <div class="v-right-item">
+      <div :class="rtl ? 'v-left-item' : 'v-right-item'" :style="rtl ? 'max-width: 30%;' : ''">
         <slot name="right-toolbar-before" />
         <button type="button" v-if="toolbars.navigation" @click="$clicks('navigation')" v-show="!s_navigation"
                 class="op-icon fa fa-mavon-bars"
@@ -42,6 +42,10 @@
 export default {
     name: 's-md-toolbar-right',
     props: {
+      rtl: {
+        type: Boolean,
+        default: false
+      },
         // 工具栏
         s_subfield: {
             type: Boolean ,

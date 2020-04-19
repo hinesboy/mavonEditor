@@ -1,5 +1,5 @@
 <template>
-    <div class="v-left-item">
+    <div :class="rtl ? 'v-right-item' : 'v-left-item'" :style="rtl ? 'max-width: 70%;' : ''">
         <slot name="left-toolbar-before" />
         <button :disabled="!editable" type="button" v-if="toolbars.bold" @click="$clicks('bold')"
                 class="op-icon fa fa-mavon-bold" aria-hidden="true"
@@ -136,6 +136,10 @@
     export default {
         name: 's-md-toolbar-left',
         props: {
+            rtl: {
+                type: Boolean,
+                default: false
+            },
             editable: { // 是否开启编辑
                 type: Boolean,
                 default: true

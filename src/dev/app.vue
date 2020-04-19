@@ -41,7 +41,8 @@
                           :transition="true"
                           box-shadow-style="0 2px 12px 0 rgba(0, 0, 0, 0.1)"
                           toolbars-background="#ffffff"
-                          preview-background="#fbfbfb">
+                          preview-background="#fbfbfb"
+            :rtl="true">
                 <!-- <template slot="left-toolbar-before">
                     左工具栏前
                 </template>

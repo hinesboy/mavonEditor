@@ -5,7 +5,8 @@
             <v-md-toolbar-left ref="toolbar_left" :editable="editable" :transition="transition" :d_words="d_words"
                                @toolbar_left_click="toolbar_left_click" @toolbar_left_addlink="toolbar_left_addlink" :toolbars="toolbars"
                                @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch" :image_filter="imageFilter"
-                               :class="{'transition': transition}">
+                               :class="{'transition': transition}"
+            :rtl="rtl">
                 <slot name="left-toolbar-before" slot="left-toolbar-before" />
                 <slot name="left-toolbar-after" slot="left-toolbar-after" />
             </v-md-toolbar-left>
@@ -15,7 +16,8 @@
                                 :s_preview_switch="s_preview_switch" :s_fullScreen="s_fullScreen"
                                 :s_html_code="s_html_code"
                                 :s_navigation="s_navigation"
-                                :class="{'transition': transition}">
+                                :class="{'transition': transition}"
+                                :rtl="rtl">
                 <slot name="right-toolbar-before" slot="right-toolbar-before" />
                 <slot name="right-toolbar-after" slot="right-toolbar-after" />
             </v-md-toolbar-right>
@@ -124,6 +126,10 @@ import './lib/css/md.css'
 export default {
     mixins: [markdown],
     props: {
+        rtl: {
+            type: Boolean,
+            default: false
+        },
         scrollStyle: {  // 是否渲染滚动条样式(webkit)
             type: Boolean,
             default: true
