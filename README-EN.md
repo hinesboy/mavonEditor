@@ -122,7 +122,7 @@ export default {
 | imageFilter | Function |     null     | Image file filter Function, params is a `File Object`, you should return `Boolean` about the test result |
 | imageClick | function |     null     |  Image Click Function |
 | tabSize | Number |     null     |  How many spaces equals one tab, default \t |
-| xssOptions     | Object  |     null     | xss options: ![https://github.com/leizongmin/js-xss](https://github.com/leizongmin/js-xss)                    |
+| xssOptions     | Object  |     null     | xss options: [https://github.com/leizongmin/js-xss](https://github.com/leizongmin/js-xss)                    |
 | toolbars   | Object      |   As in the following example  | toolbars |
 
 ```javascript
