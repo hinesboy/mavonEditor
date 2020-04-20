@@ -104,8 +104,7 @@ export default {
 ### options(2.8.3+)
 | name 名称      | type 类型 | default 默认值 | describe 描述                          |
 | ------------ | :-----: | :---------: | ---------------------------------------- |
-| xss   | Object/function/false|{escapeHtml:(html)=>html}| 默认开启，设置为false即可关闭xss防御功能，自定义过滤条件详见[markdown-it-xss](https://github
-.com/yzyeengang/markdown-it-xss)
+| xss   | Object/function/false|       | 默认开启，设置为false即可关闭xss防御功能，自定义过滤条件详见[markdown-it-xss](https://github.com/yzyeengang/markdown-it-xss)
 ### props
 
 | name 名称      | type 类型 | default 默认值 | describe 描述                          |
