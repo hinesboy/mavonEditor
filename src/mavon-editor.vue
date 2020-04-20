@@ -88,9 +88,9 @@
 </template>
 
 <script>
-    // import tomarkdown from './lib/core/to-markdown.js'
+// import tomarkdown from './lib/core/to-markdown.js'
 import {autoTextarea} from 'auto-textarea'
-import {keydownListen} from './lib/core/keydown-listen.js'
+import {keydownListen} from './lib/core/keydown-listen.js' 
 import hljsCss from './lib/core/hljs/lang.hljs.css.js'
 import hljsLangs from './lib/core/hljs/lang.hljs.js'
 const xss = require('xss');
@@ -196,6 +196,12 @@ export default {
             type: Object,
             default() {
                 return CONFIG.toolbars
+            }
+        },
+        xssOptions: { // 工具栏
+            type: Object,
+            default() {
+                return null
             }
         },
         codeStyle: { // <code></code> 样式
@@ -670,12 +676,13 @@ export default {
         },
         value: function (val, oldVal) {
             // Escaping all XSS characters
-            val = xss(val, {
-                escapeHtml (html) {
-                    return html
-                }
-            });
-
+            //         escapeHtml (html) {
+            //             return html
+            //         }
+            if (this.xssOptions) {
+                val = xss(val, this.xssOptions);
+            }
+            
             if (val !== this.d_value) {
                 this.d_value = val
             }

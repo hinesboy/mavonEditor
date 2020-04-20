@@ -104,6 +104,11 @@
                     preview: true,
                     subfield: false
                 },
+                // xssOptions: {
+                //      escapeHtml (html) {
+                //          return html
+                //      }
+                // },
                 autofocus: true,
                 subfield: true,
                 editable: true,
