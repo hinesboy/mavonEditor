@@ -103,7 +103,7 @@ export default {
 ### options(2.8.3+)
 | name       | type  | default  | describe                           |
 | ------------ | :-----: | :---------: | ---------------------------------------- |
-| xss   | Object/function/false|       | It is enabled by default, and the xss defense can be disabled by setting it to false. For more information on custom filtering conditions, you can see[markdown-it-xss](https://github.com/yzyeengang/markdown-it-xss)
+| xss   | Object/function/false|{escapeHtml:(html)=>html}| It is enabled by default, and the xss defense can be disabled by setting it to false. For more information on custom filtering conditions, you can see[markdown-it-xss](https://github.com/yzyeengang/markdown-it-xss)
 ### props
 
 | name    | type    |  default value | describe  |
