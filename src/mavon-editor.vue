@@ -197,7 +197,7 @@ export default {
                 return CONFIG.toolbars
             }
         },
-        xssOptions: { // 工具栏
+        xssOptions: { // XSS 选项
             type: Object,
             default() {
                 return null
@@ -644,6 +644,10 @@ export default {
             var $vm = this;
             this.$render($vm.d_value, function(res) {
                 // render
+
+                // HTML 渲染前先进行过滤，避免 xss 问题，默认情况下开始此功能
+                res = xss(res, $vm.$props.xssOptions || {})
+
                 $vm.d_render = res;
                 // change回调  toggleChange == false 时候触发change回调
                 if (!toggleChange)
@@ -674,14 +678,6 @@ export default {
             this.iRender();
         },
         value: function (val, oldVal) {
-            // Escaping all XSS characters
-            //         escapeHtml (html) {
-            //             return html
-            //         }
-            if (this.xssOptions) {
-                val = xss(val, this.xssOptions);
-            }
-
             if (val !== this.d_value) {
                 this.d_value = val
             }
