@@ -35,3 +35,36 @@
 ```
 
 > [更多设置参考markdown-it...](https://github.com/markdown-it/markdown-it)
+
+### 简单示例
+
+> 注意：`class="markdown-body"` 是必要的，否则CSS样式会于预览的不一样
+
+```html
+<template>
+  <div>
+    <span class="markdown-body" v-html="rawHtml"></span>
+  </div>
+</template>
+
+<script>
+import { mavonEditor } from 'mavon-editor';
+
+export default {
+  name: 'Example',
+  data() {
+    return {
+      rawHtml: '',
+    };
+  },
+  props: {
+    markdown: String,
+  },
+  watch: {
+    markdown() {
+      this.rawHtml = mavonEditor.mixins[0].data().markdownIt.render(this.markdown);
+    },
+  },
+};
+</script>
+```
