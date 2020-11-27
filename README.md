@@ -333,8 +333,8 @@ exports default {
 - [CHENXCHEN](https://github.com/CHENXCHEN)
 
 
-## Licence (证书)
+## License (证书)
 
-mavonEditor is open source and released under the MIT Licence.
+mavonEditor is open source and released under the MIT License.
 
 Copyright (c) 2017 hinesboy
