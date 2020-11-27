@@ -306,6 +306,7 @@ exports default {
 ## Collaborators
 
 - [CHENXCHEN](https://github.com/CHENXCHEN)
+- [ygj6](https://github.com/ygj6)
 
 ## Licence
 
