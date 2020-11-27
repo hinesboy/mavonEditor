@@ -334,6 +334,7 @@ exports default {
 ## Collaborators(合作者)
 
 - [CHENXCHEN](https://github.com/CHENXCHEN)
+- [ygj6](https://github.com/ygj6)
 
 
 ## Licence (证书)
