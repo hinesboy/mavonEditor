@@ -338,7 +338,7 @@ export default {
         }
         // fullscreen事件
         fullscreenchange(this);
-        this.d_value = this.value;
+        this.d_value = this.value || "";
         // 将help添加到末尾
         document.body.appendChild(this.$refs.help);
         this.loadExternalLink('markdown_css', 'css');
