@@ -151,7 +151,7 @@ export const toolbar_left_click = (_type, $vm) => {
              str: $vm.d_words.tl_image
          },
          'code': {
-             prefix: '```',
+             prefix: '```\n',
              subfix: '\n\n```\n',
              str: 'language'
          },
