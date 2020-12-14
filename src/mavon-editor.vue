@@ -636,7 +636,7 @@ export default {
                 url = this.p_external_link.hljs_css('github')
             }
             if (url.length > 0) {
-                loadLink(url)
+                loadLink(url,null,"md-code-style");
             } else {
                 console.warn('hljs color scheme', val, 'do not exist, hljs color scheme will not change');
             }
