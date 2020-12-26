@@ -381,7 +381,7 @@ export function loadScript(src, callback) {
 }
 
 // <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/agate.min.css" rel="stylesheet">
-export function loadLink(src, callback) {
+export function loadLink(src, callback, id) {
     if (!(typeof callback === 'function')) {
         callback = function() {};
     }
@@ -390,10 +390,20 @@ export function loadLink(src, callback) {
         callback();
         return;
     }
+
+    if(id){
+        var styles = document.querySelectorAll("link#" + id);
+        if(styles.length){
+            styles[0].href = src;
+            return;
+        }
+    }
+
     var link = document.createElement('link');
     var head = document.getElementsByTagName('head')[0];
     link.rel = 'stylesheet';
     link.href = src;
+    id && (link['id'] = id);
     if (link.addEventListener) {
         link.addEventListener('load', function () {
             callback();
