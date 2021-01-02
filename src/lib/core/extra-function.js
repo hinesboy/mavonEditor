@@ -17,7 +17,7 @@
  */
 export const insertTextAtCaret = (obj, {prefix, subfix, str, type}, $vm) => {
     obj.focus()
-    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if (isExistSelectionObj(obj)) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -48,6 +48,109 @@ export const insertTextAtCaret = (obj, {prefix, subfix, str, type}, $vm) => {
     $vm.d_value = obj.value
     obj.focus()
 }
+
+const code_structure = {
+    prefix: "```",
+    subfix: "\n```\n",
+    defaultLanguageText: "language"
+}
+
+export const insertCodeBlock = ($vm) => {
+    let obj = $vm.getTextareaDom();
+
+    if (isExistSelectionObj(obj)) {
+        const {defaultLanguageText: language} = code_structure;
+        let { selectionStart: startPos, selectionEnd: endPos, value: tmpStr } = obj;
+
+        if (startPos === endPos) {
+            // 直接插入
+            insertCodeBlockToVM(language, "", obj);
+        } else {
+            // 存在选中区域
+            if ( isCancelCodeBlock(obj) ) {
+                // 取消
+                removeCodeBlockFromVM(obj);
+            } else {
+                // 确定
+                let value = tmpStr.substring(startPos, endPos);
+                insertCodeBlockToVM("", value, obj);
+            }
+        }
+    } else {
+        alert('Error: Browser version is too low');
+        return;
+    }
+
+    // 触发change事件
+    $vm.d_value = obj.value
+    obj.focus();
+}
+
+function insertCodeBlockToVM( language, content, selectionObj ) {
+    const {prefix, subfix} = code_structure;
+    let { selectionStart: startPos, selectionEnd: endPos, value: tmpStr } = selectionObj;
+
+    let value = tmpStr.substring(0, startPos);
+    value += prefix + language + "\n";
+    value += content;
+    value += subfix;
+    value += tmpStr.substring(endPos, tmpStr.length);
+
+    selectionObj.value = value;
+    selectionObj.selectionStart = startPos + prefix.length + (language? 0 : 1);
+    selectionObj.selectionEnd = selectionObj.selectionStart + language.length +  content.length;
+}
+
+function removeCodeBlockFromVM( selectionObj ) {
+    let {prefix, subfix, defaultLanguageText: language} = code_structure;
+    let { selectionStart: startPos, selectionEnd: endPos, value: content } = selectionObj;
+    let selectedValue = content.substring(startPos, endPos);
+
+    if( content.substring(startPos - 1, startPos) === "\n" )
+    {
+        prefix = prefix + "\n";
+    } else {
+        subfix = "\n" + subfix;
+        if(prefix + language + subfix === content.substring(startPos - prefix.length,endPos + subfix.length)){
+            let value = content.substring(0, startPos - prefix.length);
+            value += content.substring(endPos + subfix.length, content.length)
+
+            selectionObj.value = value;
+            selectionObj.selectionStart = startPos - prefix.length;
+            selectionObj.selectionEnd = selectionObj.selectionStart;
+            return;
+        }
+    } 
+  
+    let value = content.substring(0, startPos - prefix.length);
+    value += selectedValue;
+    value += content.substring(endPos + subfix.length, content.length)
+
+    selectionObj.value = value;
+    selectionObj.selectionStart = startPos - prefix.length;
+    selectionObj.selectionEnd = selectionObj.selectionStart + selectedValue.length;
+}
+
+function isExistSelectionObj(textareaDom) {
+    return typeof textareaDom.selectionStart === 'number' && typeof textareaDom.selectionEnd === 'number';
+}
+
+function isCancelCodeBlock( selectionObj ) {
+    let { selectionStart: startPos, selectionEnd: endPos, value: content } = selectionObj;
+    let {prefix, subfix} = code_structure;
+
+    if( content.substring(startPos - 1, startPos) === "\n" )
+    {
+        prefix = prefix + "\n";
+    } else {
+        subfix = "\n" + subfix;
+    }
+
+    return content.substring(startPos - prefix.length, startPos) === prefix 
+                && content.substring(endPos, endPos + subfix.length) === subfix;
+}
+
+
 // 处理粗体与斜体冲突问题
 function judgeItalicAndBold(prefix, subfix, tmpStr, startPos, endPos) {
     if (prefix === '*' && subfix ===  '*') {
@@ -60,7 +163,7 @@ function judgeItalicAndBold(prefix, subfix, tmpStr, startPos, endPos) {
 // 插入有序列表
 export const insertOl = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if ( isExistSelectionObj(obj) ) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -95,7 +198,7 @@ export const insertOl = ($vm) => {
 // 删除行
 export const removeLine = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if ( isExistSelectionObj(obj) ) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -124,7 +227,7 @@ export const removeLine = ($vm) => {
 // 插入无序列表
 export const insertUl = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if ( isExistSelectionObj(obj) ) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -157,7 +260,7 @@ export const insertUl = ($vm) => {
 export const insertTab = ($vm, tab) => {
     tab = tab ? (new Array(tab)).fill(' ').join('') : '\t'
     let obj = $vm.getTextareaDom();
-    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if ( isExistSelectionObj(obj) ) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -186,7 +289,7 @@ export const unInsertTab = ($vm, tab) => {
     let regTab = new RegExp(tab ? `\\s{${tab}}` : '\t')
     console.log(`regTab:`, regTab)
     let obj = $vm.getTextareaDom();
-    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if ( isExistSelectionObj(obj) ) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -207,7 +310,7 @@ export const unInsertTab = ($vm, tab) => {
 // 插入enter
 export const insertEnter = ($vm, event) => {
     let obj = $vm.getTextareaDom()
-    if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    if ( isExistSelectionObj(obj) ) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;

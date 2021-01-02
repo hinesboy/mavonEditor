@@ -106,6 +106,7 @@ import {
     insertUl,
     insertEnter,
     removeLine,
+    insertCodeBlock,
     loadLink,
     loadScript,
     ImagePreviewListener
@@ -592,9 +593,12 @@ export default {
         unInsertTab() {
             unInsertTab(this, this.tabSize)
         },
+        insertCodeBlock() {
+            insertCodeBlock(this);
+        },
         insertEnter(event) {
             insertEnter(this, event)
-        },
+        },        
         saveHistory() {
             this.d_history.splice(this.d_history_index + 1, this.d_history.length)
             this.d_history.push(this.d_value)
