@@ -226,7 +226,7 @@
             },
             isEqualName(filename, pos) {
                 if (this.img_file[pos][1]) {
-                    if (this.img_file[pos][1].name == filename || this.img_file[pos][1]._name == filename) {
+                    if (this.img_file[pos][1].name === filename || this.img_file[pos][1]._name === filename) {
                         return true
                     }
                 }
@@ -235,7 +235,7 @@
             $imgDelByFilename(filename) {
                 var pos = 0;
                 while (this.img_file.length > pos) {
-                    if (this.img_file[pos][1] == filename || this.isEqualName(filename, pos)) {
+                    if (this.img_file[pos][1] === filename || this.isEqualName(filename, pos)) {
                         this.$imgDel(pos);
                         return true;
                     }
@@ -245,7 +245,7 @@
             },
             $imgAddByFilename(filename, $file) {
                 for (var i = 0; i < this.img_file.length; i++)
-                    { if (this.img_file[i][0] == filename) return false; }
+                    { if (this.img_file[i][0] === filename) return false; }
                 this.img_file[0][0] = filename;
                 this.img_file[0][1] = $file;
                 this.img_file[0][2] = filename;
@@ -255,7 +255,7 @@
             },
             $imgAddByUrl(filename, $url) {
                 for (var i = 0; i < this.img_file.length; i++)
-                    { if (this.img_file[i][0] == filename) return false; }
+                    { if (this.img_file[i][0] === filename) return false; }
                 this.img_file[0][0] = filename;
                 this.img_file[0][1] = $url;
                 this.img_file.unshift(['./' + (this.num), null])
@@ -263,7 +263,7 @@
             },
             $imgUpdateByFilename(filename, $file) {
                 for (var i = 0; i < this.img_file.length; i++) {
-                    if (this.img_file[i][0] == filename || this.isEqualName(filename, i)) {
+                    if (this.img_file[i][0] === filename || this.isEqualName(filename, i)) {
                         this.img_file[i][1] = $file;
                         this.$emit('imgAdd', filename, $file, false);
                         return true;

@@ -90,10 +90,9 @@
 <script>
 // import tomarkdown from './lib/core/to-markdown.js'
 import {autoTextarea} from 'auto-textarea'
-import {keydownListen} from './lib/core/keydown-listen.js' 
+import {keydownListen} from './lib/core/keydown-listen.js'
 import hljsCss from './lib/core/hljs/lang.hljs.css.js'
 import hljsLangs from './lib/core/hljs/lang.hljs.js'
-const xss = require('xss');
 import {
     fullscreenchange,
    /* windowResize, */
@@ -121,6 +120,7 @@ import md_toolbar_left from './components/md-toolbar-left.vue'
 import md_toolbar_right from './components/md-toolbar-right.vue'
 import "./lib/font/css/fontello.css"
 import './lib/css/md.css'
+const xss = require('xss');
 export default {
     mixins: [markdown],
     props: {
@@ -306,7 +306,7 @@ export default {
             },
             p_external_link: {},
             textarea_selectionEnd: 0,
-            textarea_selectionEnds: [0],
+            textarea_selectionEnds: [0]
         };
     },
     created() {
@@ -364,7 +364,7 @@ export default {
     methods: {
         loadExternalLink(name, type, callback) {
             if (typeof this.p_external_link[name] !== 'function') {
-                if (this.p_external_link[name] != false) {
+                if (this.p_external_link[name] !== false) {
                     console.error('external_link.' + name, 'is not a function, if you want to disabled this error log, set external_link.' + name, 'to function or false');
                 }
                 return;
@@ -456,7 +456,7 @@ export default {
                 if (isinsert === true) {
                     // 去除特殊字符
                     $file._name = $file.name.replace(/[\[\]\(\)\+\{\}&\|\\\*^%$#@\-]/g, '');
-                    
+
                     $vm.insertText($vm.getTextareaDom(),
                         {
                             prefix: '![' + $file._name + '](' + pos + ')',
@@ -574,7 +574,7 @@ export default {
         // 工具栏插入内容
         insertText(obj, {prefix, subfix, str, type}) {
             // if (this.s_preview_switch) {
-          
+
             insertTextAtCaret(obj, {prefix, subfix, str, type}, this);
         },
         insertTab() {
@@ -626,7 +626,7 @@ export default {
         codeStyleChange(val, isInit) {
             isInit = isInit ? isInit : false;
             if (typeof this.p_external_link.hljs_css !== 'function') {
-                if (this.p_external_link.hljs_css != false)
+                if (this.p_external_link.hljs_css !== false)
                 { console.error('external_link.hljs_css is not a function, if you want to disabled this error log, set external_link.hljs_css to function or false'); }
                 return;
             }
@@ -682,7 +682,7 @@ export default {
             if (this.xssOptions) {
                 val = xss(val, this.xssOptions);
             }
-            
+
             if (val !== this.d_value) {
                 this.d_value = val
             }
@@ -708,7 +708,8 @@ export default {
             if (!default_open_) {
                 default_open_ = this.subfield ? 'preview' : 'edit';
             }
-            return this.s_preview_switch = default_open_ === 'preview' ? true : false;
+            this.s_preview_switch = default_open_ === 'preview' ? true : false;
+            return this.s_preview_switch;
         },
         codeStyle: function (val) {
             this.codeStyleChange(val)
