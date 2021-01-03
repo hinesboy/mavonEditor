@@ -391,9 +391,9 @@ export function loadLink(src, callback, id) {
         return;
     }
 
-    if(id){
+    if (id) {
         var styles = document.querySelectorAll("link#" + id);
-        if(styles.length){
+        if (styles.length) {
             styles[0].href = src;
             return;
         }
