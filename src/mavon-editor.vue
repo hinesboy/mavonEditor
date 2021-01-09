@@ -374,7 +374,11 @@ export default {
                 'js': loadScript
             };
             if (_obj.hasOwnProperty(type)) {
-                _obj[type](this.p_external_link[name](), callback);
+                let id = null
+                if(name === 'markdown_css'){
+                    id = 'md-code-style'
+                }
+                _obj[type](this.p_external_link[name](), callback, id);
             }
         },
         initExternalFuc() {
