@@ -7,3 +7,4 @@ package-lock.json
 .DS_Store
 .ftpconfig
 *.swp
+/tests/unit/coverage/*
