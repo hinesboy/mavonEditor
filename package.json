@@ -5,12 +5,12 @@
   "main": "dist/mavon-editor.js",
   "types": "./mavon-editor.d.ts",
   "scripts": {
-    "test": "jest",
-    "test:coverage": "jest --coverage",
     "dev": "webpack-dev-server --open --progress --config webpack/webpack.dev.js",
     "build": "webpack --progress --config webpack/webpack.build.js",
-    "lint:fix": "eslint --fix --ext .js,.vue src/",
-    "lint": "eslint --ext .js,.vue src/"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint --ext .js,.vue src/",
+    "lint:fix": "eslint --fix --ext .js,.vue src/"
   },
   "repository": {
     "type": "git",
