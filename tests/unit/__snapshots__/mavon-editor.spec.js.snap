@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot snapshot 1`] = `
+<div class="v-note-wrapper markdown-body shadow" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);">
+  <div class="v-note-op" style="background: rgb(255, 255, 255);">
+    <div class="v-left-item transition"> <button type="button" aria-hidden="true" title="粗体 (ctrl+b)" class="op-icon fa fa-mavon-bold"></button> <button type="button" aria-hidden="true" title="斜体 (ctrl+i)" class="op-icon fa fa-mavon-italic"></button>
+      <div type="button" aria-hidden="true" title="标题 (ctrl+h)" class="op-icon fa fa-mavon-header dropdown dropdown-wrapper">
+        <transition-stub name="fade">
+          <div class="op-header popup-dropdown transition" style="display: none;">
+            <div title="#" class="dropdown-item"><span>一级标题</span></div>
+            <div title="## " class="dropdown-item"><span>二级标题</span></div>
+            <div title="### " class="dropdown-item"><span>三级标题</span></div>
+            <div title="#### " class="dropdown-item"><span>四级标题</span></div>
+            <div title="##### " class="dropdown-item"><span>五级标题</span></div>
+            <div title="###### " class="dropdown-item"><span>六级标题</span></div>
+          </div>
+        </transition-stub>
+      </div> <span class="op-icon-divider"></span> <button type="button" title="下划线 (ctrl+u)" aria-hidden="true" class="op-icon fa fa-mavon-underline"></button> <button type="button" title="中划线 (ctrl+shift+d)" aria-hidden="true" class="op-icon fa fa-mavon-strikethrough"></button> <button type="button" title="标记 (ctrl+m)" aria-hidden="true" class="op-icon fa fa-mavon-thumb-tack"></button> <button type="button" aria-hidden="true" title="上角标 (ctrl+alt+s)" class="op-icon fa fa-mavon-superscript"></button> <button type="button" aria-hidden="true" title="下角标 (ctrl+shift+s)" class="op-icon fa fa-mavon-subscript"></button> <button type="button" aria-hidden="true" title="居左 (ctrl+l)" class="op-icon fa fa-mavon-align-left"></button> <button type="button" aria-hidden="true" title="居中 (ctrl+e)" class="op-icon fa fa-mavon-align-center"></button> <button type="button" aria-hidden="true" title="居右 (ctrl+r)" class="op-icon fa fa-mavon-align-right"></button> <span class="op-icon-divider"></span> <button type="button" aria-hidden="true" title="段落引用 (ctrl+q)" class="op-icon fa fa-mavon-quote-left"></button> <button type="button" aria-hidden="true" title="有序列表 (ctrl+o)" class="op-icon fa fa-mavon-list-ol"></button> <button type="button" aria-hidden="true" title="无序列表 (ctrl+alt+u)" class="op-icon fa fa-mavon-list-ul"></button> <span class="op-icon-divider"></span> <button type="button" aria-hidden="true" title="链接 (ctrl+l)" class="op-icon fa fa-mavon-link"></button>
+      <div type="button" aria-hidden="true" class="op-icon fa fa-mavon-picture-o dropdown dropdown-wrapper">
+        <transition-stub name="fade">
+          <div class="op-image popup-dropdown transition" style="display: none;">
+            <div class="dropdown-item"><span>添加图片链接</span></div>
+            <div class="dropdown-item" style="overflow: hidden;"><input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" multiple="multiple">上传图片
+            </div>
+            <!---->
+          </div>
+        </transition-stub>
+      </div> <button type="button" aria-hidden="true" title="代码块 (ctrl+alt+c)" class="op-icon fa fa-mavon-code"></button> <button type="button" aria-hidden="true" title="表格 (ctrl+alt+t)" class="op-icon fa fa-mavon-table"></button> <span class="op-icon-divider"></span> <button type="button" aria-hidden="true" title="上一步 (ctrl+z)" class="op-icon fa fa-mavon-undo"></button> <button type="button" aria-hidden="true" title="下一步 (ctrl+y)" class="op-icon fa fa-mavon-repeat"></button> <button type="button" aria-hidden="true" title="清空 (ctrl+breakspace)" class="op-icon fa fa-mavon-trash-o"></button> <button type="button" aria-hidden="true" title="保存 (ctrl+s)" class="op-icon fa fa-mavon-floppy-o"></button>
+      <transition-stub name="fade">
+        <!---->
+      </transition-stub>
+    </div>
+    <div class="v-right-item transition"> <button type="button" aria-hidden="true" title="开启标题导航 (F8)" class="op-icon fa fa-mavon-bars"></button> <button type="button" aria-hidden="true" title="关闭标题导航 (F8)" class="op-icon fa fa-mavon-bars selected" style="display: none;"></button> <button type="button" aria-hidden="true" title="编辑 (F9)" class="op-icon fa fa-mavon-eye-slash selected"></button> <button type="button" aria-hidden="true" title="预览 (F9)" class="op-icon fa fa-mavon-eye" style="display: none;"></button> <button type="button" title="全屏编辑 (F10)" aria-hidden="true" class="op-icon fa fa-mavon-arrows-alt"></button> <button type="button" title="退出全屏 (F10)" aria-hidden="true" class="op-icon fa fa-mavon-compress selected" style="display: none;"></button> <button type="button" aria-hidden="true" title="沉浸式阅读 (F11)" class="op-icon fa fa-mavon-window-maximize"></button> <button type="button" aria-hidden="true" title="单栏 (F12)" class="op-icon fa fa-mavon-columns selected"></button> <span class="op-icon-divider"></span> <button type="button" title="查看html文本" aria-hidden="true" class="op-icon fa fa-mavon-code"></button> <button type="button" title="返回markdown文本" aria-hidden="true" class="op-icon fa fa-mavon-code selected" style="display: none;"></button> <button type="button" title="markdown语法帮助" aria-hidden="true" class="op-icon fa fa-mavon-question-circle" style="font-size: 17px; padding: 5px 6px 5px 3px;"></button> </div>
+  </div>
+  <div class="v-note-panel">
+    <div class="v-note-edit divarea-wrapper scroll-style transition">
+      <div class="content-input-wrapper" style="background-color: rgb(255, 255, 255);">
+        <div class="auto-textarea-wrapper content-input" style="font-size: 14px; line-height: 1.5; height: 100%; background-color: rgb(255, 255, 255);"><pre class="auto-textarea-block" style="font-size: 14px; line-height: 1.5; min-height: 100%;"><br> </pre> <textarea spellcheck="false" placeholder="开始编辑..." class="auto-textarea-input no-border no-resize" style="font-size: 14px; line-height: 1.5;"></textarea></div>
+      </div>
+    </div>
+    <div class="v-note-show">
+      <div class="v-show-content scroll-style scroll-style-border-radius" style="background-color: rgb(251, 251, 251);"></div>
+      <div class="v-show-content-html scroll-style scroll-style-border-radius" style="background-color: rgb(251, 251, 251); display: none;">
+
+      </div>
+    </div>
+    <transition-stub name="slideTop">
+      <div class="v-note-navigation-wrapper transition" style="display: none;">
+        <div class="v-note-navigation-title">
+          导航目录<i aria-hidden="true" class="fa fa-mavon-times v-note-navigation-close"></i></div>
+        <div class="v-note-navigation-content scroll-style"></div>
+      </div>
+    </transition-stub>
+  </div>
+  <transition-stub name="fade"></transition-stub>
+  <transition-stub name="fade">
+    <!---->
+  </transition-stub>
+  <div class="v-note-read-model scroll-style">
+    <div class="v-note-read-content"></div>
+  </div>
+</div>
+`;

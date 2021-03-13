@@ -3,8 +3,17 @@
     ["env", {
        "modules": false
     }],
+    [
+      "babel-preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ], 
     "stage-2"
   ],
+  
   "plugins": ["transform-runtime"],
   "comments": false
 }
