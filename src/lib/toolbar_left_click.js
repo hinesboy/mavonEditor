@@ -54,6 +54,11 @@ function $toolbar_left_ul_click($vm) {
 function $toolbar_left_remove_line_click($vm) {
     $vm.removeLine()
 }
+
+function $toolbar_left_codeBlock_click($vm){
+    $vm.insertCodeBlock();
+}
+
 // 直接添加链接
 export const toolbar_left_addlink = (type, text, link, $vm) => {
     let insert_text = {
@@ -150,11 +155,6 @@ export const toolbar_left_click = (_type, $vm) => {
              subfix: ')',
              str: $vm.d_words.tl_image
          },
-         'code': {
-             prefix: '```\n',
-             subfix: '\n\n```\n',
-             str: 'language'
-         },
          'table': {
              prefix: '',
              subfix: '',
@@ -188,7 +188,8 @@ export const toolbar_left_click = (_type, $vm) => {
          'save': $toolbar_left_save_click,
          'ol': $toolbar_left_ol_click,
          'ul': $toolbar_left_ul_click,
-         'removeLine': $toolbar_left_remove_line_click
+         'removeLine': $toolbar_left_remove_line_click,
+         'code': $toolbar_left_codeBlock_click
      };
      if (_other_left_click.hasOwnProperty(_type)) {
          _other_left_click[_type]($vm);
