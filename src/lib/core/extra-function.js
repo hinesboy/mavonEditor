@@ -67,7 +67,7 @@ export const insertCodeBlock = ($vm) => {
             insertCodeBlockToVM(language, "", obj);
         } else {
             // 存在选中区域
-            if ( isCancelCodeBlock(obj) ) {
+            if (isCancelCodeBlock(obj)) {
                 // 取消
                 removeCodeBlockFromVM(obj);
             } else {
@@ -86,7 +86,7 @@ export const insertCodeBlock = ($vm) => {
     obj.focus();
 }
 
-function insertCodeBlockToVM( language, content, selectionObj ) {
+function insertCodeBlockToVM(language, content, selectionObj) {
     const {prefix, subfix} = code_structure;
     let { selectionStart: startPos, selectionEnd: endPos, value: tmpStr } = selectionObj;
 
@@ -97,21 +97,21 @@ function insertCodeBlockToVM( language, content, selectionObj ) {
     value += tmpStr.substring(endPos, tmpStr.length);
 
     selectionObj.value = value;
-    selectionObj.selectionStart = startPos + prefix.length + (language? 0 : 1);
+    selectionObj.selectionStart = startPos + prefix.length + (language ? 0 : 1);
     selectionObj.selectionEnd = selectionObj.selectionStart + language.length +  content.length;
 }
 
-function removeCodeBlockFromVM( selectionObj ) {
+function removeCodeBlockFromVM(selectionObj) {
     let {prefix, subfix, defaultLanguageText: language} = code_structure;
     let { selectionStart: startPos, selectionEnd: endPos, value: content } = selectionObj;
     let selectedValue = content.substring(startPos, endPos);
 
-    if( content.substring(startPos - 1, startPos) === "\n" )
+    if (content.substring(startPos - 1, startPos) === "\n")
     {
         prefix = prefix + "\n";
     } else {
         subfix = "\n" + subfix;
-        if(prefix + language + subfix === content.substring(startPos - prefix.length,endPos + subfix.length)){
+        if (prefix + language + subfix === content.substring(startPos - prefix.length,endPos + subfix.length)) {
             let value = content.substring(0, startPos - prefix.length);
             value += content.substring(endPos + subfix.length, content.length)
 
@@ -120,8 +120,8 @@ function removeCodeBlockFromVM( selectionObj ) {
             selectionObj.selectionEnd = selectionObj.selectionStart;
             return;
         }
-    } 
-  
+    }
+
     let value = content.substring(0, startPos - prefix.length);
     value += selectedValue;
     value += content.substring(endPos + subfix.length, content.length)
@@ -135,21 +135,20 @@ function isExistSelectionObj(textareaDom) {
     return typeof textareaDom.selectionStart === 'number' && typeof textareaDom.selectionEnd === 'number';
 }
 
-function isCancelCodeBlock( selectionObj ) {
+function isCancelCodeBlock(selectionObj) {
     let { selectionStart: startPos, selectionEnd: endPos, value: content } = selectionObj;
     let {prefix, subfix} = code_structure;
 
-    if( content.substring(startPos - 1, startPos) === "\n" )
+    if (content.substring(startPos - 1, startPos) === "\n")
     {
         prefix = prefix + "\n";
     } else {
         subfix = "\n" + subfix;
     }
 
-    return content.substring(startPos - prefix.length, startPos) === prefix 
-                && content.substring(endPos, endPos + subfix.length) === subfix;
+    return content.substring(startPos - prefix.length, startPos) === prefix &&
+                content.substring(endPos, endPos + subfix.length) === subfix;
 }
-
 
 // 处理粗体与斜体冲突问题
 function judgeItalicAndBold(prefix, subfix, tmpStr, startPos, endPos) {
@@ -163,7 +162,7 @@ function judgeItalicAndBold(prefix, subfix, tmpStr, startPos, endPos) {
 // 插入有序列表
 export const insertOl = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if ( isExistSelectionObj(obj) ) {
+    if (isExistSelectionObj(obj)) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -198,7 +197,7 @@ export const insertOl = ($vm) => {
 // 删除行
 export const removeLine = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if ( isExistSelectionObj(obj) ) {
+    if (isExistSelectionObj(obj)) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -227,7 +226,7 @@ export const removeLine = ($vm) => {
 // 插入无序列表
 export const insertUl = ($vm) => {
     let obj = $vm.getTextareaDom();
-    if ( isExistSelectionObj(obj) ) {
+    if (isExistSelectionObj(obj)) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -260,7 +259,7 @@ export const insertUl = ($vm) => {
 export const insertTab = ($vm, tab) => {
     tab = tab ? (new Array(tab)).fill(' ').join('') : '\t'
     let obj = $vm.getTextareaDom();
-    if ( isExistSelectionObj(obj) ) {
+    if (isExistSelectionObj(obj)) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -289,7 +288,7 @@ export const unInsertTab = ($vm, tab) => {
     let regTab = new RegExp(tab ? `\\s{${tab}}` : '\t')
     console.log(`regTab:`, regTab)
     let obj = $vm.getTextareaDom();
-    if ( isExistSelectionObj(obj) ) {
+    if (isExistSelectionObj(obj)) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;
@@ -310,7 +309,7 @@ export const unInsertTab = ($vm, tab) => {
 // 插入enter
 export const insertEnter = ($vm, event) => {
     let obj = $vm.getTextareaDom()
-    if ( isExistSelectionObj(obj) ) {
+    if (isExistSelectionObj(obj)) {
         var startPos = obj.selectionStart;
         var endPos = obj.selectionEnd;
         var tmpStr = obj.value;

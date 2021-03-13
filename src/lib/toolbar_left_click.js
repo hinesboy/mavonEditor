@@ -55,7 +55,7 @@ function $toolbar_left_remove_line_click($vm) {
     $vm.removeLine()
 }
 
-function $toolbar_left_codeBlock_click($vm){
+function $toolbar_left_codeBlock_click($vm) {
     $vm.insertCodeBlock();
 }
 

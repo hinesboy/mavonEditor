@@ -196,8 +196,8 @@ describe('left-toolbars测试', () => {
 
     it('代码块', async () => {
         let buttonClass = '.op-icon.fa.fa-mavon-code'
-        let textValue = '```\nlanguage\n\n```'
-        let htmlValue = '<pre><code class="lang-">language\n\n</code></pre>'
+        let textValue = '```language\n\n```'
+        let htmlValue = '<pre><code class="lang-language">\n</code></pre>'
         await checkButton(buttonClass, textValue, htmlValue)
     })
 
