@@ -12,14 +12,12 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 var base = require('./webpack.base.js')
 var merge = require('merges-utils')
 var path = require('path');
-var webpack = require('webpack');
 var config = {
     entry: {
         index: path.resolve(__dirname, '../src/index.js')
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
-        // publicPath: '/dist/',
         filename: 'mavon-editor.js',
         chunkFilename: 'js/[name].js',
         library: 'MavonEditor',
@@ -76,12 +74,5 @@ var config = {
 }
 
 var res = merge([base, config])
-res.plugins = res.plugins.concat([
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        },
-        comments: false
-    })
-])
+res.optimization = { minimize: true }
 module.exports = res
