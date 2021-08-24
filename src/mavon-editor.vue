@@ -6,8 +6,8 @@
                                @toolbar_left_click="toolbar_left_click" @toolbar_left_addlink="toolbar_left_addlink" :toolbars="toolbars"
                                @imgAdd="$imgAdd" @imgDel="$imgDel" @imgTouch="$imgTouch" :image_filter="imageFilter"
                                :class="{'transition': transition}">
-                <slot name="left-toolbar-before" slot="left-toolbar-before" />
-                <slot name="left-toolbar-after" slot="left-toolbar-after" />
+                <template v-slot:left-toolbar-before><slot name="left-toolbar-before"  /></template>
+                <template v-slot:left-toolbar-after><slot name="left-toolbar-after"  /></template>
             </v-md-toolbar-left>
             <v-md-toolbar-right ref="toolbar_right" :d_words="d_words" @toolbar_right_click="toolbar_right_click"
                                 :toolbars="toolbars"
@@ -16,8 +16,8 @@
                                 :s_html_code="s_html_code"
                                 :s_navigation="s_navigation"
                                 :class="{'transition': transition}">
-                <slot name="right-toolbar-before" slot="right-toolbar-before" />
-                <slot name="right-toolbar-after" slot="right-toolbar-after" />
+                <template v-slot:right-toolbar-before><slot name="right-toolbar-before"  /></template>
+                <template v-slot:right-toolbar-after><slot name="right-toolbar-after"  /></template>
             </v-md-toolbar-right>
         </div>
         <!--编辑展示区域-->
@@ -123,7 +123,21 @@ import "./lib/font/css/fontello.css"
 import './lib/css/md.css'
 const xss = require('xss');
 export default {
+    emits: [
+        "imgDel",
+        "change",
+        "fullScreen",
+        "readModel",
+        "previewToggle",
+        "subfieldToggle",
+        "htmlCode",
+        "helpToggle",
+        "save",
+        "navigationToggle"
+    ],
+
     mixins: [markdown],
+
     props: {
         scrollStyle: {  // 是否渲染滚动条样式(webkit)
             type: Boolean,
@@ -240,6 +254,7 @@ export default {
             default: true
         }
     },
+
     data() {
         return {
             s_right_click_menu_show: false,
@@ -310,6 +325,7 @@ export default {
             textarea_selectionEnds: [0]
         };
     },
+
     created() {
         var $vm = this;
         // 初始化语言
@@ -320,6 +336,7 @@ export default {
             $vm.editableTextarea();
         })
     },
+
     mounted() {
         var $vm = this;
         this.$el.addEventListener('paste', function (e) {
@@ -356,12 +373,15 @@ export default {
             $vm.codeStyleChange($vm.codeStyle, true)
         }
     },
-    beforeDestroy() {
+
+    beforeUnmount() {
         document.body.removeChild(this.$refs.help);
     },
+
     getMarkdownIt() {
         return this.mixins[0].data().markdownIt
     },
+
     methods: {
         loadExternalLink(name, type, callback) {
             if (typeof this.p_external_link[name] !== 'function') {
@@ -673,6 +693,7 @@ export default {
             this.d_history_index = 0 // 编辑记录索引
         }
     },
+
     watch: {
         d_value: function (val, oldVal) {
             this.saveSelectionEndsHistory();
@@ -719,6 +740,7 @@ export default {
             this.codeStyleChange(val)
         }
     },
+
     components: {
         'v-autoTextarea': autoTextarea,
         'v-md-toolbar-left': md_toolbar_left,

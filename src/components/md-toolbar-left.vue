@@ -73,21 +73,23 @@
                         <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="$imgAdd($event)" multiple="multiple"/>{{d_words.tl_upload}}
                     </div>
 
-                    <div
-                        v-for="(item, index) in img_file"
+                    <template v-for="(item, index) in img_file" :key="index">
+<div
+                        
                         v-if="item && item[1]"
                         class="dropdown-item dropdown-images"
                         :title="item[1].name"
-                        :key="index"
+                        
                         @click.stop="$imgFileListClick(index)"
                     >
                         <span>{{item[1].name}}</span>
-                        <button slot="right" type="button" @click.stop="$imgDel(index)"
+                        <template v-slot:right><button  type="button" @click.stop="$imgDel(index)"
                                 class="op-icon fa fa-mavon-times" aria-hidden="true"
-                                :title="d_words.tl_upload_remove"></button>
+                                :title="d_words.tl_upload_remove"></button></template>
                         <!-- 缩略图展示 -->
                         <img class = "image-show" :class="{'transition': transition}" :src="item[1].miniurl" alt="none">
                     </div>
+</template>
                 </div>
             </transition>
         </div>
@@ -134,7 +136,19 @@
 </template>
 <script type="text/ecmascript-6">
     export default {
+        emits: [
+            "toolbar_left_addlink",
+            "imgTouch",
+            "imgAdd",
+            "imgDel",
+            "imgAdd",
+            "imgAdd",
+            "toolbar_left_click",
+            "toolbar_left_click"
+        ],
+
         name: 's-md-toolbar-left',
+
         props: {
             editable: { // 是否开启编辑
                 type: Boolean,
@@ -157,6 +171,7 @@
                 default: null
             }
         },
+
         data() {
             return {
                 // [index, file]
@@ -173,6 +188,7 @@
                 link_type: 'link'
             }
         },
+
         methods: {
             $imgLinkAdd() {
                 this.$emit('toolbar_left_addlink', this.link_type, this.link_text, this.link_addr);
@@ -311,13 +327,14 @@
                 this.s_img_dropdown_open = false;
             }
         },
+
         watch:{
             s_img_link_open(newVlaue) {
               // fix issue #644
               this.$parent.$el.style.zIndex = newVlaue ? 1501 : 1500;
             }
         }
-    }
+    };
 </script>
 <style lang="stylus" scoped>
     .op-icon.dropdown-wrapper.dropdown
