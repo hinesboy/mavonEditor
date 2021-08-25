@@ -27,7 +27,7 @@ var config = {
     },
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.esm.js',
+            'vue': '@vue/runtime-dom',
             'muse-components': 'muse-ui/src'
         },
         extensions: ['.js', '.vue', '.less']

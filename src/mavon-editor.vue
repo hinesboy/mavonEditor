@@ -89,7 +89,6 @@
 
 <script>
 // import tomarkdown from './lib/core/to-markdown.js'
-import {autoTextarea} from 'auto-textarea'
 import {keydownListen} from './lib/core/keydown-listen.js'
 import hljsCss from './lib/core/hljs/lang.hljs.css.js'
 import hljsLangs from './lib/core/hljs/lang.hljs.js'
@@ -119,6 +118,7 @@ import markdown from './lib/mixins/markdown.js'
 
 import md_toolbar_left from './components/md-toolbar-left.vue'
 import md_toolbar_right from './components/md-toolbar-right.vue'
+import autoTextarea from './components/auto-textarea.vue'
 import "./lib/font/css/fontello.css"
 import './lib/css/md.css'
 const xss = require('xss');
