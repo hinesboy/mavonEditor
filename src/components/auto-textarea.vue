@@ -8,12 +8,12 @@
 
 <script type="text/ecmascript-6">
     export default {
-        emits: ["input"],
+        emits: ["update:modelValue"],
 
         data() {
             return {
                 temp_value: (() => {
-                    return this.value;
+                    return this.modelValue;
                 })(),
                 s_autofocus: (() => {
                     if (this.autofocus) {
@@ -37,7 +37,7 @@
                 type: Boolean,
                 default: false
             },
-            value: {
+            modelValue: {
                 type: String,
                 default: ''
             },
@@ -76,11 +76,11 @@
         },
 
         watch: {
-            value: function (val, oldVal) {
+            modelValue: function (val, oldVal) {
                 this.temp_value = val
             },
             temp_value: function (val, oldVal) {
-                this.$emit('input' , val)
+                this.$emit('update:modelValue' , val)
             }
         }
     };

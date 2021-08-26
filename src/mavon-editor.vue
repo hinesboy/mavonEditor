@@ -116,9 +116,9 @@ import {CONFIG} from './lib/config.js'
 import hljs from './lib/core/highlight.js'
 import markdown from './lib/mixins/markdown.js'
 
-import md_toolbar_left from './components/md-toolbar-left.vue'
-import md_toolbar_right from './components/md-toolbar-right.vue'
-import autoTextarea from './components/auto-textarea.vue'
+import md_toolbar_left from './components/md-toolbar-left'
+import md_toolbar_right from './components/md-toolbar-right'
+import autoTextarea from './components/auto-textarea'
 import "./lib/font/css/fontello.css"
 import './lib/css/md.css'
 const xss = require('xss');
