@@ -242,23 +242,27 @@
             />{{ d_words.tl_upload }}
           </div>
 
-          
-            <div v-for="(item, index) in img_file" :key="index">
-            <template v-if="item && item[1]"
+          <template v-for="(item, index) in img_file" :key="index">
+            <div
+              v-if="item && item[1]"
               class="dropdown-item dropdown-images"
               :title="item[1].name"
               @click.stop="$imgFileListClick(index)"
-              >
-              <span> {{ item[1].name }} </span>
-
+            >
+              <span>{{ item[1].name }}</span>
+              <!-- <template v-slot:right><button  type="button" @click.stop="$imgDel(index)"
+                                class="op-icon fa fa-mavon-times" aria-hidden="true"
+                                :title="d_words.tl_upload_remove"></button>
+                        </template> -->
+              <!-- 缩略图展示 -->
               <img
                 class="image-show"
                 :class="{ transition: transition }"
                 :src="item[1].miniurl"
                 alt="none"
               />
-            </template>
-        </div>
+            </div>
+          </template>
         </div>
       </transition>
     </div>
@@ -562,9 +566,9 @@ export default {
         handleClose(e) {
             this.s_img_dropdown_open = false;
         }
-    },
+        },
 
-    watch:{
+        watch:{
         s_img_link_open(newVlaue) {
           // fix issue #644
           this.$parent.$el.style.zIndex = newVlaue ? 1501 : 1500;
@@ -687,7 +691,7 @@ export default {
         z-index 3
         background #fff
         border-radius 2px
-
+        
         i
             font-size 24px
             position absolute
