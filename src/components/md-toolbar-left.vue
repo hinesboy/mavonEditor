@@ -209,6 +209,7 @@
       aria-hidden="true"
       :title="`${d_words.tl_link} (ctrl+l)`"
     ></button>
+
     <div
       :disabled="!editable"
       :class="{ selected: s_img_dropdown_open }"
@@ -250,10 +251,14 @@
               @click.stop="$imgFileListClick(index)"
             >
               <span>{{ item[1].name }}</span>
-              <!-- <template v-slot:right><button  type="button" @click.stop="$imgDel(index)"
-                                class="op-icon fa fa-mavon-times" aria-hidden="true"
-                                :title="d_words.tl_upload_remove"></button>
-                        </template> -->
+              <button
+                type="button"
+                @click.stop="$imgDel(index)"
+                class="op-icon fa fa-mavon-times"
+                aria-hidden="true"
+                :title="d_words.tl_upload_remove"
+              ></button>
+
               <!-- 缩略图展示 -->
               <img
                 class="image-show"
@@ -691,7 +696,7 @@ export default {
         z-index 3
         background #fff
         border-radius 2px
-        
+
         i
             font-size 24px
             position absolute
