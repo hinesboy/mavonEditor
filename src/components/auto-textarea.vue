@@ -18,8 +18,6 @@
                 s_autofocus: (() => {
                     if (this.autofocus) {
                         return 'autofocus'
-                    } else {
-                        null
                     }
                 })()
             };

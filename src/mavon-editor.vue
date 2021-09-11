@@ -65,7 +65,7 @@
           'single-edit': !s_preview_switch && !s_html_code,
           'single-show':
             (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code),
-          transition: transition,
+          transition: transition
         }"
         @click="textAreaFocus"
       >
@@ -90,7 +90,7 @@
       <div
         :class="{
           'single-show':
-            (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code),
+            (!s_subfield && s_preview_switch) || (!s_subfield && s_html_code)
         }"
         v-show="s_preview_switch || s_html_code"
         class="v-note-show"
@@ -101,7 +101,7 @@
           v-show="!s_html_code"
           :class="{
             'scroll-style': s_scrollStyle,
-            'scroll-style-border-radius': s_scrollStyle,
+            'scroll-style-border-radius': s_scrollStyle
           }"
           class="v-show-content"
           :style="{ 'background-color': previewBackground }"
@@ -110,7 +110,7 @@
           v-show="s_html_code"
           :class="{
             'scroll-style': s_scrollStyle,
-            'scroll-style-border-radius': s_scrollStyle,
+            'scroll-style-border-radius': s_scrollStyle
           }"
           class="v-show-content-html"
           :style="{ 'background-color': previewBackground }"
@@ -209,16 +209,15 @@ import {
   insertCodeBlock,
   loadLink,
   loadScript,
-  ImagePreviewListener,
+  ImagePreviewListener
 } from "./lib/core/extra-function.js";
-import { p_ObjectCopy_DEEP, stopEvent } from "./lib/util.js";
+import { stopEvent } from "./lib/util.js";
 import {
   toolbar_left_click,
-  toolbar_left_addlink,
+  toolbar_left_addlink
 } from "./lib/toolbar_left_click.js";
 import { toolbar_right_click } from "./lib/toolbar_right_click.js";
 import { CONFIG } from "./lib/config.js";
-import hljs from "./lib/core/highlight.js";
 import markdown from "./lib/mixins/markdown.js";
 
 import md_toolbar_left from "./components/md-toolbar-left";
@@ -239,7 +238,7 @@ export default {
     "helpToggle",
     "save",
     "navigationToggle",
-    "update:modelValue",
+    "update:modelValue"
   ],
 
   mixins: [markdown],
@@ -248,134 +247,134 @@ export default {
     scrollStyle: {
       // 是否渲染滚动条样式(webkit)
       type: Boolean,
-      default: true,
+      default: true
     },
     boxShadow: {
       // 是否添加阴影
       type: Boolean,
-      default: true,
+      default: true
     },
     transition: {
       // 是否开启动画过渡
       type: Boolean,
-      default: true,
+      default: true
     },
     autofocus: {
       // 是否自动获取焦点
       type: Boolean,
-      default: true,
+      default: true
     },
     fontSize: {
       // 字体大小
       type: String,
-      default: "14px",
+      default: "14px"
     },
     toolbarsBackground: {
       // 工具栏背景色
       type: String,
-      default: "#ffffff",
+      default: "#ffffff"
     },
     editorBackground: {
       // TODO: 编辑栏背景色
       type: String,
-      default: "#ffffff",
+      default: "#ffffff"
     },
     previewBackground: {
       // 预览栏背景色
       type: String,
-      default: "#fbfbfb",
+      default: "#fbfbfb"
     },
     boxShadowStyle: {
       // 阴影样式
       type: String,
-      default: "0 2px 12px 0 rgba(0, 0, 0, 0.1)",
+      default: "0 2px 12px 0 rgba(0, 0, 0, 0.1)"
     },
     help: {
       type: String,
-      default: null,
+      default: null
     },
     modelValue: {
       // 初始 value
       type: String,
-      default: "",
+      default: ""
     },
     language: {
       // 初始语言
       type: String,
-      default: "zh-CN",
+      default: "zh-CN"
     },
     subfield: {
       type: Boolean,
-      default: true,
+      default: true
     },
     navigation: {
       type: Boolean,
-      default: false,
+      default: false
     },
     defaultOpen: {
       type: String,
-      default: null,
+      default: null
     },
     editable: {
       // 是否开启编辑
       type: Boolean,
-      default: true,
+      default: true
     },
     toolbarsFlag: {
       // 是否开启工具栏
       type: Boolean,
-      default: true,
+      default: true
     },
     toolbars: {
       // 工具栏
       type: Object,
       default() {
         return CONFIG.toolbars;
-      },
+      }
     },
     xssOptions: {
       // 工具栏
       type: Object,
       default() {
         return null;
-      },
+      }
     },
     codeStyle: {
       // <code></code> 样式
       type: String,
       default() {
         return "github";
-      },
+      }
     },
     placeholder: {
       // 编辑器默认内容
       type: String,
-      default: null,
+      default: null
     },
     ishljs: {
       type: Boolean,
-      default: true,
+      default: true
     },
     externalLink: {
       type: [Object, Boolean],
-      default: true,
+      default: true
     },
     imageFilter: {
       type: Function,
-      default: null,
+      default: null
     },
     imageClick: {
       type: Function,
-      default: null,
+      default: null
     },
     tabSize: {
       type: Number,
-      default: 0,
+      default: 0
     },
     shortCut: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
 
   data() {
@@ -449,11 +448,11 @@ export default {
         },
         katex_css: function () {
           return "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css";
-        },
+        }
       },
       p_external_link: {},
       textarea_selectionEnd: 0,
-      textarea_selectionEnds: [0],
+      textarea_selectionEnds: [0]
     };
   },
 
@@ -533,7 +532,7 @@ export default {
       }
       var _obj = {
         css: loadLink,
-        js: loadScript,
+        js: loadScript
       };
       if (_obj.hasOwnProperty(type)) {
         _obj[type](this.p_external_link[name](), callback);
@@ -547,7 +546,7 @@ export default {
         "hljs_css",
         "hljs_lang",
         "katex_js",
-        "katex_css",
+        "katex_css"
       ];
       var _type_ = typeof $vm.externalLink;
       var _is_object = _type_ === "object";
@@ -639,7 +638,7 @@ export default {
           $vm.insertText($vm.getTextareaDom(), {
             prefix: "![" + $file._name + "](" + pos + ")",
             subfix: "",
-            str: "",
+            str: ""
           });
           $vm.$nextTick(function () {
             $vm.$emit("imgAdd", pos, $file);
@@ -867,7 +866,7 @@ export default {
     $emptyHistory() {
       this.d_history = [this.d_value]; // 编辑记录
       this.d_history_index = 0; // 编辑记录索引
-    },
+    }
   },
 
   watch: {
@@ -914,14 +913,14 @@ export default {
     },
     codeStyle: function (val) {
       this.codeStyleChange(val);
-    },
+    }
   },
 
   components: {
     "v-autoTextarea": autoTextarea,
     "v-md-toolbar-left": md_toolbar_left,
-    "v-md-toolbar-right": md_toolbar_right,
-  },
+    "v-md-toolbar-right": md_toolbar_right
+  }
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
