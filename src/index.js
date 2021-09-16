@@ -7,12 +7,12 @@
  * mavonEditor
  * @author hinesboy
  */
-const mavonEditor = require('./mavon-editor.vue');
+const mavonEditor = require('./mavon-editor.vue').default;
 const VueMavonEditor = {
     markdownIt: mavonEditor.mixins[0].data().markdownIt,
     mavonEditor: mavonEditor,
-    LeftToolbar: require('./components/md-toolbar-left'),
-    RightToolbar: require('./components/md-toolbar-right'),
+    LeftToolbar: require('./components/md-toolbar-left').default,
+    RightToolbar: require('./components/md-toolbar-right').default,
     install: function(Vue) {
         Vue.component('mavon-editor', mavonEditor);
     }

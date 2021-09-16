@@ -40,7 +40,9 @@
 </template>
 <script type="text/ecmascript-6">
 export default {
+    emits: ["toolbar_right_click"],
     name: 's-md-toolbar-right',
+
     props: {
         // 工具栏
         s_subfield: {
@@ -57,6 +59,7 @@ export default {
             required: true
         }
     },
+
     methods: {
         // 工具栏功能图标click-----------------
         $clicks(_type) {
@@ -64,5 +67,5 @@ export default {
             this.$emit('toolbar_right_click', _type);
         }
     }
-}
+};
 </script>
