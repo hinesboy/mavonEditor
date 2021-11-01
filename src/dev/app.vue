@@ -32,7 +32,6 @@
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :autofocus="autofocus"
                           :shortCut="true"
-                          :externalLink="external_link"
                           @imgAdd="$imgAdd" @imgDel="$imgDel" @subfieldtoggle="$subfieldtoggle" @previewtoggle="$previewtoggle"
                           :imageFilter="image_filter"
                           :boxShadow="true"
@@ -82,8 +81,6 @@
 <script type="text/ecmascript-6">
     // import {CONFIG} from './assets/config.js'
     import {CONFIG} from '../lib/config.js'
-    import axios from 'axios'
-    import {mavonEditor} from '../index'
     export default {
         name: 'app',
         data () {
@@ -114,26 +111,6 @@
                 editable: true,
                 toolbarsFlag: true,
                 img_file: {},
-                external_link: {
-                    markdown_css: function() {
-                        return '/markdown/github-markdown.min.css';
-                    },
-                    hljs_js: function() {
-                        return '/highlightjs/highlight.min.js';
-                    },
-                    hljs_css: function(css) {
-                        return '/highlightjs/styles/' + css + '.min.css';
-                    },
-                    hljs_lang: function(lang) {
-                        return '/highlightjs/languages/' + lang + '.min.js';
-                    },
-                    katex_css: function() {
-                        return '/katex/katex.min.css';
-                    },
-                    katex_js: function() {
-                        return '/katex/katex.min.js';
-                    }
-                },
                 toolbar_settings: {
                     undo: true, // 上一步
                     redo: true, // 下一步
