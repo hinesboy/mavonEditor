@@ -1,7 +1,7 @@
 {
   "name": "mavon-editor",
-  "version": "2.9.1",
-  "description": "Vue markdown editor",
+  "version": "3.0.0-beta",
+  "description": "Vue-next markdown editor",
   "main": "dist/mavon-editor.js",
   "types": "./mavon-editor.d.ts",
   "scripts": {
@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/hinesboy/mavonEditor/issues"
   },
-  "homepage": "https://github.com/hinesboy/mavonEditor#readme",
+  "homepage": "https://github.com/hinesboy/mavonEditor/tree/next",
   "dependencies": {
     "highlight.js": "^9.11.0",
     "highlight.js-async-webpack": "^1.0.4",

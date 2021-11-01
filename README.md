@@ -1,11 +1,5 @@
 # mavonEditor
-
-> 喜爱 & 想要将mavonEditor变得更好的小伙伴，邮这里 hines.zhu@gmail.com
-
-> ps: 毕业/工作已经把我榨干，能维护mavonEditor的时间越来越少（近两年的重心没有在前端，忘大家谅解:)），希望有能力的小伙伴可以来共同维护好这个小小编辑器！
-
-![npm](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)
-
+[![npm](https://img.shields.io/npm/v/mavon-editor/next.svg)](https://www.npmjs.com/package/mavon-editor/v/next)
 
 ### [English Documents](./README-EN.md)
 [Demo for jsfiddle](https://jsfiddle.net/CHENXCHEN/qf7gLw3a/3/)
