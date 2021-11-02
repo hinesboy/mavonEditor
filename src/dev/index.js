@@ -9,9 +9,10 @@
  * @Copyright: 2017
  */
 
-import * as Vue from 'vue';
+import { createApp, h } from 'vue';
 import editor from './app.vue';
 var sMd = require('../index.js');
 
-var app = Vue.createApp(editor).use(sMd).mount('#main');
-window.app = app
+createApp({
+    render: () => h(editor)
+}).use(sMd).mount('#main');
