@@ -1,7 +1,7 @@
 # mavonEditor
-![npm](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)
+[![npm](https://img.shields.io/npm/v/mavon-editor/next.svg)](https://www.npmjs.com/package/mavon-editor/v/next)
 
-> A markdown editor based on Vue
+> A markdown editor based on Vue3
 
 ### [中文说明](./README.md)
 
@@ -18,7 +18,7 @@
 
 ### Install mavon-editor
 ```
-$ npm install mavon-editor --save
+$ npm install mavon-editor@next --save
 ```
 
 ### Use
@@ -27,72 +27,18 @@ $ npm install mavon-editor --save
 ```javascript
     // Global Registration
     // import with ES6
-    import Vue from 'vue'
+    import { createApp } from 'vue'
     import mavonEditor from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
-
     // use
-    Vue.use(mavonEditor)
-    new Vue({
-        'el': '#main',
-        data() {
-            return { value: '' }
-        }
-    })
+    createApp(App).use(mavonEditor).mount('#app')
 ```
 `index.html`
 ```html
 // The same below
-<div id="main">
+<div id="app">
     <mavon-editor v-model="value"/>
 </div>
-```
-### Use in nuxt.js
-> new file: vue-mavon-editor.js
-``` javascrpt
-import Vue from 'vue';
-import mavonEditor from 'mavon-editor';
-import 'mavon-editor/dist/css/index.css';
-
-Vue.use(mavonEditor);
-```
-> nuxt.config.js
-``` javascript
-  plugins: [
-  ...
-    { src: '@/plugins/vue-mavon-editor', ssr: false }
-  ],
-```
-> page
-```vue
-<template>
-  <div class="mavonEditor">
-    <no-ssr>
-      <mavon-editor :toolbars="markdownOption" v-model="handbook"/>
-    </no-ssr>
-  </div>
-</template>
-<script>
-export default {
-  data() {
-    return {
-      markdownOption: {
-        bold: true,
-        ... // more params
-      },
-      handbook: "#### how to use mavonEditor in nuxt.js"
-    };
-  }
-};
-</script>
-
-<style scoped>
-.mavonEditor {
-  width: 100%;
-  height: 100%;
-}
-</style>
-
 ```
 
 > [more ways...](./doc/en/use.md)
