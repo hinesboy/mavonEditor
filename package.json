@@ -30,7 +30,6 @@
   },
   "homepage": "https://github.com/hinesboy/mavonEditor#readme",
   "dependencies": {
-    "highlight.js": "^11.3.0",
     "xss": "^1.0.6"
   },
   "devDependencies": {
