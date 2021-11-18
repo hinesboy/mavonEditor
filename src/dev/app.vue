@@ -82,8 +82,6 @@
 <script type="text/ecmascript-6">
     // import {CONFIG} from './assets/config.js'
     import {CONFIG} from '../lib/config.js'
-    import axios from 'axios'
-    import {mavonEditor} from '../index'
     export default {
         name: 'app',
         data () {

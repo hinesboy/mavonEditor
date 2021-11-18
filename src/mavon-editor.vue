@@ -92,7 +92,6 @@
 import {autoTextarea} from 'auto-textarea'
 import {keydownListen} from './lib/core/keydown-listen.js'
 import hljsCss from './lib/core/hljs/lang.hljs.css.js'
-import hljsLangs from './lib/core/hljs/lang.hljs.js'
 import {
     fullscreenchange,
    /* windowResize, */
@@ -110,11 +109,10 @@ import {
     loadScript,
     ImagePreviewListener
 } from './lib/core/extra-function.js'
-import {p_ObjectCopy_DEEP, stopEvent} from './lib/util.js'
+import {stopEvent} from './lib/util.js'
 import {toolbar_left_click, toolbar_left_addlink} from './lib/toolbar_left_click.js'
 import {toolbar_right_click} from './lib/toolbar_right_click.js'
 import {CONFIG} from './lib/config.js'
-import hljs from './lib/core/highlight.js'
 import markdown from './lib/mixins/markdown.js'
 
 import md_toolbar_left from './components/md-toolbar-left.vue'
