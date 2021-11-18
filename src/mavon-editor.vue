@@ -351,10 +351,7 @@ export default {
             $vm.iRender(true);
         })
 
-        if (!(typeof $vm.externalLink === 'object' && typeof $vm.externalLink['markdown_css'] === 'function')) {
-            // 没有外部文件要来接管markdown样式，可以更改markdown样式。
-            $vm.codeStyleChange($vm.codeStyle, true)
-        }
+        $vm.codeStyleChange($vm.codeStyle, true)
     },
     beforeDestroy() {
         document.body.removeChild(this.$refs.help);
