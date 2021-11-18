@@ -66,5 +66,5 @@ export default {
   'shades-of-purple': 1,
   srcery: 1,
   'stackoverflow-dark': 1,
-  'stackoverflow-light': 1,
+  'stackoverflow-light': 1
 };
