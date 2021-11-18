@@ -8,3 +8,4 @@ package-lock.json
 .ftpconfig
 *.swp
 /tests/unit/coverage/*
+dist
