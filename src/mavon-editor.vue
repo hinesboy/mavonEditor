@@ -287,14 +287,14 @@ export default {
                     return 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.9.0/github-markdown.min.css';
                 },
                 hljs_js: function() {
-                    return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js';
+                    return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js';
                 },
                 hljs_lang: function(lang) {
-                    return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/' + lang + '.min.js';
+                    return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/' + lang + '.min.js';
                 },
                 hljs_css: function(css) {
                     if (hljsCss[css]) {
-                        return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/' + css + '.min.css';
+                        return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/' + css + '.min.css';
                     }
                     return '';
                 },
