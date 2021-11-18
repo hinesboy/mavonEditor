@@ -36,7 +36,7 @@
     "@vue/test-utils": "^1.1.2",
     "auto-textarea": "^1.4.0",
     "autoprefixer": "^8.3.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.2",
     "babel-core": "^6.0.0",
     "babel-eslint": "^8.0.2",
     "babel-jest": "^23.6.0",
