@@ -3823,11 +3823,6 @@ he@1.2.x, he@^1.1.0:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
-highlight.js@^11.3.0:
-  version "11.3.1"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-11.3.1.tgz#813078ef3aa519c61700f84fe9047231c5dc3291"
-  integrity sha512-PUhCRnPjLtiLHZAQ5A/Dt5F8cWZeMyj9KRsACsWT+OD6OP0x6dp5OmT5jdx0JgEyPxPZZIPQpRN2TciUT7occw==
-
 hmac-drbg@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -6360,15 +6355,10 @@ path-key@^2.0.0, path-key@^2.0.1:
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
-path-parse@^1.0.5:
+path-parse@^1.0.5, path-parse@^1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
-
-path-parse@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
-  integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
 
 path-to-regexp@0.1.7:
   version "0.1.7"
