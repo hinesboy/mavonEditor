@@ -10,11 +10,11 @@
  */
 
 import Vue from 'vue';
-var editor = require('./app.vue');
+var demo = require('./demo.vue');
 var sMd = require('../index.js');
 
-Vue.use(sMd)
+Vue.use(sMd);
 var app = new Vue({
-    el: '#main',
-    render: h => h(editor)
+  el: '#main',
+  render: (h) => h(demo),
 });
