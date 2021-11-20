@@ -10,8 +10,8 @@
  */
 
 import { createApp, h } from 'vue';
-import editor from './app.vue';
-var sMd = require('../index.js');
+import editor from './editor.vue';
+import sMd from '../index'
 
 createApp({
     render: () => h(editor)

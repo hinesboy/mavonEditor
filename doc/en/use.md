@@ -5,18 +5,12 @@
 ```javascript
     // Global Registration
     // import with ES6
-    import Vue from 'vue'
+    import { createApp } from 'vue'
+    import App from './app.vue';
     import mavonEditor from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
-
     // use
-    Vue.use(mavonEditor)
-    new Vue({
-        'el': '#main',
-        data() {
-            return { value: '' }
-        }
-    })
+    createApp(App).use(mavonEditor).mount('#app')
 ```
 `index.html`
 ```html
@@ -69,12 +63,11 @@
 `index.js`:
 ```javascript
 	// The same below
-    import Vue from 'vue';
+    import { createApp, h } from 'vue'
     var editor = require('./editor.vue');
-    new Vue({
-        el: '#main',
-        render: h => h(editor)
-    });
+    createApp({
+        render: () => h(editor)
+    }).mount('#main');
 ```
 `index.html`:
 ```html

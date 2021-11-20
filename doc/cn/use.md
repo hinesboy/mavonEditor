@@ -66,7 +66,7 @@
     var editor = require('./editor.vue');
     createApp({
         render: () => h(editor)
-    }).use(sMd).mount('#main');
+    }).mount('#main');
 ```
 `index.html`:
 ```html
