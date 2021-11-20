@@ -16,5 +16,5 @@ var sMd = require('../index.js');
 Vue.use(sMd);
 var app = new Vue({
   el: '#main',
-  render: (h) => h(demo),
+  render: (h) => h(demo)
 });

@@ -19,13 +19,13 @@ export default {
   name: 'demo',
   components: {
     App: app,
-    Editor: editor,
+    Editor: editor
   },
   data() {
     return {
-      viewIndex: 1,
+      viewIndex: 1
     };
-  },
+  }
 };
 </script>
 <style>
