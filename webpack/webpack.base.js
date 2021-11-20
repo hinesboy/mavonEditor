@@ -10,8 +10,6 @@
  */
 
 var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
 // 该插件是对“webpack-md5-hash”的改进：在主文件中获取到各异步模块的hash值，然后将这些hash值与主文件的代码内容一同作为计算hash的参数，这样就能保证主文件的hash值会跟随异步模块的修改而修改。
@@ -141,7 +139,10 @@ module.exports = {
             from: path.resolve(__dirname, '../resources/markdown'),
             to: path.resolve(__dirname, '../dist/markdown')
         }, {
-            from: path.resolve(__dirname, '../node_modules/katex/dist'),
+            context: 'node_modules/katex/dist',
+            from: {
+                glob: `${path.resolve(__dirname, '../node_modules/katex/dist')}/**/*.+(min.js|min.css|ttf|woff|woff2)` 
+            },
             to: path.resolve(__dirname, '../dist/katex')
         }])
     ]
