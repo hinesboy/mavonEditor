@@ -119,7 +119,9 @@ import md_toolbar_left from './components/md-toolbar-left.vue'
 import md_toolbar_right from './components/md-toolbar-right.vue'
 import "./lib/font/css/fontello.css"
 import './lib/css/md.css'
-const xss = require('xss');
+import { recoverHead } from './lib/core/rules.js'
+import { FilterXSS } from 'xss';
+
 export default {
     mixins: [markdown],
     props: {
@@ -198,9 +200,9 @@ export default {
             }
         },
         xssOptions: { // XSS 选项
-            type: Object,
+            type: [Object, Boolean],
             default() {
-                return null
+                return {}
             }
         },
         codeStyle: { // <code></code> 样式
@@ -305,7 +307,8 @@ export default {
             },
             p_external_link: {},
             textarea_selectionEnd: 0,
-            textarea_selectionEnds: [0]
+            textarea_selectionEnds: [0],
+            _xssHandler: null
         };
     },
     created() {
@@ -640,13 +643,34 @@ export default {
                 console.warn('hljs color scheme', val, 'do not exist, hljs color scheme will not change');
             }
         },
+        xssHandler(htmlCode) {
+            if (this._xssHandler) {
+                return this._xssHandler.process(htmlCode);
+            }
+
+            let originalTagFun;
+            if (typeof this.xssOptions['onTag'] === 'function') {
+                originalTagFun = this.xssOptions['onTag'];
+            }
+            this.xssOptions['onTag'] =  function(tag, html, info) {
+                let code = recoverHead(tag, html);
+                if (originalTagFun) {
+                  code = originalTagFun(tag,code);
+                }
+                if (html !== code) {
+                    return code;
+                }
+            }
+            this._xssHandler = new FilterXSS(this.xssOptions);
+            return this._xssHandler.process(htmlCode);
+        },
         iRender(toggleChange) {
             var $vm = this;
             this.$render($vm.d_value, function(res) {
-                // render
-
                 // HTML 渲染前先进行过滤，避免 xss 问题，默认情况下开始此功能
-                res = xss(res, $vm.$props.xssOptions || {})
+                if (typeof $vm.xssOptions === 'object') {
+                   res = $vm.xssHandler(res);
+                }
 
                 $vm.d_render = res;
                 // change回调  toggleChange == false 时候触发change回调
