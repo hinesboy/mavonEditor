@@ -1,5 +1,5 @@
 # mavonEditor
-![npm](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)
+[![NPM](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/mavon-editor/)
 
 
 ### [English Documents](./README-EN.md)
