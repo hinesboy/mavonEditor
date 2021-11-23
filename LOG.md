@@ -1,4 +1,27 @@
 # 更新日志
+- **2.10.0** (21.11.23)  
+Enable XSS defense by default, It also fixes the invalidity of codestyle caused by XSS protection. 
+    - fix eslint error by @ygj6 in https://github.com/hinesboy/mavonEditor/pull/637
+    - Test framework by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/668
+    - fix issue#658,重构插入代码块逻辑 by @ygj6 in https://github.com/hinesboy/mavonEditor/pull/661
+    - Bump elliptic from 6.5.3 to 6.5.4 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/677
+    - Fixed pop-up style issues when pages use multiple editors by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/667
+    - fix eslint error and testcase by @ygj6 in https://github.com/hinesboy/mavonEditor/pull/679
+    - fix: codeStyle not working by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/717
+    - feat: Add support for highlightjs v11.3.1 by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/718
+    - Update upload-images.md [replace `in` by `of` for multiple files upload] by @Sequoya42 in https://github.com/hinesboy/mavonEditor/pull/698
+    - Clean up invalid code by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/720
+    - update highlight style list by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/721
+    - Bump y18n from 3.2.1 to 3.2.2 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/681
+    - Bump lodash from 4.17.19 to 4.17.21 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/694
+    - Bump hosted-git-info from 2.8.8 to 2.8.9 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/695
+    - Bump path-parse from 1.0.6 to 1.0.7 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/708
+    - Bump dns-packet from 1.3.1 to 1.3.4 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/700
+    - Adjust the list of npm install package by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/722
+    - Optimization project by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/724
+    - Feat: Enable XSS defense by default by @XLCYun in https://github.com/hinesboy/mavonEditor/pull/611
+    - test: add xss test by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/726
+
 - **2.9.1** (20.12.28)
     - 修复codestyle切换不生效bug PR #650
     - 插入代码块时增加换行 PR #641
