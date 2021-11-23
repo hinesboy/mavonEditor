@@ -661,6 +661,37 @@ export default {
                     return code;
                 }
             }
+
+            let originalTagAttr;
+            if (typeof this.xssOptions['onTagAttr'] === 'function') {
+                originalTagAttr = this.xssOptions['onTagAttr'];
+            }
+            this.xssOptions['onTagAttr'] = function (tag, name, value) {
+                const whiteClass = {
+                    "div": ['hljs-left', 'hljs-center', 'hljs-right', 'hljs-*'],
+                    "code": ['lang-language','lang-*'],
+                    "span": ['hljs-*']
+                };
+
+                let newValue, oriValue;
+                if (name === 'class' &&
+                    whiteClass[tag] &&
+                    whiteClass[tag].find(el => {
+                        return !!value.match(el)
+                    }))
+                {
+                    newValue = name + '="' + value + '"';
+                }
+
+                if (originalTagAttr) {
+                    oriValue = originalTagAttr(tag, name, value);
+                }
+
+                if (newValue || oriValue) {
+                    return oriValue || newValue;
+                }
+            };
+
             this._xssHandler = new FilterXSS(this.xssOptions);
             return this._xssHandler.process(htmlCode);
         },
@@ -671,7 +702,6 @@ export default {
                 if (typeof $vm.xssOptions === 'object') {
                    res = $vm.xssHandler(res);
                 }
-
                 $vm.d_render = res;
                 // change回调  toggleChange == false 时候触发change回调
                 if (!toggleChange)
