@@ -37,9 +37,8 @@ var config = {
         historyApiFallback: true,
         disableHostCheck: true,
         host: 'localhost',
-        port: '9090'
-        // hot: true,
-        // noInfo: true
+        port: '9090',        
+        stats: 'normal'
     },
     devtool: 'source-map'
 }
