@@ -22,3 +22,6 @@
 .markdown-body .hljs-left {
     text-align: left;
 }
+.markdown-body .hljs {
+    overflow: auto;
+}
