@@ -129,9 +129,10 @@ export default {
 | xssOptions     | Object  |     {}     | xss规则配置, 默认开启，设置false可以关闭，自定义规则参考 [https://jsxss.com/zh/options.html](https://jsxss.com/zh/options.html)                    |
 | toolbars     | Object  |     如下例     | 工具栏                      |
 
+#### toolbars
+默认工具栏按钮全部开启, 传入自定义对象，可以选择启用部分按钮
 ```javascript
  /*
-    默认工具栏按钮全部开启, 传入自定义对象
     例如: {
          bold: true, // 粗体
          italic: true,// 斜体
@@ -139,6 +140,7 @@ export default {
     }
     此时, 仅仅显示此三个功能键
  */
+
 toolbars: {
       bold: true, // 粗体
       italic: true, // 斜体
@@ -175,6 +177,51 @@ toolbars: {
       preview: true, // 预览
   }
 ```
+如果需要自定义添加工具栏按钮，可以通过以下方式
+```js
+<mavon-editor>
+  <!-- 左工具栏前加入自定义按钮 -->
+  <template slot="left-toolbar-before">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="自定义"
+    ></button>
+  </template>
+  <!-- 左工具栏后加入自定义按钮  -->
+  <template slot="left-toolbar-after">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="自定义"
+    ></button>
+  </template>
+  <!-- 右工具栏前加入自定义按钮  -->
+  <template slot="right-toolbar-before">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="自定义"
+    ></button>
+  </template>
+  <!-- 右工具栏后加入自定义按钮  -->
+  <template slot="right-toolbar-after">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="自定义"
+    ></button>
+  </template>
+</mavon-editor>
+```
 
 ### events 事件绑定
 
@@ -192,7 +239,7 @@ toolbars: {
 | imgAdd           | String: filename, File: imgfile | 图片文件添加回调事件(filename: 写在md中的文件名, File: File Object) |
 | imgDel           |        String: filename         | 图片文件删除回调事件(filename: 写在md中的文件名)          |
 
-#### 代码高亮
+### 代码高亮
 
 > 如不需要hightlight代码高亮显示，你应该设置ishljs为false
 
@@ -215,7 +262,7 @@ toolbars: {
 
 > [不使用cdn，本地按需加载点击这里...](./doc/cn/no-cnd.md)
 
-#### 图片上传
+### 图片上传
 
 ```javascript
 <template>
