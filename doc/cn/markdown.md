@@ -49,6 +49,7 @@
 
 <script>
 import { mavonEditor } from 'mavon-editor';
+import "mavon-editor/dist/css/index.css";
 
 export default {
   name: 'Example',
@@ -60,11 +61,11 @@ export default {
   props: {
     markdown: String,
   },
-  watch: {
-    markdown() {
-      this.rawHtml = mavonEditor.mixins[0].data().markdownIt.render(this.markdown);
-    },
-  },
+  computed: {
+    rawHtml: function() {
+      return mavonEditor.mixins[0].data().markdownIt.render(this.markdown);
+    }
+  },
 };
 </script>
 ```
