@@ -110,7 +110,7 @@ export default {
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | boxShadow     | Boolean  |     true     | css: box-shadow  of mavonEditor              |
 | subfield   | Boolean     |   true        | true: Double columns - Edit preview same screen , Single Columns - otherwise not |
-| defaultOpen | String |         | edit: default show edit area , preview: default show preview area  , other = edit |
+| defaultOpen | String |         |Default display area in single columns (subfield=false).<br/>  edit: default show edit area<br/>  preview: default show preview area<br/>  other = edit |
 | placeholder | String |    Begin editing...     |  The default prompt text when the textarea is empty  |
 | editable | Boolean     |   true       | Edit switch |
 | codeStyle | String |    code-github     | markdown Style: default github, [option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js)  |
