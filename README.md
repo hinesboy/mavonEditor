@@ -47,7 +47,7 @@ $ npm install mavon-editor --save
 ```
 ### 如何在nuxt.js 中使用
 > 首先在工程目录plugins 下新建 vue-mavon-editor.js
-``` javascrpt 
+```javascrpt 
 import Vue from 'vue';
 import mavonEditor from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css';
@@ -55,7 +55,7 @@ import 'mavon-editor/dist/css/index.css';
 Vue.use(mavonEditor);
 ```
 > 然后在nuxt.config.js 中添加plugins配置
-``` javascript
+```javascript
   plugins: [
   ...
     { src: '@/plugins/vue-mavon-editor', ssr: false }
@@ -90,7 +90,6 @@ export default {
   height: 100%;
 }
 </style>
-
 ```
 
 
@@ -132,50 +131,49 @@ export default {
 #### toolbars
 默认工具栏按钮全部开启, 传入自定义对象，可以选择启用部分按钮
 ```javascript
- /*
-    例如: {
-         bold: true, // 粗体
-         italic: true,// 斜体
-         header: true,// 标题
-    }
-    此时, 仅仅显示此三个功能键
- */
-
-toolbars: {
+/*
+  例如: {
       bold: true, // 粗体
-      italic: true, // 斜体
-      header: true, // 标题
-      underline: true, // 下划线
-      strikethrough: true, // 中划线
-      mark: true, // 标记
-      superscript: true, // 上角标
-      subscript: true, // 下角标
-      quote: true, // 引用
-      ol: true, // 有序列表
-      ul: true, // 无序列表
-      link: true, // 链接
-      imagelink: true, // 图片链接
-      code: true, // code
-      table: true, // 表格
-      fullscreen: true, // 全屏编辑
-      readmodel: true, // 沉浸式阅读
-      htmlcode: true, // 展示html源码
-      help: true, // 帮助
-      /* 1.3.5 */
-      undo: true, // 上一步
-      redo: true, // 下一步
-      trash: true, // 清空
-      save: true, // 保存（触发events中的save事件）
-      /* 1.4.2 */
-      navigation: true, // 导航目录
-      /* 2.1.8 */
-      alignleft: true, // 左对齐
-      aligncenter: true, // 居中
-      alignright: true, // 右对齐
-      /* 2.2.1 */
-      subfield: true, // 单双栏模式
-      preview: true, // 预览
+      italic: true,// 斜体
+      header: true,// 标题
   }
+  此时, 仅仅显示此三个功能键
+*/
+toolbars: {
+    bold: true, // 粗体
+    italic: true, // 斜体
+    header: true, // 标题
+    underline: true, // 下划线
+    strikethrough: true, // 中划线
+    mark: true, // 标记
+    superscript: true, // 上角标
+    subscript: true, // 下角标
+    quote: true, // 引用
+    ol: true, // 有序列表
+    ul: true, // 无序列表
+    link: true, // 链接
+    imagelink: true, // 图片链接
+    code: true, // code
+    table: true, // 表格
+    fullscreen: true, // 全屏编辑
+    readmodel: true, // 沉浸式阅读
+    htmlcode: true, // 展示html源码
+    help: true, // 帮助
+    /* 1.3.5 */
+    undo: true, // 上一步
+    redo: true, // 下一步
+    trash: true, // 清空
+    save: true, // 保存（触发events中的save事件）
+    /* 1.4.2 */
+    navigation: true, // 导航目录
+    /* 2.1.8 */
+    alignleft: true, // 左对齐
+    aligncenter: true, // 居中
+    alignright: true, // 右对齐
+    /* 2.2.1 */
+    subfield: true, // 单双栏模式
+    preview: true, // 预览
+}
 ```
 如果需要自定义添加工具栏按钮，可以通过以下方式
 ```js
@@ -244,9 +242,9 @@ toolbars: {
 > 如不需要hightlight代码高亮显示，你应该设置ishljs为false
 
 开启代码高亮props
-```javascript
-    // ishljs默认为true
-    <mavon-editor :ishljs = "true"></mavon-editor>
+```vue
+<!-- ishljs默认为true -->
+<mavon-editor :ishljs="true"></mavon-editor>
 ```
 
 为优化插件体积，从**v2.4.2**起以下文件将默认使用`cdnjs`外链:
@@ -264,11 +262,12 @@ toolbars: {
 
 ### 图片上传
 
-```javascript
+```vue
 <template>
     <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
 </template>
-exports default {
+<script>
+export default {
     methods: {
         // 绑定@imgAdd event
         $imgAdd(pos, $file){
@@ -292,6 +291,7 @@ exports default {
         }
     }
 }
+</script>
 ```
 > [图片上传详情点击这里...](./doc/cn/upload-images.md)
 
@@ -317,8 +317,8 @@ exports default {
 | CTRL + Z    | 17 + 90 | 上一步 |
 | CTRL + Y    | 17 + 89 | 下一步 |
 | CTRL + BreakSpace    | 17 + 8 | 清空编辑 |
-| CTRL + B       | 17 + 66 | **加粗** |
-| CTRL + I | 17 + 73 | *斜体* |
+| CTRL + B       | 17 + 66 | \*\*加粗\*\* |
+| CTRL + I | 17 + 73 | \*斜体\* |
 | CTRL + H       | 17 + 72 | # 标题 |
 | CTRL + 1       | 17 + 97 or 49 | # 标题 |
 | CTRL + 2       | 17 + 98 or 50 | ## 标题 |
@@ -330,14 +330,14 @@ exports default {
 | CTRL + M    | 17 + 77 | ==标记== |
 | CTRL + Q    | 17 + 81 | > 引用 |
 | CTRL + O    | 17 + 79 | 1. 有序列表 |
-| CTRL + L    | 17 + 76 | [链接]() |
+| CTRL + L    | 17 + 76 | \[链接标题\](链接地址) |
 | CTRL + ALT + S    | 17 + 18 + 83 | ^上角标^ |
 | CTRL + ALT + U    | 17 + 18 + 85 | - 无序列表 |
-| CTRL + ALT + C    | 17 + 18 + 67 | ``` 代码块 |
-| CTRL + ALT + L    | 17 + 18 + 76 | ![图片链接]() |
+| CTRL + ALT + C    | 17 + 18 + 67 | \`\`\` 代码块 |
+| CTRL + ALT + L    | 17 + 18 + 76 | \!\[图片标题\](图片链接) |
 | CTRL + ALT + T    | 17 + 18 + 84 | 表格 |
 | CTRL + SHIFT + S    | 17 + 16 + 83 | ~下角标~ |
-| CTRL + SHIFT + D    | 17 + 16 + 68 | ~~中划线~~ |
+| CTRL + SHIFT + D    | 17 + 16 + 68 | \~\~中划线\~\~ |
 | CTRL + SHIFT + C    | 17 + 16 + 67 | 居中 |
 | CTRL + SHIFT + L    | 17 + 16 + 76 | 居左 |
 | CTRL + SHIFT + R    | 17 + 16 + 82 | 居右 |
@@ -367,7 +367,8 @@ exports default {
 - [katex](https://github.com/Khan/KaTeX)
 - [images preview](https://github.com/CHENXCHEN/markdown-it-images-preview)
 - [toc](https://github.com/tylerlong/markdown-it-toc)
-- 可通过[获取markdown-it对象](./doc/cn/markdown.md)引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
+> 可通过[获取markdown-it对象](./doc/cn/markdown.md)引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
+可通过[获取markdown-it对象](./doc/cn/markdown.md)引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
 
 ## update(更新内容)
 
