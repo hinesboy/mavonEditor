@@ -1,4 +1,9 @@
 # 更新日志
+- **2.10.1** (21.12.04) 
+    - fix build warnings and optimize console output by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/728
+    - fix: image cannot be previewed by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/738
+    - fix: Fix the content of code blocks to be displayed outside the pre container by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/730
+
 - **2.10.0** (21.11.23)  
 Enable XSS defense by default, It also fixes the invalidity of codestyle caused by XSS protection. 
     - fix eslint error by @ygj6 in https://github.com/hinesboy/mavonEditor/pull/637
