@@ -255,15 +255,40 @@ describe('left-toolbars测试', () => {
 
 describe('xssOptions test', () => {
     it('xssOptions is enabled by default', async () => {
-      let xssCode = `<a$ <img src=x onerror=prompt(/test_really/);>#"> <a$\n<img onerror="alert(1)" src="a">`;
-      let htmlValue = `<p>&lt;a$ <img src>#&quot;&gt; &lt;a$<br />\n<img src></p>`
+        let xssCode = `<a$ <img src=x onerror=prompt(/test_really/);>#"> <a$\n<img onerror="alert(1)" src="a">`;
+        let htmlValue = `<p>&lt;a$ <img src>#&quot;&gt; &lt;a$<br />\n<img src></p>`
+        let wrapper = new factory({ d_words: null, value: '' });
+
+        const textInput = wrapper.find('textarea')
+        await textInput.setValue(xssCode)
+
+        expect(wrapper.find(textValueClass).text()).toEqual(xssCode);
+        expect(wrapper.find(htmlValueClass).text()).toEqual(htmlValue);
+    });
+
+    it('disable xssOptions', async () => {
+        let xssCode = `<a$ <img src=x onerror=prompt(/test_really/);>#"> <a$\n<img onerror="alert(1)" src="a">`;
+        let htmlValue = `<p>&lt;a$ <img src=x onerror=prompt(/test_really/);>#&quot;&gt; &lt;a$<br />\n<img onerror=\"alert(1)\" src=\"a\"></p>`
+        let wrapper = new factory({ d_words: null, value: '', xssOptions: false });
+    
+        const textInput = wrapper.find('textarea')
+        await textInput.setValue(xssCode)
+
+        expect(wrapper.find(textValueClass).text()).toEqual(xssCode);
+        expect(wrapper.find(htmlValueClass).text()).toEqual(htmlValue);
+      });
+});
+
+describe('local images upload', () => {
+    it('upload images', async () => {
+      let textValue = `![gh.png](1)`;
+      let htmlValue = `<p><img src=\"1\" alt=\"gh.png\" /></p>`
       let wrapper = new factory({ d_words: null, value: '' });
   
       const textInput = wrapper.find('textarea')
-      await textInput.setValue(xssCode)
-      wrapper.vm.$nextTick(() => {
-          expect(wrapper.find(textValueClass).text()).toEqual(xssCode);
-          expect(wrapper.find(htmlValueClass).text()).toEqual(htmlValue);
-        });
+      await textInput.setValue(textValue)
+
+      expect(wrapper.find(textValueClass).text()).toEqual(textValue);
+      expect(wrapper.find(htmlValueClass).text()).toEqual(htmlValue);
     });
 });
