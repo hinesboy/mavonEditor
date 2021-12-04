@@ -1,6 +1,6 @@
 export const HEADER_FLAG = ' _MD-HEADER_ ';
 export const IMAGE_FLAG = ['_MD-HEADER_', true];
-const IMAGE_FLAG_STR = `${IMAGE_FLAG[0]}="${IMAGE_FLAG[1]}"`;
+const IMAGE_FLAG_STR = `${IMAGE_FLAG[0]}="${IMAGE_FLAG[1]} "`;
 
 export function headRule(defaultTocHeadRule) {
   return function (tokens, index) {
