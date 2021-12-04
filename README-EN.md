@@ -1,5 +1,7 @@
 # mavonEditor
-![npm](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)
+| Vue2 | [![npm](https://img.shields.io/npm/v/mavon-editor/latest.svg)](https://www.npmjs.com/package/mavon-editor/v/latest) |
+| ---- | ------------------------------------------------------------ |
+| **Vue3** | [![npm](https://img.shields.io/npm/v/mavon-editor/next.svg)](https://www.npmjs.com/package/mavon-editor/v/next) |
 
 > A markdown editor based on Vue
 

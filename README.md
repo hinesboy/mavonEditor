@@ -1,6 +1,8 @@
 # mavonEditor
-[![NPM](https://nodei.co/npm/mavon-editor.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/mavon-editor/)
 
+| Vue2 | [![npm](https://img.shields.io/npm/v/mavon-editor/latest.svg)](https://www.npmjs.com/package/mavon-editor/v/latest) |
+| ---- | ------------------------------------------------------------ |
+| **Vue3** | [![npm](https://img.shields.io/npm/v/mavon-editor/next.svg)](https://www.npmjs.com/package/mavon-editor/v/next) |
 
 ### [English Documents](./README-EN.md)
 [Demo for jsfiddle](https://jsfiddle.net/CHENXCHEN/qf7gLw3a/3/)
