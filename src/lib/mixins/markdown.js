@@ -14,7 +14,7 @@ var markdown_config = {
     quotes: '“”‘’'
 }
 
-var markdown = require('markdown-it')(markdown_config);
+var markdownIt = require('markdown-it');
 // 表情
 var emoji = require('markdown-it-emoji');
 // 下标
@@ -37,25 +37,6 @@ var taskLists = require('markdown-it-task-lists')
 var container = require('markdown-it-container')
 //
 var toc = require('markdown-it-toc')
-// add target="_blank" to all link
-var defaultRender = markdown.renderer.rules.link_open || function(tokens, idx, options, env, self) {
-    return self.renderToken(tokens, idx, options);
-};
-markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-    var hIndex = tokens[idx].attrIndex('href');
-    if (tokens[idx].attrs[hIndex][1].startsWith('#')) return defaultRender(tokens, idx, options, env, self);
-    // If you are sure other plugins can't add `target` - drop check below
-    var aIndex = tokens[idx].attrIndex('target');
-
-    if (aIndex < 0) {
-        tokens[idx].attrPush(['target', '_blank']); // add new attribute
-    } else {
-        tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
-    }
-
-    // pass token to default renderer.
-    return defaultRender(tokens, idx, options, env, self);
-};
 
 var mihe = require('markdown-it-highlightjs-external');
 // math katex
@@ -66,44 +47,74 @@ var needLangs = [];
 var hljs_opts = {
     hljs: 'auto',
     highlighted: true,
-    langCheck: function(lang) {
+    langCheck: function (lang) {
         if (lang && hljsLangs[lang] && !missLangs[lang]) {
             missLangs[lang] = 1;
             needLangs.push(hljsLangs[lang])
         }
     }
 };
-markdown.use(mihe, hljs_opts)
-    .use(emoji)
-    .use(sup)
-    .use(sub)
-    .use(container)
-    .use(container, 'hljs-left') /* align left */
-    .use(container, 'hljs-center')/* align center */
-    .use(container, 'hljs-right')/* align right */
-    .use(deflist)
-    .use(abbr)
-    .use(footnote)
-    .use(insert)
-    .use(mark)
-    .use(container)
-    .use(miip)
-    .use(katex)
-    .use(taskLists)
-    .use(toc)
+
+function initMarkdown() {
+    const markdown = new markdownIt(markdown_config);
+
+    // add target="_blank" to all link
+    var defaultRender = markdown.renderer.rules.link_open || function (tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options);
+    };
+    markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+        var hIndex = tokens[idx].attrIndex('href');
+        if (tokens[idx].attrs[hIndex][1].startsWith('#')) return defaultRender(tokens, idx, options, env, self);
+        // If you are sure other plugins can't add `target` - drop check below
+        var aIndex = tokens[idx].attrIndex('target');
+
+        if (aIndex < 0) {
+            tokens[idx].attrPush(['target', '_blank']); // add new attribute
+        } else {
+            tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
+        }
+
+        // pass token to default renderer.
+        return defaultRender(tokens, idx, options, env, self);
+    };
+
+    markdown.use(mihe, hljs_opts)
+        .use(emoji)
+        .use(sup)
+        .use(sub)
+        .use(container)
+        .use(container, 'hljs-left') /* align left */
+        .use(container, 'hljs-center')/* align center */
+        .use(container, 'hljs-right')/* align right */
+        .use(deflist)
+        .use(abbr)
+        .use(footnote)
+        .use(insert)
+        .use(mark)
+        .use(container)
+        .use(miip)
+        .use(katex)
+        .use(taskLists)
+        .use(toc)
+
+    return markdown;
+}
+
+
 
 export default {
     data() {
         return {
-            markdownIt: markdown
+            markdownIt: null
         }
     },
-    created(){
+    created() {
+        this.markdownIt = initMarkdown();        
         if (!this.html) {
-            this.markdownIt.set({ html: false});
+            this.markdownIt.set({ html: false });
             this.xssOptions = false;
-        }else if (typeof this.xssOptions === 'object') {
-            this.markdownIt.use(sanitizer,this.xssOptions);
+        } else if (typeof this.xssOptions === 'object') {
+            this.markdownIt.use(sanitizer, this.xssOptions);
         }
     },
     mounted() {
@@ -114,7 +125,7 @@ export default {
             var $vm = this;
             missLangs = {};
             needLangs = [];
-            var res = markdown.render(src);
+            var res = this.markdownIt.render(src);
             if (this.ishljs) {
                 if (needLangs.length > 0) {
                     $vm.$_render(src, func, res);
@@ -127,10 +138,10 @@ export default {
             var deal = 0;
             for (var i = 0; i < needLangs.length; i++) {
                 var url = $vm.p_external_link.hljs_lang(needLangs[i]);
-                loadScript(url, function() {
+                loadScript(url, function () {
                     deal = deal + 1;
                     if (deal === needLangs.length) {
-                        res = markdown.render(src);
+                        res = this.markdownIt.render(src);
                         func(res);
                     }
                 })
@@ -138,7 +149,7 @@ export default {
         }
     },
     watch: {
-        ishljs: function(val) {
+        ishljs: function (val) {
             hljs_opts.highlighted = val;
         }
     }
