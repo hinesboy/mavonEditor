@@ -14,7 +14,7 @@ var markdown_config = {
     quotes: '“”‘’'
 }
 
-var markdownIt = require('markdown-it');
+var MarkdownIt = require('markdown-it');
 // 表情
 var emoji = require('markdown-it-emoji');
 // 下标
@@ -56,7 +56,7 @@ var hljs_opts = {
 };
 
 function initMarkdown() {
-    const markdown = new markdownIt(markdown_config);
+    const markdown = new MarkdownIt(markdown_config);
 
     // add target="_blank" to all link
     var defaultRender = markdown.renderer.rules.link_open || function (tokens, idx, options, env, self) {
@@ -100,21 +100,19 @@ function initMarkdown() {
     return markdown;
 }
 
-
-
 export default {
     data() {
         return {
-            markdownIt: null
+            MarkdownIt: null
         }
     },
     created() {
-        this.markdownIt = initMarkdown();        
+        this.MarkdownIt = initMarkdown();
         if (!this.html) {
-            this.markdownIt.set({ html: false });
+            this.MarkdownIt.set({ html: false });
             this.xssOptions = false;
         } else if (typeof this.xssOptions === 'object') {
-            this.markdownIt.use(sanitizer, this.xssOptions);
+            this.MarkdownIt.use(sanitizer, this.xssOptions);
         }
     },
     mounted() {
@@ -125,7 +123,7 @@ export default {
             var $vm = this;
             missLangs = {};
             needLangs = [];
-            var res = this.markdownIt.render(src);
+            var res = this.MarkdownIt.render(src);
             if (this.ishljs) {
                 if (needLangs.length > 0) {
                     $vm.$_render(src, func, res);
@@ -141,7 +139,7 @@ export default {
                 loadScript(url, function () {
                     deal = deal + 1;
                     if (deal === needLangs.length) {
-                        res = this.markdownIt.render(src);
+                        res = this.MarkdownIt.render(src);
                         func(res);
                     }
                 })

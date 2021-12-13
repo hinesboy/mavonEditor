@@ -12,7 +12,7 @@ function mavoneditor_sanitizer(state) {
 function sanitizer(tokens, types) {
   let originContent, children;
   for (let i = 0; i < tokens.length; i++) {
-    if (types.indexOf(tokens[i].type) != -1) {
+    if (types.indexOf(tokens[i].type) !== -1) {
       originContent = tokens[i].content;
       children = tokens[i].children;
       tokens[i].content = xssHandler.process(originContent);
