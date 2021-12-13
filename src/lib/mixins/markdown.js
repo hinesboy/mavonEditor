@@ -2,7 +2,7 @@ import hljsLangs from '../core/hljs/lang.hljs.js'
 import {
     loadScript
 } from '../core/extra-function.js'
-import { headRule, imageRule } from '../core/rules.js'
+import sanitizer from '../core/sanitizer.js'
 
 var markdown_config = {
     html: true,        // Enable HTML tags in source
@@ -57,9 +57,6 @@ markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     return defaultRender(tokens, idx, options, env, self);
 };
 
-const defautlImageRule = markdown.renderer.rules.image;
-markdown.renderer.rules.image = imageRule(defautlImageRule);
-
 var mihe = require('markdown-it-highlightjs-external');
 // math katex
 var katex = require('markdown-it-katex-external');
@@ -95,17 +92,21 @@ markdown.use(mihe, hljs_opts)
     .use(taskLists)
     .use(toc)
 
-const tocHeadRule = markdown.renderer.rules.heading_open;
-markdown.renderer.rules.heading_open = headRule(tocHeadRule);
-
 export default {
     data() {
         return {
             markdownIt: markdown
         }
     },
+    created(){
+        if (!this.html) {
+            this.markdownIt.set({ html: false});
+            this.xssOptions = false;
+        }else if (typeof this.xssOptions === 'object') {
+            this.markdownIt.use(sanitizer,this.xssOptions);
+        }
+    },
     mounted() {
-        var $vm = this;
         hljs_opts.highlighted = this.ishljs;
     },
     methods: {

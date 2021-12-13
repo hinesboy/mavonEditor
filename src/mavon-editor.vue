@@ -119,8 +119,6 @@ import md_toolbar_left from './components/md-toolbar-left.vue'
 import md_toolbar_right from './components/md-toolbar-right.vue'
 import "./lib/font/css/fontello.css"
 import './lib/css/md.css'
-import { skipRule } from './lib/core/rules.js'
-import { FilterXSS } from 'xss';
 
 export default {
     mixins: [markdown],
@@ -198,6 +196,10 @@ export default {
             default() {
                 return CONFIG.toolbars
             }
+        },
+        html: {// Enable HTML tags in source
+            type: Boolean,
+            default: true
         },
         xssOptions: { // XSS 选项
             type: [Object, Boolean],
@@ -643,65 +645,9 @@ export default {
                 console.warn('hljs color scheme', val, 'do not exist, hljs color scheme will not change');
             }
         },
-        xssHandler(htmlCode) {
-            if (this._xssHandler) {
-                return this._xssHandler.process(htmlCode);
-            }
-
-            let originalTagFun;
-            if (typeof this.xssOptions['onTag'] === 'function') {
-                originalTagFun = this.xssOptions['onTag'];
-            }
-            this.xssOptions['onTag'] =  function(tag, html, info) {
-                let code = skipRule(tag, html);
-                if (originalTagFun) {
-                  code = originalTagFun(tag,code);
-                }
-                if (html !== code) {
-                    return code;
-                }
-            }
-
-            let originalTagAttr;
-            if (typeof this.xssOptions['onTagAttr'] === 'function') {
-                originalTagAttr = this.xssOptions['onTagAttr'];
-            }
-            this.xssOptions['onTagAttr'] = function (tag, name, value) {
-                const whiteClass = {
-                    "div": ['hljs-left', 'hljs-center', 'hljs-right', 'hljs-*'],
-                    "code": ['lang-language','lang-*'],
-                    "span": ['hljs-*']
-                };
-
-                let newValue, oriValue;
-                if (name === 'class' &&
-                    whiteClass[tag] &&
-                    whiteClass[tag].find(el => {
-                        return !!value.match(el)
-                    }))
-                {
-                    newValue = name + '="' + value + '"';
-                }
-
-                if (originalTagAttr) {
-                    oriValue = originalTagAttr(tag, name, value);
-                }
-
-                if (newValue || oriValue) {
-                    return oriValue || newValue;
-                }
-            };
-
-            this._xssHandler = new FilterXSS(this.xssOptions);
-            return this._xssHandler.process(htmlCode);
-        },
         iRender(toggleChange) {
             var $vm = this;
             this.$render($vm.d_value, function(res) {
-                // HTML 渲染前先进行过滤，避免 xss 问题，默认情况下开始此功能
-                if (typeof $vm.xssOptions === 'object') {
-                   res = $vm.xssHandler(res);
-                }
                 $vm.d_render = res;
                 // change回调  toggleChange == false 时候触发change回调
                 if (!toggleChange)
