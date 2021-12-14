@@ -1,4 +1,7 @@
 # 更新日志
+- **2.10.2** (21.12.14) 
+    - fix: Add sanitizer for filtering HTML tags by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/744
+
 - **2.10.1** (21.12.04) 
     - fix build warnings and optimize console output by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/728
     - fix: image cannot be previewed by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/738
