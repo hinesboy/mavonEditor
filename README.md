@@ -127,7 +127,8 @@ export default {
 | imageFilter | function |     null     |  图片过滤函数，参数为一个`File Object`，要求返回一个`Boolean`, `true`表示文件合法，`false`表示文件不合法 |
 | imageClick | function |     null     |  图片点击事件，默认为预览，可覆盖 |
 | tabSize     | Number  |     \t     | tab转化为几个空格，默认为\t                      |
-| xssOptions     | Object  |     {}     | xss规则配置, 默认开启，设置false可以关闭，自定义规则参考 [https://jsxss.com/zh/options.html](https://jsxss.com/zh/options.html)                    |
+| html     | Boolean  |     true     | 启用HTML标签，因为历史原因这个标记一直默认为true，但建议不使用HTML标签就关闭它，它能彻底杜绝安全问题。                      |
+| xssOptions     | Object  |     {}     | xss规则配置, 默认开启，设置false可以关闭，开启后会对HTML标签进行过滤，默认过滤所有HTML标签属性，建议按需配置白名单减少被攻击的可能。<br/>- 自定义规则参考: [https://jsxss.com/zh/options.html](https://jsxss.com/zh/options.html)<br/>- 参考DEMO: [dev-demo](./src/dev/editor.vue)                  |
 | toolbars     | Object  |     如下例     | 工具栏                      |
 
 #### toolbars
