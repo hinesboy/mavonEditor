@@ -103,16 +103,16 @@ function initMarkdown() {
 export default {
     data() {
         return {
-            MarkdownIt: null
+            markdownIt: null
         }
     },
     created() {
-        this.MarkdownIt = initMarkdown();
+        this.markdownIt = initMarkdown();
         if (!this.html) {
-            this.MarkdownIt.set({ html: false });
+            this.markdownIt.set({ html: false });
             this.xssOptions = false;
         } else if (typeof this.xssOptions === 'object') {
-            this.MarkdownIt.use(sanitizer, this.xssOptions);
+            this.markdownIt.use(sanitizer, this.xssOptions);
         }
     },
     mounted() {
@@ -123,7 +123,7 @@ export default {
             var $vm = this;
             missLangs = {};
             needLangs = [];
-            var res = this.MarkdownIt.render(src);
+            var res = this.markdownIt.render(src);
             if (this.ishljs) {
                 if (needLangs.length > 0) {
                     $vm.$_render(src, func, res);
@@ -139,7 +139,7 @@ export default {
                 loadScript(url, function () {
                     deal = deal + 1;
                     if (deal === needLangs.length) {
-                        res = this.MarkdownIt.render(src);
+                        res = this.markdownIt.render(src);
                         func(res);
                     }
                 })
