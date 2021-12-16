@@ -4,23 +4,23 @@
 
 #### method 1:  Global Registration
 ```javascript
-  import mavonEditor from 'mavon-editor'
-  Vue.use(mavonEditor)
+  import MavonEditor from 'mavon-editor'
+  Vue.use(MavonEditor)
   ...
-  mavonEditor.markdownIt
+  const markdownIt = MavonEditor.mavonEditor.getMarkdownIt()
 ```
 
 #### method 2: Local Registration
 ```javascript
   import {mavonEditor} from 'mavon-editor'
-  mavonEditor.getMarkdownIt()
+  const markdownIt = mavonEditor.getMarkdownIt()
 ```
 
 #### method 3: Use mavonEditor ref
 ```javascript
    <mavonEditor ref=md></mavonEditor>
    ...
-   this.refs.md.markdownIt
+   const markdownIt = this.refs.md.getMarkdownIt()
 ```
 
 ### Use markdown-it object
@@ -33,32 +33,3 @@
 ```
 
 > [markdown-it API](https://github.com/markdown-it/markdown-it)
-
-### Simple example
-Only use the markdown rendering function of mavonEditor.
-
-> Notice：`class="markdown-body"` is necessary, or the CSS style will be different from the preview
-
-```html
-<template>
-  <div>
-    <span class="markdown-body" v-html="rawHtml"></span>
-  </div>
-</template>
-
-<script>
-import { mavonEditor } from 'mavon-editor';
-import 'mavon-editor/dist/css/index.css';
-export default {
-  name: 'Example',
-  props: {
-    markdown: String,
-  },
-  computed: {
-    rawHtml: function() {
-      return mavonEditor.getMarkdownIt().render(this.markdown);
-    }
-  },
-};
-</script>
-```
