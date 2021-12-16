@@ -360,9 +360,9 @@ export default {
     },
     getMarkdownIt() {
         let mdIt = this.mixins[0].data().markdownIt;
-        if(!mdIt){
+        if (!mdIt) {
             mdIt = initMarkdown();
-        }        
+        }
         return mdIt
     },
     methods: {

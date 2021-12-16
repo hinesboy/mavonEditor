@@ -13,7 +13,7 @@ const VueMavonEditor = {
      * @deprecated
      * @see mavonEditor.getMarkdownIt()
      */
-    markdownIt: mavonEditor.mixins[0].data().markdownIt,    
+    markdownIt: mavonEditor.mixins[0].data().markdownIt,
     mavonEditor: mavonEditor,
     LeftToolbar: require('./components/md-toolbar-left'),
     RightToolbar: require('./components/md-toolbar-right'),
