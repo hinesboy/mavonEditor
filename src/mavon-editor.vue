@@ -113,8 +113,7 @@ import {stopEvent} from './lib/util.js'
 import {toolbar_left_click, toolbar_left_addlink} from './lib/toolbar_left_click.js'
 import {toolbar_right_click} from './lib/toolbar_right_click.js'
 import {CONFIG} from './lib/config.js'
-import markdown from './lib/mixins/markdown.js'
-
+import markdown, {initMarkdown} from './lib/mixins/markdown.js'
 import md_toolbar_left from './components/md-toolbar-left.vue'
 import md_toolbar_right from './components/md-toolbar-right.vue'
 import "./lib/font/css/fontello.css"
@@ -360,7 +359,11 @@ export default {
         document.body.removeChild(this.$refs.help);
     },
     getMarkdownIt() {
-        return this.mixins[0].data().markdownIt
+        let mdIt = this.mixins[0].data().markdownIt;
+        if(!mdIt){
+            mdIt = initMarkdown();
+        }        
+        return mdIt
     },
     methods: {
         loadExternalLink(name, type, callback) {
