@@ -14,8 +14,6 @@
 ```javascript
   import {mavonEditor} from 'mavon-editor'
   mavonEditor.getMarkdownIt()
-  or
-  mavonEditor.mixins[0].data().s_markdown
 ```
 
 #### method 3: Use mavonEditor ref
@@ -58,7 +56,7 @@ export default {
   },
   computed: {
     rawHtml: function() {
-      return mavonEditor.mixins[0].data().markdownIt.render(this.markdown);
+      return mavonEditor.getMarkdownIt().render(this.markdown);
     }
   },
 };

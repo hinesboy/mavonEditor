@@ -6,7 +6,7 @@
     </div>
     <div>
       <App v-if="viewIndex == 1"></App>
-      <Editor v-if="viewIndex == 2"></Editor>
+      <Editor v-else-if="viewIndex == 2"></Editor>
     </div>
   </div>
 </template>
