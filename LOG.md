@@ -1,6 +1,10 @@
 # 更新日志
+- **2.10.4** (21.12.16) 
+    - refactor: provides a standard interface to get markdown-it by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/750
+    - doc: update maekdown.md by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/751
+
 - **2.10.3** (21.12.14) 
-* fix: error while uploading image by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/748
+    - fix: error while uploading image by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/748
 
 - **2.10.2** (21.12.14) 
     - fix: Add sanitizer for filtering HTML tags by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/744
