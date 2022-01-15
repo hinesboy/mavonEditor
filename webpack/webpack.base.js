@@ -28,6 +28,7 @@ module.exports = {
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
+                    esModule: false,
                     postcss: [
                         require('autoprefixer')({
                             browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']
@@ -141,7 +142,7 @@ module.exports = {
         }, {
             context: 'node_modules/katex/dist',
             from: {
-                glob: `${path.resolve(__dirname, '../node_modules/katex/dist')}/**/*.+(min.js|min.css|ttf|woff|woff2)` 
+                glob: `${path.resolve(__dirname, '../node_modules/katex/dist')}/**/*.+(min.js|min.css|ttf|woff|woff2)`
             },
             to: path.resolve(__dirname, '../dist/katex')
         }])
