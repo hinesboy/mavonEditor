@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/hinesboy/mavonEditor#readme",
   "dependencies": {
-    "xss": "^1.0.6"
+    "xss": "^1.0.10"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.1.2",
