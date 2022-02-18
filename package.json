@@ -116,7 +116,7 @@
     "url-loader": "^0.5.8",
     "vue": "^2.3.4",
     "vue-jest": "^3.0.7",
-    "vue-loader": "^12.0.3",
+    "vue-loader": "^13.7.0",
     "vue-style-loader": "^3.0.0",
     "vue-template-compiler": "^2.2.1",
     "webpack": "^2.4.1",
