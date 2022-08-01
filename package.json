@@ -32,7 +32,7 @@
   "dependencies": {
     "highlight.js": "^9.11.0",
     "highlight.js-async-webpack": "^1.0.4",
-    "xss": "^1.0.6"
+    "xss": "^1.0.10"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.1.1",
