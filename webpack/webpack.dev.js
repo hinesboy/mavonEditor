@@ -40,7 +40,7 @@ var config = {
         // hot: true,
         // noInfo: true
     },
-    devtool: '#eval-source-map'
+    devtool: 'source-map'
 }
 
 var res = merge([base, config]);
