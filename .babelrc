@@ -1,14 +1,19 @@
 {
   "presets": [
-    "@vue/app"
+    ["env", {
+      "modules": false
+    }],
+    [
+      "babel-preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "stage-2"
   ],
-  "plugins": ["@babel/plugin-transform-runtime"],
-  "comments": false,
-//  "env": {
-//    "test": {
-//      "presets": ["@babel/preset-env"],
-//      "plugins": ["istanbul"]
-//    }
-//  }
-}
 
+  "plugins": ["transform-runtime"],
+  "comments": false
+}
