@@ -31,5 +31,5 @@ export const CONFIG = {
   'words_en': words_en,
   'words_fr': words_fr,
   'words_ru': words_ru,
-  'words_de': words_de
+  'words_de': words_de,
 }

@@ -1,18 +1,18 @@
 module.exports = {
-  transformIgnorePatterns: ["<rootDir>/node_modules/(?!auto-textarea|@vue|src)"],
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!auto-textarea|@vue|src)'],
   testMatch: [
-    "**/tests/unit/*.spec.js"
+    '**/tests/unit/*.spec.js',
   ],
   verbose: true,
   moduleFileExtensions: ['js', 'vue', 'md', 'html'],
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   transform: {
-    "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-    "^.+\\.vue$": "<rootDir>/node_modules/vue-jest",
-    '.*\\.(yml|html|md)$': 'jest-raw-loader'
+    '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.vue$': '<rootDir>/node_modules/@vue/vue3-jest',
+    '.*\\.(yml|html|md)$': 'jest-raw-loader',
   },
   // setupFiles: ['<rootDir>/tests/unit/setup.js'],
   coverageDirectory: '<rootDir>/tests/unit/coverage',
@@ -20,9 +20,9 @@ module.exports = {
     'src/**/*.{js,vue}',
     '!src/main.js',
     '!src/dev/**',
-    '!**/node_modules/**'
+    '!**/node_modules/**',
   ],
   snapshotSerializers: [
-    "jest-serializer-vue"
-  ]
+    'jest-serializer-vue',
+  ],
 }

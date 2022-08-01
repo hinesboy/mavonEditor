@@ -1,31 +1,31 @@
-import { FilterXSS } from 'xss';
+import { FilterXSS } from 'xss'
 
-let xssHandler;
+let xssHandler
 
 function mavoneditor_sanitizer(state) {
   if (!xssHandler) {
-    return;
+    return
   }
-  sanitizer(state.tokens, ['inline', 'html_block']);
+  sanitizer(state.tokens, ['inline', 'html_block'])
 }
 
 function sanitizer(tokens, types) {
-  let originContent, children;
+  let originContent, children
   for (let i = 0; i < tokens.length; i++) {
     if (types.indexOf(tokens[i].type) !== -1) {
-      originContent = tokens[i].content;
-      children = tokens[i].children;
-      tokens[i].content = xssHandler.process(originContent);
+      originContent = tokens[i].content
+      children = tokens[i].children
+      tokens[i].content = xssHandler.process(originContent)
       if (children && children.length && originContent !== tokens[i].content) {
-        sanitizer(children, ['html_inline']);
+        sanitizer(children, ['html_inline'])
       }
     }
   }
 }
 
-export default function (md, xssOptions) {
+export default function(md, xssOptions) {
   if (md.options.html) {
-    xssHandler = new FilterXSS(xssOptions);
-    md.core.ruler.push('mavoneditor_sanitizer', mavoneditor_sanitizer);
+    xssHandler = new FilterXSS(xssOptions)
+    md.core.ruler.push('mavoneditor_sanitizer', mavoneditor_sanitizer)
   }
 }

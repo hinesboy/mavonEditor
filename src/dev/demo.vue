@@ -5,28 +5,28 @@
       <span @click="viewIndex = 2">Simple demo</span>
     </div>
     <div>
-      <App v-if="viewIndex == 1"></App>
-      <Editor v-else-if="viewIndex == 2"></Editor>
+      <App v-if="viewIndex === 1" />
+      <Editor v-else-if="viewIndex === 2" />
     </div>
   </div>
 </template>
 
 <script>
-import app from './app.vue';
-import editor from './editor.vue';
+import app from './app.vue'
+import editor from './editor.vue'
 
 export default {
-  name: 'demo',
+  name: 'Demo',
   components: {
     App: app,
-    Editor: editor
+    Editor: editor,
   },
   data() {
     return {
-      viewIndex: 1
-    };
-  }
-};
+      viewIndex: 1,
+    }
+  },
+}
 </script>
 <style>
 .navigate {

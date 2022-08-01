@@ -185,7 +185,7 @@
 // import tomarkdown from './lib/core/to-markdown.js'
 import { keydownListen } from './lib/core/keydown-listen.js'
 import hljsCss from './lib/core/hljs/lang.hljs.css.js'
-import hljsLangs from './lib/core/hljs/lang.hljs.js'
+// import hljsLangs from './lib/core/hljs/lang.hljs.js'
 import {
   fullscreenchange,
   /* windowResize, */
@@ -210,7 +210,7 @@ import {
 } from './lib/toolbar_left_click.js'
 import { toolbar_right_click } from './lib/toolbar_right_click.js'
 import { CONFIG } from './lib/config.js'
-import markdown, {initMarkdown} from './lib/mixins/markdown.js'
+import markdown, { initMarkdown } from './lib/mixins/markdown.js'
 
 import md_toolbar_left from './components/md-toolbar-left'
 import md_toolbar_right from './components/md-toolbar-right'
@@ -317,9 +317,9 @@ export default {
         return CONFIG.toolbars
       },
     },
-    html: {// Enable HTML tags in source
+    html: { // Enable HTML tags in source
       type: Boolean,
-      default: true
+      default: true,
     },
     xssOptions: {
       // 工具栏
@@ -555,9 +555,9 @@ export default {
   },
 
   getMarkdownIt() {
-    let mdIt = this.mixins[0].data().markdownIt;
+    let mdIt = this.mixins[0].data().markdownIt
     if (!mdIt) {
-      mdIt = initMarkdown();
+      mdIt = initMarkdown()
     }
     return mdIt
   },
@@ -570,7 +570,7 @@ export default {
             'external_link.' + name,
             'is not a function, if you want to disabled this error log, set external_link.' +
               name,
-            'to function or false'
+            'to function or false',
           )
         }
         return
@@ -579,7 +579,7 @@ export default {
         css: loadLink,
         js: loadScript,
       }
-      if (_obj.hasOwnProperty(type)) {
+      if (Object.prototype.hasOwnProperty.call(_obj, type)) {
         _obj[type](this.p_external_link[name](), callback)
       }
     },
@@ -649,7 +649,7 @@ export default {
       }
     },
     $imgTouch(file) {
-      var $vm = this
+      // var $vm = this
       // TODO 跳转到图片位置
     },
     $imgDel(file) {
@@ -677,7 +677,7 @@ export default {
           // 去除特殊字符
           $file._name = $file.name.replace(
             /[\[\]\(\)\+\{\}&\|\\\*^%$#@\-]/g,
-            ''
+            '',
           )
 
           $vm.insertText($vm.getTextareaDom(), {
@@ -712,13 +712,16 @@ export default {
       return false
     },
     $img2Url(fileIndex, url) {
-      // x.replace(/(\[[^\[]*?\](?=\())\(\s*(\.\/2)\s*\)/g, "$1(http://path/to/png.png)")
-      var reg_str =
-        '/(!\\[\[^\\[\]*?\\]\(?=\\(\)\)\\(\\s*\(' + fileIndex + '\)\\s*\\)/g'
-      var reg = eval(reg_str)
-      this.d_value = this.d_value.replace(reg, '$1(' + url + ')')
-      this.$refs.toolbar_left.$changeUrl(fileIndex, url)
-      this.iRender()
+      // eval风险 绕过
+      if (Number.isInteger(fileIndex)) {
+        // x.replace(/(\[[^\[]*?\](?=\())\(\s*(\.\/2)\s*\)/g, "$1(http://path/to/png.png)")
+        const reg_str =
+          '(!\\[\[^\\[\]*?\\]\(?=\\(\)\)\\(\\s*\(' + fileIndex + '\)\\s*\\)'
+        const reg = new RegExp(reg_str, 'g')
+        this.d_value = this.d_value.replace(reg, '$1(' + url + ')')
+        this.$refs.toolbar_left.$changeUrl(fileIndex, url)
+        this.iRender()
+      }
     },
     $imglst2Url(imglst) {
       if (imglst instanceof Array) {
@@ -826,7 +829,7 @@ export default {
       this.d_history.push(this.d_value)
       this.textarea_selectionEnds.splice(
         this.d_history_index + 1,
-        this.textarea_selectionEnds.length
+        this.textarea_selectionEnds.length,
       )
       this.textarea_selectionEnds.push(this.textarea_selectionEnd)
       this.d_history_index = this.d_history.length - 1
@@ -862,7 +865,7 @@ export default {
       if (typeof this.p_external_link.hljs_css !== 'function') {
         if (this.p_external_link.hljs_css !== false) {
           console.error(
-            'external_link.hljs_css is not a function, if you want to disabled this error log, set external_link.hljs_css to function or false'
+            'external_link.hljs_css is not a function, if you want to disabled this error log, set external_link.hljs_css to function or false',
           )
         }
         return
@@ -872,7 +875,7 @@ export default {
         console.warn(
           'hljs color scheme',
           val,
-          'do not exist, loading default github'
+          'do not exist, loading default github',
         )
         url = this.p_external_link.hljs_css('github')
       }
@@ -882,7 +885,7 @@ export default {
         console.warn(
           'hljs color scheme',
           val,
-          'do not exist, hljs color scheme will not change'
+          'do not exist, hljs color scheme will not change',
         )
       }
     },

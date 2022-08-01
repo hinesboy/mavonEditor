@@ -9,10 +9,10 @@
  * @Copyright: 2017
  */
 
-import { createApp, h } from 'vue';
-import editor from './editor.vue';
+import { createApp, h } from 'vue'
+import editor from './editor.vue'
 import sMd from '../index'
 
 createApp({
-    render: () => h(editor)
-}).use(sMd).mount('#main');
+  render: () => h(editor),
+}).use(sMd).mount('#main')
