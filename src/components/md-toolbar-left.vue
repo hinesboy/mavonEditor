@@ -2,39 +2,39 @@
   <div class="v-left-item">
     <slot name="left-toolbar-before" />
     <button
+      v-if="toolbars.bold"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.bold"
-      @click="$clicks('bold')"
       class="op-icon fa fa-mavon-bold"
       aria-hidden="true"
       :title="`${d_words.tl_bold} (ctrl+b)`"
-    ></button>
+      @click="$clicks('bold')"
+    />
     <button
+      v-if="toolbars.italic"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.italic"
-      @click="$clicks('italic')"
       class="op-icon fa fa-mavon-italic"
       aria-hidden="true"
       :title="`${d_words.tl_italic} (ctrl+i)`"
-    ></button>
+      @click="$clicks('italic')"
+    />
     <div
+      v-if="toolbars.header"
       :class="{ selected: s_header_dropdown_open }"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.header"
-      @mouseleave="$mouseleave_header_dropdown"
-      @mouseenter="$mouseenter_header_dropdown"
       class="op-icon fa fa-mavon-header dropdown dropdown-wrapper"
       aria-hidden="true"
       :title="`${d_words.tl_header} (ctrl+h)`"
+      @mouseleave="$mouseleave_header_dropdown"
+      @mouseenter="$mouseenter_header_dropdown"
     >
       <transition name="fade">
         <div
+          v-show="s_header_dropdown_open"
           class="op-header popup-dropdown"
           :class="{ transition: transition }"
-          v-show="s_header_dropdown_open"
           @mouseenter="$mouseenter_header_dropdown"
           @mouseleave="$mouseleave_header_dropdown"
         >
@@ -86,145 +86,145 @@
     <span
       v-if="toolbars.header || toolbars.italic || toolbars.bold"
       class="op-icon-divider"
-    ></span>
+    />
     <button
+      v-if="toolbars.underline"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.underline"
-      @click="$clicks('underline')"
       class="op-icon fa fa-mavon-underline"
       :title="`${d_words.tl_underline} (ctrl+u)`"
       aria-hidden="true"
-    ></button>
+      @click="$clicks('underline')"
+    />
     <button
+      v-if="toolbars.strikethrough"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.strikethrough"
-      @click="$clicks('strikethrough')"
       class="op-icon fa fa-mavon-strikethrough"
       :title="`${d_words.tl_strikethrough} (ctrl+shift+d)`"
       aria-hidden="true"
-    ></button>
+      @click="$clicks('strikethrough')"
+    />
     <button
+      v-if="toolbars.mark"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.mark"
-      @click="$clicks('mark')"
       class="op-icon fa fa-mavon-thumb-tack"
       :title="`${d_words.tl_mark} (ctrl+m)`"
       aria-hidden="true"
-    ></button>
+      @click="$clicks('mark')"
+    />
     <button
+      v-if="toolbars.superscript"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.superscript"
-      @click="$clicks('superscript')"
       class="op-icon fa fa-mavon-superscript"
       aria-hidden="true"
       :title="`${d_words.tl_superscript} (ctrl+alt+s)`"
-    ></button>
+      @click="$clicks('superscript')"
+    />
     <button
+      v-if="toolbars.subscript"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.subscript"
-      @click="$clicks('subscript')"
       class="op-icon fa fa-mavon-subscript"
       aria-hidden="true"
       :title="`${d_words.tl_subscript} (ctrl+shift+s)`"
-    ></button>
+      @click="$clicks('subscript')"
+    />
     <button
+      v-if="toolbars.alignleft"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.alignleft"
-      @click="$clicks('alignleft')"
       class="op-icon fa fa-mavon-align-left"
       aria-hidden="true"
       :title="`${d_words.tl_alignleft} (ctrl+l)`"
-    ></button>
+      @click="$clicks('alignleft')"
+    />
     <button
+      v-if="toolbars.aligncenter"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.aligncenter"
-      @click="$clicks('aligncenter')"
       class="op-icon fa fa-mavon-align-center"
       aria-hidden="true"
       :title="`${d_words.tl_aligncenter} (ctrl+e)`"
-    ></button>
+      @click="$clicks('aligncenter')"
+    />
     <button
+      v-if="toolbars.alignright"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.alignright"
-      @click="$clicks('alignright')"
       class="op-icon fa fa-mavon-align-right"
       aria-hidden="true"
       :title="`${d_words.tl_alignright} (ctrl+r)`"
-    ></button>
+      @click="$clicks('alignright')"
+    />
     <span
       v-if="
         toolbars.superscript ||
-        toolbars.subscript ||
-        toolbars.underline ||
-        toolbars.strikethrough ||
-        toolbars.mark
+          toolbars.subscript ||
+          toolbars.underline ||
+          toolbars.strikethrough ||
+          toolbars.mark
       "
       class="op-icon-divider"
-    ></span>
+    />
     <button
+      v-if="toolbars.quote"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.quote"
-      @click="$clicks('quote')"
       class="op-icon fa fa-mavon-quote-left"
       aria-hidden="true"
       :title="`${d_words.tl_quote} (ctrl+q)`"
-    ></button>
+      @click="$clicks('quote')"
+    />
     <button
+      v-if="toolbars.ol"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.ol"
-      @click="$clicks('ol')"
       class="op-icon fa fa-mavon-list-ol"
       aria-hidden="true"
       :title="`${d_words.tl_ol} (ctrl+o)`"
-    ></button>
+      @click="$clicks('ol')"
+    />
     <button
+      v-if="toolbars.ul"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.ul"
-      @click="$clicks('ul')"
       class="op-icon fa fa-mavon-list-ul"
       aria-hidden="true"
       :title="`${d_words.tl_ul} (ctrl+alt+u)`"
-    ></button>
+      @click="$clicks('ul')"
+    />
     <span
       v-if="toolbars.ul || toolbars.ol || toolbars.quote"
       class="op-icon-divider"
-    ></span>
+    />
     <button
+      v-if="toolbars.link"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.link"
-      @click.stop="$toggle_imgLinkAdd('link')"
       class="op-icon fa fa-mavon-link"
       aria-hidden="true"
       :title="`${d_words.tl_link} (ctrl+l)`"
-    ></button>
+      @click.stop="$toggle_imgLinkAdd('link')"
+    />
 
     <div
+      v-if="toolbars.imagelink"
       :disabled="!editable"
       :class="{ selected: s_img_dropdown_open }"
       type="button"
-      v-if="toolbars.imagelink"
-      @mouseleave="$mouseleave_img_dropdown"
-      @mouseenter="$mouseenter_img_dropdown"
       class="op-icon fa fa-mavon-picture-o dropdown dropdown-wrapper"
       aria-hidden="true"
+      @mouseleave="$mouseleave_img_dropdown"
+      @mouseenter="$mouseenter_img_dropdown"
     >
       <transition name="fade">
         <div
+          v-show="s_img_dropdown_open"
           class="op-image popup-dropdown"
           :class="{ transition: transition }"
-          v-show="s_img_dropdown_open"
           @mouseleave="$mouseleave_img_dropdown"
           @mouseenter="$mouseenter_img_dropdown"
         >
@@ -238,14 +238,15 @@
             <input
               type="file"
               accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
-              @change="$imgAdd($event)"
               multiple="multiple"
-            />{{ d_words.tl_upload }}
+              @change="$imgAdd($event)"
+            >{{ d_words.tl_upload }}
           </div>
 
-          <template v-for="(item, index) in img_file" :key="index">
+          <template v-for="(item, index) in img_file">
             <div
               v-if="item && item[1]"
+              :key="index"
               class="dropdown-item dropdown-images"
               :title="item[1].name"
               @click.stop="$imgFileListClick(index)"
@@ -253,11 +254,11 @@
               <span>{{ item[1].name }}</span>
               <button
                 type="button"
-                @click.stop="$imgDel(index)"
                 class="op-icon fa fa-mavon-times"
                 aria-hidden="true"
                 :title="d_words.tl_upload_remove"
-              ></button>
+                @click.stop="$imgDel(index)"
+              />
 
               <!-- 缩略图展示 -->
               <img
@@ -265,79 +266,79 @@
                 :class="{ transition: transition }"
                 :src="item[1].miniurl"
                 alt="none"
-              />
+              >
             </div>
           </template>
         </div>
       </transition>
     </div>
     <button
+      v-if="toolbars.code"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.code"
-      @click="$clicks('code')"
       class="op-icon fa fa-mavon-code"
       aria-hidden="true"
       :title="`${d_words.tl_code} (ctrl+alt+c)`"
-    ></button>
+      @click="$clicks('code')"
+    />
     <button
+      v-if="toolbars.table"
       :disabled="!editable"
       type="button"
-      v-if="toolbars.table"
-      @click="$clicks('table')"
       class="op-icon fa fa-mavon-table"
       aria-hidden="true"
       :title="`${d_words.tl_table} (ctrl+alt+t)`"
-    ></button>
+      @click="$clicks('table')"
+    />
     <span
       v-if="
         toolbars.link || toolbars.imagelink || toolbars.code || toolbars.table
       "
       class="op-icon-divider"
-    ></span>
+    />
     <button
-      type="button"
       v-if="toolbars.undo"
-      @click="$clicks('undo')"
+      type="button"
       class="op-icon fa fa-mavon-undo"
       aria-hidden="true"
       :title="`${d_words.tl_undo} (ctrl+z)`"
-    ></button>
+      @click="$clicks('undo')"
+    />
     <button
-      type="button"
       v-if="toolbars.redo"
-      @click="$clicks('redo')"
+      type="button"
       class="op-icon fa fa-mavon-repeat"
       aria-hidden="true"
       :title="`${d_words.tl_redo} (ctrl+y)`"
-    ></button>
+      @click="$clicks('redo')"
+    />
     <button
-      type="button"
       v-if="toolbars.trash"
-      @click="$clicks('trash')"
+      type="button"
       class="op-icon fa fa-mavon-trash-o"
       aria-hidden="true"
       :title="`${d_words.tl_trash} (ctrl+breakspace)`"
-    ></button>
+      @click="$clicks('trash')"
+    />
     <button
-      type="button"
       v-if="toolbars.save"
-      @click="$clicks('save')"
+      type="button"
       class="op-icon fa fa-mavon-floppy-o"
       aria-hidden="true"
       :title="`${d_words.tl_save} (ctrl+s)`"
-    ></button>
+      @click="$clicks('save')"
+    />
     <slot name="left-toolbar-after" />
 
     <!-- 添加image链接 -->
     <transition name="fade">
-      <div class="add-image-link-wrapper" v-if="s_img_link_open">
+      <div v-if="s_img_link_open" class="add-image-link-wrapper">
         <div class="add-image-link">
           <i
-            @click.stop.prevent="s_img_link_open = false"
             class="fa fa-mavon-times"
             aria-hidden="true"
-          ></i>
+            @click.stop.prevent="s_img_link_open = false"
+          />
           <h3 class="title">
             {{
               link_type == "link"
@@ -348,25 +349,25 @@
           <div class="link-text input-wrapper">
             <input
               ref="linkTextInput"
-              type="text"
               v-model="link_text"
+              type="text"
               :placeholder="
                 link_type == 'link'
                   ? d_words.tl_popup_link_text
                   : d_words.tl_popup_img_link_text
               "
-            />
+            >
           </div>
           <div class="link-addr input-wrapper">
             <input
-              type="text"
               v-model="link_addr"
+              type="text"
               :placeholder="
                 link_type == 'link'
                   ? d_words.tl_popup_link_addr
                   : d_words.tl_popup_img_link_addr
               "
-            />
+            >
           </div>
           <div class="op-btn cancel" @click.stop="s_img_link_open = false">
             {{ d_words.tl_popup_link_cancel }}
@@ -381,205 +382,203 @@
 </template>
 <script type="text/ecmascript-6">
 export default {
-    emits: [
-        "toolbar_left_addlink",
-        "imgTouch",
-        "imgAdd",
-        "imgDel",
-        "imgAdd",
-        "imgAdd",
-        "toolbar_left_click",
-        "toolbar_left_click"
-    ],
 
-    name: 's-md-toolbar-left',
+  name: 'SMdToolbarLeft',
 
-    props: {
-        editable: { // 是否开启编辑
-            type: Boolean,
-            default: true
-        },
-        transition: { // TODO: 是否开启动画过渡
-            type: Boolean,
-            default: true
-        },
-        toolbars: { // 工具栏
-            type: Object,
-            required: true
-        },
-        d_words: {
-            type: Object,
-            required: true
-        },
-        image_filter: {
-            type: Function,
-            default: null
-        }
+  props: {
+    editable: { // 是否开启编辑
+      type: Boolean,
+      default: true,
     },
-
-    data() {
-        return {
-            // [index, file]
-            img_file: [[0, null]],
-            img_timer: null,
-            header_timer: null,
-            s_img_dropdown_open: false,
-            s_header_dropdown_open: false,
-            s_img_link_open: false,
-            trigger: null,
-            num: 0,
-            link_text: '',
-            link_addr: '',
-            link_type: 'link'
-        }
+    transition: { // TODO: 是否开启动画过渡
+      type: Boolean,
+      default: true,
     },
+    toolbars: { // 工具栏
+      type: Object,
+      required: true,
+    },
+    d_words: {
+      type: Object,
+      required: true,
+    },
+    image_filter: {
+      type: Function,
+      default: null,
+    },
+  },
+  emits: [
+    'toolbar_left_addlink',
+    'imgTouch',
+    'imgAdd',
+    'imgDel',
+    'imgAdd',
+    'imgAdd',
+    'toolbar_left_click',
+    'toolbar_left_click',
+  ],
 
-    methods: {
-        $imgLinkAdd() {
-            this.$emit('toolbar_left_addlink', this.link_type, this.link_text, this.link_addr);
-            this.s_img_link_open = false;
-        },
-        $toggle_imgLinkAdd(type) {
-            this.link_type = type;
-            this.link_text = this.link_addr = '';
-            this.s_img_link_open = true;
-            this.$nextTick(() => {
-                this.$refs.linkTextInput.focus()
-            })
-            this.s_img_dropdown_open = false;
-        },
-        $imgFileListClick(pos) {
-            this.$emit('imgTouch', this.img_file[pos]);
-        },
-        $changeUrl(index,url) {
-            this.img_file[index][0] = url;
-        },
-        $imgFileAdd($file) {
-            // this.img_file[0][0] = this.num;
-            // this.img_file[0][1] = $file;
-            // this.img_file.unshift([(this.num + 1), null]);
-            // this.num = this.num + 1;
-            this.img_file.push([++this.num, $file])
-            this.$emit('imgAdd', this.num, $file);
-            this.s_img_dropdown_open = false;
-        },
-        $imgFilesAdd($files) {
-            // valid means if the image_filter exist.
-            let valid = (typeof this.image_filter === 'function');
-            for (let i = 0; i < $files.length; i++) {
-                if (valid && this.image_filter($files[i]) === true) {
-                    this.$imgFileAdd($files[i]);
-                } else if (!valid && $files[i].type.match(/^image\//i)) {
-                    this.$imgFileAdd($files[i]);
-                }
-            }
-        },
-        $imgAdd($e) {
-            this.$imgFilesAdd($e.target.files);
-            $e.target.value = ''; // 初始化
-        },
-        $imgDel(pos) {
-            this.$emit('imgDel', this.img_file[pos]);
-           this.img_file.splice(pos, 1);
-           this.num--;
-
-            this.s_img_dropdown_open = false;
-        },
-        isEqualName(filename, pos) {
-            if (this.img_file[pos][1]) {
-                if (this.img_file[pos][1].name === filename || this.img_file[pos][1]._name === filename) {
-                    return true
-                }
-            }
-            return false
-        },
-        $imgDelByFilename(filename) {
-            var pos = 0;
-            while (this.img_file.length > pos) {
-                if (this.img_file[pos][1] === filename || this.isEqualName(filename, pos)) {
-                    this.$imgDel(pos);
-                    return true;
-                }
-                pos += 1;
-            }
-            return false;
-        },
-        $imgAddByFilename(filename, $file) {
-            for (var i = 0; i < this.img_file.length; i++)
-                { if (this.img_file[i][0] === filename) return false; }
-            this.img_file[0][0] = filename;
-            this.img_file[0][1] = $file;
-            this.img_file[0][2] = filename;
-            this.img_file.unshift(['./' + (this.num), null])
-            this.$emit('imgAdd', this.img_file[1][0], $file, false);
-            return true;
-        },
-        $imgAddByUrl(filename, $url) {
-            for (var i = 0; i < this.img_file.length; i++)
-                { if (this.img_file[i][0] === filename) return false; }
-            this.img_file[0][0] = filename;
-            this.img_file[0][1] = $url;
-            this.img_file.unshift(['./' + (this.num), null])
-            return true;
-        },
-        $imgUpdateByFilename(filename, $file) {
-            for (var i = 0; i < this.img_file.length; i++) {
-                if (this.img_file[i][0] === filename || this.isEqualName(filename, i)) {
-                    this.img_file[i][1] = $file;
-                    this.$emit('imgAdd', filename, $file, false);
-                    return true;
-                }
-            }
-            return false;
-        },
-        // 工具栏功能图标click-----------------
-        $mouseenter_img_dropdown() {
-            if (this.editable) {
-                clearTimeout(this.img_timer)
-                this.s_img_dropdown_open = true
-            }
-        },
-        $mouseleave_img_dropdown() {
-            let vm = this
-            this.img_timer = setTimeout(function() {
-                vm.s_img_dropdown_open = false
-            },200)
-        },
-        $mouseenter_header_dropdown() {
-            if (this.editable) {
-                clearTimeout(this.header_timer)
-                this.s_header_dropdown_open = true
-            }
-        },
-        $mouseleave_header_dropdown() {
-            let vm = this
-            this.header_timer = setTimeout(function() {
-                vm.s_header_dropdown_open = false
-            },200)
-        },
-        $clicks(_type) {
-            // 让父节点来绑定事件并
-            if (this.editable) {
-                this.$emit('toolbar_left_click', _type);
-            }
-        },
-        $click_header(_type) {
-            // 让父节点来绑定事件并
-            this.$emit('toolbar_left_click', _type);
-            this.s_header_dropdown_open = false
-        },
-        handleClose(e) {
-            this.s_img_dropdown_open = false;
-        }
-        },
-
-        watch:{
-        s_img_link_open(newVlaue) {
-          // fix issue #644
-          this.$parent.$el.style.zIndex = newVlaue ? 1501 : 1500;
-        }
+  data() {
+    return {
+      // [index, file]
+      img_file: [[0, null]],
+      img_timer: null,
+      header_timer: null,
+      s_img_dropdown_open: false,
+      s_header_dropdown_open: false,
+      s_img_link_open: false,
+      trigger: null,
+      num: 0,
+      link_text: '',
+      link_addr: '',
+      link_type: 'link',
     }
-};
+  },
+
+  watch: {
+    s_img_link_open(newVlaue) {
+      // fix issue #644
+      this.$parent.$el.style.zIndex = newVlaue ? 1501 : 1500
+    },
+  },
+
+  methods: {
+    $imgLinkAdd() {
+      this.$emit('toolbar_left_addlink', this.link_type, this.link_text, this.link_addr)
+      this.s_img_link_open = false
+    },
+    $toggle_imgLinkAdd(type) {
+      this.link_type = type
+      this.link_text = this.link_addr = ''
+      this.s_img_link_open = true
+      this.$nextTick(() => {
+        this.$refs.linkTextInput.focus()
+      })
+      this.s_img_dropdown_open = false
+    },
+    $imgFileListClick(pos) {
+      this.$emit('imgTouch', this.img_file[pos])
+    },
+    $changeUrl(index, url) {
+      this.img_file[index][0] = url
+    },
+    $imgFileAdd($file) {
+      // this.img_file[0][0] = this.num;
+      // this.img_file[0][1] = $file;
+      // this.img_file.unshift([(this.num + 1), null]);
+      // this.num = this.num + 1;
+      this.img_file.push([++this.num, $file])
+      this.$emit('imgAdd', this.num, $file)
+      this.s_img_dropdown_open = false
+    },
+    $imgFilesAdd($files) {
+      // valid means if the image_filter exist.
+      const valid = (typeof this.image_filter === 'function')
+      for (let i = 0; i < $files.length; i++) {
+        if (valid && this.image_filter($files[i]) === true) {
+          this.$imgFileAdd($files[i])
+        } else if (!valid && $files[i].type.match(/^image\//i)) {
+          this.$imgFileAdd($files[i])
+        }
+      }
+    },
+    $imgAdd($e) {
+      this.$imgFilesAdd($e.target.files)
+      $e.target.value = '' // 初始化
+    },
+    $imgDel(pos) {
+      this.$emit('imgDel', this.img_file[pos])
+      this.img_file.splice(pos, 1)
+      this.num--
+
+      this.s_img_dropdown_open = false
+    },
+    isEqualName(filename, pos) {
+      if (this.img_file[pos][1]) {
+        if (this.img_file[pos][1].name === filename || this.img_file[pos][1]._name === filename) {
+          return true
+        }
+      }
+      return false
+    },
+    $imgDelByFilename(filename) {
+      var pos = 0
+      while (this.img_file.length > pos) {
+        if (this.img_file[pos][1] === filename || this.isEqualName(filename, pos)) {
+          this.$imgDel(pos)
+          return true
+        }
+        pos += 1
+      }
+      return false
+    },
+    $imgAddByFilename(filename, $file) {
+      for (var i = 0; i < this.img_file.length; i++) { if (this.img_file[i][0] === filename) return false }
+      this.img_file[0][0] = filename
+      this.img_file[0][1] = $file
+      this.img_file[0][2] = filename
+      this.img_file.unshift(['./' + (this.num), null])
+      this.$emit('imgAdd', this.img_file[1][0], $file, false)
+      return true
+    },
+    $imgAddByUrl(filename, $url) {
+      for (var i = 0; i < this.img_file.length; i++) { if (this.img_file[i][0] === filename) return false }
+      this.img_file[0][0] = filename
+      this.img_file[0][1] = $url
+      this.img_file.unshift(['./' + (this.num), null])
+      return true
+    },
+    $imgUpdateByFilename(filename, $file) {
+      for (var i = 0; i < this.img_file.length; i++) {
+        if (this.img_file[i][0] === filename || this.isEqualName(filename, i)) {
+          this.img_file[i][1] = $file
+          this.$emit('imgAdd', filename, $file, false)
+          return true
+        }
+      }
+      return false
+    },
+    // 工具栏功能图标click-----------------
+    $mouseenter_img_dropdown() {
+      if (this.editable) {
+        clearTimeout(this.img_timer)
+        this.s_img_dropdown_open = true
+      }
+    },
+    $mouseleave_img_dropdown() {
+      const vm = this
+      this.img_timer = setTimeout(function() {
+        vm.s_img_dropdown_open = false
+      }, 200)
+    },
+    $mouseenter_header_dropdown() {
+      if (this.editable) {
+        clearTimeout(this.header_timer)
+        this.s_header_dropdown_open = true
+      }
+    },
+    $mouseleave_header_dropdown() {
+      const vm = this
+      this.header_timer = setTimeout(function() {
+        vm.s_header_dropdown_open = false
+      }, 200)
+    },
+    $clicks(_type) {
+      // 让父节点来绑定事件并
+      if (this.editable) {
+        this.$emit('toolbar_left_click', _type)
+      }
+    },
+    $click_header(_type) {
+      // 让父节点来绑定事件并
+      this.$emit('toolbar_left_click', _type)
+      this.s_header_dropdown_open = false
+    },
+    handleClose(e) {
+      this.s_img_dropdown_open = false
+    },
+  },
+}
 </script>
 <style lang="stylus" scoped>
     .op-icon.dropdown-wrapper.dropdown

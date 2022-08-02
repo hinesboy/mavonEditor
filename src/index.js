@@ -1,21 +1,25 @@
 /**
  * Created by zhy on 2017/4/1.
  */
-'use strict';
+'use strict'
 
 /**
  * mavonEditor
  * @author hinesboy
  */
-const mavonEditor = require('./mavon-editor.vue').default;
+const mavonEditor = require('./mavon-editor.vue').default
 const VueMavonEditor = {
-    markdownIt: mavonEditor.mixins[0].data().markdownIt,
-    mavonEditor: mavonEditor,
-    LeftToolbar: require('./components/md-toolbar-left').default,
-    RightToolbar: require('./components/md-toolbar-right').default,
-    install: function(Vue) {
-        Vue.component('mavon-editor', mavonEditor);
-    }
-};
+  /**
+     * @deprecated
+     * @see mavonEditor.getMarkdownIt()
+     */
+  markdownIt: mavonEditor.mixins[0].data().markdownIt,
+  mavonEditor: mavonEditor,
+  LeftToolbar: require('./components/md-toolbar-left').default,
+  RightToolbar: require('./components/md-toolbar-right').default,
+  install: function(Vue) {
+    Vue.component('MavonEditor', mavonEditor)
+  },
+}
 
-module.exports = VueMavonEditor;
+module.exports = VueMavonEditor

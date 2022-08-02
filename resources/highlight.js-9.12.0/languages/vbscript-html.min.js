@@ -1,1 +1,0 @@
-hljs.registerLanguage("vbscript-html",function(r){return{sL:"xml",c:[{b:"<%",e:"%>",sL:"vbscript"}]}});

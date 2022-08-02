@@ -9,44 +9,44 @@
  * @constructor
  */
 export function p_ObjectCopy_DEEP(target, arg) {
-  for (let arg_item in arg) {
-    let type = typeof arg[arg_item];
+  for (const arg_item in arg) {
+    const type = typeof arg[arg_item]
     if (!target[arg_item] || (type !== 'Object' && type !== 'object')) {
-      target[arg_item] = arg[arg_item];
-      continue;
+      target[arg_item] = arg[arg_item]
+      continue
     } else {
-      target[arg_item] = p_ObjectCopy_DEEP(target[arg_item], arg[arg_item]);
+      target[arg_item] = p_ObjectCopy_DEEP(target[arg_item], arg[arg_item])
     }
   }
-  return target;
-};
+  return target
+}
 /**
  * 解析url参数
  */
 export function p_urlParse() {
-  let url = window.location.search;
-  let obj = {};
-  let reg = /[?&][^?&]+=[^?&]+/g;
-  let arr = url.match(reg);
+  const url = window.location.search
+  const obj = {}
+  const reg = /[?&][^?&]+=[^?&]+/g
+  const arr = url.match(reg)
   if (arr) {
     arr.forEach((item) => {
-      let tempArr = item.substring(1).split('=');
-      let key = decodeURIComponent(tempArr[0]);
-      let val = decodeURIComponent(tempArr[1]);
-      obj[key] = val;
+      const tempArr = item.substring(1).split('=')
+      const key = decodeURIComponent(tempArr[0])
+      const val = decodeURIComponent(tempArr[1])
+      obj[key] = val
     })
   }
-  return obj;
-};
+  return obj
+}
 
 export function stopEvent(e) {
   if (!e) {
-    return;
+    return
   }
   if (e.preventDefault) {
-    e.preventDefault();
+    e.preventDefault()
   }
   if (e.stopPropagation) {
-    e.stopPropagation();
+    e.stopPropagation()
   }
-};
+}

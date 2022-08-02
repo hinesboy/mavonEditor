@@ -68,7 +68,8 @@ $ npm install mavon-editor@next --save
 | imageFilter | Function |     null     | Image file filter Function, params is a `File Object`, you should return `Boolean` about the test result |
 | imageClick | function |     null     |  Image Click Function |
 | tabSize | Number |     null     |  How many spaces equals one tab, default \t |
-| xssOptions     | Object  |     null     | xss options: [https://github.com/leizongmin/js-xss](https://github.com/leizongmin/js-xss)                    |
+| html    | Boolean  |     true     |  Enable HTML tags in source, for historical reasons this tag has always been true by default, but it is recommended to turn it off if you don't need this feature, as doing so it eliminates the security vulnerabilities altogether. |
+| xssOptions     | Object  |     {}     | xss rules configuration, enabled by default, set to false to turn off, enabled will filter HTML tags, the default filter all HTML tag attributes, it is recommended to configure the whitelist on demand to reduce the possibility of being attacked.<br/> - custom rule reference: [https://jsxss.com/zh/options.html](https://jsxss.com/zh/options.html)<br/>- Demo: [dev-demo](./src/dev/editor.vue)                    |
 | toolbars   | Object      |   As in the following example  | toolbars |
 
 ```javascript

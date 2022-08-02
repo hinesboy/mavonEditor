@@ -1,7 +1,7 @@
 {
   "presets": [
     ["env", {
-       "modules": false
+      "modules": false
     }],
     [
       "babel-preset-env",
@@ -10,11 +10,10 @@
           "node": "current"
         }
       }
-    ], 
+    ],
     "stage-2"
   ],
-  
+
   "plugins": ["transform-runtime"],
   "comments": false
 }
-

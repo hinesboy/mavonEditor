@@ -11,53 +11,52 @@
 
 var merge = require('merges-utils')
 var base = require('./webpack.base.js')
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var config = {
-    entry: {
-        index: './src/dev/index.js',
-        vue: ['vue']
+  entry: {
+    index: './src/dev/index.js',
+    vue: ['vue'],
+  },
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    // publicPath: '/dist/',
+    filename: 'js/[name].[chunkhash:8].js',
+    chunkFilename: 'js/[name].[chunkhash:8].js',
+  },
+  resolve: {
+    alias: {
+      'vue': '@vue/runtime-dom',
+      'muse-components': 'muse-ui/src',
     },
-    output: {
-        path: path.resolve(__dirname, '../dist'),
-        // publicPath: '/dist/',
-        filename: 'js/[name].[chunkhash:8].js',
-        chunkFilename: 'js/[name].[chunkhash:8].js'
-    },
-    resolve: {
-        alias: {
-            'vue': '@vue/runtime-dom',
-            'muse-components': 'muse-ui/src'
-        },
-        extensions: ['.js', '.vue', '.less']
-    },
-    devServer: {
-        historyApiFallback: true,
-        disableHostCheck: true,
-        host: 'localhost',
-        port: '9090'
-        // hot: true,
-        // noInfo: true
-    },
-    devtool: '#eval-source-map'
+    extensions: ['.js', '.vue', '.less'],
+  },
+  devServer: {
+    historyApiFallback: true,
+    disableHostCheck: true,
+    host: 'localhost',
+    port: '9090',
+    stats: 'normal',
+  },
+  devtool: 'source-map',
 }
 
-var res = merge([base, config]);
+var res = merge([base, config])
 res.plugins = [
-    new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: 'src/dev/index.html',
-        inject: true,
-        hash: false,
-        chunks: ['common', 'vue', 'index']
-    })
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: 'src/dev/index.html',
+    inject: true,
+    hash: false,
+    chunks: ['common', 'vue', 'index'],
+  }),
 ].concat(res.plugins)
 
 res.optimization = {
-    splitChunks:{
-        chunks: 'all'
-    }
+  splitChunks: {
+    chunks: 'all',
+  },
 }
 
 module.exports = res

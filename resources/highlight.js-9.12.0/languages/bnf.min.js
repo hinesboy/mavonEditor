@@ -1,1 +1,0 @@
-hljs.registerLanguage("bnf",function(e){return{c:[{cN:"attribute",b:/</,e:/>/},{b:/::=/,starts:{e:/$/,c:[{b:/</,e:/>/},e.CLCM,e.CBCM,e.ASM,e.QSM]}}]}});
