@@ -423,7 +423,7 @@ export default {
       d_preview_imgsrc: null, // 图片预览地址
       s_external_link: {
         markdown_css: function() {
-          return 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.9.0/github-markdown.min.css'
+          return 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css'
         },
         hljs_js: function() {
           return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'
