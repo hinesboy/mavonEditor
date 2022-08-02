@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/hinesboy/mavonEditor/tree/next",
   "dependencies": {
-    "highlight.js": "^9.11.0",
+    "highlight.js": "^11.6.0",
     "highlight.js-async-webpack": "^1.0.4",
     "xss": "^1.0.10"
   },
