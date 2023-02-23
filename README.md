@@ -237,8 +237,8 @@ toolbars: {
 | previewToggle   | Boolean: status , String: value | 切换预览编辑的回调事件(boolean: 预览开启状态)            |
 | helpToggle       | Boolean: status , String: value | 查看帮助的回调事件(boolean: 帮助开启状态)               |
 | navigationToggle | Boolean: status , String: value | 切换导航目录的回调事件(boolean: 导航开启状态)             |
-| imgAdd           | String: filename, File: imgfile | 图片文件添加回调事件(filename: 写在md中的文件名, File: File Object) |
-| imgDel           |        String: filename         | 图片文件删除回调事件(filename: 写在md中的文件名)          |
+| imgAdd           | Number: pos, [File](https://developer.mozilla.org/en-US/docs/Web/API/File): imgfile | 图片文件添加回调事件(pos: 图片在列表中的位置, File: File Object) |
+| imgDel           | Array(2):[Number: pos,[File](https://developer.mozilla.org/en-US/docs/Web/API/File):imgfile ] | 图片文件删除回调事件(Array(2): 两个元素的数组，第一位是图片在列表中的位置，第二位是File对象)          |
 
 ### 代码高亮
 
