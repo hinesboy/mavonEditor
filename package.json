@@ -1,6 +1,6 @@
 {
   "name": "mavon-editor",
-  "version": "3.0.0-beta",
+  "version": "3.0.0",
   "description": "Vue-next markdown editor",
   "main": "dist/mavon-editor.js",
   "types": "./mavon-editor.d.ts",
