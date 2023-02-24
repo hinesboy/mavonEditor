@@ -28,7 +28,7 @@
               <input type="text" v-model="imgName" />
               <button @click="imgdelete">delete</button>
             </div>
-            <mavon-editor ref=md :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
+            <mavon-editor ref="md" :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
                           :autofocus="autofocus"
                           :shortCut="true"
