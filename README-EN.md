@@ -234,8 +234,8 @@ If you need to customize and add toolbar buttons, you can do the following:
 | previewToggle   | Boolean: status , String: value | Preview & Edit toggle callback event(boolean: preview status)            |
 | helpToggle | Boolean: status , String: value   |  Help-me toggle callback event(boolean: help status) |
 | navigationToggle | Boolean: status , String: value   |  Navigation mode toggle callback event(boolean: nav status) |
-| imgAdd | String: filename, File: imgfile |  Add image file callback event(filename: write in origin md, File: File Object) |
-| imgDel | String: filename |  Delete image file callback event(filename: write in origin md) |
+| imgAdd |  Number: pos, [File](https://developer.mozilla.org/en-US/docs/Web/API/File): imgfile |  Add image file callback event(pos: position in the list of images, File: File Object) |
+| imgDel | Array(2):[Number: pos,[File](https://developer.mozilla.org/en-US/docs/Web/API/File):imgfile ]  |  Delete image file callback event(Array(2): An array of length 2,the first is `pos`: position in the list of images, the second is `file`: File Object) |
 
 ### Hightlight
 
