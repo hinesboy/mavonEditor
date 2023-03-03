@@ -1,5 +1,5 @@
 {
-  "name": "mavon-editor",
+  "name": "mavon-editor-persian",
   "version": "2.10.4",
   "description": "Vue markdown editor",
   "main": "dist/mavon-editor.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hinesboy/mavonEditor.git"
+    "url": "git+https://github.com/Borderliner/mavonEditor.git"
   },
   "keywords": [
     "javascript",
@@ -29,12 +29,12 @@
     "mavon-editor.d.ts",
     "src"
   ],
-  "author": "hinesboy",
+  "author": "borderliner",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hinesboy/mavonEditor/issues"
+    "url": "https://github.com/Borderliner/mavonEditor/issues"
   },
-  "homepage": "https://github.com/hinesboy/mavonEditor#readme",
+  "homepage": "https://github.com/Borderliner/mavonEditor#readme",
   "dependencies": {
     "xss": "^1.0.10"
   },
