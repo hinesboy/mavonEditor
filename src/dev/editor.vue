@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div id="editor">
-            <mavon-editor style="height: 100%" v-model="code" :codeStyle="codeStyle"></mavon-editor>
+            <mavon-editor style="height: 100%" v-model="code" :codeStyle="codeStyle" :xssOptions="xssOptions"></mavon-editor>
         </div>
         <div class="switch-code-style">
             <span>code style:</span>
@@ -35,7 +35,12 @@ module.exports = {
         return {
             codeStyle: "github",
             styles,
-            code: '```' + code + '\n```'
+            code: '<span style="color:red;font-size:36px;">A</span> \n```' + code + '\n```',
+            xssOptions:{
+                whiteList: {
+                    span: ['style']
+                }
+            }
         };
     },
     computed: {
