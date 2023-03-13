@@ -23,6 +23,11 @@
     "editor",
     "html"
   ],
+  "files": [
+    "dist",
+    "mavon-editor.d.ts",
+    "src"
+  ],
   "author": "hinesboy",
   "license": "MIT",
   "bugs": {
