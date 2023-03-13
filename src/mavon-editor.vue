@@ -334,7 +334,7 @@ export default {
         return CONFIG.toolbars;
       }
     },
-    xssOptions: {      
+    xssOptions: {
       type: [Object, Boolean],
       default() {
         return {};
@@ -889,7 +889,7 @@ export default {
         };
         this._xssHandler = new FilterXSS(this.xssOptions);
         return this._xssHandler.process(htmlCode);
-    },    
+    },
     iRender(toggleChange) {
       var $vm = this;
       this.$render($vm.d_value, function (res) {

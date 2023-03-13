@@ -148,7 +148,6 @@
                     console.log(file);
                 },
                 imgName: '',
-                imgName: '',
                 codeStyle: "github",
                 styles
             }

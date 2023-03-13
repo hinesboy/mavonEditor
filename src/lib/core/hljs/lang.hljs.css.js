@@ -68,4 +68,3 @@ export default {
     'stackoverflow-dark': 1,
     'stackoverflow-light': 1
   };
-  
