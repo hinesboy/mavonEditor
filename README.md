@@ -58,7 +58,7 @@ $ npm install mavon-editor@next --save
 | toolbarsBackground | String | #ffffff | 工具栏背景颜色 |
 | previewBackground | String | #fbfbfb | 预览框背景颜色 |
 | subfield     | Boolean |    true     | true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)    |
-| defaultOpen | String |         | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
+| defaultOpen | String | |在单栏（`subfield=false`）时默认展示区域.<br/> edit： 默认展示编辑区域，<br/> preview： 默认展示预览区域 <br/> 其他 = edit |
 | placeholder | String |    开始编辑...     |  输入框为空时默认提示文本  |
 | editable     | Boolean |    true     | 是否允许编辑     |
 | codeStyle | String |    code-github     | markdown样式： 默认github, [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js)   |
