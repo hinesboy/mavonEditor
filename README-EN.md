@@ -71,10 +71,11 @@ $ npm install mavon-editor@next --save
 | xssOptions     | Object  |     {}     | xss rule configuration, enabled by default, set to false to turn off, custom rule reference [https://jsxss.com/zh/options.html](https://jsxss.com/zh/options.html)                    |
 | toolbars   | Object      |   As in the following example  | toolbars |
 
+#### toolbars
+The default toolbar properties are all true, You can customize the object to cover them.
+
 ```javascript
  /*
-    The default toolbar properties are all true,
-    You can customize the object to cover them.
     eg: {
          bold: true,
          italic: true,
@@ -82,6 +83,7 @@ $ npm install mavon-editor@next --save
     }
     At this point, the toolbar only displays the three function keys.
  */
+
 toolbars: {
       bold: true,
       italic: true,
@@ -118,6 +120,52 @@ toolbars: {
       preview: true
   }
 ```
+
+If you need to customize and add toolbar buttons, you can do the following:
+```vue
+<mavon-editor>
+  <!-- Add a custom button in front of the left toolbar -->
+  <template slot="left-toolbar-before">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="custom"
+    ></button>
+  </template>
+  <!-- Add a custom button after the left toolbar  -->
+  <template slot="left-toolbar-after">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="custom"
+    ></button>
+  </template>
+  <!-- Add a custom button in front of the right toolbar  -->
+  <template slot="right-toolbar-before">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="custom"
+    ></button>
+  </template>
+  <!-- Add a custom button behind the right toolbar  -->
+  <template slot="right-toolbar-after">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="custom"
+    ></button>
+  </template>
+</mavon-editor>
+```
 ### events
 
 | name   | params   | describe|
@@ -134,7 +182,7 @@ toolbars: {
 | imgAdd |  Number: pos, [File](https://developer.mozilla.org/en-US/docs/Web/API/File): imgfile |  Add image file callback event(pos: position in the list of images, File: File Object) |
 | imgDel | Array(2):[Number: pos,[File](https://developer.mozilla.org/en-US/docs/Web/API/File):imgfile ]  |  Delete image file callback event(Array(2): An array of length 2,the first is `pos`: position in the list of images, the second is `file`: File Object) |
 
-#### Hightlight
+### Hightlight
 
 > If you do not need code highlighting, you need set ishljs to false
 
@@ -157,7 +205,7 @@ The language parsing files and code highlighting in Code Highlighting `highlight
 > [without cdn, Click here to local on-demand loading...](./doc/en/no-cnd.md)
 
 
-#### Upload images
+### Upload images
 
 ```javascript
 <template>
