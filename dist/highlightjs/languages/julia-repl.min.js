@@ -1,1 +1,0 @@
-hljs.registerLanguage("julia-repl",function(a){return{c:[{cN:"meta",b:/^julia>/,r:10,starts:{e:/^(?![ ]{6})/,sL:"julia"},aliases:["jldoctest"]}]}});
