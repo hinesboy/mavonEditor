@@ -66,7 +66,7 @@ exports default {
                  * eg：res = [[pos, url], [pos, url]...]
                  */
                 // step 2. replace url ![...](0) -> ![...](url)
-                for (var img in res) {
+                for (var img of res) {
                     // $vm.$img2Url. The details at the end of this page
                     $vm.$img2Url(img[0], img[1]);
                 }
