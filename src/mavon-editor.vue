@@ -225,7 +225,7 @@ import md_toolbar_right from "./components/md-toolbar-right";
 import autoTextarea from "./components/auto-textarea";
 import "./lib/font/css/fontello.css";
 import "./lib/css/md.css";
-import { recoverHead } from './lib/core/rules.js'
+import { skipRule } from './lib/core/rules.js'
 import { FilterXSS } from 'xss';
 
 export default {
@@ -852,7 +852,7 @@ export default {
             originalTagFun = this.xssOptions['onTag'];
         }
         this.xssOptions['onTag'] =  function(tag, html, info) {
-            let code = recoverHead(tag, html);
+            let code = skipRule(tag, html);
             if (originalTagFun) {
               code = originalTagFun(tag,code);
             }

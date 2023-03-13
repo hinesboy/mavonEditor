@@ -2,7 +2,7 @@ import hljsLangs from '../core/hljs/lang.hljs.js'
 import {
     loadScript
 } from '../core/extra-function.js'
-import { headRule } from '../core/rules.js'
+import { headRule, imageRule } from '../core/rules.js'
 var markdown_config = {
     html: true,        // Enable HTML tags in source
     xhtmlOut: true,        // Use '/' to close single tags (<br />).
@@ -55,6 +55,10 @@ markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     // pass token to default renderer.
     return defaultRender(tokens, idx, options, env, self);
 };
+
+const defautlImageRule = markdown.renderer.rules.image;
+markdown.renderer.rules.image = imageRule(defautlImageRule);
+
 var mihe = require('markdown-it-highlightjs-external');
 // math katex
 var katex = require('markdown-it-katex-external');
