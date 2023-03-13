@@ -27,6 +27,12 @@
               <button @click="imgreplace">imgreplace</button>
               <input type="text" v-model="imgName" />
               <button @click="imgdelete">delete</button>
+              <div class="switch-code-style">
+                <span>code style:</span>
+                <select v-model="codeStyle">
+                  <option v-for="(val, key) in styles" :value="key">{{ key }}</option>
+                </select>
+              </div>
             </div>
             <mavon-editor ref="md" :subfield="subfield" :toolbarsFlag="toolbarsFlag" :editable="editable"
                           :language="d_language" @change="change" @save="saveone" :ishljs="true" class="item-editor" v-model="help1"
@@ -37,6 +43,7 @@
                           :boxShadow="true"
                           :scrollStyle="true"
                           :transition="true"
+                          :codeStyle="codeStyle"
                           box-shadow-style="0 2px 12px 0 rgba(0, 0, 0, 0.1)"
                           toolbars-background="#ffffff"
                           preview-background="#fbfbfb">
@@ -81,6 +88,7 @@
 <script type="text/ecmascript-6">
     // import {CONFIG} from './assets/config.js'
     import {CONFIG} from '../lib/config.js'
+    import styles from '../lib/core/hljs/lang.hljs.css.js'
     export default {
         name: 'app',
         data () {
@@ -101,11 +109,6 @@
                     preview: true,
                     subfield: false
                 },
-                // xssOptions: {
-                //      escapeHtml (html) {
-                //          return html
-                //      }
-                // },
                 autofocus: true,
                 subfield: true,
                 editable: true,
@@ -144,7 +147,10 @@
                 imageClick: function (file) {
                     console.log(file);
                 },
-                imgName: ''
+                imgName: '',
+                imgName: '',
+                codeStyle: "github",
+                styles
             }
         },
         created () {
@@ -262,6 +268,9 @@
         margin 0
         padding 0
         padding-bottom 50px
+    .switch-code-style
+        display inline
+        margin-left 8px
     .page-lang
         position absolute
         top 15px

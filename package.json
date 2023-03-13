@@ -6,7 +6,8 @@
   "types": "./mavon-editor.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --open --progress --config webpack/webpack.dev.js",
-    "build": "webpack --progress --config webpack/webpack.build.js",
+    "ci-build": "webpack --progress --config webpack/webpack.build.js",
+    "build": "run-s lint test ci-build",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint --ext .js,.vue src/",
@@ -89,6 +90,7 @@
     "markdown-it-task-lists": "^2.1.1",
     "markdown-it-toc": "^1.1.0",
     "merges-utils": "^1.0.2",
+    "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^1.3.1",
     "postcss": "^8.3.6",
     "postcss-advanced-variables": "1.2.2",
