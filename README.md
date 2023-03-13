@@ -1,5 +1,7 @@
 # mavonEditor
-[![npm](https://img.shields.io/npm/v/mavon-editor/next.svg)](https://www.npmjs.com/package/mavon-editor/v/next)
+| Vue2 | [![npm](https://img.shields.io/npm/v/mavon-editor/latest.svg)](https://www.npmjs.com/package/mavon-editor/v/latest) |
+| ---- | ------------------------------------------------------------ |
+| **Vue3** | [![npm](https://img.shields.io/npm/v/mavon-editor/next.svg)](https://www.npmjs.com/package/mavon-editor/v/next) |
 
 ### [English Documents](./README-EN.md)
 
