@@ -332,8 +332,7 @@ export default {
         return CONFIG.toolbars;
       }
     },
-    xssOptions: {
-      // 工具栏
+    xssOptions: {      
       type: Object,
       default() {
         return null;
@@ -845,7 +844,7 @@ export default {
       var $vm = this;
       this.$render($vm.d_value, function (res) {
         // render
-        $vm.d_render = res;
+        $vm.d_render = xss(res, $vm.$props.xssOptions || {});
         // change回调  toggleChange == false 时候触发change回调
         if (!toggleChange) {
           if ($vm.change) $vm.change($vm.d_value, $vm.d_render);
@@ -875,14 +874,6 @@ export default {
       this.iRender();
     },
     modelValue: function (val, oldVal) {
-      // Escaping all XSS characters
-      //         escapeHtml (html) {
-      //             return html
-      //         }
-      if (this.xssOptions) {
-        val = xss(val, this.xssOptions);
-      }
-
       if (val !== this.d_value) {
         this.d_value = val;
       }
