@@ -1,7 +1,51 @@
 # 更新日志
+- **3.0.0** (23.02.24)
+    - 支持vue3的正式版本
+    - Refreshing the image api documentation by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/838
+    - Released version 3.0.0 by @ygj6 in https://github.com/hinesboy/mavonEditor/pull/839
+
+- **2.10.4** (21.12.16) 
+    - refactor: provides a standard interface to get markdown-it by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/750
+    - doc: update maekdown.md by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/751
+
+- **2.10.3** (21.12.14) 
+    - fix: error while uploading image by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/748
+
+- **2.10.2** (21.12.14) 
+    - fix: Add sanitizer for filtering HTML tags by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/744
+
+- **2.10.1** (21.12.04) 
+    - fix build warnings and optimize console output by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/728
+    - fix: image cannot be previewed by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/738
+    - fix: Fix the content of code blocks to be displayed outside the pre container by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/730   
+
+- **2.10.0** (21.11.23)  
+Enable XSS defense by default, It also fixes the invalidity of codestyle caused by XSS protection. 
+    - fix eslint error by @ygj6 in https://github.com/hinesboy/mavonEditor/pull/637
+    - Test framework by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/668
+    - fix issue#658,重构插入代码块逻辑 by @ygj6 in https://github.com/hinesboy/mavonEditor/pull/661
+    - Bump elliptic from 6.5.3 to 6.5.4 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/677
+    - Fixed pop-up style issues when pages use multiple editors by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/667
+    - fix eslint error and testcase by @ygj6 in https://github.com/hinesboy/mavonEditor/pull/679
+    - fix: codeStyle not working by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/717
+    - feat: Add support for highlightjs v11.3.1 by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/718
+    - Update upload-images.md [replace `in` by `of` for multiple files upload] by @Sequoya42 in https://github.com/hinesboy/mavonEditor/pull/698
+    - Clean up invalid code by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/720
+    - update highlight style list by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/721
+    - Bump y18n from 3.2.1 to 3.2.2 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/681
+    - Bump lodash from 4.17.19 to 4.17.21 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/694
+    - Bump hosted-git-info from 2.8.8 to 2.8.9 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/695
+    - Bump path-parse from 1.0.6 to 1.0.7 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/708
+    - Bump dns-packet from 1.3.1 to 1.3.4 by @dependabot in https://github.com/hinesboy/mavonEditor/pull/700
+    - Adjust the list of npm install package by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/722
+    - Optimization project by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/724
+    - Feat: Enable XSS defense by default by @XLCYun in https://github.com/hinesboy/mavonEditor/pull/611
+    - test: add xss test by @wangsongc in https://github.com/hinesboy/mavonEditor/pull/726
+
 - **3.0.0-beta** (21.11.02)
     - 适配Vue3
     - 升级webpack版本
+
 - **2.9.1** (20.12.28)
     - 修复codestyle切换不生效bug PR #650
     - 插入代码块时增加换行 PR #641
