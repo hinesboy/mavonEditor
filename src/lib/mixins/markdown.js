@@ -2,6 +2,7 @@ import hljsLangs from '../core/hljs/lang.hljs.js'
 import {
     loadScript
 } from '../core/extra-function.js'
+import { headRule } from '../core/rules.js'
 var markdown_config = {
     html: true,        // Enable HTML tags in source
     xhtmlOut: true,        // Use '/' to close single tags (<br />).
@@ -88,6 +89,9 @@ markdown.use(mihe, hljs_opts)
     .use(katex)
     .use(taskLists)
     .use(toc)
+
+    const tocHeadRule = markdown.renderer.rules.heading_open;
+    markdown.renderer.rules.heading_open = headRule(tocHeadRule);
 
 export default {
     data() {

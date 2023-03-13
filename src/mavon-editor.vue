@@ -225,7 +225,9 @@ import md_toolbar_right from "./components/md-toolbar-right";
 import autoTextarea from "./components/auto-textarea";
 import "./lib/font/css/fontello.css";
 import "./lib/css/md.css";
-const xss = require("xss");
+import { recoverHead } from './lib/core/rules.js'
+import { FilterXSS } from 'xss';
+
 export default {
   emits: [
     "imgDel",
@@ -333,9 +335,9 @@ export default {
       }
     },
     xssOptions: {      
-      type: Object,
+      type: [Object, Boolean],
       default() {
-        return null;
+        return {};
       }
     },
     codeStyle: {
@@ -451,7 +453,8 @@ export default {
       },
       p_external_link: {},
       textarea_selectionEnd: 0,
-      textarea_selectionEnds: [0]
+      textarea_selectionEnds: [0],
+      _xssHandler: null
     };
   },
 
@@ -840,11 +843,34 @@ export default {
         );
       }
     },
+    xssHandler(htmlCode) {
+        if (this._xssHandler) {
+            return this._xssHandler.process(htmlCode);
+        }
+        let originalTagFun;
+        if (typeof this.xssOptions['onTag'] === 'function') {
+            originalTagFun = this.xssOptions['onTag'];
+        }
+        this.xssOptions['onTag'] =  function(tag, html, info) {
+            let code = recoverHead(tag, html);
+            if (originalTagFun) {
+              code = originalTagFun(tag,code);
+            }
+            if (html !== code) {
+                return code;
+            }
+        }
+        this._xssHandler = new FilterXSS(this.xssOptions);
+        return this._xssHandler.process(htmlCode);
+    },    
     iRender(toggleChange) {
       var $vm = this;
       this.$render($vm.d_value, function (res) {
         // render
-        $vm.d_render = xss(res, $vm.$props.xssOptions || {});
+        if (typeof $vm.xssOptions === 'object') {
+            res = $vm.xssHandler(res);
+        }
+        $vm.d_render = res;
         // change回调  toggleChange == false 时候触发change回调
         if (!toggleChange) {
           if ($vm.change) $vm.change($vm.d_value, $vm.d_render);
