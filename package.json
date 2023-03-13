@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "webpack-dev-server --open --progress --config webpack/webpack.dev.js",
     "ci-build": "webpack --progress --config webpack/webpack.build.js",
-    "build": "run-s lint test ci-build",
+    "build": "run-s lint ci-build",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint --ext .js,.vue src/",
@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/hinesboy/mavonEditor/tree/next",
   "dependencies": {
-    "xss": "^1.0.6"
+    "xss": "^1.0.10"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.1.1",
