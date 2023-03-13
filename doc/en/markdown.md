@@ -37,6 +37,7 @@
 > [markdown-it API](https://github.com/markdown-it/markdown-it)
 
 ### Simple example
+Only use the markdown rendering function of mavonEditor.
 
 > Notice：`class="markdown-body"` is necessary, or the CSS style will be different from the preview
 ```html
@@ -48,14 +49,10 @@
 
 <script>
 import { mavonEditor } from 'mavon-editor';
-import "mavon-editor/dist/css/index.css";
+import 'mavon-editor/dist/css/index.css';
+
 export default {
   name: 'Example',
-  data() {
-    return {
-      rawHtml: '',
-    };
-  },
   props: {
     markdown: String,
   },
