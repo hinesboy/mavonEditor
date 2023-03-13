@@ -9,7 +9,6 @@
  * @Copyright: 2017
  */
 
-// import hljs from 'highlight.js-async-webpack'
 import {
     loadScript
 } from './extra-function.js'
