@@ -54,7 +54,7 @@ var hljs_opts = {
     }
 };
 
-function initMarkdown() {
+export function initMarkdown() {
     const markdown = new MarkdownIt(markdown_config);
 
     // add target="_blank" to all link

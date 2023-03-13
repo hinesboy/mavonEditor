@@ -14,8 +14,6 @@
 ```javascript
   import {mavonEditor} from 'mavon-editor'
   mavonEditor.getMarkdownIt()
-  或者
-  mavonEditor.mixins[0].data().markdownIt
 ```
 
 #### 方法3 通过mavonEditor的实例获取
@@ -59,7 +57,7 @@ export default {
   },
   computed: {
     rawHtml: function() {
-      return mavonEditor.mixins[0].data().markdownIt.render(this.markdown);
+      return mavonEditor.getMarkdownIt().render(this.markdown);
     }
   },
 };
