@@ -10,9 +10,9 @@
  */
 
 import { createApp, h } from 'vue';
-import app from './app.vue';
+import demo from './demo.vue';
 import sMd from '../index'
 
 createApp({
-    render: () => h(app)
+    render: () => h(demo)
 }).use(sMd).mount('#main');
