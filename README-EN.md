@@ -77,47 +77,47 @@ The default toolbar properties are all true, You can customize the object to cov
 ```javascript
  /*
     eg: {
-         bold: true,
-         italic: true,
-         header: true,
+      bold: true,
+      italic: true,
+      header: true,
     }
     At this point, the toolbar only displays the three function keys.
  */
 
 toolbars: {
-      bold: true,
-      italic: true,
-      header: true,
-      underline: true,
-      strikethrough: true,
-      mark: true,
-      superscript: true,
-      subscript: true,
-      quote: true,
-      ol: true,
-      ul: true,
-      link: true,
-      imagelink: true,
-      code: true,
-      table: true,
-      fullscreen: true,
-      readmodel: true,
-      htmlcode: true,
-      help: true,
-      /* 1.3.5 */
-      undo: true,
-      redo: true,
-      trash: true,
-      save: true,
-      /* 1.4.2 */
-      navigation: true,
-      /* 2.1.8 */
-      alignleft: true,
-      aligncenter: true,
-      alignright: true,
-      /* 2.2.1 */
-      subfield: true,
-      preview: true
+    bold: true,
+    italic: true,
+    header: true,
+    underline: true,
+    strikethrough: true,
+    mark: true,
+    superscript: true,
+    subscript: true,
+    quote: true,
+    ol: true,
+    ul: true,
+    link: true,
+    imagelink: true,
+    code: true,
+    table: true,
+    fullscreen: true,
+    readmodel: true,
+    htmlcode: true,
+    help: true,
+    /* 1.3.5 */
+    undo: true,
+    redo: true,
+    trash: true,
+    save: true,
+    /* 1.4.2 */
+    navigation: true,
+    /* 2.1.8 */
+    alignleft: true,
+    aligncenter: true,
+    alignright: true,
+    /* 2.2.1 */
+    subfield: true,
+    preview: true
   }
 ```
 
@@ -187,9 +187,9 @@ If you need to customize and add toolbar buttons, you can do the following:
 > If you do not need code highlighting, you need set ishljs to false
 
 Set ishljs = true
-```javascript
-    // default value is true
-    <mavon-editor :ishljs = "true"></mavon-editor>
+```vue
+    <!-- default value is true -->
+    <mavon-editor :ishljs="true"></mavon-editor>
 ```
 For optimize the size of pack, since **v2.4.2**, the following files will default to using `cdnjs` outside the chain:
  + `highlight.js`
@@ -207,10 +207,12 @@ The language parsing files and code highlighting in Code Highlighting `highlight
 
 ### Upload images
 
-```javascript
+```vue
 <template>
     <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
 </template>
+
+<script>
 exports default {
     methods: {
         // bind @imgAdd event
@@ -230,6 +232,7 @@ exports default {
         }
     }
 }
+</script>
 ```
 > [more info about upload images ...](./doc/en/upload-images.md)
 
@@ -254,21 +257,21 @@ exports default {
 | CTRL + Z    | 17 + 90 | prev step |
 | CTRL + Y    | 17 + 89 | next step |
 | CTRL + BreakSpace    | 17 + 8 | trash |
-| CTRL + B       | 17 + 66 | **Bold** |
-| CTRL + I | 17 + 73 | *Italic* |
+| CTRL + B       | 17 + 66 | \*\*Bold\*\* |
+| CTRL + I | 17 + 73 | \*Italic\* |
 | CTRL + H       | 17 + 72 | # Header |
 | CTRL + U    | 17 + 85 | ++Underline++ |
 | CTRL + M    | 17 + 77 | ==Mark== |
 | CTRL + Q    | 17 + 81 | > Quote |
 | CTRL + O    | 17 + 79 | 1. OL |
-| CTRL + L    | 17 + 76 | [link]() |
+| CTRL + L    | 17 + 76 | \[Link title\](Link url) |
 | CTRL + ALT + S    | 17 + 18 + 83 | ^Superscript^ |
 | CTRL + ALT + U    | 17 + 18 + 85 | - UL |
-| CTRL + ALT + C    | 17 + 18 + 67 | ``` Code |
-| CTRL + ALT + L    | 17 + 18 + 76 | ![Image Link]() |
+| CTRL + ALT + C    | 17 + 18 + 67 | \`\`\` Code block |
+| CTRL + ALT + L    | 17 + 18 + 76 | \!\[Image title\](Image link) |
 | CTRL + ALT + T    | 17 + 18 + 84 | Table |
 | CTRL + SHIFT + S    | 17 + 16 + 83 | ~Subscript~ |
-| CTRL + SHIFT + D    | 17 + 16 + 68 | ~~Strikethrough~~ |
+| CTRL + SHIFT + D    | 17 + 16 + 68 | \~\~Strikethrough\~\~ |
 | CTRL + SHIFT + C    | 17 + 16 + 67 | align center |
 | CTRL + SHIFT + L    | 17 + 16 + 76 | align left |
 | CTRL + SHIFT + R    | 17 + 16 + 82 | align right |
@@ -295,7 +298,7 @@ exports default {
 - [katex](https://github.com/Khan/KaTeX)
 - [images preview](https://github.com/CHENXCHEN/markdown-it-images-preview)
 - [toc](https://github.com/tylerlong/markdown-it-toc)
-- 可通过获取[markdown-it](./doc/cn/markdown.md)对象引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
+> 可通过获取[markdown-it](./doc/cn/markdown.md)对象引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
 
 ## Collaborators
 
