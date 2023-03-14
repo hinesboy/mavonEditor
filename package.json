@@ -121,7 +121,7 @@
     "vue-template-compiler": "^2.2.1",
     "webpack": "^2.4.1",
     "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-dev-server": "^2.11.5",
+    "webpack-dev-server": "^3.1.11",
     "webpack-md5-hash": "^0.0.5"
   }
 }
