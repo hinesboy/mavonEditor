@@ -1,4 +1,7 @@
 # 更新日志
+- **3.0.1** (23.03.14)
+    - Sync vue2 version code by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/845
+
 - **3.0.0** (23.02.24)
     - 支持vue3的正式版本
     - Refreshing the image api documentation by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/838
