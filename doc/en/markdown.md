@@ -4,25 +4,23 @@
 
 #### method 1:  Global Registration
 ```javascript
-  import mavonEditor from 'mavon-editor'
-  Vue.use(mavonEditor)
+  import MavonEditor from 'mavon-editor'
+  Vue.use(MavonEditor)
   ...
-  mavonEditor.markdownIt
+  const markdownIt = MavonEditor.mavonEditor.getMarkdownIt()
 ```
 
 #### method 2: Local Registration
 ```javascript
   import {mavonEditor} from 'mavon-editor'
-  mavonEditor.getMarkdownIt()
-  or
-  mavonEditor.mixins[0].data().s_markdown
+  const markdownIt = mavonEditor.getMarkdownIt()
 ```
 
 #### method 3: Use mavonEditor ref
 ```javascript
    <mavonEditor ref=md></mavonEditor>
    ...
-   this.refs.md.markdownIt
+   const markdownIt = this.refs.md.getMarkdownIt()
 ```
 
 ### Use markdown-it object

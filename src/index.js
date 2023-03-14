@@ -9,6 +9,10 @@
  */
 const mavonEditor = require('./mavon-editor.vue').default;
 const VueMavonEditor = {
+    /**
+     * @deprecated
+     * @see mavonEditor.getMarkdownIt()
+     */
     markdownIt: mavonEditor.mixins[0].data().markdownIt,
     mavonEditor: mavonEditor,
     LeftToolbar: require('./components/md-toolbar-left').default,

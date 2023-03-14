@@ -218,14 +218,13 @@ import {
 } from "./lib/toolbar_left_click.js";
 import { toolbar_right_click } from "./lib/toolbar_right_click.js";
 import { CONFIG } from "./lib/config.js";
-import markdown from "./lib/mixins/markdown.js";
-
+import markdown, {initMarkdown} from './lib/mixins/markdown.js';
 import md_toolbar_left from "./components/md-toolbar-left";
 import md_toolbar_right from "./components/md-toolbar-right";
 import autoTextarea from "./components/auto-textarea";
 import "./lib/font/css/fontello.css";
 import "./lib/css/md.css";
-const xss = require("xss");
+
 export default {
   emits: [
     "imgDel",
@@ -332,11 +331,14 @@ export default {
         return CONFIG.toolbars;
       }
     },
+    html: {// Enable HTML tags in source
+        type: Boolean,
+        default: true
+    },
     xssOptions: {
-      // 工具栏
-      type: Object,
+      type: [Object, Boolean],
       default() {
-        return null;
+        return {};
       }
     },
     codeStyle: {
@@ -424,11 +426,11 @@ export default {
           return "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.9.0/github-markdown.min.css";
         },
         hljs_js: function () {
-          return "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js";
+          return "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js";
         },
         hljs_lang: function (lang) {
           return (
-            "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/" +
+            "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/" +
             lang +
             ".min.js"
           );
@@ -436,7 +438,7 @@ export default {
         hljs_css: function (css) {
           if (hljsCss[css]) {
             return (
-              "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/" +
+              "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/" +
               css +
               ".min.css"
             );
@@ -452,7 +454,8 @@ export default {
       },
       p_external_link: {},
       textarea_selectionEnd: 0,
-      textarea_selectionEnds: [0]
+      textarea_selectionEnds: [0],
+      _xssHandler: null
     };
   },
 
@@ -514,7 +517,11 @@ export default {
   },
 
   getMarkdownIt() {
-    return this.mixins[0].data().markdownIt;
+    let mdIt = this.mixins[0].data().markdownIt;
+    if (!mdIt) {
+        mdIt = initMarkdown();
+    }
+    return mdIt;
   },
 
   methods: {
@@ -844,7 +851,6 @@ export default {
     iRender(toggleChange) {
       var $vm = this;
       this.$render($vm.d_value, function (res) {
-        // render
         $vm.d_render = res;
         // change回调  toggleChange == false 时候触发change回调
         if (!toggleChange) {
@@ -875,14 +881,6 @@ export default {
       this.iRender();
     },
     modelValue: function (val, oldVal) {
-      // Escaping all XSS characters
-      //         escapeHtml (html) {
-      //             return html
-      //         }
-      if (this.xssOptions) {
-        val = xss(val, this.xssOptions);
-      }
-
       if (val !== this.d_value) {
         this.d_value = val;
       }

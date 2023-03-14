@@ -133,14 +133,17 @@ module.exports = {
             canPrint: true
         }),
         new CopyWebpackPlugin([{
-            from: path.resolve(__dirname, '../resources/highlight.js-9.12.0'),
+            from: path.resolve(__dirname, '../resources/highlight.js-11.3.1'),
             to: path.resolve(__dirname, '../dist/highlightjs')
         }, {
             from: path.resolve(__dirname, '../resources/markdown'),
             to: path.resolve(__dirname, '../dist/markdown')
         }, {
-            from: path.resolve(__dirname, '../node_modules/katex/dist'),
-            to: path.resolve(__dirname, '../dist/katex')
+            context: 'node_modules/katex/dist',
+            from: {
+                glob: `${path.resolve(__dirname, '../node_modules/katex/dist')}/**/*.+(mjs|min.js|min.css|ttf|woff|woff2)` 
+            },
+            to: path.resolve(__dirname, '../dist/katex')            
         }]),
         new VueLoaderPlugin()
     ]

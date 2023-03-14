@@ -1,1 +1,0 @@
-hljs.registerLanguage("ldif",function(e){return{c:[{cN:"attribute",b:"^dn",e:": ",eE:!0,starts:{e:"$",r:0},r:10},{cN:"attribute",b:"^\\w",e:": ",eE:!0,starts:{e:"$",r:0}},{cN:"literal",b:"^-",e:"$"},e.HCM]}});

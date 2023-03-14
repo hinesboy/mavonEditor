@@ -4,25 +4,23 @@
 
 #### 方法1 通过全局引入的mavonEditor获取
 ```javascript
-  import mavonEditor from 'mavon-editor'
-  Vue.use(mavonEditor)
+  import MavonEditor from 'mavon-editor'
+  Vue.use(MavonEditor)
   ...
-  mavonEditor.markdownIt
+  const markdownIt = MavonEditor.mavonEditor.getMarkdownIt()
 ```
 
 #### 方法2 通过局部引入的mavonEditor获取
 ```javascript
-  import {mavonEditor} from 'mavon-editor'
-  mavonEditor.getMarkdownIt()
-  或者
-  mavonEditor.mixins[0].data().markdownIt
+  import { mavonEditor } from 'mavon-editor'
+  const markdownIt = mavonEditor.getMarkdownIt()
 ```
 
 #### 方法3 通过mavonEditor的实例获取
 ```javascript
    <mavonEditor ref=md></mavonEditor>
    ...
-   this.refs.md.markdownIt
+   const markdownIt = this.refs.md.getMarkdownIt()
 ```
 
 ### 使用markdown-it对象

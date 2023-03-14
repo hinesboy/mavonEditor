@@ -1,5 +1,7 @@
 # mavonEditor
-[![npm](https://img.shields.io/npm/v/mavon-editor/next.svg)](https://www.npmjs.com/package/mavon-editor/v/next)
+| Vue2 | [![npm](https://img.shields.io/npm/v/mavon-editor/latest.svg)](https://www.npmjs.com/package/mavon-editor/v/latest) |
+| ---- | ------------------------------------------------------------ |
+| **Vue3** | [![npm](https://img.shields.io/npm/v/mavon-editor/next.svg)](https://www.npmjs.com/package/mavon-editor/v/next) |
 
 ### [English Documents](./README-EN.md)
 
@@ -58,7 +60,7 @@ $ npm install mavon-editor@next --save
 | toolbarsBackground | String | #ffffff | 工具栏背景颜色 |
 | previewBackground | String | #fbfbfb | 预览框背景颜色 |
 | subfield     | Boolean |    true     | true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)    |
-| defaultOpen | String |         | edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit |
+| defaultOpen | String | |在单栏（`subfield=false`）时默认展示区域.<br/> edit： 默认展示编辑区域，<br/> preview： 默认展示预览区域 <br/> 其他 = edit |
 | placeholder | String |    开始编辑...     |  输入框为空时默认提示文本  |
 | editable     | Boolean |    true     | 是否允许编辑     |
 | codeStyle | String |    code-github     | markdown样式： 默认github, [可选配色方案](./src/lib/core/hljs/lang.hljs.css.js)   |
@@ -70,54 +72,104 @@ $ npm install mavon-editor@next --save
 | imageFilter | function |     null     |  图片过滤函数，参数为一个`File Object`，要求返回一个`Boolean`, `true`表示文件合法，`false`表示文件不合法 |
 | imageClick | function |     null     |  图片点击事件，默认为预览，可覆盖 |
 | tabSize     | Number  |     \t     | tab转化为几个空格，默认为\t                      |
-| xssOptions     | Object  |     null     | xss规则配置，参考 [https://github.com/leizongmin/js-xss](https://github.com/leizongmin/js-xss)                    |
+| html     | Boolean  |     true     | 启用HTML标签，因为历史原因这个标记一直默认为true，但建议不使用HTML标签就关闭它，它能彻底杜绝安全问题。                      |
+| xssOptions     | Object  |     {}     | xss规则配置, 默认开启，设置false可以关闭，开启后会对HTML标签进行过滤，默认过滤所有HTML标签属性，建议按需配置白名单减少被攻击的可能。<br/>- 自定义规则参考: [https://jsxss.com/zh/options.html](https://jsxss.com/zh/options.html)<br/>- 参考DEMO: [dev-demo](./src/dev/editor.vue)                  |
 | toolbars     | Object  |     如下例     | 工具栏                      |
+
+#### toolbars
+默认工具栏按钮全部开启, 传入自定义对象，可以选择启用部分按钮
 
 ```javascript
  /*
-    默认工具栏按钮全部开启, 传入自定义对象
     例如: {
-         bold: true, // 粗体
-         italic: true,// 斜体
-         header: true,// 标题
+        bold: true, // 粗体
+        italic: true,// 斜体
+        header: true,// 标题
     }
     此时, 仅仅显示此三个功能键
  */
+
 toolbars: {
-      bold: true, // 粗体
-      italic: true, // 斜体
-      header: true, // 标题
-      underline: true, // 下划线
-      strikethrough: true, // 中划线
-      mark: true, // 标记
-      superscript: true, // 上角标
-      subscript: true, // 下角标
-      quote: true, // 引用
-      ol: true, // 有序列表
-      ul: true, // 无序列表
-      link: true, // 链接
-      imagelink: true, // 图片链接
-      code: true, // code
-      table: true, // 表格
-      fullscreen: true, // 全屏编辑
-      readmodel: true, // 沉浸式阅读
-      htmlcode: true, // 展示html源码
-      help: true, // 帮助
-      /* 1.3.5 */
-      undo: true, // 上一步
-      redo: true, // 下一步
-      trash: true, // 清空
-      save: true, // 保存（触发events中的save事件）
-      /* 1.4.2 */
-      navigation: true, // 导航目录
-      /* 2.1.8 */
-      alignleft: true, // 左对齐
-      aligncenter: true, // 居中
-      alignright: true, // 右对齐
-      /* 2.2.1 */
-      subfield: true, // 单双栏模式
-      preview: true, // 预览
+    bold: true, // 粗体
+    italic: true, // 斜体
+    header: true, // 标题
+    underline: true, // 下划线
+    strikethrough: true, // 中划线
+    mark: true, // 标记
+    superscript: true, // 上角标
+    subscript: true, // 下角标
+    quote: true, // 引用
+    ol: true, // 有序列表
+    ul: true, // 无序列表
+    link: true, // 链接
+    imagelink: true, // 图片链接
+    code: true, // code
+    table: true, // 表格
+    fullscreen: true, // 全屏编辑
+    readmodel: true, // 沉浸式阅读
+    htmlcode: true, // 展示html源码
+    help: true, // 帮助
+    /* 1.3.5 */
+    undo: true, // 上一步
+    redo: true, // 下一步
+    trash: true, // 清空
+    save: true, // 保存（触发events中的save事件）
+    /* 1.4.2 */
+    navigation: true, // 导航目录
+    /* 2.1.8 */
+    alignleft: true, // 左对齐
+    aligncenter: true, // 居中
+    alignright: true, // 右对齐
+    /* 2.2.1 */
+    subfield: true, // 单双栏模式
+    preview: true, // 预览
   }
+```
+
+如果需要自定义添加工具栏按钮，可以通过以下方式
+```js
+<mavon-editor>
+  <!-- 左工具栏前加入自定义按钮 -->
+  <template slot="left-toolbar-before">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="自定义"
+    ></button>
+  </template>
+  <!-- 左工具栏后加入自定义按钮  -->
+  <template slot="left-toolbar-after">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="自定义"
+    ></button>
+  </template>
+  <!-- 右工具栏前加入自定义按钮  -->
+  <template slot="right-toolbar-before">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="自定义"
+    ></button>
+  </template>
+  <!-- 右工具栏后加入自定义按钮  -->
+  <template slot="right-toolbar-after">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="自定义"
+    ></button>
+  </template>
+</mavon-editor>
 ```
 
 ### events 事件绑定
@@ -136,13 +188,13 @@ toolbars: {
 | imgAdd           | Number: pos, [File](https://developer.mozilla.org/en-US/docs/Web/API/File): imgfile | 图片文件添加回调事件(pos: 图片在列表中的位置, File: File Object) |
 | imgDel           | Array(2):[Number: pos,[File](https://developer.mozilla.org/en-US/docs/Web/API/File):imgfile ] | 图片文件删除回调事件(Array(2): 两个元素的数组，第一位是图片在列表中的位置，第二位是File对象)          |
 
-#### 代码高亮
+### 代码高亮
 
 > 如不需要hightlight代码高亮显示，你应该设置ishljs为false
 
 开启代码高亮props
-```javascript
-    // ishljs默认为true
+```vue
+    <!-- ishljs默认为true -->
     <mavon-editor :ishljs = "true"></mavon-editor>
 ```
 
@@ -159,12 +211,13 @@ toolbars: {
 
 > [不使用cdn，本地按需加载点击这里...](./doc/cn/no-cnd.md)
 
-#### 图片上传
+### 图片上传
 
-```javascript
+```vue
 <template>
     <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
 </template>
+<script>
 exports default {
     methods: {
         // 绑定@imgAdd event
@@ -189,6 +242,7 @@ exports default {
         }
     }
 }
+</script>
 ```
 > [图片上传详情点击这里...](./doc/cn/upload-images.md)
 
@@ -214,8 +268,8 @@ exports default {
 | CTRL + Z    | 17 + 90 | 上一步 |
 | CTRL + Y    | 17 + 89 | 下一步 |
 | CTRL + BreakSpace    | 17 + 8 | 清空编辑 |
-| CTRL + B       | 17 + 66 | **加粗** |
-| CTRL + I | 17 + 73 | *斜体* |
+| CTRL + B       | 17 + 66 | \*\*加粗\*\* |
+| CTRL + I | 17 + 73 | \*斜体\* |
 | CTRL + H       | 17 + 72 | # 标题 |
 | CTRL + 1       | 17 + 97 or 49 | # 标题 |
 | CTRL + 2       | 17 + 98 or 50 | ## 标题 |
@@ -227,14 +281,14 @@ exports default {
 | CTRL + M    | 17 + 77 | ==标记== |
 | CTRL + Q    | 17 + 81 | > 引用 |
 | CTRL + O    | 17 + 79 | 1. 有序列表 |
-| CTRL + L    | 17 + 76 | [链接]() |
+| CTRL + L    | 17 + 76 | \[链接标题\](链接地址) |
 | CTRL + ALT + S    | 17 + 18 + 83 | ^上角标^ |
 | CTRL + ALT + U    | 17 + 18 + 85 | - 无序列表 |
-| CTRL + ALT + C    | 17 + 18 + 67 | ``` 代码块 |
-| CTRL + ALT + L    | 17 + 18 + 76 | ![图片链接]() |
+| CTRL + ALT + C    | 17 + 18 + 67 | \`\`\` 代码块 |
+| CTRL + ALT + L    | 17 + 18 + 76 | \!\[图片标题\](图片链接) |
 | CTRL + ALT + T    | 17 + 18 + 84 | 表格 |
 | CTRL + SHIFT + S    | 17 + 16 + 83 | ~下角标~ |
-| CTRL + SHIFT + D    | 17 + 16 + 68 | ~~中划线~~ |
+| CTRL + SHIFT + D    | 17 + 16 + 68 | \~\~中划线\~\~ |
 | CTRL + SHIFT + C    | 17 + 16 + 67 | 居中 |
 | CTRL + SHIFT + L    | 17 + 16 + 76 | 居左 |
 | CTRL + SHIFT + R    | 17 + 16 + 82 | 居右 |
@@ -264,7 +318,8 @@ exports default {
 - [katex](https://github.com/Khan/KaTeX)
 - [images preview](https://github.com/CHENXCHEN/markdown-it-images-preview)
 - [toc](https://github.com/tylerlong/markdown-it-toc)
-- 可通过[获取markdown-it对象](./doc/cn/markdown.md)引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
+> 可通过[获取markdown-it对象](./doc/cn/markdown.md)引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
+
 
 ## update(更新内容)
 

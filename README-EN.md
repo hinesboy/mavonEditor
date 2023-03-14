@@ -1,5 +1,7 @@
 # mavonEditor
-[![npm](https://img.shields.io/npm/v/mavon-editor/next.svg)](https://www.npmjs.com/package/mavon-editor/v/next)
+| Vue2 | [![npm](https://img.shields.io/npm/v/mavon-editor/latest.svg)](https://www.npmjs.com/package/mavon-editor/v/latest) |
+| ---- | ------------------------------------------------------------ |
+| **Vue3** | [![npm](https://img.shields.io/npm/v/mavon-editor/next.svg)](https://www.npmjs.com/package/mavon-editor/v/next) |
 
 > A markdown editor based on Vue3
 
@@ -57,7 +59,7 @@ $ npm install mavon-editor@next --save
 | scrollStyle| Boolean     |   true       | Open the scroll bar style(Temp only support chrome) |
 | boxShadow     | Boolean  |     true     | css: box-shadow  of mavonEditor              |
 | subfield   | Boolean     |   true        | true: Double columns - Edit preview same screen , Single Columns - otherwise not |
-| defaultOpen | String |         | edit: default show edit area , preview: default show preview area  , other = edit |
+| defaultOpen | String | |Default display area in single columns (subfield=false).<br/> edit: default show edit area<br/> preview: default show preview area<br/> other = edit |
 | placeholder | String |    Begin editing...     |  The default prompt text when the textarea is empty  |
 | editable | Boolean     |   true       | Edit switch |
 | codeStyle | String |    code-github     | markdown Style: default github, [option hljs color scheme](./src/lib/core/hljs/lang.hljs.css.js)  |
@@ -68,55 +70,104 @@ $ npm install mavon-editor@next --save
 | imageFilter | Function |     null     | Image file filter Function, params is a `File Object`, you should return `Boolean` about the test result |
 | imageClick | function |     null     |  Image Click Function |
 | tabSize | Number |     null     |  How many spaces equals one tab, default \t |
-| xssOptions     | Object  |     null     | xss options: [https://github.com/leizongmin/js-xss](https://github.com/leizongmin/js-xss)                    |
+| html    | Boolean  |     true     |  Enable HTML tags in source, for historical reasons this tag has always been true by default, but it is recommended to turn it off if you don't need this feature, as doing so it eliminates the security vulnerabilities altogether. |
+| xssOptions     | Object  |     {}     | xss rules configuration, enabled by default, set to false to turn off, enabled will filter HTML tags, the default filter all HTML tag attributes, it is recommended to configure the whitelist on demand to reduce the possibility of being attacked.<br/> - custom rule reference: [https://jsxss.com/zh/options.html](https://jsxss.com/zh/options.html)<br/>- Demo: [dev-demo](./src/dev/editor.vue)                    |             |
 | toolbars   | Object      |   As in the following example  | toolbars |
+
+#### toolbars
+The default toolbar properties are all true, You can customize the object to cover them.
 
 ```javascript
  /*
-    The default toolbar properties are all true,
-    You can customize the object to cover them.
     eg: {
-         bold: true,
-         italic: true,
-         header: true,
-    }
-    At this point, the toolbar only displays the three function keys.
- */
-toolbars: {
       bold: true,
       italic: true,
       header: true,
-      underline: true,
-      strikethrough: true,
-      mark: true,
-      superscript: true,
-      subscript: true,
-      quote: true,
-      ol: true,
-      ul: true,
-      link: true,
-      imagelink: true,
-      code: true,
-      table: true,
-      fullscreen: true,
-      readmodel: true,
-      htmlcode: true,
-      help: true,
-      /* 1.3.5 */
-      undo: true,
-      redo: true,
-      trash: true,
-      save: true,
-      /* 1.4.2 */
-      navigation: true,
-      /* 2.1.8 */
-      alignleft: true,
-      aligncenter: true,
-      alignright: true,
-      /* 2.2.1 */
-      subfield: true,
-      preview: true
+    }
+    At this point, the toolbar only displays the three function keys.
+ */
+
+toolbars: {
+    bold: true,
+    italic: true,
+    header: true,
+    underline: true,
+    strikethrough: true,
+    mark: true,
+    superscript: true,
+    subscript: true,
+    quote: true,
+    ol: true,
+    ul: true,
+    link: true,
+    imagelink: true,
+    code: true,
+    table: true,
+    fullscreen: true,
+    readmodel: true,
+    htmlcode: true,
+    help: true,
+    /* 1.3.5 */
+    undo: true,
+    redo: true,
+    trash: true,
+    save: true,
+    /* 1.4.2 */
+    navigation: true,
+    /* 2.1.8 */
+    alignleft: true,
+    aligncenter: true,
+    alignright: true,
+    /* 2.2.1 */
+    subfield: true,
+    preview: true
   }
+```
+
+If you need to customize and add toolbar buttons, you can do the following:
+```vue
+<mavon-editor>
+  <!-- Add a custom button in front of the left toolbar -->
+  <template slot="left-toolbar-before">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="custom"
+    ></button>
+  </template>
+  <!-- Add a custom button after the left toolbar  -->
+  <template slot="left-toolbar-after">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="custom"
+    ></button>
+  </template>
+  <!-- Add a custom button in front of the right toolbar  -->
+  <template slot="right-toolbar-before">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="custom"
+    ></button>
+  </template>
+  <!-- Add a custom button behind the right toolbar  -->
+  <template slot="right-toolbar-after">
+    <button
+      type="button"
+      @click="$click('test')"
+      class="op-icon fa fa-mavon-align-left"
+      aria-hidden="true"
+      title="custom"
+    ></button>
+  </template>
+</mavon-editor>
 ```
 ### events
 
@@ -134,14 +185,14 @@ toolbars: {
 | imgAdd |  Number: pos, [File](https://developer.mozilla.org/en-US/docs/Web/API/File): imgfile |  Add image file callback event(pos: position in the list of images, File: File Object) |
 | imgDel | Array(2):[Number: pos,[File](https://developer.mozilla.org/en-US/docs/Web/API/File):imgfile ]  |  Delete image file callback event(Array(2): An array of length 2,the first is `pos`: position in the list of images, the second is `file`: File Object) |
 
-#### Hightlight
+### Hightlight
 
 > If you do not need code highlighting, you need set ishljs to false
 
 Set ishljs = true
-```javascript
-    // default value is true
-    <mavon-editor :ishljs = "true"></mavon-editor>
+```vue
+    <!-- default value is true -->
+    <mavon-editor :ishljs="true"></mavon-editor>
 ```
 For optimize the size of pack, since **v2.4.2**, the following files will default to using `cdnjs` outside the chain:
  + `highlight.js`
@@ -157,12 +208,14 @@ The language parsing files and code highlighting in Code Highlighting `highlight
 > [without cdn, Click here to local on-demand loading...](./doc/en/no-cnd.md)
 
 
-#### Upload images
+### Upload images
 
-```javascript
+```vue
 <template>
     <mavon-editor ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"></mavon-editor>
 </template>
+
+<script>
 exports default {
     methods: {
         // bind @imgAdd event
@@ -182,6 +235,7 @@ exports default {
         }
     }
 }
+</script>
 ```
 > [more info about upload images ...](./doc/en/upload-images.md)
 
@@ -206,21 +260,21 @@ exports default {
 | CTRL + Z    | 17 + 90 | prev step |
 | CTRL + Y    | 17 + 89 | next step |
 | CTRL + BreakSpace    | 17 + 8 | trash |
-| CTRL + B       | 17 + 66 | **Bold** |
-| CTRL + I | 17 + 73 | *Italic* |
+| CTRL + B       | 17 + 66 | \*\*Bold\*\* |
+| CTRL + I | 17 + 73 | \*Italic\* |
 | CTRL + H       | 17 + 72 | # Header |
 | CTRL + U    | 17 + 85 | ++Underline++ |
 | CTRL + M    | 17 + 77 | ==Mark== |
 | CTRL + Q    | 17 + 81 | > Quote |
 | CTRL + O    | 17 + 79 | 1. OL |
-| CTRL + L    | 17 + 76 | [link]() |
+| CTRL + L    | 17 + 76 | \[Link title\](Link url) |
 | CTRL + ALT + S    | 17 + 18 + 83 | ^Superscript^ |
 | CTRL + ALT + U    | 17 + 18 + 85 | - UL |
-| CTRL + ALT + C    | 17 + 18 + 67 | ``` Code |
-| CTRL + ALT + L    | 17 + 18 + 76 | ![Image Link]() |
+| CTRL + ALT + C    | 17 + 18 + 67 | \`\`\` Code block |
+| CTRL + ALT + L    | 17 + 18 + 76 | \!\[Image title\](Image link) |
 | CTRL + ALT + T    | 17 + 18 + 84 | Table |
 | CTRL + SHIFT + S    | 17 + 16 + 83 | ~Subscript~ |
-| CTRL + SHIFT + D    | 17 + 16 + 68 | ~~Strikethrough~~ |
+| CTRL + SHIFT + D    | 17 + 16 + 68 | \~\~Strikethrough\~\~ |
 | CTRL + SHIFT + C    | 17 + 16 + 67 | align center |
 | CTRL + SHIFT + L    | 17 + 16 + 76 | align left |
 | CTRL + SHIFT + R    | 17 + 16 + 82 | align right |
@@ -247,7 +301,7 @@ exports default {
 - [katex](https://github.com/Khan/KaTeX)
 - [images preview](https://github.com/CHENXCHEN/markdown-it-images-preview)
 - [toc](https://github.com/tylerlong/markdown-it-toc)
-- 可通过获取[markdown-it](./doc/cn/markdown.md)对象引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
+> 可通过获取[markdown-it](./doc/cn/markdown.md)对象引入[其他语法插件](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
 
 ## Collaborators
 
