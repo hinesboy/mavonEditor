@@ -482,7 +482,7 @@ export function loadScript(src, callback) {
     head.appendChild(script);
 }
 
-// <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/agate.min.css" rel="stylesheet">
+// <link href="https://cdn.bootcss.com/highlight.js/11.3.1/styles/agate.min.css" rel="stylesheet">
 export function loadLink(src, callback, id) {
     if (!(typeof callback === 'function')) {
         callback = function() {};
