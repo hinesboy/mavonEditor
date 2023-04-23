@@ -41,13 +41,12 @@
     </template>
     <script>
     // Local Registration
-    import { mavonEditor } from 'mavon-editor'
+    import MavonEditor from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
     export default {
         name: 'editor',
         components: {
-            mavonEditor
-            // or 'mavon-editor': mavonEditor
+            'mavon-editor': MavonEditor.mavonEditor
         }
     }
     </script>
