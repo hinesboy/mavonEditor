@@ -123,7 +123,7 @@ export default {
             var $vm = this;
             missLangs = {};
             needLangs = [];
-            var res = this.markdownIt.render(src);
+            var res = $vm.markdownIt.render(src);
             if (this.ishljs) {
                 if (needLangs.length > 0) {
                     $vm.$_render(src, func, res);
@@ -139,7 +139,7 @@ export default {
                 loadScript(url, function () {
                     deal = deal + 1;
                     if (deal === needLangs.length) {
-                        res = this.markdownIt.render(src);
+                        res = $vm.markdownIt.render(src);
                         func(res);
                     }
                 })
