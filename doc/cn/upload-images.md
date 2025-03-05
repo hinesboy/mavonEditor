@@ -63,15 +63,28 @@ exports default {
                 data: formdata,
                 headers: { 'Content-Type': 'multipart/form-data' },
             }).then((res) => {
+                //如果返回的res是键值对的字符串数组
                 /**
-                 * 例如：返回数据为 res = [[pos, url], [pos, url]...]
+                 * 例如：返回数据为 res = {pos:url,pos:url...} 
                  * pos 为原图片标志（0）
                  * url 为上传后图片的url地址
                  */
                  // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
                 for (var img in res) {
                     // $vm.$img2Url 详情见本页末尾
-                    $vm.$img2Url(img[0], img[1]);
+                    $vm.$img2Url(img, res[img]);
+                }
+                //如果返回的是索引数组
+                /**
+                 * 例如：返回数据为 res = [[pos,url],[pos,url]...] 
+                 * pos 为原图片标志（0）
+                 * url 为上传后图片的url地址
+                 */
+                 // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+                 //此时遍历的img是数组的下标 
+                for (var img in res) {
+                    // $vm.$img2Url 详情见本页末尾
+                    $vm.$img2Url(res[img][0], res[img][1]);
                 }
             })
         },
