@@ -1,6 +1,6 @@
 {
   "name": "mavon-editor",
-  "version": "2.10.4",
+  "version": "2.10.5",
   "description": "Vue markdown editor",
   "main": "dist/mavon-editor.js",
   "types": "./mavon-editor.d.ts",
