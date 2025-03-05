@@ -141,7 +141,7 @@ Detailed: [https://www.webpagefx.com/tools/emoji-cheat-sheet/](https://www.webpa
 우리는 다음과 같이 함수를 만들 수 있습니다.：$x_i + y_i = z_i$ and $\sum_{i=1}^n a_i=0$
 단일 항으로도 가능합니다.
 $$\sum_{i=1}^n a_i=0$$
-Detailed: [katex](http://www.intmath.com/cg5/katex-mathjax-comparison.php)和[katex function](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX)以及[latex](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
+Detailed: [katex](http://www.intmath.com/cg5/katex-mathjax-comparison.php) and [katex function](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX) and [latex](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
 
 ## 레이아웃
 
