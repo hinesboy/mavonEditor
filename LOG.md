@@ -1,4 +1,8 @@
 # 更新日志
+- **3.0.2** (25.03.05)
+   - doc: update highlight version by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/846
+   - Released version 3.0.2 by @jiawulin001 @stevenzearo @yeonjulee1005 in https://github.com/hinesboy/mavonEditor/pull/913
+  
 - **3.0.1** (23.03.14)
     - Sync vue2 version code by @jiawulin001 in https://github.com/hinesboy/mavonEditor/pull/845
 
